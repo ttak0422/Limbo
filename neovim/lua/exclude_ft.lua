@@ -1,0 +1,2 @@
+-- [nfnl] Compiled from neovim/fnl/exclude_ft.fnl by https://github.com/Olical/nfnl, do not edit.
+return {"", "Codewindow", "NvimTree", "TelescopePrompt", "alpha", "checkhealth", "dap-repl", "dapui_breakpoints", "dapui_console", "dapui_scopes", "dapui_stacks", "dapui_watches", "ddu-ff", "ddu-ff-filter", "dropbar_menu", "glowpreview", "help", "lspinfo", "minimap", "neo-tree", "nofile", "noice", "prompt", "qf", "quickfix", "registers", "toggleterm"}

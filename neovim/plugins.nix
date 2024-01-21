@@ -1,0 +1,1054 @@
+{ pkgs }:
+let
+  inherit (builtins) readFile;
+  startup = with pkgs.vimPlugins; {
+    kanagawa = {
+      plugin = kanagawa-nvim;
+      startupConfig = {
+        language = "lua";
+        code = readFile ./lua/kanagawa.lua;
+      };
+    };
+    config-local = {
+      plugin = nvim-config-local;
+      startupConfig = {
+        language = "lua";
+        code = readFile ./lua/config-local.lua;
+      };
+    };
+    stickybuf = {
+      plugin = stickybuf-nvim;
+      startupConfig = {
+        language = "lua";
+        code = readFile ./lua/stickybuf.lua;
+      };
+    };
+    direnv = {
+      plugin = direnv-vim;
+      startupConfig = {
+        language = "lua";
+        code = readFile ./lua/direnv.lua;
+      };
+    };
+    hydra = {
+      plugin = hydra-nvim;
+      startupConfig = {
+        language = "lua";
+        code = readFile ./lua/hydra.lua;
+      };
+    };
+  };
+  lsp = with pkgs.vimPlugins; {
+    trouble = {
+      # A pretty diagnostics, references, telescope results, quickfix and location list to help you solve all the trouble your code is causing.
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/trouble.lua;
+      };
+      dependGroups = [ "lsp" ];
+      onModules = [ "trouble" ];
+      onCommands = [ "TroubleToggle" ];
+    };
+    # todo add cspell
+    none-ls = {
+      plugin = none-ls-nvim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/none-ls.lua;
+      };
+      dependPlugins = [ plenary-nvim ];
+      extraPackages = with pkgs; [
+        nodePackages.eslint
+        nodePackages.cspell
+        # TODO: add rules
+        nodePackages.textlint
+        # formatter
+        google-java-format
+        html-tidy
+        nixfmt
+        nodePackages.fixjson
+        nodePackages.prettier
+        rustfmt
+        shfmt
+        stylua
+        taplo
+        yamlfmt
+        yapf
+        dhall
+        fnlfmt
+      ];
+      useTimer = true;
+    };
+  };
+  filetype = with pkgs.vimPlugins; {
+    jdtls = {
+      # Extensions for the built-in LSP support in Neovim for eclipse.jdt.ls
+      plugin = nvim-jdtls;
+      dependPlugins = [ ];
+      dependGroups = [ "lsp" ];
+      postConfig =
+        let jdtLsp = pkgs.jdt-language-server;
+        in {
+          language = "lua";
+          code = readFile ./lua/jdtls.lua;
+          args = {
+            runtimes = [
+              {
+                name = "JavaSE-11";
+                path = pkgs.jdk11;
+              }
+              {
+                name = "JavaSE-17";
+                path = pkgs.jdk17;
+                default = true;
+              }
+            ];
+            on_attach_path = ./lua/on_attach.lua;
+            capabilities_path = ./lua/capabilities.lua;
+            java_path = "${pkgs.jdk17}/bin/java";
+            jdtls_config_path = "${jdtLsp}/share/config";
+            lombok_jar_path = "${pkgs.lombok}/share/java/lombok.jar";
+            jdtls_jar_pattern =
+              "${jdtLsp}/share/java/plugins/org.eclipse.equinox.launcher_*.jar";
+            java_debug_jar_pattern =
+              "${pkgs.vscode-extensions.vscjava.vscode-java-debug}/share/vscode/extensions/vscjava.vscode-java-debug/server/com.microsoft.java.debug.plugin-*.jar";
+            java_test_jar_pattern =
+              "${pkgs.vscode-extensions.vscjava.vscode-java-test}/share/vscode/extensions/vscjava.vscode-java-test/server/*.jar";
+            jol_jar_path = pkgs.javaPackages.jol;
+          };
+        };
+      onFiletypes = [ "java" ];
+    };
+    vtsls = {
+      # Plugin to help utilize capabilities of vtsls.
+      plugin = nvim-vtsls;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/vtsls.lua;
+      };
+      dependGroups = [ "lsp" ];
+      onFiletypes = [ "typescript" "javascript" ];
+    };
+    haskell-tools = {
+      # Supercharge your Haskell experience in neovim!
+      plugin = haskell-tools-nvim;
+      dependPlugins = [ plenary-nvim ];
+      dependGroups = [ "lsp" ];
+      extraPackages = with pkgs; [
+        haskellPackages.fourmolu
+        haskell-language-server
+      ];
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/haskell-tools.lua;
+        args = {
+          on_attach_path = ./lua/on_attach.lua;
+          capabilities_path = ./lua/capabilities.lua;
+        };
+      };
+      onFiletypes = [ "haskell" ];
+    };
+    flutter-tools = {
+      # Tools to help create flutter apps in neovim using the native lsp
+      plugin = flutter-tools-nvim;
+      dependPlugins = [ plenary-nvim ];
+      dependGroups = [ "lsp" ];
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/flutter-tools.lua;
+      };
+      onFiletypes = [ "dart" ];
+    };
+    # WIP...
+    rust-tools = {
+      plugin = rust-tools-nvim;
+      dependPlugins = [ plenary-nvim toggleterm-nvim ];
+      dependGroups = [ "lsp" "dap" ];
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/rust-tools.lua;
+        args = {
+          on_attach_path = ./lua/on_attach.lua;
+          capabilities_path = ./lua/capabilities.lua;
+        };
+      };
+      onFiletypes = [ "rust" ];
+
+    };
+    ionide = {
+      # FSharp
+      # [WIP] dotnet
+      # dotnet tool install -g fsautocomplete
+      # dotnet tool install -g dotnet-fsharplint
+      # dotnet tool install --global fantomas-tool
+      plugin = Ionide-vim;
+      dependGroups = [ "lsp" ];
+      preConfig = {
+        language = "lua";
+        code = readFile ./lua/ionide-pre.lua;
+      };
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/ionide.lua;
+        args = {
+          on_attach_path = ./lua/on_attach.lua;
+          capabilities_path = ./lua/capabilities.lua;
+        };
+      };
+      onFiletypes = [ "fsharp" ];
+    };
+    mkdnflow = {
+      plugin = mkdnflow-nvim;
+      dependPlugins = [ plenary-nvim ];
+      onFiletypes = [ "markdown" ];
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/mkdnflow.lua;
+      };
+    };
+    # paredit = {
+    #   plugin = nvim-paredit-fennel;
+    #   onFiletypes = [ "fennel" ];
+    #   dependPlugins = [ nvim-paredit ];
+    #   postConfig = readFile ./../../../nvim/lua/paredit-fennel.lua;
+    # };
+    # paredit-fennel = {
+    #   # A fennel language extension for nvim-paredit
+    #   plugin = nvim-paredit-fennel;
+    #   onFiletypes = [ "fennel" ];
+    #   dependPlugins = [ nvim-paredit ];
+    #   postConfig = readFile ./../../../nvim/lua/paredit-fennel.lua;
+    # };
+    # conjure = {
+    #   # Interactive evaluation for Neovim (Clojure, Fennel, Janet, Racket, Hy, MIT Scheme, Guile, Python and more!)
+    #   plugin = conjure;
+    #   prpostConfig = readFile ./../../../nvim/lua/conjure-pre.lua;
+    #   postConfig = readFile ./../../../nvim/lua/conjure.lua;
+    #   dependPlugins = [{ plugin = aniseed; }];
+    #   dependGroups = [ "treesitter" ];
+    #   onFiletypes = [ "clojure" "fennel" "scheme" ];
+    # };
+    qf = {
+      # Extends the default quickfix and location lists for neovim
+      plugin = qf-nvim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/qf.lua;
+      };
+      onFiletypes = [ "qf" ];
+      onCommands = [ "Qnext" "Qprev" "Lnext" "Lprev" ];
+    };
+    ts-autotag = {
+      # Use treesitter to auto close and auto rename html tag
+      plugin = nvim-ts-autotag;
+      dependGroups = [ "treesitter" ];
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/ts-autotag.lua;
+      };
+      onFiletypes = [ "javascript" "typescript" "jsx" "tsx" "vue" "html" ];
+    };
+    vim-nix = {
+      plugin = vim-nix;
+      onFiletypes = [ "nix" ];
+    };
+    vim-markdown = {
+      plugin = vim-markdown;
+      preConfig = {
+        language = "lua";
+        code = readFile ./lua/vim-markdown-pre.lua;
+      };
+      onFiletypes = [ "markdown" ];
+    };
+    nfnl = with pkgs.vimPlugins; {
+      plugin = nfnl;
+      onFiletypes = [ "fennel" ];
+      extraPackages = with pkgs; [ sd fd ];
+    };
+  };
+  git = with pkgs.vimPlugins; {
+    git-conflict = {
+      plugin = git-conflict-nvim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/git-conflict.lua;
+      };
+      useTimer = true;
+    };
+    git-signs = {
+      plugin = gitsigns-nvim;
+      dependPlugins = [ plenary-nvim ];
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/gitsigns.lua;
+      };
+      onEvents = [ "CursorMoved" ];
+    };
+    gina = {
+      plugin = gina-vim;
+      postConfig = {
+        language = "vim";
+        code = readFile ./vim/gina.vim;
+      };
+      onCommands = [ "Gina" ];
+    };
+    gin = {
+      plugin = gin-vim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/gin.lua;
+      };
+      dependPlugins = [ denops-vim ];
+      onCommands = [
+        "Gin"
+        "GinBuffer"
+        "GinLog"
+        "GinStatus"
+        "GinDiff"
+        "GinBrowse"
+        "GinBranch"
+      ];
+      useDenops = true;
+    };
+    diffview = {
+      plugin = diffview-nvim;
+      dependPlugins = [ nvim-web-devicons ];
+      onCommands = [ "DiffviewOpen" "DiffviewToggleFiles" ];
+    };
+
+  };
+  dap = with pkgs.vimPlugins; {
+    dap-go = {
+      # An extension for nvim-dap providing configurations for launching go debugger (delve) and debugging individual tests
+      plugin = nvim-dap-go;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/dap-go.lua;
+      };
+      dependGroups = [ "dap" ];
+      onFiletypes = [ "go" ];
+      extraPackages = with pkgs; [ delve ];
+    };
+  };
+  style = with pkgs.vimPlugins; {
+    bufferline = {
+      plugin = bufferline-nvim;
+      dependPlugins = [ scope-nvim ];
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/bufferline.lua;
+      };
+      useTimer = true;
+    };
+    numb = {
+      # Peek lines just when you intend
+      plugin = numb-nvim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/numb.lua;
+      };
+      onEvents = [ "CmdlineEnter" ];
+    };
+    hlchunk = {
+      # This is the lua implementation of nvim-hlchunk, you can use this neovim plugin to highlight your indent line and the current chunk (context) your cursor stayed
+      plugin = hlchunk-nvim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/hlchunk.lua;
+      };
+      dependGroups = [ "treesitter" ];
+      onEvents = [ "CursorMoved" ];
+    };
+    ufo = {
+      # Not UFO in the sky, but an ultra fold in Neovim.
+      plugin = nvim-ufo;
+      dependPlugins = [ promise-async statuscol-nvim indent-blankline-nvim ];
+      dependGroups = [ "treesitter" ];
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/ufo.lua;
+      };
+      useTimer = true;
+    };
+    statuscol = {
+      # Status column plugin that provides a configurable 'statuscolumn' and click handlers.
+      plugin = statuscol-nvim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/statuscol.lua;
+      };
+    };
+    bqf = {
+      # Better quickfix window in Neovim, polish old quickfix window.
+      plugin = nvim-bqf;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/bqf.lua;
+      };
+      onModules = [ "bqf" ];
+      onEvents = [ "QuickFixCmdPre" ];
+      dependGroups = [ "treesitter" ];
+      extraPackages = with pkgs; [ fzf ];
+    };
+    qfview = {
+      # Pretty quickfix/location view for Neovim
+      plugin = qfview-nvim;
+      postConfig = readFile ./../../nvim/qfview.lua;
+      onEvents = [ "QuickFixCmdPre" ];
+      useTimer = true;
+    };
+    noice = {
+      plugin = noice-nvim;
+      dependPlugins = [ nui-nvim nvim-notify ];
+      dependGroups = [ "treesitter" ];
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/noice.lua;
+        args = { exclude_ft_path = ./lua/exclude_ft.lua; };
+      };
+      useTimer = true;
+    };
+    context-vt = {
+      # Virtual text context for neovim treesitter
+      plugin = nvim_context_vt;
+      dependGroups = [ "treesitter" ];
+      postConfig = {
+        language = "lua";
+        code = readFile ./../../nvim/context-vt.lua;
+      };
+      useTimer = true;
+
+    };
+    glance = {
+      # plugin = glance-nvim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/glance.lua;
+      };
+      onCommands = [ "Glance" ];
+    };
+    heirline = {
+      plugin = heirline-nvim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/heirline.lua;
+      };
+      dependPlugins = [
+        plenary-nvim
+        nvim-web-devicons
+        {
+          plugin = piccolo-pomodoro-nvim;
+          postConfig = {
+            language = "lua";
+            code = readFile ./lua/piccolo-pomodoro.lua;
+          };
+          onModules = [ "piccolo-pomodoro" ];
+        }
+        hydra-nvim
+      ];
+      dependGroups = [ "skk" ];
+      useTimer = true;
+    };
+    satellite = {
+      plugin = satellite-nvim;
+      dependPlugins = [ gitsigns-nvim ];
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/satellite.lua;
+        args = { exclude_ft_path = ./lua/exclude_ft.lua; };
+      };
+      onEvents = [ "CursorMoved" ];
+    };
+    winsep = {
+      plugin = colorful-winsep-nvim;
+      onEvents = [ "WinNew" ];
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/winsep.lua;
+      };
+    };
+    dropbar = {
+      plugin = dropbar-nvim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/dropbar.lua;
+      };
+      dependPlugins = [ nvim-web-devicons telescope-fzf-native-nvim ];
+    };
+    notify = {
+      plugin = nvim-notify;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/notify.lua;
+      };
+    };
+    tint = {
+      plugin = tint-nvim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/tint.lua;
+      };
+      onEvents = [ "WinNew" ];
+    };
+    devicons = {
+      plugin = nvim-web-devicons;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/devicons.lua;
+      };
+    };
+    registers = {
+      plugin = registers-nvim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/registers.lua;
+      };
+      onEvents = [ "CursorMoved" ];
+    };
+    codewindow = {
+      plugin = codewindow-nvim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/codewindow.lua;
+        args = { exclude_ft_path = ./lua/exclude_ft.lua; };
+
+      };
+      dependGroups = [ "treesitter" ];
+      # onEvents = [ "CursorHold" ];
+      onModules = [ "codewindow" ];
+    };
+  };
+  override = with pkgs.vimPlugins; {
+    hlslens = {
+      plugin = nvim-hlslens;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/hlslens.lua;
+      };
+      onEvents = [ "CmdlineEnter" ];
+    };
+    asterisk = {
+      # *-Improved
+      plugin = vim-asterisk;
+      postConfig = {
+        language = "vim";
+        code = readFile ./vim/asterisk.vim;
+      };
+      onEvents = [ "CursorMoved" ];
+    };
+    mkdir = {
+      # This neovim plugin creates missing folders on save.
+      plugin = mkdir-nvim;
+      onEvents = [ "CmdlineEnter" ];
+    };
+    indent-o-matic = {
+      # Dumb automatic fast indentation detection for Neovim written in Lua
+      plugin = indent-o-matic;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/indent-o-matic.lua;
+      };
+      onEvents = [ "CursorMoved" ];
+    };
+    toolwindow = {
+      # Easy management of a toolwindow.
+      plugin = toolwindow-nvim;
+      onModules = [ "toolwindow" ];
+    };
+    open = {
+      # Open the current word with custom openers, GitHub shorthands for example.
+      plugin = open-nvim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/open.lua;
+      };
+      onModules = [ "open" ];
+
+    };
+    fundo = {
+      # Forever undo in Neovim
+      plugin = nvim-fundo;
+      dependPlugins = [ promise-async ];
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/fundo.lua;
+      };
+      useTimer = true;
+    };
+    waitevent = {
+      # Neovim plugin to avoid nested nvim
+      plugin = waitevent-nvim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/waitevent.lua;
+      };
+      useTimer = true;
+    };
+    ambiwidth = {
+      # This plugin provides a set of setcellwidths() for Vim that the ambiwidth is single.
+      plugin = vim-ambiwidth;
+      useTimer = true;
+    };
+    scope = {
+      plugin = scope-nvim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/scope.lua;
+      };
+    };
+    smart-splits = {
+      # Smart, seamless, directional navigation and resizing of Neovim
+      plugin = smart-splits-nvim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/smart-splits.lua;
+      };
+      dependPlugins = [{
+        plugin = bufresize-nvim;
+        postConfig = {
+          language = "lua";
+          code = readFile ./lua/bufresize.lua;
+        };
+      }];
+      onModules = [ "smart-splits" ];
+      onEvents = [ "WinNew" ];
+    };
+    tabout = {
+      # tabout plugin for neovim
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/tabout.lua;
+      };
+      dependGroups = [ "treesitter" ];
+      onEvents = [ "InsertEnter" ];
+    };
+    marks = {
+      # A better user experience for viewing and interacting with Vim marks.
+      plugin = marks-nvim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/marks.lua;
+      };
+      useTimer = true;
+    };
+  };
+  helper = with pkgs.vimPlugins; {
+    early-retirement = {
+      plugin = nvim-early-retirement;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/early-retirement.lua;
+      };
+      useTimer = true;
+    };
+    safe-close-window = {
+      plugin = safe-close-window-nvim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/safe-close-window.lua;
+      };
+      onCommands = [ "SafeCloseWindow" ];
+    };
+    dd = {
+      # Deferring of NeoVim diagnostics
+      plugin = nvim-dd;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/dd.lua;
+      };
+      onEvents = [ "InsertEnter" ];
+    };
+    trim = {
+      # This plugin trims trailing whitespace and lines.
+      plugin = trim-nvim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/trim.lua;
+      };
+      onEvents = [ "BufWritePre" ];
+    };
+    project = {
+      # The superior project management solution for neovim.
+      plugin = project-nvim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/project.lua;
+      };
+      useTimer = true;
+    };
+    qfheight = {
+      plugin = qfheight-nvim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/qfheight.lua;
+        onFiletypes = [ "qf" ];
+        onEvents = [ "QuickFixCmdPre" ];
+      };
+    };
+    history-ignore = {
+      # Configure commands not to be registered in the command-line history
+      plugin = history-ignore-nvim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/history-ignore.lua;
+      };
+      onEvents = [ "CmdlineEnter" ];
+    };
+    auto-indent = {
+      # Auto indent like VSCode when cursor at the first column and press <TAB> key
+      plugin = auto-indent-nvim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/auto-indent.lua;
+      };
+    };
+  };
+  tool = with pkgs.vimPlugins; {
+    markdown-preview = {
+      plugin = markdown-preview-nvim;
+      onFiletypes = [ "markdown" ];
+    };
+    translate = {
+      # Translate languages
+      plugin = denops-translate-vim;
+      preConfig = {
+        language = "vim";
+        code = readFile ./lua/denops-translate-pre.lua;
+      };
+      dependPlugins = [ denops ];
+      useDenops = true;
+      onCommands = [ "Translate" ];
+    };
+    toggleterm = {
+      # A neovim lua plugin to help easily manage multiple terminal windows
+      plugin = toggleterm-nvim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/toggleterm.lua;
+      };
+      onCommands = [ "ToggleTerm" "TigToggleTerm" ];
+    };
+    vimdoc-ja = {
+      # A project which translate Vim documents into Japanese.
+      plugin = vimdoc-ja;
+      onEvents = [ "CmdlineEnter" ];
+    };
+    legendary = {
+      # A legend for your keymaps, commands, and autocmds, integrates with which-key.nvim, lazy.nvim, and more.
+      plugin = legendary-nvim;
+      dependGroups = [ "telescope" ];
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/legendary.lua;
+      };
+      onCommands = [ "Legendary" ];
+    };
+    window-picker = {
+      plugin = nvim-window-picker;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/window-picker.lua;
+      };
+      args = {
+        exclude_ft_path = ./lua/exclude_ft.lua;
+        exclude_buf_ft_path = ./lua/exclude_buf_ft.lua;
+      };
+      onModules = [ "window-picker" ];
+    };
+    nvim-tree = {
+      plugin = nvim-tree-lua;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/nvim-tree.lua;
+      };
+      dependPlugins = [ nvim-web-devicons ];
+      onCommands = [ "NvimTreeToggle" ];
+    };
+    neotree = {
+      plugin = neotree-nvim-3;
+      dependPlugins = [ plenary-nvim nvim-web-devicons nui-nvim ];
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/neotree.lua;
+      };
+      onCommands = [ "Neotree" ];
+    };
+    bufdel = {
+      plugin = nvim-bufdel;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/bufdel.lua;
+      };
+      onCommands = [ "BufDel" "BufDel!" "BufDelAll" "BufDelOthers" ];
+    };
+    neozoom = {
+      # A simple usecase of floating window to help you focus.
+      plugin = NeoZoom-lua;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/neozoom.lua;
+      };
+      onCommands = [ "NeoZoomToggle" ];
+    };
+    femaco = {
+      # Catalyze your Fenced Markdown Code-block editing!
+      plugin = nvim-FeMaco-lua;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/femaco.lua;
+      };
+      dependGroups = [ "treesitter" ];
+      onCommands = [ "FeMaco" ];
+    };
+    winshift = {
+      # Rearrange your windows with ease.
+      plugin = winshift-nvim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/winshift.lua;
+      };
+      onCommands = [ "WinShift" ];
+    };
+    jukit = {
+      # Jupyter-Notebook inspired Neovim/Vim Plugin
+      plugin = vim-jukit;
+    };
+    overseer = {
+      # A task runner and job management plugin for Neovim
+      plugin = overseer-nvim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/overseer.lua;
+      };
+      dependPlugins = [ toggleterm-nvim ];
+      onCommands = [ "OverseerRun" ];
+    };
+    colorizer = {
+      # The fastest Neovim colorizer.
+      plugin = nvim-colorizer-lua;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/colorizer.lua;
+      };
+      onCommands = [ "ColorizerToggle" ];
+    };
+    detour = {
+      # Use popup windows to navigate files/buffer and to contain shells/TUIs
+      plugin = detour-nvim;
+      postConfig = {
+        code = readFile ./lua/detour.lua;
+        language = "lua";
+      };
+      onCommands = [ "Detour" ];
+      onModules = [ "detour" ];
+    };
+    flow = {
+      # A neovim plugin that lets you build custom commands to automate parts of your development workflow
+      plugin = flow-nvim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/flow.lua;
+      };
+      onCommands = [ "FlowRunSelected" "FlowRunFile" "FlowLauncher" ];
+    };
+    startuptime = {
+      # vim-startup
+      plugin = vim-startuptime;
+      onCommands = [ "StartupTime" ];
+    };
+    harpoon = {
+      plugin = harpoon-1;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/harpoon.lua;
+      };
+      dependPlugins = [ plenary-nvim ];
+    };
+    nvim-window = {
+      # Easily jump between NeoVim windows.
+      plugin = nvim-window;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/window.lua;
+      };
+      onModules = [ "nvim-window" ];
+    };
+    jabs = {
+      # Just Another Buffer Switcher for Neovim
+      plugin = JABS-nvim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/jabs.lua;
+      };
+      onCommands = [ "JABSOpen" ];
+    };
+  };
+  search = with pkgs.vimPlugins; {
+    which-key = {
+      # Create key bindings that stick. WhichKey is a lua plugin for Neovim 0.5 that displays a popup with possible keybindings of the command you started typing.
+      plugin = which-key-nvim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/whichkey.lua;
+      };
+      useTimer = true;
+    };
+    goto-preview = {
+      # A small Neovim plugin for previewing definitions using floating windows.
+      plugin = goto-preview;
+      dependPlugins = [ tint-nvim ];
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/goto-preview.lua;
+      };
+      onModules = [ "goto-preview" ];
+    };
+    spectre = {
+      # Find the enemy and replace them with dark power.
+      plugin = nvim-spectre;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/spectre.lua;
+      };
+      dependPlugins = [ plenary-nvim nvim-web-devicons ];
+      extraPackages = with pkgs; [ gnused ripgrep ];
+      onModules = [ "spectre" ];
+    };
+    kensaku = {
+      plugin = kensaku-command-vim;
+      dependPlugins = [{
+        plugin = kensaku-vim;
+        useDenops = true;
+        dependPlugins = [ denops-vim ];
+      }];
+      onCommands = [ "Kensaku" ];
+    };
+    reacher = {
+      # Displayed range search buffer
+      plugin = reacher-nvim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/reacher.lua;
+      };
+      onModules = [ "reacher" ];
+    };
+  };
+  motion = with pkgs.vimPlugins; {
+    better-escape = {
+      # Escape from insert mode without delay when typing
+      plugin = better-escape-nvim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/better-escape.lua;
+      };
+      onEvents = [ "InsertEnter" ];
+    };
+    nap = {
+      plugin = nap-nvim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/nap.lua;
+      };
+      onEvents = [ "CursorMoved" ];
+      dependPlugins = [{
+        plugin = BufferBrowser;
+        postConfig = {
+          language = "lua";
+          code = readFile ./lua/BufferBrowser.lua;
+        };
+      }];
+    };
+    leap = {
+      # Neovim's answer to the mouse
+      plugin = leap-nvim;
+      dependPlugins = [ vim-repeat ];
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/leap.lua;
+      };
+      onEvents = [ "CursorMoved" ];
+    };
+    flit = {
+      # Enhanced f/t motions for Leap
+      plugin = flit-nvim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/flit.lua;
+      };
+      onEvents = [ "CursorMoved" ];
+    };
+
+  };
+
+in
+with pkgs.vimPlugins;
+{
+  tshjkl = {
+    # Tree-sitter hjkl movement for neovim
+    plugin = tshjkl-nvim;
+    postConfig = {
+      language = "lua";
+      code = readFile ./lua/tshjkl.lua;
+    };
+    onEvents = [ "CursorMoved" ];
+  };
+  comment = {
+    # Smart and powerful comment plugin for neovim. Supports treesitter, dot repeat, left-right/up-down motions, hooks, and more
+    plugin = Comment-nvim;
+    postConfig = {
+      language = "lua";
+      code = readFile ./lua/comment.lua;
+    };
+    onEvents = [ "InsertEnter" "CursorMoved" ];
+  };
+  todo-comments = {
+    # Highlight, list and search todo comments in your projects
+    plugin = todo-comments-nvim;
+    dependPlugins = [ plenary-nvim trouble-nvim ];
+    postConfig = {
+      language = "lua";
+      code = readFile ./lua/todo-comments.lua;
+    };
+    onCommands = [ "TodoQuickFix" "TodoLocList" "TodoTrouble" "TodoTelescope" ];
+    extraPackages = [ pkgs.ripgrep ];
+    useTimer = true;
+  };
+  surround = {
+    # Add/change/delete surrounding delimiter pairs with ease.
+    plugin = nvim-surround;
+    postConfig = {
+      language = "lua";
+      code = readFile ./lua/surround.lua;
+    };
+    onEvents = [ "InsertEnter" ];
+  };
+  copilot = {
+    # Fully featured & enhanced replacement for copilot.vim complete with API for interacting with Github Copilot
+    plugin = copilot-lua;
+    postConfig = {
+      language = "lua";
+      code = readFile ./lua/copilot.lua;
+    };
+  };
+  treesj = {
+    # Neovim plugin for splitting/joining blocks of code
+    plugin = treesj;
+    postConfig = {
+      language = "lua";
+      code = readFile ./lua/treesj.lua;
+    };
+    onModules = [ "treesj" ];
+  };
+  neogen = {
+    # A better annotation generator. Supports multiple languages and annotation conventions.
+    plugin = neogen;
+    dependGroups = [ "treesitter" ];
+    postConfig = {
+      language = "lua";
+      code = readFile ./lua/neogen.lua;
+    };
+    onCommands = [ "Neogen" ];
+  };
+
+} // startup // lsp // dap // filetype // git // style // override // helper
+// tool // search // motion
