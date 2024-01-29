@@ -9,6 +9,7 @@
       url = "github:edolstra/flake-compat";
       flake = false;
     };
+    nix-filter.url = "github:numtide/nix-filter";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     darwin = {
@@ -39,13 +40,20 @@
       url = "sourcehut:~xerool/fennel-ls";
       flake = false;
     };
+    tsnip-nvim-src = {
+      url = "github:gamoutatsumi/tsnip.nvim/update-to-ddc-4";
+      flake = false;
+    };
+    jol = {
+      url =
+        "https://repo.maven.apache.org/maven2/org/openjdk/jol/jol-cli/0.16/jol-cli-0.16-full.jar";
+      flake = false;
+    };
   };
 
   outputs = inputs@{ flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = import inputs.systems;
       imports = [ ./neovim ];
-
     };
-
 }

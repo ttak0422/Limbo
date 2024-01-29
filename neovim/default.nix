@@ -16,8 +16,7 @@
         end
       '';
 
-    in
-    {
+    in {
       _module.args.pkgs = import inputs.nixpkgs {
         inherit system;
         overlays = import ./overlays.nix inputs;
@@ -35,8 +34,114 @@
             kanagawa
             stickybuf
           ];
-          lazyPlugins = with plugins; [ nfnl nap none-ls qfheight trouble ];
-          lazyGroups = with groups; [ treesitter ];
+          lazyPlugins = with plugins; [
+            ambiwidth
+            asterisk
+            auto-indent
+            better-escape
+            bqf
+            bufdel
+            bufferline
+            codewindow
+            colorizer
+            comment
+            context-vt
+            copilot
+            dap-go
+            dd
+            detour
+            devicons
+            diffview
+            dropbar
+            early-retirement
+            femaco
+            flit
+            flow
+            flutter-tools
+            fundo
+            gin
+            gina
+            git-conflict
+            git-signs
+            glance
+            goto-preview
+            harpoon
+            haskell-tools
+            heirline
+            history-ignore
+            hlchunk
+            hlslens
+            indent-o-matic
+            ionide
+            jabs
+            jdtls
+            jukit
+            leap
+            legendary
+            markdown-preview
+            marks
+            mkdir
+            mkdnflow
+            nap
+            neogen
+            neotree
+            neozoom
+            nfnl
+            noice
+            none-ls
+            notify
+            numb
+            nvim-tree
+            nvim-window
+            open
+            overseer
+            project
+            qf
+            qfheight
+            qfview
+            reacher
+            registers
+            rust-tools
+            safe-close-window
+            scope
+            smart-splits
+            spectre
+            spectre
+            startuptime
+            statuscol
+            surround
+            tabout
+            tint
+            todo-comments
+            toggleterm
+            toolwindow
+            translate
+            treesj
+            trim
+            trouble
+            ts-autotag
+            tshjkl
+            ufo
+            vim-markdown
+            vim-nix
+            vimdoc-ja
+            vtsls
+            waitevent
+            which-key
+            window-picker
+            winsep
+            winshift
+          ];
+          lazyGroups = with groups; [
+            dap
+            ddc
+            ddu
+            lsp
+            neotest
+            skk
+            telescope
+            treesitter
+          ];
         };
       };
     };

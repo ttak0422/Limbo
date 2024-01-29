@@ -221,7 +221,6 @@ with pkgs.vimPlugins; {
     }];
     dependGroups = [ "ddc" ];
     useTimer = true;
-
   };
   neotest = {
     name = "neotest-bundle";
@@ -408,7 +407,7 @@ with pkgs.vimPlugins; {
         postConfig = {
           language = "lua";
           code = readFile ./lua/tsnip.lua;
-          args = { tsnip_root = ./../../../snippets/tsnip; };
+          args = { tsnip_root = ./snip/tsnip; };
         };
         dependPlugins = [ nui-nvim ];
         useDenops = true;
@@ -549,7 +548,6 @@ with pkgs.vimPlugins; {
     };
     onCommands = [ "Ddu" "DduRg" "DduRgLive" ];
     useTimer = true;
-
   };
   dap = {
     name = "dap";

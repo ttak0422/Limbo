@@ -41,6 +41,7 @@ let
   lsp = with pkgs.vimPlugins; {
     trouble = {
       # A pretty diagnostics, references, telescope results, quickfix and location list to help you solve all the trouble your code is causing.
+      plugin = trouble-nvim;
       postConfig = {
         language = "lua";
         code = readFile ./lua/trouble.lua;
@@ -173,7 +174,6 @@ let
         };
       };
       onFiletypes = [ "rust" ];
-
     };
     ionide = {
       # FSharp
@@ -393,7 +393,7 @@ let
     qfview = {
       # Pretty quickfix/location view for Neovim
       plugin = qfview-nvim;
-      postConfig = readFile ./../../nvim/qfview.lua;
+      postConfig = readFile ./lua/qfview.lua;
       onEvents = [ "QuickFixCmdPre" ];
       useTimer = true;
     };
@@ -414,13 +414,12 @@ let
       dependGroups = [ "treesitter" ];
       postConfig = {
         language = "lua";
-        code = readFile ./../../nvim/context-vt.lua;
+        code = readFile ./lua/context-vt.lua;
       };
       useTimer = true;
-
     };
     glance = {
-      # plugin = glance-nvim;
+      plugin = glance-nvim;
       postConfig = {
         language = "lua";
         code = readFile ./lua/glance.lua;
@@ -563,7 +562,6 @@ let
         code = readFile ./lua/open.lua;
       };
       onModules = [ "open" ];
-
     };
     fundo = {
       # Forever undo in Neovim
@@ -615,6 +613,7 @@ let
     };
     tabout = {
       # tabout plugin for neovim
+      plugin = tabout-nvim;
       postConfig = {
         language = "lua";
         code = readFile ./lua/tabout.lua;
@@ -681,9 +680,9 @@ let
       postConfig = {
         language = "lua";
         code = readFile ./lua/qfheight.lua;
-        onFiletypes = [ "qf" ];
-        onEvents = [ "QuickFixCmdPre" ];
       };
+      onFiletypes = [ "qf" ];
+      onEvents = [ "QuickFixCmdPre" ];
     };
     history-ignore = {
       # Configure commands not to be registered in the command-line history
@@ -715,7 +714,7 @@ let
         language = "vim";
         code = readFile ./lua/denops-translate-pre.lua;
       };
-      dependPlugins = [ denops ];
+      dependPlugins = [ denops-vim ];
       useDenops = true;
       onCommands = [ "Translate" ];
     };
@@ -748,10 +747,10 @@ let
       postConfig = {
         language = "lua";
         code = readFile ./lua/window-picker.lua;
-      };
-      args = {
-        exclude_ft_path = ./lua/exclude_ft.lua;
-        exclude_buf_ft_path = ./lua/exclude_buf_ft.lua;
+        args = {
+          exclude_ft_path = ./lua/exclude_ft.lua;
+          exclude_buf_ft_path = ./lua/exclude_buf_ft.lua;
+        };
       };
       onModules = [ "window-picker" ];
     };
@@ -977,7 +976,6 @@ let
       };
       onEvents = [ "CursorMoved" ];
     };
-
   };
 
 in
@@ -1049,6 +1047,5 @@ with pkgs.vimPlugins;
     };
     onCommands = [ "Neogen" ];
   };
-
 } // startup // lsp // dap // filetype // git // style // override // helper
 // tool // search // motion

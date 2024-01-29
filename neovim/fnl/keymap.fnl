@@ -4,31 +4,31 @@
 (let [os {:noremap true :silent true}
       d (fn [d] {:noremap true :silent true :desc d})
       m vim.keymap.set
-      c (fn [c] (.. :<cmd> c :<cr>))
-      lc (fn [c] (c (.. "lua " c)))
+      cmd (fn [c] (.. :<cmd> c :<cr>))
+      lcmd (fn [c] (cmd (.. "lua " c)))
       ns [;; utils
               [:q :<nop>]
-              [:<esc><esc> (c :nohl)]
+              [:<esc><esc> (cmd :nohl)]
               [:j :gj]
               [:k :gk]
               ;; split/join
               [:<leader>m
-               (lc "require('treesj').toggle()")
+               (lcmd "require('treesj').toggle()")
                (d "toggle split/join")]
               [:<leader>M
-               (lc "require('treesj').toggle({ split = { recursive = true } })")
+               (lcmd "require('treesj').toggle({ split = { recursive = true } })")
                (d "toggle split/join rec")]
               [:gpd
-               (lc "require('goto-preview').goto_preview_definition()")
+               (lcmd "require('goto-preview').goto_preview_definition()")
                (d "preview definition")]
               [:gpi
-               (lc "require('goto-preview').goto_preview_implementation()")
+               (lcmd "require('goto-preview').goto_preview_implementation()")
                (d "preview implementation")]
               [:gpr
-               (lc "require('goto-preview').goto_preview_references()")
+               (lcmd "require('goto-preview').goto_preview_references()")
                (d "preview references")]
               [:gP
-               (lc "require('goto-preview').close_all_win()")
+               (lcmd "require('goto-preview').close_all_win()")
                (d "close all preview")]
               ;; git
               [:<leader>gg
@@ -40,58 +40,58 @@
                  (vim.cmd (.. "GinBuffer " (vim.fn.input "git command: "))))
                (d "git command (buffer)")]
               [:<leader>gb
-               (c "execute printf('Gina blame --width=%d', &columns / 3)")
+               (cmd "execute printf('Gina blame --width=%d', &columns / 3)")
                (d "git blame")]
-              [:<leader>gs (c :GinStatus) (d "git status")]
-              [:<leader>gl (c :GinLog) (d "git log")]
+              [:<leader>gs (cmd :GinStatus) (d "git status")]
+              [:<leader>gl (cmd :GinLog) (d "git log")]
               ; [:<leader>G (cmd :Neogit) (desc "magit for vim")]
               ;; tools
-              [:<leader>q (c :BufDel)]
-              [:<leader>Q (c :BufDel!)]
-              [:<leader>A (c :tabclose)]
-              [:<leader>E (c :FeMco) (d "edit code block")]
+              [:<leader>q (cmd :BufDel)]
+              [:<leader>Q (cmd :BufDel!)]
+              [:<leader>A (cmd :tabclose)]
+              [:<leader>E (cmd :FeMco) (d "edit code block")]
               ;; buffer
               [:<leader>br
-               (lc "require('harpoon.mark').add_file()")
+               (lcmd "require('harpoon.mark').add_file()")
                (d "register buffer (harpoon)")]
               ;; toggle
-              [:<leader>tc (c :ColorizerToggle) (d "toggle colorize")]
-              [:<leader>tb (c :NvimTreeToggle)]
-              [:<leader>tB (c "Neotree toggle")]
-              [:<leader>to (c :SidebarNvimToggle)]
+              [:<leader>tc (cmd :ColorizerToggle) (d "toggle colorize")]
+              [:<leader>tb (cmd :NvimTreeToggle)]
+              [:<leader>tB (cmd "Neotree toggle")]
+              [:<leader>to (cmd :SidebarNvimToggle)]
               [:<leader>tm
-               (lc "require('codewindow').toggle_minimap()")
+               (lcmd "require('codewindow').toggle_minimap()")
                (d "toggle minimap")]
               [:<leader>tr
-               (lc "require('harpoon.ui').toggle_quick_menu()")
+               (lcmd "require('harpoon.ui').toggle_quick_menu()")
                (d "toggle registered buffer menu")]
-              [:<leader>tg (c :TigTermToggle) (d "toggle tig terminal")]
+              [:<leader>tg (cmd :TigTermToggle) (d "toggle tig terminal")]
               ;; finder
               [:<leader>ff
-               (c "Telescope live_grep_args")
+               (cmd "Telescope live_grep_args")
                (d "search by content")]
               [:<leader>fp
-               (c "Ddu -name=fd file_fd")
+               (cmd "Ddu -name=fd file_fd")
                (d "search by file name")]
               [:<leader>fP
-               (c "Ddu -name=ghq ghq")
+               (cmd "Ddu -name=ghq ghq")
                (d "search repo (ghq)")]
-              [:<leader>fb (c "Telescope buffers") (d "search buffer")]
-              [:<leader>fh (c :Legendary) (d "search legendary")]
+              [:<leader>fb (cmd "Telescope buffers") (d "search buffer")]
+              [:<leader>fh (cmd :Legendary) (d "search legendary")]
               [:<leader>ft
-               (c "Telescope sonictemplate templates")
+               (cmd "Telescope sonictemplate templates")
                (d "search templates")]
               [:<leader>fru
-               (c "Ddu -name=mru mru")
+               (cmd "Ddu -name=mru mru")
                (d "MRU (Most Recently Used files)")]
               [:<leader>frw
-               (c "Ddu -name=mrw mrw")
+               (cmd "Ddu -name=mrw mrw")
                (d "MRW (Most Recently Written files)")]
               [:<leader>frr
-               (c "Ddu -name=mrr mrr")
+               (cmd "Ddu -name=mrr mrr")
                (d "MRR (Most Recent git Repositories)")]
               [:<leader>fF
-               (lc "require('spectre').open()")
+               (lcmd "require('spectre').open()")
                (d "find and replace with dark power")]] ;;
       ;;
       ]
@@ -99,10 +99,10 @@
     (each [_ keymap (ipairs ns)]
       (m :n (. keymap 1) (. keymap 2) (or (. keymap 3) os)))
     (for [i 0 9]
-      (m [:n :t :i] (.. :<C- i ">") (c (.. "TermToggle " i))
+      (m [:n :t :i] (.. :<C- i ">") (cmd (.. "TermToggle " i))
            (d (.. "toggle terminal " i))))
     ;; reacher
-    (m [:n :x] :gs (lc "require('reacher').start()")
+    (m [:n :x] :gs (lcmd "require('reacher').start()")
          (d "search displayed"))
-    (m [:n :x] :gS (lc "require('reacher').start_multiple()")
+    (m [:n :x] :gS (lcmd "require('reacher').start_multiple()")
          (d "search displayed"))))

@@ -24,7 +24,7 @@
             ;; デフォルトモーションで移動時に日空白文字列に移動
             :startofline false
             ;; 補完オプション
-            :completeopt [:menuone :preview]
+            :completeopt (.. :menuone "," :preview)
             ;; 行数表示
             :number true
             ;; signcolumnのがたつきを無くす
@@ -51,7 +51,7 @@
             :tabstop 2
             ;; インデント幅
             :shiftwidth 2
-            :foldcolumn 1
+            :foldcolumn :1
             :foldlevel 99
             :foldlevelstart 99
             :foldenable true
@@ -98,12 +98,11 @@
                        :did_indent_on
                        :did_load_ftplugin
                        :loaded_rrhelper]]
-  (do
-    (set vim.g.loaded_perl_provider 0)
-    (vim.loader.enable)
-    ;; オプションの適用
-    (each [k v (pairs opts)]
-      (tset vim.o k v))
-    ;; 無効化
-    (each [_ p (ipairs disable_plugins)]
-      (tset vim.g p 1))))
+  (set vim.g.loaded_perl_provider 0)
+  (vim.loader.enable)
+  ;; オプションの適用
+  (each [k v (pairs opts)]
+    (tset vim.o k v))
+  ;; 無効化
+  (each [_ p (ipairs disable_plugins)]
+    (tset vim.g p 1)))

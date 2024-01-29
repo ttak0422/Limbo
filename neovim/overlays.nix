@@ -2,14 +2,17 @@ inputs:
 with inputs; [
   neovim-nightly-overlay.overlay
   vim-plugins-overlay.overlay
+  nix-filter.overlays.default
   (final: prev:
-    let inherit (prev.stdenv) system;
-    in {
+    let
+      inherit (prev.stdenv) mkDerivation isDarwin;
+      inherit (prev.stdenv) system;
+    in
+    {
       pkgs-unstable = import inputs.nixpkgs-unstable {
         inherit system;
         config.allowUnfree = true;
       };
-      javaPackages = prev.javaPackages // { inherit (inputs) jol; };
       vimPlugins = prev.vimPlugins // {
         tsnip-nvim = prev.vimUtils.buildVimPlugin {
           pname = "tsnip-nvim";
@@ -32,6 +35,7 @@ with inputs; [
           '';
         };
       };
+      javaPackages = prev.javaPackages // { inherit (inputs) jol; };
       python3Packages = prev.python3Packages
         // (with prev.python3Packages; rec {
         wrapt = buildPythonPackage rec {
@@ -73,6 +77,15 @@ with inputs; [
           propagatedBuildInputs = [ Deprecated jaconv setuptools ];
         };
       });
+
+      sonicCustomTemplates = mkDerivation {
+        name = "sonic-custom-templates";
+        src = ./snip/sonic;
+        installPhase = ''
+          mkdir $out
+          cp -r ./* $out
+        '';
+      };
 
       jdt-language-server =
         let
