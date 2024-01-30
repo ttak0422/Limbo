@@ -61,7 +61,7 @@ local function _11_()
   end
 end
 on_complete_break_time = _11_
-focus[T.TIMER_START.IDLE] = "\239\137\148"
+focus[T.TIMER_STATE.IDLE] = "\239\137\148"
 focus[T.TIMER_STATE.ACTIVE] = "\239\129\140 focus"
 focus[T.TIMER_STATE.PAUSE] = "\239\129\139 focus"
 _break[T.TIMER_STATE.IDLE] = "\239\129\139 break"

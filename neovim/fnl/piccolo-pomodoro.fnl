@@ -36,7 +36,7 @@
                                (if (= (vim.fn.has :mac) 1)
                                    (vim.fn.system "osascript -e 'display notification \"Focus time is over!\" with title \"pomodoro\" sound name \"Bell\"'")
                                    (vim.notify "Focus time is over!")))]
-  (tset focus T.TIMER_START.IDLE "")
+  (tset focus T.TIMER_STATE.IDLE "")
   (tset focus T.TIMER_STATE.ACTIVE " focus")
   (tset focus T.TIMER_STATE.PAUSE " focus")
   (tset break T.TIMER_STATE.IDLE " break")
