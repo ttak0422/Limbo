@@ -79,7 +79,7 @@ with pkgs.vimPlugins; {
     postConfig = {
       language = "vim";
       code = readFile ./vim/skk.vim;
-      args = { jisyo_path = "${pkgs.skk-dicts}/share/SKK-JISYO.L"; };
+      args = { dicts = [ "${pkgs.skk-dicts}/share/SKK-JISYO.L" ]; };
     };
     onEvents = [ "InsertEnter" "CmdlineEnter" ];
   };

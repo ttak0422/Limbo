@@ -1,6 +1,5 @@
 call skkeleton#config({
-      \ 'globalJisyo': s:args['jisyo_path'],
-      \ 'globalJisyoEncoding': 'utf-8',
+      \ 'globalDictionaries': s:args['dicts'],
       \ 'markerHenkan': '',
       \ 'markerHenkanSelect': '',
       \ })
