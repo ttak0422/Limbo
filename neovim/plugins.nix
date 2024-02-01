@@ -393,7 +393,10 @@ let
     qfview = {
       # Pretty quickfix/location view for Neovim
       plugin = qfview-nvim;
-      postConfig = readFile ./lua/qfview.lua;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/qfview.lua;
+      };
       onEvents = [ "QuickFixCmdPre" ];
       useTimer = true;
     };
