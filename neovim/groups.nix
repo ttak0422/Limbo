@@ -273,7 +273,7 @@ with pkgs.vimPlugins; {
         dependPlugins = [{
           plugin = pum-vim;
           dependPlugins = [
-            { plugin = noice-nvim; }
+            noice-nvim
             {
               plugin = nvim-autopairs;
               dependGroups = [ "treesitter" ];
