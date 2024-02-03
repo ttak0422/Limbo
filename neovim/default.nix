@@ -29,117 +29,117 @@
           # logLevel = "debug";
           package = pkgs.neovim-nightly;
           eagerPlugins = with plugins; [
-            config-local
-            direnv
-            hydra
-            kanagawa
-            stickybuf
+            # config-local
+            # direnv
+            # hydra
+            # kanagawa
+            # stickybuf
           ];
           lazyPlugins = with plugins; [
-            ambiwidth
-            asterisk
-            auto-indent
-            better-escape
-            bqf
-            bufdel
-            codewindow
-            colorizer
-            comment
-            context-vt
-            copilot
-            dap-go
-            dd
-            detour
-            devicons
-            diffview
-            dropbar
-            early-retirement
-            femaco
-            flit
-            flow
-            flutter-tools
-            fundo
-            gin
-            gina
-            git-conflict
-            git-signs
-            glance
-            goto-preview
-            harpoon
-            haskell-tools
-            heirline
-            history-ignore
-            hlchunk
-            hlslens
-            indent-o-matic
-            ionide
-            jabs
-            jdtls
-            jukit
-            leap
-            legendary
-            markdown-preview
-            marks
-            mkdir
-            mkdnflow
-            nap
-            neogen
-            neotree
-            neozoom
-            nfnl
-            noice
-            none-ls
-            notify
-            numb
-            nvim-tree
-            nvim-window
-            open
-            overseer
-            project
-            qf
-            qfheight
-            qfview
-            reacher
-            registers
-            rust-tools
-            safe-close-window
-            smart-splits
-            spectre
-            spectre
-            startuptime
-            statuscol
-            surround
-            tabout
-            tint
-            todo-comments
-            toggleterm
-            toolwindow
-            translate
-            treesj
-            trim
-            trouble
-            ts-autotag
-            tshjkl
-            ufo
-            vim-markdown
-            vim-nix
-            vimdoc-ja
-            vtsls
-            waitevent
-            which-key
-            window-picker
-            winsep
-            winshift
+            # ambiwidth
+            # asterisk
+            # auto-indent
+            # better-escape
+            # bqf
+            # bufdel
+            # codewindow
+            # colorizer
+            # comment
+            # context-vt
+            # copilot
+            # dap-go
+            # dd
+            # detour
+            # devicons
+            # diffview
+            # dropbar
+            # early-retirement
+            # femaco
+            # flit
+            # flow
+            # flutter-tools
+            # fundo
+            # gin
+            # gina
+            # git-conflict
+            # git-signs
+            # glance
+            # goto-preview
+            # harpoon
+            # haskell-tools
+            # heirline
+            # history-ignore
+            # hlchunk
+            # hlslens
+            # indent-o-matic
+            # ionide
+            # jabs
+            # jdtls
+            # jukit
+            # leap
+            # legendary
+            # markdown-preview
+            # marks
+            # mkdir
+            # mkdnflow
+            # nap
+            # neogen
+            # neotree
+            # neozoom
+            # nfnl
+            # noice
+            # none-ls
+            # notify
+            # numb
+            # nvim-tree
+            # nvim-window
+            # open
+            # overseer
+            # project
+            # qf
+            # qfheight
+            # qfview
+            # reacher
+            # registers
+            # rust-tools
+            # safe-close-window
+            # smart-splits
+            # spectre
+            # spectre
+            # startuptime
+            # statuscol
+            # surround
+            # tabout
+            # tint
+            # todo-comments
+            # toggleterm
+            # toolwindow
+            # translate
+            # treesj
+            # trim
+            # trouble
+            # ts-autotag
+            # tshjkl
+            # ufo
+            # vim-markdown
+            # vim-nix
+            # vimdoc-ja
+            # vtsls
+            # waitevent
+            # which-key
+            # window-picker
+            # winsep
+            # winshift
           ];
           lazyGroups = with groups; [
-            dap
-            ddc
-            ddu
-            lsp
-            neotest
-            skk
-            telescope
-            treesitter
+            # dap
+            # ddc
+            # ddu
+            # lsp
+            # neotest
+            # skk
+            # telescope
+            # treesitter
           ];
           after.ftplugin = with ftplugins; { inherit ddu-ff ddu-ff-filter; };
         };
