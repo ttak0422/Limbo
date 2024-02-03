@@ -29,11 +29,11 @@
           # logLevel = "debug";
           package = pkgs.neovim-nightly;
           eagerPlugins = with plugins; [
-            # config-local
-            # direnv
-            # hydra
-            # kanagawa
-            # stickybuf
+            config-local
+            direnv
+            hydra
+            kanagawa
+            stickybuf
           ];
           lazyPlugins = with plugins; [
             # ambiwidth
