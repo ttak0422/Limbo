@@ -1,40 +1,43 @@
-;; direnv
-(var is_direnv false)
-(var is_direnv_active false)
-(local check_direnv
-       (fn []
-         (vim.loop.spawn :sh
-                         {:args [:-c
-                                 "direnv status | grep --silent 'Found RC allowed'"]}
-                         (fn [handle] (set is_direnv (= handle 0))))))
-
-(local check_direnv_active
-       (fn []
-         (vim.loop.spawn :sh
-                         {:args [:-c
-                                 "direnv status | grep --silent 'Found RC allowed true'"]}
-                         (fn [handle]
-                           (set is_direnv_active (= handle 0))))))
-
-(vim.api.nvim_create_autocmd [:DirChanged]
-                             {:pattern "*"
-                              :callback (fn []
-                                          (check_direnv)
-                                          (check_direnv_active))})
-
-; wip
-(check_direnv)
-(check_direnv_active)
-(vim.defer_fn (fn []
-                (vim.cmd :redrawstatus)) 1000)
-
-;; lsp
-(local ignore_lsp {:copilot true})
-(local check_lsp_attach
-       (fn []
-         (let [clients (vim.lsp.get_active_clients {:bufnr 0})]
-           (accumulate [acc false _ client (pairs clients)]
-             (or acc (not (. ignore_lsp (. client :name))))))))
+; ;; direnv
+; (var is_direnv false)
+; (var is_direnv_active false)
+; (local check_direnv
+;        (fn []
+;          (vim.loop.spawn :sh
+;                          {:args [:-c
+;                                  "direnv status | grep --silent 'Found RC allowed'"]}
+;                          (fn [handle] (set is_direnv (= handle 0))
+;                            ))))
+;
+; (local check_direnv_active
+;        (fn []
+;          (vim.loop.spawn :sh
+;                          {:args [:-c
+;                                  "direnv status | grep --silent 'Found RC allowed true'"]}
+;                          (fn [handle]
+;                            (set is_direnv_active (= handle 0))
+;
+;                            ))))
+;
+; (vim.api.nvim_create_autocmd [:DirChanged]
+;                              {:pattern "*"
+;                               :callback (fn []
+;                                           (check_direnv)
+;                                           (check_direnv_active))})
+;
+; ; wip
+; (check_direnv)
+; (check_direnv_active)
+; (vim.defer_fn (fn []
+;                 (vim.cmd :redrawstatus)) 1000)
+;
+; ;; lsp
+; (local ignore_lsp {:copilot true})
+; (local check_lsp_attach
+;        (fn []
+;          (let [clients (vim.lsp.get_active_clients {:bufnr 0})]
+;            (accumulate [acc false _ client (pairs clients)]
+;              (or acc (not (. ignore_lsp (. client :name))))))))
 
 ;; heirline
 (let [;; plugins
@@ -82,78 +85,78 @@
       seps {:bar (.. " " icons.bar " ")
             :left_rounded_thin (.. " " icons.left_rounded_thin " ")
             :right_rounded_thin (.. " " icons.right_rounded_thin " ")}
-      mode_labels {;; ノーマル
-                   :n :N
-                   ;; オペレータ待機
-                   :no :N
-                   ;; オペレータ待機 (強制文字単位 o_v)
-                   :nov :N
-                   ;; オペレータ待機 (強制行単位 o_V)
-                   :noV :N
-                   ;; オペレータ待機 (強制ブロック単位 o_CTRL-V);
-                   "no\022" :N
-                   ;; Insert-mode で i_CTRL-O を使用したノーマル
-                   :niI :N
-                   ;; Replace-mode で i_CTRL-O を使用したノーマル
-                   :niR :N
-                   ;; Virtual-Replace-mode で i_CTRL-O を使用したノーマル
-                   :niV :N
-                   ;; 端末ノーマル (挿入により端末ジョブモードになる)
-                   :nt :N
-                   ;; 文字単位ビジュアル
-                   :v :V
-                   ;; 選択モードで v_CTRL-O を利用した時の文字単位ビジュアル
-                   :vs :V
-                   ;; 行単位ビジュアル
-                   :V :V
-                   ;; 選択モードで v_CTRL-O を利用した時の行単位ビジュアル
-                   :Vs :V
-                   ;; 矩形ビジュアル
-                   "\022" :V
-                   ;; 選択モードで v_CTRL-O を利用した時の矩形ビジュアル
-                   "\022s" :V
-                   ;; 文字単位選択
-                   :s :S
-                   ;; 行単位選択
-                   :S :S
-                   ;; 矩形選択
-                   "\019" :S
-                   ;; 挿入モード
-                   :i :I
-                   ;; 挿入モード補完 compl-generic
-                   :ic :I
-                   ;; 挿入モード i_CTRL-X 補完
-                   :ix :I
-                   ;; 置換 R
-                   :R :R
-                   ;; 置換モード補完 compl-generic
-                   :Rc :R
-                   ;; 置換モード i_CTRL-X 補完
-                   :Rx :R
-                   ;; 仮想置換 gR
-                   :Rv :R
-                   ;; 補完での仮想置換モード compl-generic
-                   :Rvc :R
-                   ;; i_CTRL-X 補完での仮想置換モード
-                   :Rvx :R
-                   ;; コマンドライン編集
-                   :c :C
-                   ;; 端末ジョブモードでのコマンドライン編集
-                   :ct :C
-                   ;; Vim Ex モード gQ
-                   :cv :Ex
-                   ;; ノーマル Ex モード Q
-                   :ce :C
-                   ;; Hit-enter プロンプト
-                   :r "..."
-                   ;; -- more -- プロンプト
-                   :rm :M
-                   ;; ある種の :confirm 問い合わせ
-                   :r? "?"
-                   ;; シェルまたは外部コマンド実行中
-                   :! "!"
-                   ;; 端末ジョブモード: キー入力がジョブに行く
-                   :t :T}
+      ; mode_labels {;; ノーマル
+      ;              :n :N
+      ;              ;; オペレータ待機
+      ;              :no :N
+      ;              ;; オペレータ待機 (強制文字単位 o_v)
+      ;              :nov :N
+      ;              ;; オペレータ待機 (強制行単位 o_V)
+      ;              :noV :N
+      ;              ;; オペレータ待機 (強制ブロック単位 o_CTRL-V);
+      ;              "no\022" :N
+      ;              ;; Insert-mode で i_CTRL-O を使用したノーマル
+      ;              :niI :N
+      ;              ;; Replace-mode で i_CTRL-O を使用したノーマル
+      ;              :niR :N
+      ;              ;; Virtual-Replace-mode で i_CTRL-O を使用したノーマル
+      ;              :niV :N
+      ;              ;; 端末ノーマル (挿入により端末ジョブモードになる)
+      ;              :nt :N
+      ;              ;; 文字単位ビジュアル
+      ;              :v :V
+      ;              ;; 選択モードで v_CTRL-O を利用した時の文字単位ビジュアル
+      ;              :vs :V
+      ;              ;; 行単位ビジュアル
+      ;              :V :V
+      ;              ;; 選択モードで v_CTRL-O を利用した時の行単位ビジュアル
+      ;              :Vs :V
+      ;              ;; 矩形ビジュアル
+      ;              "\022" :V
+      ;              ;; 選択モードで v_CTRL-O を利用した時の矩形ビジュアル
+      ;              "\022s" :V
+      ;              ;; 文字単位選択
+      ;              :s :S
+      ;              ;; 行単位選択
+      ;              :S :S
+      ;              ;; 矩形選択
+      ;              "\019" :S
+      ;              ;; 挿入モード
+      ;              :i :I
+      ;              ;; 挿入モード補完 compl-generic
+      ;              :ic :I
+      ;              ;; 挿入モード i_CTRL-X 補完
+      ;              :ix :I
+      ;              ;; 置換 R
+      ;              :R :R
+      ;              ;; 置換モード補完 compl-generic
+      ;              :Rc :R
+      ;              ;; 置換モード i_CTRL-X 補完
+      ;              :Rx :R
+      ;              ;; 仮想置換 gR
+      ;              :Rv :R
+      ;              ;; 補完での仮想置換モード compl-generic
+      ;              :Rvc :R
+      ;              ;; i_CTRL-X 補完での仮想置換モード
+      ;              :Rvx :R
+      ;              ;; コマンドライン編集
+      ;              :c :C
+      ;              ;; 端末ジョブモードでのコマンドライン編集
+      ;              :ct :C
+      ;              ;; Vim Ex モード gQ
+      ;              :cv :Ex
+      ;              ;; ノーマル Ex モード Q
+      ;              :ce :C
+      ;              ;; Hit-enter プロンプト
+      ;              :r "..."
+      ;              ;; -- more -- プロンプト
+      ;              :rm :M
+      ;              ;; ある種の :confirm 問い合わせ
+      ;              :r? "?"
+      ;              ;; シェルまたは外部コマンド実行中
+      ;              :! "!"
+      ;              ;; 端末ジョブモード: キー入力がジョブに行く
+      ;              :t :T}
       mode_colors {:n :red
                    :no :red
                    :nov :red
@@ -201,37 +204,38 @@
       left_cap {:provider "▌"}
       space {:provider " "}
       bar {:provider seps.bar}
-      round_right {:provider seps.right_rounded_thin}
+      round_right {:provider seps.bar}
       mode (let [;; symbol
                  readonly_symbol {:condition (fn []
                                                (or (not vim.bo.modifiable)
                                                    vim.bo.readonly))
-                                  :provider (.. icons.lock " ")
+                                  :provider (.. icons.lock)
                                   :hl {:fg colors.bg}}
-                 vim_symbol {:provider (.. icons.vim " ") :hl {:fg colors.bg}}
+                 vim_symbol {:provider (.. icons.vim) :hl {:fg colors.bg}}
                  symbol {:fallthrough false 1 readonly_symbol 2 vim_symbol}
-                 ;; vim mode
-                 mode_vim {:provider (fn [self]
-                                       (.. (or (. mode_labels
-                                                  (: self.mode :sub 1 1))
-                                               (: self.mode :sub 1 1))
-                                           " | "))
-                           :hl (fn [self]
-                                 {:fg colors.bg :bg (. mode_colors self.mode)})}
-                 ;; skk mode
-                 mode_skk {:init (fn [self]
-                                   (set self.skk_mode
-                                        (or ((. vim.fn "skkeleton#mode")) "")))
-                           :provider (fn [self]
-                                       (or (. skk_mode_labels self.skk_mode)
-                                           self.skk_mode))
-                           :hl {:fg colors.bg}}]
+                 ; ;; vim mode
+                 ; mode_vim {:provider (fn [self]
+                 ;                       (.. (or (. mode_labels
+                 ;                                  (: self.mode :sub 1 1))
+                 ;                               (: self.mode :sub 1 1))
+                 ;                           " | "))
+                 ;           :hl (fn [self]
+                 ;                 {:fg colors.bg :bg (. mode_colors self.mode)})}
+                 ; ;; skk mode
+                 ; mode_skk {:init (fn [self]
+                 ;                   (set self.skk_mode
+                 ;                        (or ((. vim.fn "skkeleton#mode")) "")))
+                 ;           :provider (fn [self]
+                 ;                       (or (. skk_mode_labels self.skk_mode)
+                 ;                           self.skk_mode))
+                 ;           :hl {:fg colors.bg}}
+                 ]
              {:init (fn [self] (set self.mode (vim.fn.mode 1)))
               :update [:ModeChanged]
               1 (utils.surround [icons.fill icons.fill]
                                 (fn [self]
                                   (. mode_colors (: self.mode :sub 1 1)))
-                                [symbol mode_vim mode_skk])})
+                                [symbol])})
       git (let [active {:condition conditions.is_git_repo
                         :init (fn [self]
                                 (set self.git_status vim.b.gitsigns_status_dict))
@@ -316,23 +320,24 @@
                          1 encoding
                          2 space
                          3 format})
-      indicator (let [direnv {:provider (fn []
-                                          (if is_direnv_active "  direnv "
-                                              "  direnv "))}
-                      lsp {:provider (fn [self]
-                                       (if self.lsp_active "  LSP "
-                                           "  LSP "))
-                           :update [:LspAttach :LspDetach]}]
-                  {:condition (fn [self]
-                                (set self.lsp_active (check_lsp_attach))
-                                (or self.lsp_active is_direnv))
-                   :on_click {:callback (fn []
-                                          (vim.defer_fn (fn []
-                                                          (vim.cmd :LspInfo))
-                                            100))
-                              :name :heirline_lsp}
-                   1 lsp
-                   2 direnv})
+      ; indicator (let [direnv {:provider (fn []
+      ;                                     (if is_direnv_active "  direnv "
+      ;                                         "  direnv "))}
+      ;                 lsp {:provider (fn [self]
+      ;                                  (if self.lsp_active "  LSP "
+      ;                                      "  LSP "))
+      ;                      :update [:LspAttach :LspDetach]}]
+      ;             {
+      ;             ; :condition (fn [self]
+      ;             ;               (set self.lsp_active (check_lsp_attach))
+      ;             ;               (or self.lsp_active is_direnv))
+      ;              :on_click {:callback (fn []
+      ;                                     (vim.defer_fn (fn []
+      ;                                                     (vim.cmd :LspInfo))
+      ;                                       100))
+      ;                         :name :heirline_lsp}
+      ;              1 lsp
+      ;              2 direnv})
       root (let []
              {:init (fn [self]
                       (let [cwd ((. vim.fn :fnamemodify) ((. vim.fn :getcwd))
@@ -444,14 +449,13 @@
                                                 (hydra.get_name)))))
                       :static {:hydra_ignore {:BarBar true}}
                       ;; left
-                      1 left_cap
-                      2 (utils.surround [icons.left_rounded
+                      1 (utils.surround [icons.left_rounded
                                          icons.right_rounded]
                                         (fn [] colors.cyan) [name])
-                      3 align
+                      2 align
                       ;; center
-                      4 hint
-                      5 align
+                      3 hint
+                      4 align
                       ;; right
                       })
       special_status {:condition (fn []
@@ -462,14 +466,13 @@
                                                                :filetype [:^git.*
                                                                           :fugative]}))
                       ;; left
-                      1 left_cap
-                      2 mode
-                      3 align
+                      1 mode
+                      2 align
                       ;; center
-                      4 help_name
-                      5 align
+                      3 help_name
+                      4 align
                       ;; right
-                      6 {:provider (fn []
+                      5 {:provider (fn []
                                      (.. " " icons.document " "
                                          (string.upper vim.bo.filetype) " "))
                          :hl {:fg colors.bg :bg colors.blue}
@@ -477,18 +480,16 @@
       terminal_status {:condition (fn []
                                     (conditions.buffer_matches {:buftype [:terminal]}))
                        ;; left
-                       1 left_cap
-                       2 mode
-                       3 align
+                       1 mode
+                       2 align
                        ;; center
-                       4 terminal_name
-                       5 align
+                       3 terminal_name
+                       4 align
                        ;; right
-                       6 {:provider (fn [] (.. " " icons.terminal " TERMINAL "))
+                       5 {:provider (fn [] (.. " " icons.terminal " TERMINAL "))
                           :hl {:fg colors.bg :bg colors.red}
                           :update [:WinNew :WinClosed :BufEnter]}}
       default_status_line [;; left
-                           left_cap
                            mode
                            space
                            git
@@ -504,8 +505,9 @@
                            ruler
                            bar
                            file_properties
-                           bar
-                           indicator
+                           space
+                           ; bar
+                           ; indicator
                            root]
       statusline {:fallthrough false
                   :hl {:fg colors.fg :bg colors.bg :bold true}

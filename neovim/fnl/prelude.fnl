@@ -35,6 +35,8 @@
             :cmdheight 0
             ;; ステータスラインを集約
             :laststatus 3
+            ;; tablineを常に表示する
+            :showtabline 2
             ;; undofile
             :undofile true
             :undodir (.. cache-path :/undo)
