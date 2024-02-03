@@ -6,7 +6,7 @@
       inherit (pkgs) callPackage;
       plugins = callPackage ./plugins.nix { };
       groups = callPackage ./groups.nix { };
-      after = { };
+      ftplugins = callPackage ./ftplugins.nix { };
       extraConfig = "${readFile ./vim/prelude.vim}";
       extraLuaConfig = ''
         dofile("${./lua/prelude.lua}")
@@ -16,7 +16,8 @@
         end
       '';
 
-    in {
+    in
+    {
       _module.args.pkgs = import inputs.nixpkgs {
         inherit system;
         overlays = import ./overlays.nix inputs;
@@ -24,7 +25,7 @@
 
       bundler-nvim = {
         default = {
-          inherit extraConfig extraLuaConfig after;
+          inherit extraConfig extraLuaConfig;
           # logLevel = "debug";
           package = pkgs.neovim-nightly;
           eagerPlugins = with plugins; [
@@ -140,6 +141,7 @@
             telescope
             treesitter
           ];
+          after.ftplugin = with ftplugins; { inherit ddu-ff ddu-ff-filter; };
         };
       };
     };
