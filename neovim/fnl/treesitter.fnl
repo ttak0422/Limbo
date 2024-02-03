@@ -1,5 +1,4 @@
 (local parser_install_dir (.. (vim.fn.stdpath :state) :/parser))
-(: vim.opt.runtimepath :append parser_install_dir)
 
 (let [config (require :nvim-treesitter.configs)
       highlight {:enable true
