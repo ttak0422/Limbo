@@ -41,7 +41,6 @@
             better-escape
             bqf
             bufdel
-            bufferline
             codewindow
             colorizer
             comment

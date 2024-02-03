@@ -77,7 +77,8 @@
              :bar "|"
              :warn ""
              :error ""
-             :document ""}
+             :document ""
+             :fill "█"}
       seps {:bar (.. " " icons.bar " ")
             :left_rounded_thin (.. " " icons.left_rounded_thin " ")
             :right_rounded_thin (.. " " icons.right_rounded_thin " ")}
@@ -227,7 +228,7 @@
                            :hl {:fg colors.bg}}]
              {:init (fn [self] (set self.mode (vim.fn.mode 1)))
               :update [:ModeChanged]
-              1 (utils.surround [icons.left_rounded icons.right_rounded]
+              1 (utils.surround [icons.fill icons.fill]
                                 (fn [self]
                                   (. mode_colors (: self.mode :sub 1 1)))
                                 [symbol mode_vim mode_skk])})
@@ -299,7 +300,7 @@
                                                   (or (. self.encoding_label
                                                          self.encoding)
                                                       self.encoding))
-                                      :static {:encoding_label {:utf-8 :UTF-8}}}
+                                      :static {:encoding_label {:utf- :UTF-}}}
                             format {:condition (fn [self]
                                                  (set self.format
                                                       vim.bo.fileformat)
@@ -351,7 +352,89 @@
                                                    :gsub ".*:" "")]
                                    name))
                      :hl {:fg colors.fg}} ;;
-      ;; statusline
+      ;; winbar
+      ;; tabline
+      tabline (let [align {:provider "%="} ;;
+                    ;; left
+                    offset {:condition (fn [self]
+                                         (let [win (. (vim.api.nvim_tabpage_list_wins 0)
+                                                      1)
+                                               bufnr (vim.api.nvim_win_get_buf win)
+                                               ft (. (. vim.bo bufnr) :filetype)]
+                                           (set self.win win)
+                                           (if (= ft :NvimTree) ;;
+                                               ;; for nvim-tree
+                                               (do
+                                                 (set self.title :NvimTree)
+                                                 true)
+                                               false)))
+                            :provider (fn [self]
+                                        (let [title self.title
+                                              width (vim.api.nvim_win_get_width self.win)
+                                              pad_size (math.ceil (/ (- width
+                                                                        (length title))
+                                                                     2))
+                                              pad (string.rep " " pad_size)]
+                                          (.. pad title pad)))
+                            :hl (fn [self]
+                                  (if (= (vim.api.nvim_get_current_win)
+                                         self.win)
+                                      :TablineSel
+                                      :Tabline))}
+                    ;; center
+                    buffer_line (let [get_bg (fn [hl]
+                                               (. (utils.get_highlight hl) :bg))
+                                      file_name {:provider (fn [self]
+                                                             (let [name self.filename]
+                                                               (if (or (= name
+                                                                          "")
+                                                                       (= name
+                                                                          nil))
+                                                                   "[No Name]"
+                                                                   (vim.fn.fnamemodify name
+                                                                                       ":t"))))
+                                                 :hl (fn [self]
+                                                       {:bold (or self.is_active
+                                                                  self.is_visible)})}
+                                      file_flags {:condition (fn [self]
+                                                               (vim.api.nvim_buf_get_option self.bufnr
+                                                                                            :modified))
+                                                  :provider " [+]"
+                                                  :hl {:fg colors.green}}
+                                      file_block {:init (fn [self]
+                                                          (set self.filename
+                                                               (vim.api.nvim_buf_get_name self.bufnr)))
+                                                  :hl (fn [self]
+                                                        (if self.is_active
+                                                            :TabLineSel
+                                                            :TabLine))
+                                                  1 file_name
+                                                  2 file_flags}
+                                      buffer_block (utils.surround [icons.fill
+                                                                    icons.fill]
+                                                                   (fn [self]
+                                                                     (if self.is_active
+                                                                         (get_bg :TabLineSel)
+                                                                         (get_bg :TabLine)))
+                                                                   [file_block])]
+                                  (utils.make_buflist buffer_block
+                                                      {:provider "<"
+                                                       :hl {:fg colors.grey}}
+                                                      {:provider ">"
+                                                       :hl {:fg colors.grey}}))
+                    ;; right
+                    tabpage {:provider (fn [self]
+                                         (.. "%" self.tabnr :T self.tabpage
+                                             " %T"))
+                             :hl (fn [self]
+                                   (if (not self.is_active) :TabLine
+                                       :TabLineSel))}
+                    tabpages {:condition (fn []
+                                           (>= (length (vim.api.nvim_list_tabpages))
+                                               2))
+                              1 align
+                              2 (utils.make_tablist tabpage)}]
+                [offset buffer_line tabpages])
       hydra_status (let [name {:provider (fn [] (or (hydra.get_name) :HYDRA))}
                          hint {:condition hydra.get_hint
                                :provider hydra.get_hint}]
@@ -430,4 +513,4 @@
                   2 special_status
                   3 terminal_status
                   4 default_status_line}]
-  (heirline.setup {: statusline : opts}))
+  (heirline.setup {: statusline : tabline : opts}))
