@@ -424,7 +424,7 @@
                                                        :hl {:fg colors.grey}}))
                     ;; right
                     tabpage {:provider (fn [self]
-                                         (.. "%" self.tabnr :T self.tabpage
+                                         (.. " %" self.tabnr :T self.tabpage
                                              " %T"))
                              :hl (fn [self]
                                    (if (not self.is_active) :TabLine

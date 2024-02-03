@@ -324,7 +324,7 @@ do
   end
   local tabpage
   local function _60_(self)
-    return ("%" .. self.tabnr .. "T" .. self.tabpage .. " %T")
+    return (" %" .. self.tabnr .. "T" .. self.tabpage .. " %T")
   end
   local function _61_(self)
     if not self.is_active then

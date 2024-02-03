@@ -102,7 +102,6 @@
             registers
             rust-tools
             safe-close-window
-            scope
             smart-splits
             spectre
             spectre
