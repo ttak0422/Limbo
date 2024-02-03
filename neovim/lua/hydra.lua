@@ -2,7 +2,7 @@
 local Hydra = require("hydra")
 local KeymapUtil = require("hydra.keymap-util")
 local Cmd = KeymapUtil.cmd
-Hydra.setup({foreign_keys = nil, color = "red", timeout = "false", hint = {show_name = true, position = {"bottom"}, offset = 0, float_opts = {}}, on_enter = nil, on_exit = nil, on_key = nil, exit = false, invoke_on_body = false, debug = false})
+Hydra.setup({foreign_keys = nil, color = "red", timeout = "false", hint = {show_name = true, position = {"bottom"}, offset = 0, float_opts = {}}, on_enter = nil, on_exit = nil, on_key = nil, invoke_on_body = false, exit = false, debug = false})
 local heads
 local function _1_()
   return (require("smart-splits")).start_resize_mode()
