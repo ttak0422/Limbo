@@ -1,5 +1,5 @@
-import { BaseConfig } from "https://deno.land/x/ddc_vim@v4.2.0/types.ts";
-import { ConfigArguments } from "https://deno.land/x/ddc_vim@v4.2.0/base/config.ts";
+import { BaseConfig } from "https://deno.land/x/ddc_vim@v4.3.1/types.ts";
+import { ConfigArguments } from "https://deno.land/x/ddc_vim@v4.3.1/base/config.ts";
 
 export class Config extends BaseConfig {
   override config(
@@ -10,7 +10,6 @@ export class Config extends BaseConfig {
     });
     contextBuilder.patchGlobal({
       ui: "pum",
-      keywordPattern: "[0-9a-zA-Z]\\k*",
       // VSCode
       autoCompleteDelay: 10,
       autoCompleteEvents: [
@@ -77,7 +76,6 @@ export class Config extends BaseConfig {
         },
         lsp: {
           mark: "[LSP]",
-          keywordPattern: "\\k+",
           dup: "keep",
           forceCompletionPattern: "\\.\\w*|::\\w*|->\\w*",
           maxItems: 800,
@@ -211,4 +209,3 @@ export class Config extends BaseConfig {
     return Promise.resolve();
   }
 }
-
