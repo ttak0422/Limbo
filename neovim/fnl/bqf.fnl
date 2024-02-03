@@ -2,14 +2,14 @@
       func_map {:open :<CR>
                 :openc :o
                 :drop :O
-                :split :<C-x>
-                :vsplit :<C-v>
+                :split ""
+                :vsplit ""
                 ;; open the item in a new tab
-                :tab :t
+                :tab ""
                 ;; open the item in a new tab but stay in quickfix window
-                :tabb :T
+                :tabb ""
                 ;; open the item in a new tab and close quickfix window
-                :tabc :<C-t>
+                :tabc ""
                 :tabdrop ""
                 :ptogglemode :zp
                 :ptoggleitem :p

@@ -39,9 +39,9 @@
             ambiwidth
             asterisk
             auto-indent
-            # better-escape
-            # bqf
-            # bufdel
+            better-escape
+            bqf
+            bufdel
             # codewindow
             # colorizer
             # comment
@@ -131,17 +131,18 @@
             # winsep
             # winshift
           ];
-          lazyGroups = with groups; [
-            # dap
-            # ddc
-            # ddu
-            # lsp
-            # neotest
-            # skk
-            # telescope
-            # treesitter
-          ];
-          after.ftplugin = with ftplugins; { inherit ddu-ff ddu-ff-filter; };
+          lazyGroups = with groups;
+            [
+              # dap
+              # ddc
+              # ddu
+              # lsp
+              # neotest
+              # skk
+              # telescope
+              treesitter
+            ];
+          after.ftplugin = with ftplugins; { inherit ddu-ff ddu-ff-filter qf; };
         };
       };
     };

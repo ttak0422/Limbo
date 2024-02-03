@@ -381,12 +381,16 @@ let
     bqf = {
       # Better quickfix window in Neovim, polish old quickfix window.
       plugin = nvim-bqf;
+      preConfig = ''
+        source ${pkgs.fzf}/share/nvim/site/plugin/fzf.vim
+      '';
       postConfig = {
         language = "lua";
         code = readFile ./lua/bqf.lua;
       };
       onModules = [ "bqf" ];
-      onEvents = [ "QuickFixCmdPre" ];
+      # loaded by ftplugin
+      # onEvents = [ "QuickFixCmdPre" ];
       dependGroups = [ "treesitter" ];
       extraPackages = with pkgs; [ fzf ];
     };
