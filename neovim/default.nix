@@ -36,9 +36,9 @@
             stickybuf
           ];
           lazyPlugins = with plugins; [
-            # ambiwidth
-            # asterisk
-            # auto-indent
+            ambiwidth
+            asterisk
+            auto-indent
             # better-escape
             # bqf
             # bufdel

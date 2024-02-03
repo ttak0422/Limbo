@@ -703,6 +703,7 @@ let
         language = "lua";
         code = readFile ./lua/auto-indent.lua;
       };
+      dependGroups = [ "treesitter" ];
     };
   };
   tool = with pkgs.vimPlugins; {
