@@ -42,11 +42,11 @@
             better-escape
             bqf
             bufdel
-            # codewindow
-            # colorizer
-            # comment
-            # context-vt
-            # copilot
+            codewindow
+            colorizer
+            comment
+            context-vt
+            copilot
             # dap-go
             # dd
             # detour

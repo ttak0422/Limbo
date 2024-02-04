@@ -6,7 +6,7 @@
             :max_minimap_height nil
             :max_lines nil
             :minimap_width 10
-            :use_lsp false
+            :use_lsp true
             :use_treesitter true
             :use_git true
             :width_multiplier 4

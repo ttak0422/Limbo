@@ -2,7 +2,7 @@
       keymap {:jump_prev "[["
               :jump_next "]]"
               :accept :<CR>
-              :refresh :gr
+              :refresh :<M-r>
               :open :<M-CR>
               :layout {:position :bottom :ratio 0.4}}
       suggestion {:enabled true
