@@ -47,11 +47,11 @@
             context-vt
             copilot
             # dap-go
-            # dd
-            # detour
-            # devicons
-            # diffview
-            # dropbar
+            dd
+            detour
+            devicons
+            diffview
+            dropbar
             early-retirement
             femaco
             flit
@@ -101,7 +101,7 @@
             # reacher
             # registers
             # rust-tools
-            # safe-close-window
+            # # safe-close-window
             # smart-splits
             # spectre
             # spectre
@@ -135,7 +135,8 @@
               # dap
               # ddc
               # ddu
-              # lsp
+              fzf
+              lsp
               # neotest
               # skk
               # telescope

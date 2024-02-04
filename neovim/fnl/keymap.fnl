@@ -30,6 +30,7 @@
           [:gP
            (lcmd "require('goto-preview').close_all_win()")
            (d "close all preview")]
+          [:gh (lcmd "require('dropbar.api').pick()") (d "pick hierarchy")]
           ;; git
           [:<leader>gg
            (fn []

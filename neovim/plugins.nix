@@ -87,37 +87,36 @@ let
       plugin = nvim-jdtls;
       dependPlugins = [ ];
       dependGroups = [ "lsp" ];
-      postConfig =
-        let jdtLsp = pkgs.jdt-language-server;
-        in {
-          language = "lua";
-          code = readFile ./lua/jdtls.lua;
-          args = {
-            runtimes = [
-              {
-                name = "JavaSE-11";
-                path = pkgs.jdk11;
-              }
-              {
-                name = "JavaSE-17";
-                path = pkgs.jdk17;
-                default = true;
-              }
-            ];
-            on_attach_path = ./lua/on_attach.lua;
-            capabilities_path = ./lua/capabilities.lua;
-            java_path = "${pkgs.jdk17}/bin/java";
-            jdtls_config_path = "${jdtLsp}/share/config";
-            lombok_jar_path = "${pkgs.lombok}/share/java/lombok.jar";
-            jdtls_jar_pattern =
-              "${jdtLsp}/share/java/plugins/org.eclipse.equinox.launcher_*.jar";
-            java_debug_jar_pattern =
-              "${pkgs.vscode-extensions.vscjava.vscode-java-debug}/share/vscode/extensions/vscjava.vscode-java-debug/server/com.microsoft.java.debug.plugin-*.jar";
-            java_test_jar_pattern =
-              "${pkgs.vscode-extensions.vscjava.vscode-java-test}/share/vscode/extensions/vscjava.vscode-java-test/server/*.jar";
-            jol_jar_path = pkgs.javaPackages.jol;
-          };
+      postConfig = let jdtLsp = pkgs.jdt-language-server;
+      in {
+        language = "lua";
+        code = readFile ./lua/jdtls.lua;
+        args = {
+          runtimes = [
+            {
+              name = "JavaSE-11";
+              path = pkgs.jdk11;
+            }
+            {
+              name = "JavaSE-17";
+              path = pkgs.jdk17;
+              default = true;
+            }
+          ];
+          on_attach_path = ./lua/on_attach.lua;
+          capabilities_path = ./lua/capabilities.lua;
+          java_path = "${pkgs.jdk17}/bin/java";
+          jdtls_config_path = "${jdtLsp}/share/config";
+          lombok_jar_path = "${pkgs.lombok}/share/java/lombok.jar";
+          jdtls_jar_pattern =
+            "${jdtLsp}/share/java/plugins/org.eclipse.equinox.launcher_*.jar";
+          java_debug_jar_pattern =
+            "${pkgs.vscode-extensions.vscjava.vscode-java-debug}/share/vscode/extensions/vscjava.vscode-java-debug/server/com.microsoft.java.debug.plugin-*.jar";
+          java_test_jar_pattern =
+            "${pkgs.vscode-extensions.vscjava.vscode-java-test}/share/vscode/extensions/vscjava.vscode-java-test/server/*.jar";
+          jol_jar_path = pkgs.javaPackages.jol;
         };
+      };
       onFiletypes = [ "java" ];
     };
     vtsls = {
@@ -381,9 +380,6 @@ let
     bqf = {
       # Better quickfix window in Neovim, polish old quickfix window.
       plugin = nvim-bqf;
-      preConfig = ''
-        source ${pkgs.fzf}/share/nvim/site/plugin/fzf.vim
-      '';
       postConfig = {
         language = "lua";
         code = readFile ./lua/bqf.lua;
@@ -391,7 +387,7 @@ let
       onModules = [ "bqf" ];
       # loaded by ftplugin
       # onEvents = [ "QuickFixCmdPre" ];
-      dependGroups = [ "treesitter" ];
+      dependGroups = [ "fzf" "treesitter" ];
       extraPackages = with pkgs; [ fzf ];
     };
     qfview = {
@@ -480,6 +476,9 @@ let
         code = readFile ./lua/dropbar.lua;
       };
       dependPlugins = [ nvim-web-devicons telescope-fzf-native-nvim ];
+      # dependGroups [ "fzf" ];
+      onModules = [ "dropbar.api" ];
+      useTimer = true;
     };
     notify = {
       plugin = nvim-notify;
@@ -846,7 +845,7 @@ let
         code = readFile ./lua/detour.lua;
         language = "lua";
       };
-      onCommands = [ "Detour" ];
+      onCommands = [ "Detour" "DetourCurrentWindow" ];
       onModules = [ "detour" ];
     };
     flow = {
@@ -987,8 +986,7 @@ let
     };
   };
 
-in
-with pkgs.vimPlugins;
+in with pkgs.vimPlugins;
 {
   tshjkl = {
     # Tree-sitter hjkl movement for neovim

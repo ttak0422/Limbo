@@ -2,8 +2,14 @@
 let
   inherit (builtins) readFile;
   inherit (lib.strings) concatStringsSep;
-in
-with pkgs.vimPlugins; {
+in with pkgs.vimPlugins; {
+  fzf = {
+    name = "fzf";
+    plugins = [ ]; # hack
+    preConfig = ''
+      source ${pkgs.fzf}/share/nvim/site/plugin/fzf.vim
+    '';
+  };
   treesitter = {
     name = "treesitter";
     plugins = [
@@ -34,30 +40,28 @@ with pkgs.vimPlugins; {
       language = "lua";
       code = readFile ./lua/treesitter-pre.lua;
     };
-    postConfig =
-      let
-        parser = pkgs.stdenv.mkDerivation {
-          name = "treesitter-all-grammars";
-          buildCommand = ''
-            mkdir -p $out/parser
-            echo "${
-              concatStringsSep ","
-              pkgs.pkgs-unstable.vimPlugins.nvim-treesitter.withAllGrammars.dependencies
-            }" \
-              | tr ',' '\n' \
-              | xargs -I {} find {} -not -type d \
-              | xargs -I {} ln -s {} $out/parser
-          '';
-        };
-      in
-      {
-        language = "lua";
-        # code = ''
-        #   vim.opt.runtimepath:append("${parser}");
-        # '' +
-        code = readFile ./lua/treesitter.lua;
-        args = { inherit parser; };
+    postConfig = let
+      parser = pkgs.stdenv.mkDerivation {
+        name = "treesitter-all-grammars";
+        buildCommand = ''
+          mkdir -p $out/parser
+          echo "${
+            concatStringsSep ","
+            pkgs.pkgs-unstable.vimPlugins.nvim-treesitter.withAllGrammars.dependencies
+          }" \
+            | tr ',' '\n' \
+            | xargs -I {} find {} -not -type d \
+            | xargs -I {} ln -s {} $out/parser
+        '';
       };
+    in {
+      language = "lua";
+      # code = ''
+      #   vim.opt.runtimepath:append("${parser}");
+      # '' +
+      code = readFile ./lua/treesitter.lua;
+      args = { inherit parser; };
+    };
     extraPackages = [ pkgs.pkgs-unstable.tree-sitter ];
     useTimer = true;
   };
@@ -67,17 +71,17 @@ with pkgs.vimPlugins; {
       plugin = skkeleton;
       useDenops = true;
     }
-      # wip
-      # {
-      #   plugin = skk-vconv-vim;
-      #   dependPlugins = [ skkeleton ];
-      #   extraPackages = with pkgs; [ python3Packages.pykakasi ];
-      # }
-      # {
-      #   plugin = skkeleton_indicator-nvim;
-      #   postConfig = readFile ./../../nvim/skk-indicator.lua;
-      # }
-    ];
+    # wip
+    # {
+    #   plugin = skk-vconv-vim;
+    #   dependPlugins = [ skkeleton ];
+    #   extraPackages = with pkgs; [ python3Packages.pykakasi ];
+    # }
+    # {
+    #   plugin = skkeleton_indicator-nvim;
+    #   postConfig = readFile ./../../nvim/skk-indicator.lua;
+    # }
+      ];
     dependPlugins = [ denops-vim ];
     dependGroups = [ "ddc" ];
     postConfig = {

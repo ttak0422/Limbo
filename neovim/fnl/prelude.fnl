@@ -65,6 +65,9 @@
             ;; inodeの挙動変更
             :backupcopy :yes
             :backupdir (.. cache-path :/backup)
+            ;; 分割の挙動を変更
+            :splitright true
+            :splitbelow true
             ;; diffの挙動制御
             :diffopt "internal,filler,closeoff,vertical"}
       disable_plugins [;; https://qiita.com/yasunori-kirin0418/items/4672919be73a524afb47
