@@ -53,7 +53,7 @@
             # devicons
             # diffview
             # dropbar
-            # early-retirement
+            early-retirement
             # femaco
             # flit
             # flow

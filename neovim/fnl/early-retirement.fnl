@@ -4,4 +4,5 @@
             :ignoreAltFile true
             :ignoreUnsavedChangesBufs true
             :ignoreSpecialBuftypes true
-            :notificationOnAutoClose false}))
+            :notificationOnAutoClose false
+            :deleteBufferWhenFileDeleted true}))
