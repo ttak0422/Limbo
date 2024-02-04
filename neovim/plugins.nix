@@ -152,7 +152,7 @@ let
     flutter-tools = {
       # Tools to help create flutter apps in neovim using the native lsp
       plugin = flutter-tools-nvim;
-      dependPlugins = [ plenary-nvim ];
+      dependPlugins = [ plenary-nvim dressing-nvim ];
       dependGroups = [ "lsp" ];
       postConfig = {
         language = "lua";
@@ -978,6 +978,7 @@ let
     flit = {
       # Enhanced f/t motions for Leap
       plugin = flit-nvim;
+      dependPlugins = [ leap-nvim ];
       postConfig = {
         language = "lua";
         code = readFile ./lua/flit.lua;

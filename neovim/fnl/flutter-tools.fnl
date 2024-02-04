@@ -1,1 +1,5 @@
-(let [M (require :flutter-tools)] (M.setup))
+(let [M (require :flutter-tools)
+      ui {:border :single :notification_style :native}]
+  (M.setup {: ui
+            ;; TODO
+            }))

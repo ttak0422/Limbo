@@ -142,9 +142,12 @@ with pkgs.vimPlugins; {
         # [WIP] dotnet
         # dotnet tool install --global csharp-ls
         extraPackages = (with pkgs; [
+          # fennel-language-server
           dart
           deno
           dhall-lsp-server
+          fennel-ls
+          flutter
           google-java-format
           gopls
           lua-language-server
@@ -157,8 +160,6 @@ with pkgs.vimPlugins; {
           rubyPackages.solargraph
           rust-analyzer
           taplo-cli
-          # fennel-language-server
-          fennel-ls
         ]) ++ (with pkgs.pkgs-unstable; [ nixd marksman ]);
         postConfig = {
           language = "lua";

@@ -16,8 +16,7 @@
         end
       '';
 
-    in
-    {
+    in {
       _module.args.pkgs = import inputs.nixpkgs {
         inherit system;
         overlays = import ./overlays.nix inputs;
@@ -54,11 +53,11 @@
             # diffview
             # dropbar
             early-retirement
-            # femaco
-            # flit
-            # flow
+            femaco
+            flit
+            flow
             # flutter-tools
-            # fundo
+            fundo
             # gin
             # gina
             # git-conflict
