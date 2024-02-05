@@ -58,12 +58,12 @@
             flow
             # flutter-tools
             fundo
-            # gin
-            # gina
-            # git-conflict
-            # git-signs
-            # glance
-            # goto-preview
+            gin
+            gina
+            git-conflict
+            git-signs
+            glance
+            goto-preview
             # harpoon
             # haskell-tools
             # heirline
@@ -142,7 +142,9 @@
               # telescope
               treesitter
             ];
-          after.ftplugin = with ftplugins; { inherit ddu-ff ddu-ff-filter qf; };
+          after.ftplugin = with ftplugins; {
+            inherit ddu-ff ddu-ff-filter qf gina-blame;
+          };
         };
       };
     };

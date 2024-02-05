@@ -6,4 +6,5 @@ local function _1_(_, win)
   return vim.api.nvim_win_set_option(win, "winhighlight", "Normal:")
 end
 post_open_hook = _1_
-return M.setup({height = 30, border = border, post_open_hook = post_open_hook})
+local post_close_hook = nil
+return M.setup({height = 20, width = 120, focus_on_open = true, dismiss_on_move = true, opacity = nil, border = border, post_open_hook = post_open_hook, post_close_hook = post_close_hook, resizing_mappings = false, default_mappings = false, debug = false})

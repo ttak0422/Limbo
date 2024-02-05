@@ -6,4 +6,5 @@ in {
   '';
   ddu-ff = readFile ./vim/ddu-ff.vim;
   ddu-ff-filter = readFile ./vim/ddu-ff-filter.vim;
+  gina-blame = readFile ./vim/gina-blame.vim;
 }
