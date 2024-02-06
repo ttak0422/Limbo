@@ -11,13 +11,16 @@
           [:<esc><esc> (cmd :nohl)]
           [:j :gj]
           [:k :gk]
+          ;; marks
+          [:<leader>mq (cmd :MarksQFListBuf) (d "marks in current buffer")]
+          [:<leader>mQ (cmd :MarksQFListGlobal) (d "marks in all buffer")]
           ;; split/join
-          [:<leader>m
-           (lcmd "require('treesj').toggle()")
-           (d "toggle split/join")]
-          [:<leader>M
-           (lcmd "require('treesj').toggle({ split = { recursive = true } })")
-           (d "toggle split/join rec")]
+          ; [:<leader>m
+          ;  (lcmd "require('treesj').toggle()")
+          ;  (d "toggle split/join")]
+          ; [:<leader>M
+          ;  (lcmd "require('treesj').toggle({ split = { recursive = true } })")
+          ;  (d "toggle split/join rec")]
           [:gpd
            (lcmd "require('goto-preview').goto_preview_definition()")
            (d "preview definition")]

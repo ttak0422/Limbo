@@ -634,7 +634,8 @@ let
         language = "lua";
         code = readFile ./lua/marks.lua;
       };
-      useTimer = true;
+      onCommands = [ "MarksQFListBuf" "MarksQFListGlobal" ];
+      onEvents = [ "CursorMoved" ];
     };
   };
   helper = with pkgs.vimPlugins; {
@@ -757,6 +758,7 @@ let
         language = "lua";
         code = readFile ./lua/legendary.lua;
       };
+      dependPlugins = [ sqlite-lua ];
       onCommands = [ "Legendary" ];
     };
     window-picker = {

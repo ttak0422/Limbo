@@ -77,11 +77,10 @@
             # jukit
             leap
             legendary
-            # markdown-preview
-            # marks
-            # mkdir
-            # mkdnflow
-            # nap
+            markdown-preview
+            marks
+            mkdir
+            mkdnflow
             # neogen
             # neotree
             # neozoom
