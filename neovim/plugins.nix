@@ -710,6 +710,16 @@ let
     };
   };
   tool = with pkgs.vimPlugins; {
+    sqlite = {
+      plugin = sqlite-lua;
+      preConfig = ''
+        if has('mac')
+          let g:sqlite_clib_path = '${pkgs.sqlite.out}/lib/libsqlite3.dylib'
+        else
+          let g:sqlite_clib_path = '${pkgs.sqlite.out}/lib/libsqlite3.so'
+        endif
+      '';
+    };
     markdown-preview = {
       plugin = markdown-preview-nvim;
       onFiletypes = [ "markdown" ];
