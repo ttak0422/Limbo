@@ -75,8 +75,8 @@
             jabs
             # jdtls
             # jukit
-            # leap
-            # legendary
+            leap
+            legendary
             # markdown-preview
             # marks
             # mkdir
@@ -102,6 +102,7 @@
             # registers
             # rust-tools
             # # safe-close-window
+            sqlite
             # smart-splits
             # spectre
             # spectre
