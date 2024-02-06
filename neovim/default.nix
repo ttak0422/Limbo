@@ -72,7 +72,7 @@
             hlslens
             indent-o-matic
             # ionide
-            # jabs
+            jabs
             # jdtls
             # jukit
             # leap
