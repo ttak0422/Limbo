@@ -70,7 +70,7 @@
             history-ignore
             hlchunk
             hlslens
-            # indent-o-matic
+            indent-o-matic
             # ionide
             # jabs
             # jdtls
