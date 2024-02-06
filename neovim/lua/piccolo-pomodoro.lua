@@ -12,20 +12,16 @@ end
 on_update = _1_
 local focus_format
 local function _2_(ctx)
-  if (ctx.timer_state ~= T.TIMER_STATE.IDLE) then
-    return string.format("%s %02d:%02d", prefix[ctx.timer_mode][ctx.timer_state], ctx.m, ctx.s)
-  else
-    return string.format("%s", prefix[ctx.timer_mode][ctx.timer_state])
-  end
+  return string.format("%s%02d:%02d", prefix[ctx.timer_mode][ctx.timer_state], ctx.m, ctx.s)
 end
 focus_format = _2_
 local break_format
-local function _4_(ctx)
-  return string.format("%s %02d %02d", prefix[ctx.timer_mode][ctx.timer_state], ctx.m, ctx.s)
+local function _3_(ctx)
+  return string.format("%s%02d %02d", prefix[ctx.timer_mode][ctx.timer_state], ctx.m, ctx.s)
 end
-break_format = _4_
+break_format = _3_
 local on_start
-local function _5_()
+local function _4_()
   if (vim.fn.has("mac") == 1) then
     vim.fn.system("osascript -e 'display notification \"Start!\" with title \"pomodoro\" sound name \"Bell\"'")
   else
@@ -33,43 +29,44 @@ local function _5_()
   end
   return vim.cmd("redrawstatus")
 end
-on_start = _5_
+on_start = _4_
 local on_pause
-local function _7_()
+local function _6_()
   if (vim.fn.has("mac") == 1) then
-    return vim.fn.system("osascript -e 'display notification \"Pause!\" with title \"pomodoro\" sound name \"Bell\"'")
+    vim.fn.system("osascript -e 'display notification \"Pause!\" with title \"pomodoro\" sound name \"Bell\"'")
   else
-    return vim.notify("Pause!")
+    vim.notify("Pause!")
   end
+  return vim.cmd("redrawstatus")
 end
-on_pause = _7_
+on_pause = _6_
 local on_complete_focus_time
-local function _9_()
+local function _8_()
   if (vim.fn.has("mac") == 1) then
     return vim.fn.system("osascript -e 'display notification \"Focus time is over!\" with title \"pomodoro\" sound name \"Bell\"'")
   else
     return vim.notify("Focus time is over!")
   end
 end
-on_complete_focus_time = _9_
+on_complete_focus_time = _8_
 local on_complete_break_time
-local function _11_()
+local function _10_()
   if (vim.fn.has("mac") == 1) then
     return vim.fn.system("osascript -e 'display notification \"Focus time is over!\" with title \"pomodoro\" sound name \"Bell\"'")
   else
     return vim.notify("Focus time is over!")
   end
 end
-on_complete_break_time = _11_
-focus[T.TIMER_STATE.IDLE] = "\239\137\148"
-focus[T.TIMER_STATE.ACTIVE] = "\239\129\140 focus"
-focus[T.TIMER_STATE.PAUSE] = "\239\129\139 focus"
-_break[T.TIMER_STATE.IDLE] = "\239\129\139 break"
-_break[T.TIMER_STATE.ACTIVE] = "\239\129\140 break"
-_break[T.TIMER_STATE.PAUSE] = "\239\129\139 break"
-long_break[T.TIMER_STATE.IDLE] = "\239\129\139 break"
-long_break[T.TIMER_STATE.ACTIVE] = "\239\129\140 break"
-long_break[T.TIMER_STATE.PAUSE] = "\239\129\139 break"
+on_complete_break_time = _10_
+focus[T.TIMER_STATE.IDLE] = "\239\134\146 "
+focus[T.TIMER_STATE.ACTIVE] = "\239\138\139 "
+focus[T.TIMER_STATE.PAUSE] = "\239\133\132 "
+_break[T.TIMER_STATE.IDLE] = "\239\134\146 BREAK "
+_break[T.TIMER_STATE.ACTIVE] = "\239\138\139 BREAK "
+_break[T.TIMER_STATE.PAUSE] = "\239\133\132 BREAK "
+long_break[T.TIMER_STATE.IDLE] = "\239\134\146 BREAK "
+long_break[T.TIMER_STATE.ACTIVE] = "\239\138\139 BREAK "
+long_break[T.TIMER_STATE.PAUSE] = "\239\133\132 BREAK "
 prefix[T.TIMER_MODE.FOCUS] = focus
 prefix[T.TIMER_MODE.BREAK] = _break
 prefix[T.TIMER_MODE.LONG_BREAK] = long_break

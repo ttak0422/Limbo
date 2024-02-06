@@ -64,12 +64,12 @@
             git-signs
             glance
             goto-preview
-            # harpoon
+            harpoon
             # haskell-tools
-            # heirline
-            # history-ignore
-            # hlchunk
-            # hlslens
+            heirline
+            history-ignore
+            hlchunk
+            hlslens
             # indent-o-matic
             # ionide
             # jabs
