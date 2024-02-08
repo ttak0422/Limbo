@@ -33,11 +33,16 @@
                [:J (Cmd "WinShift down")]
                [:K (Cmd "WinShift up")]
                [:L (Cmd "WinShift right")]
+               ;; resize
                [:e
-                ;; resize
                 (fn []
                   ((. (require :smart-splits) :start_resize_mode)))
                 {:desc "resize mode" :exit true}]
+               ;; window picker
+               [:p
+                (fn []
+                  ((. (require :nvim-window) :pick)))
+                {:desc "pick window" :exit true}]
                ["=" :<C-w>= {:desc :equalize :exit true}]
                [:<CR>
                 (Cmd :DetourCurrentWindow)

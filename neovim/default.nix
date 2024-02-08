@@ -81,16 +81,17 @@
             marks
             mkdir
             mkdnflow
-            # neogen
+            nap
+            neogen
             # neotree
-            # neozoom
-            # nfnl
-            # noice
-            # none-ls
-            # notify
-            # numb
-            # nvim-tree
-            # nvim-window
+            neozoom
+            nfnl
+            noice
+            none-ls
+            notify
+            numb
+            nvim-tree
+            nvim-window
             # open
             # overseer
             # project

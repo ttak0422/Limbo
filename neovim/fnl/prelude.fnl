@@ -69,7 +69,8 @@
             :splitright true
             :splitbelow true
             ;; diffの挙動制御
-            :diffopt "internal,filler,closeoff,vertical"}
+            :diffopt "internal,filler,closeoff,vertical"
+            :cursorline true}
       disable_plugins [;; https://qiita.com/yasunori-kirin0418/items/4672919be73a524afb47
                        ;; DisableTOhtml.
                        :loaded_2html_plugin

@@ -24,8 +24,10 @@
                             :opts {:desc "next mark"}}}
                  :b {:prev {:rhs (cmd :bprevious) :opts {:desc "prev buffer"}}
                      :next {:rhs (cmd :bnext) :opts {:desc "next buffer"}}}
-		 :B {:prev {:rhs (lua_cmd "require('buffer_browser').prev()") :opts {:desc "prev buffer (history)"}}
-		     :next {:rhs (lua_cmd "require('buffer_browser').next()") :opts {:desc "next buffer (history)"}}}
+                 :B {:prev {:rhs (lua_cmd "require('buffer_browser').prev()")
+                            :opts {:desc "prev buffer (history)"}}
+                     :next {:rhs (lua_cmd "require('buffer_browser').next()")
+                            :opts {:desc "next buffer (history)"}}}
                  :r {:prev {:rhs (lua_cmd "require('harpoon.ui').nav_prev()")
                             :opts {:desc "prev registered buffer"}}
                      :next {:rhs (lua_cmd "require('harpoon.ui').nav_next()")
@@ -71,7 +73,7 @@
                          :next {:rhs (cmd :lnewer)
                                 :opts {:desc "next location list"}}}}]
   (M.setup {:next_prefix "]"
-              :prev_prefix "["
-              :next_repeat :<c-n>
-              :prev_repeat :<c-p>
-              : operators}))
+            :prev_prefix "["
+            :next_repeat :<c-n>
+            :prev_repeat :<c-p>
+            : operators}))
