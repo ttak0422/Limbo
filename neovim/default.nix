@@ -92,8 +92,8 @@
             numb
             nvim-tree
             nvim-window
-            # open
-            # overseer
+            open
+            overseer
             # project
             # qf
             # qfheight
