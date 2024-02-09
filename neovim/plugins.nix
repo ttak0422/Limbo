@@ -390,6 +390,14 @@ let
       dependGroups = [ "fzf" "treesitter" ];
       extraPackages = with pkgs; [ fzf ];
     };
+    pqf = {
+      plugin = nvim-pqf;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/pqf.lua;
+      };
+      onEvents = [ "QuickFixCmdPre" ];
+    };
     qfview = {
       # Pretty quickfix/location view for Neovim
       plugin = qfview-nvim;

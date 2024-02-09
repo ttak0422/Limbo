@@ -95,9 +95,9 @@
             open
             overseer
             project
-            # qf
-            # qfheight
-            # qfview
+            qf
+            qfheight
+            pqf
             # reacher
             # registers
             # rust-tools
