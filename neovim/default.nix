@@ -94,7 +94,7 @@
             nvim-window
             open
             overseer
-            # project
+            project
             # qf
             # qfheight
             # qfview

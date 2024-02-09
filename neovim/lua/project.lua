@@ -2,4 +2,5 @@
 local M = require("project_nvim")
 local detection_methods = {"pattern"}
 local patterns = {".git"}
-return M.setup({scope_chdir = "tab", detection_methods = detection_methods, patterns = patterns, manual_mode = false})
+local datapath = vim.fn.stdpath("data")
+return M.setup({scope_chdir = "tab", detection_methods = detection_methods, patterns = patterns, datapath = datapath, manual_mode = false})
