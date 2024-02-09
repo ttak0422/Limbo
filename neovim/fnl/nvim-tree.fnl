@@ -164,7 +164,8 @@
       notify {:threshold vim.log.levels.INFO :absolute_path true}
       help {:sort_by :key}
       ui {:confirm {:remove true :trash true :default_yes false}}
-      log {:enable false}]
+      log {:enable false}
+      default_cursor vim.opt.guicursor]
   (tree.setup {:hijack_cursor true
                :auto_reload_on_write true
                :disable_netrw true
@@ -192,4 +193,28 @@
                : notify
                : help
                : ui
-               : log}))
+               : log})
+  (vim.api.nvim_create_autocmd [:WinEnter :BufWinEnter]
+                               {:pattern :NvimTree*
+                                :callback (fn []
+                                            (let [def (vim.api.nvim_get_hl_by_name :Cursor
+                                                                                   true)]
+                                              (vim.api.nvim_set_hl 0 :Cursor
+                                                                   (vim.tbl_extend :force
+                                                                                   def
+                                                                                   {:blend 100}))
+                                              (: vim.opt.guicursor :append
+                                                 "a:Cursor/lCursor")))})
+  (vim.api.nvim_create_autocmd [:BufLeave :WinClosed]
+                               {:pattern :NvimTree*
+                                :callback (fn []
+                                            (let [def (vim.api.nvim_get_hl_by_name :Cursor
+                                                                                   true)
+                                                  ;;cursor "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
+                                                  ]
+                                              (vim.api.nvim_set_hl 0 :Cursor
+                                                                   (vim.tbl_extend :force
+                                                                                   def
+                                                                                   {:blend 0}))
+                                              (set vim.opt.guicursor
+                                                   default_cursor)))}))
