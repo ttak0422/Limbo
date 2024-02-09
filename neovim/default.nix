@@ -102,12 +102,11 @@
             registers
             # rust-tools
             sqlite
-            # smart-splits
-            # spectre
-            # spectre
-            # startuptime
-            # statuscol
-            # surround
+            smart-splits
+            spectre
+            startuptime
+            statuscol
+            surround
             # tabout
             # tint
             # todo-comments
