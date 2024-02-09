@@ -98,10 +98,9 @@
             qf
             qfheight
             pqf
-            # reacher
-            # registers
+            reacher
+            registers
             # rust-tools
-            # # safe-close-window
             sqlite
             # smart-splits
             # spectre
