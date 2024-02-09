@@ -11,6 +11,7 @@
       extraLuaConfig = ''
         dofile("${./lua/prelude.lua}")
         dofile("${./lua/keymap.lua}")
+        vim.cmd([[source ${./vim/keymap.vim}]])
         if vim.g.neovide then
           dofile("${./lua/neovide.lua}")
         end
