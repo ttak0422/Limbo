@@ -36,10 +36,6 @@ in with pkgs.vimPlugins; {
         };
       }
     ];
-    preConfig = {
-      language = "lua";
-      code = readFile ./lua/treesitter-pre.lua;
-    };
     postConfig = let
       parser = pkgs.stdenv.mkDerivation {
         name = "treesitter-all-grammars";
