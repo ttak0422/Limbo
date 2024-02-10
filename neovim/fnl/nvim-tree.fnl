@@ -131,7 +131,7 @@
                :dotfiles false
                :git_clean false
                :no_buffer false
-               :custom [:.DS_Store]
+               :custom [:.DS_Store :.git]
                :exclude []}
       live_filter {:prefix "[FILTER]: " :always_show_folders true}
       actions (let [change_dir {:enable true
