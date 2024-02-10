@@ -1,2 +1,2 @@
 (let [M (require :nvim-window)]
-  (M.setup))
+  (M.setup {}))

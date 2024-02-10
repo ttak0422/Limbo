@@ -125,11 +125,11 @@
             vim-nix
             vimdoc-ja
             vtsls
-            # waitevent
-            # which-key
-            # window-picker
-            # winsep
-            # winshift
+            waitevent
+            which-key
+            window-picker
+            winsep
+            winshift
           ];
           lazyGroups = with groups; [
             dap
