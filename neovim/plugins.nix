@@ -1067,6 +1067,7 @@ in with pkgs.vimPlugins;
   neogen = {
     # A better annotation generator. Supports multiple languages and annotation conventions.
     plugin = neogen;
+    dependPlugins = [ vim-vsnip ];
     dependGroups = [ "treesitter" ];
     postConfig = {
       language = "lua";

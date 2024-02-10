@@ -17,7 +17,8 @@
         end
       '';
 
-    in {
+    in
+    {
       _module.args.pkgs = import inputs.nixpkgs {
         inherit system;
         overlays = import ./overlays.nix inputs;
@@ -108,17 +109,17 @@
             startuptime
             statuscol
             surround
-            # tabout
-            # tint
-            # todo-comments
-            # toggleterm
-            # toolwindow
-            # translate
-            # treesj
-            # trim
-            # trouble
-            # ts-autotag
-            # tshjkl
+            tabout
+            tint
+            todo-comments
+            toggleterm
+            toolwindow
+            translate
+            treesj
+            trim
+            trouble
+            ts-autotag
+            tshjkl
             # ufo
             # vim-markdown
             # vim-nix

@@ -2,18 +2,18 @@
 (set vim.g.maplocalleader ",")
 
 (let [os {:noremap true :silent true}
-      d (fn [d] {:noremap true :silent true :desc d})
-      m vim.keymap.set
+      desc (fn [d] {:noremap true :silent true :desc d})
+      map vim.keymap.set
       cmd (fn [c] (.. :<cmd> c :<cr>))
-      lcmd (fn [c] (cmd (.. "lua " c)))
+      lua_cmd (fn [c] (cmd (.. "lua " c)))
       ns [;; utils
           [:q :<nop>]
           [:<esc><esc> (cmd :nohl)]
           [:j :gj]
           [:k :gk]
           ;; marks
-          [:<leader>mq (cmd :MarksQFListBuf) (d "marks in current buffer")]
-          [:<leader>mQ (cmd :MarksQFListGlobal) (d "marks in all buffer")]
+          [:<leader>mq (cmd :MarksQFListBuf) (desc "marks in current buffer")]
+          [:<leader>mQ (cmd :MarksQFListGlobal) (desc "marks in all buffer")]
           ;; split/join
           ; [:<leader>m
           ;  (lcmd "require('treesj').toggle()")
@@ -22,90 +22,101 @@
           ;  (lcmd "require('treesj').toggle({ split = { recursive = true } })")
           ;  (d "toggle split/join rec")]
           [:gpd
-           (lcmd "require('goto-preview').goto_preview_definition()")
-           (d "preview definition")]
+           (lua_cmd "require('goto-preview').goto_preview_definition()")
+           (desc "preview definition")]
           [:gpi
-           (lcmd "require('goto-preview').goto_preview_implementation()")
-           (d "preview implementation")]
+           (lua_cmd "require('goto-preview').goto_preview_implementation()")
+           (desc "preview implementation")]
           [:gpr
-           (lcmd "require('goto-preview').goto_preview_references()")
-           (d "preview references")]
+           (lua_cmd "require('goto-preview').goto_preview_references()")
+           (desc "preview references")]
           [:gP
-           (lcmd "require('goto-preview').close_all_win()")
-           (d "close all preview")]
-          [:gh (lcmd "require('dropbar.api').pick()") (d "pick hierarchy")]
+           (lua_cmd "require('goto-preview').close_all_win()")
+           (desc "close all preview")]
+          [:gh
+           (lua_cmd "require('dropbar.api').pick()")
+           (desc "pick hierarchy")]
           ;; git
           [:<leader>gg
            (fn []
              (vim.cmd (.. "Gin " (vim.fn.input "git command: "))))
-           (d "git command (echo)")]
+           (desc "git command (echo)")]
           [:<leader>gG
            (fn []
              (vim.cmd (.. "GinBuffer " (vim.fn.input "git command: "))))
-           (d "git command (buffer)")]
+           (desc "git command (buffer)")]
           [:<leader>gb
            (cmd "execute printf('Gina blame --width=%d', &columns / 3)")
-           (d "git blame")]
-          [:<leader>gs (cmd :GinStatus) (d "git status")]
-          [:<leader>gl (cmd :GinLog) (d "git log")]
+           (desc "git blame")]
+          [:<leader>gs (cmd :GinStatus) (desc "git status")]
+          [:<leader>gl (cmd :GinLog) (desc "git log")]
           ; [:<leader>G (cmd :Neogit) (desc "magit for vim")]
           ;; tools
           [:<leader>q (cmd :BufDel)]
           [:<leader>Q (cmd :BufDel!)]
           [:<leader>A (cmd :tabclose)]
-          [:<leader>E (cmd :FeMco) (d "edit code block")]
+          [:<leader>E (cmd :FeMco) (desc "edit code block")]
           ;; buffer
           [:<leader>br
-           (lcmd "require('harpoon.mark').add_file()")
-           (d "register buffer (harpoon)")]
+           (lua_cmd "require('harpoon.mark').add_file()")
+           (desc "register buffer (harpoon)")]
           ;; toggle
-          [:<leader>tc (cmd :ColorizerToggle) (d "toggle colorize")]
+          [:<leader>tc (cmd :ColorizerToggle) (desc "toggle colorize")]
           [:<leader>tb (cmd :NvimTreeToggle)]
           ; [:<leader>tB (cmd "Neotree toggle")]
           [:<leader>to (cmd :SidebarNvimToggle)]
           [:<leader>tm
-           (lcmd "require('codewindow').toggle_minimap()")
-           (d "toggle minimap")]
+           (lua_cmd "require('codewindow').toggle_minimap()")
+           (desc "toggle minimap")]
           [:<leader>tr
-           (lcmd "require('harpoon.ui').toggle_quick_menu()")
-           (d "toggle registered buffer menu")]
-          [:<leader>tg (cmd :TigTermToggle) (d "toggle tig terminal")]
+           (lua_cmd "require('harpoon.ui').toggle_quick_menu()")
+           (desc "toggle registered buffer menu")]
+          [:<leader>tg (cmd :TigTermToggle) (desc "toggle tig terminal")]
           ;; finder
           [:<leader>ff
            (cmd "Telescope live_grep_args")
-           (d "search by content")]
-          [:<leader>fp (cmd "Ddu -name=fd file_fd") (d "search by file name")]
-          [:<leader>fP (cmd "Ddu -name=ghq ghq") (d "search repo (ghq)")]
-          [:<leader>fb (cmd "Telescope buffers") (d "search buffer")]
-          [:<leader>fh (cmd :Legendary) (d "search legendary")]
+           (desc "search by content")]
+          [:<leader>fp
+           (cmd "Ddu -name=fd file_fd")
+           (desc "search by file name")]
+          [:<leader>fP (cmd "Ddu -name=ghq ghq") (desc "search repo (ghq)")]
+          [:<leader>fb (cmd "Telescope buffers") (desc "search buffer")]
+          [:<leader>fh (cmd :Legendary) (desc "search legendary")]
           [:<leader>ft
            (cmd "Telescope sonictemplate templates")
-           (d "search templates")]
+           (desc "search templates")]
           [:<leader>fru
            (cmd "Ddu -name=mru mru")
-           (d "MRU (Most Recently Used files)")]
+           (desc "MRU (Most Recently Used files)")]
           [:<leader>frw
            (cmd "Ddu -name=mrw mrw")
-           (d "MRW (Most Recently Written files)")]
+           (desc "MRW (Most Recently Written files)")]
           [:<leader>frr
            (cmd "Ddu -name=mrr mrr")
-           (d "MRR (Most Recent git Repositories)")]
+           (desc "MRR (Most Recent git Repositories)")]
           [:<leader>fF
-           (lcmd "require('spectre').open()")
-           (d "find and replace with dark power")]
+           (lua_cmd "require('spectre').open()")
+           (desc "find and replace with dark power")]
           ;; runner
           [:<leader>rr (cmd :FlowRunFile)]]
       vs [;; runner
-          [:<leader>r (cmd :FlowRunSelected)]]]
-  (do
-    (each [_ keymap (ipairs ns)]
-      (m :n (. keymap 1) (. keymap 2) (or (. keymap 3) os)))
-    (each [_ keymap (ipairs vs)]
-      (m :v (. keymap 1) (. keymap 2) (or (. keymap 3) os)))
-    (for [i 0 9]
-      (m [:n :t :i] (.. :<C- i ">") (cmd (.. "TermToggle " i))
-         (d (.. "toggle terminal " i))))
-    ;; reacher
-    (m [:n :x] :gs (lcmd "require('reacher').start()") (d "search displayed"))
-    (m [:n :x] :gS (lcmd "require('reacher').start_multiple()")
-       (d "search displayed"))))
+          [:<leader>r (cmd :FlowRunSelected)]]
+      is [
+          ; [:<C-t>
+          ;  (lua_cmd "require('treesj').toggle()")
+          ;  (desc "toggle split/join")]
+          ]]
+  (each [_ keymap (ipairs ns)]
+    (map :n (. keymap 1) (. keymap 2) (or (. keymap 3) os)))
+  (each [_ keymap (ipairs vs)]
+    (map :v (. keymap 1) (. keymap 2) (or (. keymap 3) os)))
+  (each [_ keymap (ipairs is)]
+    (map :v (. keymap 1) (. keymap 2) (or (. keymap 3) os)))
+  (for [i 0 9]
+    (map [:n :t :i] (.. :<C- i ">") (cmd (.. "TermToggle " i))
+         (desc (.. "toggle terminal " i))))
+  ;; reacher
+  (map [:n :x] :gs (lua_cmd "require('reacher').start()")
+       (desc "search displayed"))
+  (map [:n :x] :gS (lua_cmd "require('reacher').start_multiple()")
+       (desc "search displayed")))

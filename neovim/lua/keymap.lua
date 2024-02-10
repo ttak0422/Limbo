@@ -2,22 +2,22 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 local os = {noremap = true, silent = true}
-local d
-local function _1_(d0)
-  return {noremap = true, silent = true, desc = d0}
+local desc
+local function _1_(d)
+  return {noremap = true, silent = true, desc = d}
 end
-d = _1_
-local m = vim.keymap.set
+desc = _1_
+local map = vim.keymap.set
 local cmd
 local function _2_(c)
   return ("<cmd>" .. c .. "<cr>")
 end
 cmd = _2_
-local lcmd
+local lua_cmd
 local function _3_(c)
   return cmd(("lua " .. c))
 end
-lcmd = _3_
+lua_cmd = _3_
 local ns
 local function _4_()
   return vim.cmd(("Gin " .. vim.fn.input("git command: ")))
@@ -25,16 +25,20 @@ end
 local function _5_()
   return vim.cmd(("GinBuffer " .. vim.fn.input("git command: ")))
 end
-ns = {{"q", "<nop>"}, {"<esc><esc>", cmd("nohl")}, {"j", "gj"}, {"k", "gk"}, {"<leader>mq", cmd("MarksQFListBuf"), d("marks in current buffer")}, {"<leader>mQ", cmd("MarksQFListGlobal"), d("marks in all buffer")}, {"gpd", lcmd("require('goto-preview').goto_preview_definition()"), d("preview definition")}, {"gpi", lcmd("require('goto-preview').goto_preview_implementation()"), d("preview implementation")}, {"gpr", lcmd("require('goto-preview').goto_preview_references()"), d("preview references")}, {"gP", lcmd("require('goto-preview').close_all_win()"), d("close all preview")}, {"gh", lcmd("require('dropbar.api').pick()"), d("pick hierarchy")}, {"<leader>gg", _4_, d("git command (echo)")}, {"<leader>gG", _5_, d("git command (buffer)")}, {"<leader>gb", cmd("execute printf('Gina blame --width=%d', &columns / 3)"), d("git blame")}, {"<leader>gs", cmd("GinStatus"), d("git status")}, {"<leader>gl", cmd("GinLog"), d("git log")}, {"<leader>q", cmd("BufDel")}, {"<leader>Q", cmd("BufDel!")}, {"<leader>A", cmd("tabclose")}, {"<leader>E", cmd("FeMco"), d("edit code block")}, {"<leader>br", lcmd("require('harpoon.mark').add_file()"), d("register buffer (harpoon)")}, {"<leader>tc", cmd("ColorizerToggle"), d("toggle colorize")}, {"<leader>tb", cmd("NvimTreeToggle")}, {"<leader>to", cmd("SidebarNvimToggle")}, {"<leader>tm", lcmd("require('codewindow').toggle_minimap()"), d("toggle minimap")}, {"<leader>tr", lcmd("require('harpoon.ui').toggle_quick_menu()"), d("toggle registered buffer menu")}, {"<leader>tg", cmd("TigTermToggle"), d("toggle tig terminal")}, {"<leader>ff", cmd("Telescope live_grep_args"), d("search by content")}, {"<leader>fp", cmd("Ddu -name=fd file_fd"), d("search by file name")}, {"<leader>fP", cmd("Ddu -name=ghq ghq"), d("search repo (ghq)")}, {"<leader>fb", cmd("Telescope buffers"), d("search buffer")}, {"<leader>fh", cmd("Legendary"), d("search legendary")}, {"<leader>ft", cmd("Telescope sonictemplate templates"), d("search templates")}, {"<leader>fru", cmd("Ddu -name=mru mru"), d("MRU (Most Recently Used files)")}, {"<leader>frw", cmd("Ddu -name=mrw mrw"), d("MRW (Most Recently Written files)")}, {"<leader>frr", cmd("Ddu -name=mrr mrr"), d("MRR (Most Recent git Repositories)")}, {"<leader>fF", lcmd("require('spectre').open()"), d("find and replace with dark power")}, {"<leader>rr", cmd("FlowRunFile")}}
+ns = {{"q", "<nop>"}, {"<esc><esc>", cmd("nohl")}, {"j", "gj"}, {"k", "gk"}, {"<leader>mq", cmd("MarksQFListBuf"), desc("marks in current buffer")}, {"<leader>mQ", cmd("MarksQFListGlobal"), desc("marks in all buffer")}, {"gpd", lua_cmd("require('goto-preview').goto_preview_definition()"), desc("preview definition")}, {"gpi", lua_cmd("require('goto-preview').goto_preview_implementation()"), desc("preview implementation")}, {"gpr", lua_cmd("require('goto-preview').goto_preview_references()"), desc("preview references")}, {"gP", lua_cmd("require('goto-preview').close_all_win()"), desc("close all preview")}, {"gh", lua_cmd("require('dropbar.api').pick()"), desc("pick hierarchy")}, {"<leader>gg", _4_, desc("git command (echo)")}, {"<leader>gG", _5_, desc("git command (buffer)")}, {"<leader>gb", cmd("execute printf('Gina blame --width=%d', &columns / 3)"), desc("git blame")}, {"<leader>gs", cmd("GinStatus"), desc("git status")}, {"<leader>gl", cmd("GinLog"), desc("git log")}, {"<leader>q", cmd("BufDel")}, {"<leader>Q", cmd("BufDel!")}, {"<leader>A", cmd("tabclose")}, {"<leader>E", cmd("FeMco"), desc("edit code block")}, {"<leader>br", lua_cmd("require('harpoon.mark').add_file()"), desc("register buffer (harpoon)")}, {"<leader>tc", cmd("ColorizerToggle"), desc("toggle colorize")}, {"<leader>tb", cmd("NvimTreeToggle")}, {"<leader>to", cmd("SidebarNvimToggle")}, {"<leader>tm", lua_cmd("require('codewindow').toggle_minimap()"), desc("toggle minimap")}, {"<leader>tr", lua_cmd("require('harpoon.ui').toggle_quick_menu()"), desc("toggle registered buffer menu")}, {"<leader>tg", cmd("TigTermToggle"), desc("toggle tig terminal")}, {"<leader>ff", cmd("Telescope live_grep_args"), desc("search by content")}, {"<leader>fp", cmd("Ddu -name=fd file_fd"), desc("search by file name")}, {"<leader>fP", cmd("Ddu -name=ghq ghq"), desc("search repo (ghq)")}, {"<leader>fb", cmd("Telescope buffers"), desc("search buffer")}, {"<leader>fh", cmd("Legendary"), desc("search legendary")}, {"<leader>ft", cmd("Telescope sonictemplate templates"), desc("search templates")}, {"<leader>fru", cmd("Ddu -name=mru mru"), desc("MRU (Most Recently Used files)")}, {"<leader>frw", cmd("Ddu -name=mrw mrw"), desc("MRW (Most Recently Written files)")}, {"<leader>frr", cmd("Ddu -name=mrr mrr"), desc("MRR (Most Recent git Repositories)")}, {"<leader>fF", lua_cmd("require('spectre').open()"), desc("find and replace with dark power")}, {"<leader>rr", cmd("FlowRunFile")}}
 local vs = {{"<leader>r", cmd("FlowRunSelected")}}
+local is = {}
 for _, keymap in ipairs(ns) do
-  m("n", keymap[1], keymap[2], (keymap[3] or os))
+  map("n", keymap[1], keymap[2], (keymap[3] or os))
 end
 for _, keymap in ipairs(vs) do
-  m("v", keymap[1], keymap[2], (keymap[3] or os))
+  map("v", keymap[1], keymap[2], (keymap[3] or os))
+end
+for _, keymap in ipairs(is) do
+  map("v", keymap[1], keymap[2], (keymap[3] or os))
 end
 for i = 0, 9 do
-  m({"n", "t", "i"}, ("<C-" .. i .. ">"), cmd(("TermToggle " .. i)), d(("toggle terminal " .. i)))
+  map({"n", "t", "i"}, ("<C-" .. i .. ">"), cmd(("TermToggle " .. i)), desc(("toggle terminal " .. i)))
 end
-m({"n", "x"}, "gs", lcmd("require('reacher').start()"), d("search displayed"))
-return m({"n", "x"}, "gS", lcmd("require('reacher').start_multiple()"), d("search displayed"))
+map({"n", "x"}, "gs", lua_cmd("require('reacher').start()"), desc("search displayed"))
+return map({"n", "x"}, "gS", lua_cmd("require('reacher').start_multiple()"), desc("search displayed"))
