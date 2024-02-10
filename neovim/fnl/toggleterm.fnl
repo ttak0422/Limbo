@@ -1,25 +1,35 @@
 (let [M (require :toggleterm)
-      T (. (require :toggleterm.terminal) :Terminal)
-      cmd vim.api.nvim_create_user_command
+      T (require :toggleterm.terminal)
+      Terminal T.Terminal
+      create_cmd vim.api.nvim_create_user_command
       size (fn [term]
              (if (= term.direction :horizontal) (* vim.o.lines 0.3)
                  (* vim.o.columns 0.4)))
       toggle_term ((fn []
                      (let [terms {}]
                        (fn [idx]
-                         ((if (not terms.idx)
-                              (set terms.idx (: T :new {:direction :float}))
-                              (if (: (. terms idx) :is_open)
-                                  (if (: (. terms idx) :is_focused)
-                                      (: (. terms idx) :toggle)
-                                      (do
-                                        (: (. terms idx) :focus)
-                                        (vim.cmd :startinsert)))
-                                  (do
-                                    (: (. terms idx) :toggle)
-                                    (vim.cmd :startinsert)))))))))
+                         (let [term (if terms.idx terms.idx
+                                        (do
+                                          (set terms.idx
+                                               (: Terminal :new
+                                                  {:direction :float}))
+                                          terms.idx))
+                               is_open (: term :is_open)
+                               is_focused (: term :is_focused)]
+                           (if is_open
+                               (if is_focused
+                                   ;; close
+                                   (: term :toggle)
+                                   ;; focus
+                                   (do
+                                     (: term :focus)
+                                     (vim.cmd :startinsert)))
+                               ;; open
+                               (do
+                                 (: term :toggle)
+                                 (vim.cmd :startinsert))))))))
       toggle_tig ((fn []
-                    (let [tig (: T :new
+                    (let [tig (: Terminal :new
                                  {:cmd :tig :dir :git_dir :direction :float})]
                       (fn [] (: tig :toggle)))))]
   (M.setup {: size
@@ -27,5 +37,5 @@
             :auto_scroll false
             :start_in_insert true
             :winbar {:enabled true}})
-  (cmd :TermToggle (fn [opts] (toggle_term opts.args)) {:nargs 1})
-  (cmd :TigTermToggle toggle_tig {}))
+  (create_cmd :TermToggle (fn [opts] (toggle_term opts.args)) {:nargs 1})
+  (create_cmd :TigTermToggle toggle_tig {}))
