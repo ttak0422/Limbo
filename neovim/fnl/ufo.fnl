@@ -1,9 +1,9 @@
 (let [M (require :ufo)
       provider_selector (fn [bufnr filetype buftype] [:treesitter :indent])
-      m vim.keymap.set
-      o {:noremap true :silent true}]
+      map vim.keymap.set
+      opt {:noremap true :silent true}]
   (M.setup {: provider_selector})
-  (m :n :zR M.openAllFolds o)
-  (m :n :zM M.closeAllFolds o)
-  (m :n :zr M.openFoldsExceptKinds o)
-  (m :n :zm M.closeFoldsWith o))
+  (map :n :zR M.openAllFolds opt)
+  (map :n :zM M.closeAllFolds opt)
+  (map :n :zr M.openFoldsExceptKinds opt)
+  (map :n :zm M.closeFoldsWith opt))

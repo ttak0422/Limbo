@@ -120,7 +120,7 @@
             trouble
             ts-autotag
             tshjkl
-            # ufo
+            ufo
             # vim-markdown
             # vim-nix
             # vimdoc-ja

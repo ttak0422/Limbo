@@ -5,10 +5,10 @@ local function _1_(bufnr, filetype, buftype)
   return {"treesitter", "indent"}
 end
 provider_selector = _1_
-local m = vim.keymap.set
-local o = {noremap = true, silent = true}
+local map = vim.keymap.set
+local opt = {noremap = true, silent = true}
 M.setup({provider_selector = provider_selector})
-m("n", "zR", M.openAllFolds, o)
-m("n", "zM", M.closeAllFolds, o)
-m("n", "zr", M.openFoldsExceptKinds, o)
-return m("n", "zm", M.closeFoldsWith, o)
+map("n", "zR", M.openAllFolds, opt)
+map("n", "zM", M.closeAllFolds, opt)
+map("n", "zr", M.openFoldsExceptKinds, opt)
+return map("n", "zm", M.closeFoldsWith, opt)
