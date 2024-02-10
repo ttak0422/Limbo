@@ -121,10 +121,10 @@
             ts-autotag
             tshjkl
             ufo
-            # vim-markdown
-            # vim-nix
-            # vimdoc-ja
-            # vtsls
+            vim-markdown
+            vim-nix
+            vimdoc-ja
+            vtsls
             # waitevent
             # which-key
             # window-picker
