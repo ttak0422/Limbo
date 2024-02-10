@@ -1,7 +1,5 @@
 (let [tshjkl (require :tshjkl)
-      keymaps {:toggle :<M-t>
-               :toggle_outer :<M-T>
-               :toggle_named :<S-M-n>
+      keymaps {:toggle :<CR>
                :parent :h
                :next :j
                :prev :k
