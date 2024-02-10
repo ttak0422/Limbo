@@ -6,6 +6,23 @@
       map vim.keymap.set
       cmd (fn [c] (.. :<cmd> c :<cr>))
       lua_cmd (fn [c] (cmd (.. "lua " c)))
+      mk_toggle ((fn []
+                   (let [state {:is_open false :pre_id nil}]
+                     (fn [id mod opt]
+                       (fn []
+                         (let [T (require :toolwindow)]
+                           (if (not= state.pre_id id)
+                               (do
+                                 (T.open_window mod opt)
+                                 (tset state :is_open true))
+                               (if state.is_open
+                                   (do
+                                     (T.close)
+                                     (tset state :is_open false))
+                                   (do
+                                     (T.open_window mod opt)
+                                     (tset state :is_open true))))
+                           (tset state :pre_id id)))))))
       ns [;; utils
           [:q :<nop>]
           [:<esc><esc> (cmd :nohl)]
@@ -101,8 +118,7 @@
           [:<leader>rr (cmd :FlowRunFile)]]
       vs [;; runner
           [:<leader>r (cmd :FlowRunSelected)]]
-      is [
-          ; [:<C-t>
+      is [; [:<C-t>
           ;  (lua_cmd "require('treesj').toggle()")
           ;  (desc "toggle split/join")]
           ]]
@@ -115,6 +131,12 @@
   (for [i 0 9]
     (map [:n :t :i] (.. :<C- i ">") (cmd (.. "TermToggle " i))
          (desc (.. "toggle terminal " i))))
+  ;; toggle
+  (map :n :<leader>tq (mk_toggle 1 :quickfix nil (desc "toggle quickfix")))
+  (map :n :<leader>td (mk_toggle 2 :trouble {:mode :document_diagnostics})
+       (desc "toggle diagnostics (document)"))
+  (map :n :<leader>tD (mk_toggle 3 :trouble {:mode :workspace_diagnostics})
+       (desc "toggle diagnostics (workspace)"))
   ;; reacher
   (map [:n :x] :gs (lua_cmd "require('reacher').start()")
        (desc "search displayed"))
