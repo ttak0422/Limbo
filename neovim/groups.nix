@@ -14,11 +14,6 @@ in with pkgs.vimPlugins; {
     name = "treesitter";
     plugins = [
       nvim-treesitter
-      # WIP: nix parsers are broken
-      # WIP: `bash` does not work on lazy loading
-      # pkgs.pkgs-unstable.vimPlugins.nvim-treesitter
-      # (pkgs.pkgs-unstable.vimPlugins.nvim-treesitter.withPlugins
-      #   (p: with p; [ bash ]))
       nvim-yati
       {
         plugin = vim-matchup;
@@ -52,9 +47,6 @@ in with pkgs.vimPlugins; {
       };
     in {
       language = "lua";
-      # code = ''
-      #   vim.opt.runtimepath:append("${parser}");
-      # '' +
       code = readFile ./lua/treesitter.lua;
       args = { inherit parser; };
     };
