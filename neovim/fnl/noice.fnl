@@ -6,7 +6,7 @@
                           ;; position  [ row  0 col  0 ]
                           }
                     format {:cmdline {:pattern "^:"
-                                      :icon ":"
+                                      :icon ""
                                       :lang :vim
                                       :title ""}
                             :search_down {:kind :search
@@ -31,7 +31,7 @@
                                    :icon "?"
                                    :title ""}
                             :input {}}]
-                {:enabled true :view :cmdline_popup : opts : format})
+                {:enabled true :view :cmdline : opts : format})
       messages {:enabled true
                 :view :notify
                 :view_error :notify
@@ -99,8 +99,8 @@
                              "@parameter"]}
       health {:checker true}
       smart_move {:excluded_filetypes (dofile args.exclude_ft_path)}
-      presets {:bottom_search false
-               :command_palette false
+      presets {:bottom_search true
+               :command_palette true
                :long_message_to_split true
                :inc_rename false
                :lsp_doc_border true}

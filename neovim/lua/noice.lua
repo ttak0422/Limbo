@@ -5,8 +5,8 @@ local L = require("noice.lsp")
 local cmdline
 do
   local opts = {zindex = 95}
-  local format = {cmdline = {pattern = "^:", icon = ":", lang = "vim", title = ""}, search_down = {kind = "search", pattern = "^/", icon = "\239\128\130 \239\132\131", lang = "regex", title = ""}, search_up = {kind = "search", pattern = "^%?", icon = "\239\128\130 \239\132\130", lang = "regex", title = ""}, filter = {pattern = "^:%s*!", icon = "$", lang = "bash", title = ""}, lua = {pattern = "^:%s*lua%s+", icon = "\238\152\160", lang = "lua", title = ""}, help = {pattern = "^:%s*he?l?p?%s+", icon = "?", title = ""}, input = {}}
-  cmdline = {enabled = true, view = "cmdline_popup", opts = opts, format = format}
+  local format = {cmdline = {pattern = "^:", icon = "\239\146\181", lang = "vim", title = ""}, search_down = {kind = "search", pattern = "^/", icon = "\239\128\130 \239\132\131", lang = "regex", title = ""}, search_up = {kind = "search", pattern = "^%?", icon = "\239\128\130 \239\132\130", lang = "regex", title = ""}, filter = {pattern = "^:%s*!", icon = "$", lang = "bash", title = ""}, lua = {pattern = "^:%s*lua%s+", icon = "\238\152\160", lang = "lua", title = ""}, help = {pattern = "^:%s*he?l?p?%s+", icon = "?", title = ""}, input = {}}
+  cmdline = {enabled = true, view = "cmdline", opts = opts, format = format}
 end
 local messages = {enabled = true, view = "notify", view_error = "notify", view_warn = "notify", view_history = "messages", view_search = "virtualtext"}
 local popupmenu = {enabled = true, backend = "nui", kind_icons = {}}
@@ -32,7 +32,7 @@ end
 local markdown = {hover = {"|(%S-)|", vim.cmd.help, "%[.-%]%((%S-)%)", U.open}, highlights = {"|%S-|", "@text.reference", "@%S+", "@parameter", "^%s*(Parameters:)", "@text.title", "^%s*(Return:)", "@text.title", "^%s*(See also:)", "@text.title", "{%S-}", "@parameter"}}
 local health = {checker = true}
 local smart_move = {excluded_filetypes = dofile(args.exclude_ft_path)}
-local presets = {long_message_to_split = true, lsp_doc_border = true, bottom_search = false, command_palette = false, inc_rename = false}
+local presets = {bottom_search = true, command_palette = true, long_message_to_split = true, lsp_doc_border = true, inc_rename = false}
 local throttle = (1000 / 30)
 local views
 do
