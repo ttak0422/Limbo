@@ -100,7 +100,7 @@
       health {:checker true}
       smart_move {:excluded_filetypes (dofile args.exclude_ft_path)}
       presets {:bottom_search true
-               :command_palette true
+               :command_palette false
                :long_message_to_split true
                :inc_rename false
                :lsp_doc_border true}
@@ -116,8 +116,11 @@
                         :any [{:find "%d+L %d+B"}
                               {:find "; after #%d+"}
                               {:find "; before #%d+"}
+                              {:find "; 前方 #%d+"}
+                              {:find "; 後方 #%d+"}
                               {:find "%d fewer lines"}
-                              {:find "%d more lines"}]}
+                              {:find "%d more lines"}
+                              {:find "書込み$"}]}
                :opts {:skip true}}]]
   (M.setup {: cmdline
             : messages
@@ -137,17 +140,3 @@
                   {:silent true :expr true})
   (vim.keymap.set [:n :i :s] :<C-b> (fn [] (if (L.scroll 4) :<C-b>))
                   {:silent true :expr true}))
-
-; require("noice").setup({
-; })
-;
-; vim.keymap.set({ "n" "i" "s" } "<C-f>" function()
-;   if not require("noice.lsp").scroll(4) then
-;     return "<C-f>"
-;   end
-; end { silent  true expr  true })
-; vim.keymap.set({ "n" "i" "s" } "<C-b>" function()
-;   if not require("noice.lsp").scroll(-4) then
-;     return "<C-b>"
-;   end
-; end { silent  true expr  true })
