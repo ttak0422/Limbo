@@ -113,6 +113,7 @@ in with pkgs.vimPlugins; {
       }
     ];
     dependPlugins = [ plenary-nvim ];
+    dependGroups = [ "skk" ];
     postConfig = {
       language = "lua";
       code = readFile ./lua/telescope.lua;
