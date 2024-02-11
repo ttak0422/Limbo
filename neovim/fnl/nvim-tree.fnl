@@ -1,4 +1,3 @@
-;; on_attach
 (let [tree (require :nvim-tree)
       api (require :nvim-tree.api)
       on_attach (fn [bufnr]
@@ -209,9 +208,7 @@
                                {:pattern :NvimTree*
                                 :callback (fn []
                                             (let [def (vim.api.nvim_get_hl_by_name :Cursor
-                                                                                   true)
-                                                  ;;cursor "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
-                                                  ]
+                                                                                   true)]
                                               (vim.api.nvim_set_hl 0 :Cursor
                                                                    (vim.tbl_extend :force
                                                                                    def
