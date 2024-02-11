@@ -32,7 +32,10 @@
     (map :n :<leader>ca vim.lsp.buf.code_action (desc "code action"))
     (map :n :<leader>cc "<cmd>Neogen class<cr>" (desc "class comment"))
     (map :n :<leader>cj
-         "<cmd>lua require('treesj').toggle({ split  { recursive  true } })<cr>"
+         "<cmd>lua require('treesj').toggle({ split = { recursive = false }})<cr>"
+         (desc "toggle split/join"))
+    (map :n :<leader>cJ
+         "<cmd>lua require('treesj').toggle({ split = { recursive = true }})<cr>"
          (desc "toggle split/join rec"))
     (map :n :<leader>cf "<cmd>Neogen func<cr>" (desc "fn comment"))
     (if (client.supports_method :textDocument/formatting)
