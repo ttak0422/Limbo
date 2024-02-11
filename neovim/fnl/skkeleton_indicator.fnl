@@ -16,7 +16,8 @@
                   :SkkeletonIndicatorAbbrev {:fg "#e5e9f0"
                                              :bg "#bf616a"
                                              :bold true}}
+      ignoreFt (dofile args.exclude_ft_path)
       M (require :skkeleton_indicator)]
   (each [k v (pairs highlights)]
     (vim.api.nvim_set_hl 0 k v))
-  (M.setup {}))
+  (M.setup {: ignoreFt}))

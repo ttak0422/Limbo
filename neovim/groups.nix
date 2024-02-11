@@ -71,6 +71,7 @@ in with pkgs.vimPlugins; {
         postConfig = {
           language = "lua";
           code = readFile ./lua/skkeleton_indicator.lua;
+          args = { exclude_ft_path = ./lua/exclude_ft.lua; };
         };
       }
     ];
