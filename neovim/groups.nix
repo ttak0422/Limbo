@@ -55,27 +55,31 @@ in with pkgs.vimPlugins; {
   };
   skk = {
     name = "skk";
-    plugins = [{
-      plugin = skkeleton;
-      useDenops = true;
-    }
-    # wip
-    # {
-    #   plugin = skk-vconv-vim;
-    #   dependPlugins = [ skkeleton ];
-    #   extraPackages = with pkgs; [ python3Packages.pykakasi ];
-    # }
-    # {
-    #   plugin = skkeleton_indicator-nvim;
-    #   postConfig = readFile ./../../nvim/skk-indicator.lua;
-    # }
-      ];
+    plugins = [
+      {
+        plugin = skkeleton;
+        useDenops = true;
+      }
+      # wip
+      # {
+      #   plugin = skk-vconv-vim;
+      #   dependPlugins = [ skkeleton ];
+      #   extraPackages = with pkgs; [ python3Packages.pykakasi ];
+      # }
+      {
+        plugin = skkeleton_indicator-nvim;
+        postConfig = {
+          language = "lua";
+          code = readFile ./lua/skkeleton_indicator.lua;
+        };
+      }
+    ];
     dependPlugins = [ denops-vim ];
     dependGroups = [ "ddc" ];
     postConfig = {
       language = "vim";
       code = readFile ./vim/skk.vim;
-      args = { dicts = [ "${pkgs.skk-dicts}/share/SKK-JISYO.L" ]; };
+      args = { jisyo = "${pkgs.skk-dicts}/share/SKK-JISYO.L"; };
     };
     onEvents = [ "InsertEnter" "CmdlineEnter" ];
   };
