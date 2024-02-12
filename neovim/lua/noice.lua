@@ -41,7 +41,7 @@ do
   local hover = {border = {style = border}}
   views = {cmdline_popup = cmdline_popup, hover = hover}
 end
-local routes = {{filter = {event = "msg_show", any = {{find = "%d+L %d+B"}, {find = "; after #%d+"}, {find = "; before #%d+"}, {find = "; \229\137\141\230\150\185 #%d+"}, {find = "; \229\190\140\230\150\185 #%d+"}, {find = "%d fewer lines"}, {find = "%d more lines"}, {find = "\230\155\184\232\190\188\227\129\191$"}}}, opts = {skip = true}}}
+local routes = {{filter = {event = "msg_show", any = {{find = "%d+L %d+B"}, {find = "; after #%d+"}, {find = "; before #%d+"}, {find = "; \229\137\141\230\150\185 #%d+"}, {find = "; \229\190\140\230\150\185 #%d+"}, {find = "\231\149\170\231\155\174\227\129\174\232\169\178\229\189\147"}, {find = "\229\148\175\228\184\128\227\129\174\232\169\178\229\189\147"}, {find = "\229\167\139\227\130\129\227\129\171\230\136\187\227\130\139"}, {find = "%d fewer lines"}, {find = "%d more lines"}, {find = "\230\155\184\232\190\188\227\129\191$"}}}, opts = {skip = true}}}
 M.setup({cmdline = cmdline, messages = messages, popupmenu = popupmenu, redirect = redirect, commands = commands, notify = notify, lsp = lsp, markdown = markdown, health = health, smart_move = smart_move, presets = presets, throttle = throttle, views = views, routes = routes})
 local function _1_()
   if L.scroll(4) then

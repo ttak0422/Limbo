@@ -118,6 +118,9 @@
                               {:find "; before #%d+"}
                               {:find "; 前方 #%d+"}
                               {:find "; 後方 #%d+"}
+                              {:find "番目の該当"}
+                              {:find "唯一の該当"}
+                              {:find "始めに戻る"}
                               {:find "%d fewer lines"}
                               {:find "%d more lines"}
                               {:find "書込み$"}]}
