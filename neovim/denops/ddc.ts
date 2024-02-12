@@ -5,19 +5,10 @@ export class Config extends BaseConfig {
   override config(
     { contextBuilder, denops }: ConfigArguments,
   ): Promise<void> {
-    contextBuilder.patchFiletype("vim", {
-      sources: ["necovim", "around"],
-    });
     contextBuilder.patchGlobal({
       ui: "pum",
-      // VSCode
-      autoCompleteDelay: 10,
-      autoCompleteEvents: [
-        "InsertEnter",
-        "TextChangedI",
-        "TextChangedP",
-        "CmdlineChanged",
-      ],
+      autoCompleteDelay: 0,
+      autoCompleteEvents: [],
       backspaceCompletion: false,
       sources: [
         "lsp",
@@ -30,11 +21,9 @@ export class Config extends BaseConfig {
           isVolatile: true,
           ignoreCase: true,
           matchers: [
-            // "matcher_head",
             "matcher_fuzzy",
           ],
           sorters: [
-            // "sorter_reverse",
             "sorter_rank",
             "sorter_fuzzy",
           ],
@@ -68,12 +57,12 @@ export class Config extends BaseConfig {
         buffer: {
           mark: "[BUFFER]",
         },
-        skkeleton: {
-          mark: "[SKK]",
-          matchers: ["skkeleton"],
-          isVolatile: true,
-          sorters: [],
-        },
+        // skkeleton: {
+        //   mark: "[SKK]",
+        //   matchers: ["skkeleton"],
+        //   isVolatile: true,
+        //   sorters: [],
+        // },
         lsp: {
           mark: "[LSP]",
           dup: "keep",
@@ -81,15 +70,11 @@ export class Config extends BaseConfig {
           maxItems: 800,
           minKeywordLength: 0,
           sorters: [
-            // "sorter_itemsize",
             "sorter_lsp-detail-size",
             "sorter_lsp-kind",
             "sorter_fuzzy",
             // "sorter_rank",
           ],
-        },
-        tmux: {
-          mark: "[TMUX]",
         },
         necovim: {
           mark: "[VIM]",
@@ -109,17 +94,13 @@ export class Config extends BaseConfig {
           },
           enableResolveItem: true,
           enableAdditionalTextEdit: true,
+          enableDisplayDetail: true,
         },
         buffer: {
           requireSameFiletype: true,
           limitBytes: 500000,
           fromAltBuf: true,
           forceCollect: true,
-        },
-        tmux: {
-          currentWinOnly: true,
-          excludeCurrentPane: true,
-          kindFormat: "#{pane_current_command}",
         },
         file: {
           projAsRoot: false,
@@ -205,6 +186,11 @@ export class Config extends BaseConfig {
           ],
         },
       },
+    });
+
+    // for viml
+    contextBuilder.patchFiletype("vim", {
+      sources: ["necovim", "around"],
     });
     return Promise.resolve();
   }

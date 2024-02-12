@@ -380,10 +380,6 @@ in with pkgs.vimPlugins; {
         };
         useDenops = true;
       }
-      {
-        plugin = ddc-tmux;
-        useDenops = true;
-      }
       # ddc-ui-native
       # denops-popup-preview-vim
       # {

@@ -13,7 +13,6 @@ endfunction
 
 " doc
 call signature_help#enable()
-" call popup_preview#enable()
 
 " keymaps
 inoremap <C-l> <Cmd>call ddu#start(#{
@@ -35,7 +34,6 @@ inoremap <silent> <C-x>      <Cmd>call ddc#map#manual_complete()<CR>
 inoremap <silent> <C-x><C-x> <Cmd>call ddc#map#manual_complete()<CR>
 inoremap <silent> <C-x><C-b> <Cmd>call ddc#map#manual_complete(#{ sources: ['buffer'] })<CR>
 inoremap <silent> <C-x><C-f> <Cmd>call ddc#map#manual_complete(#{ sources: ['file'] })<CR>
-inoremap <silent> <C-x><C-t> <Cmd>call ddc#map#manual_complete(#{ sources: ['tmux'] })<CR>
 inoremap <silent> <C-x><C-l> <Cmd>call ddc#map#manual_complete(#{ sources: ['nvim-lsp'] })<CR>
 
 nnoremap <expr> : '<Cmd>call CommandlinePre()<CR>: '
