@@ -981,6 +981,7 @@ let
         postConfig = {
           language = "lua";
           code = readFile ./lua/BufferBrowser.lua;
+          args = { exclude_ft_path = ./lua/exclude_ft.lua; };
         };
       }];
       useTimer = true;
