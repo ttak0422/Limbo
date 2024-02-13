@@ -24,7 +24,8 @@
             ;; デフォルトモーションで移動時に日空白文字列に移動
             :startofline false
             ;; 補完オプション
-            :completeopt (.. :menu "," :menuone "," :preview)
+            ;; :completeopt (.. :menu "," :menuone "," :preview)
+            :completeopt ""
             ;; 行数表示
             :number true
             ;; signcolumnのがたつきを無くす

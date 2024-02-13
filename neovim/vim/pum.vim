@@ -31,7 +31,7 @@ inoremap <expr> <C-p> pum#visible() ? '<Cmd>call pum#map#select_relative(-1)<CR>
 inoremap <expr> <C-e> pum#visible() ? '<Cmd>call pum#map#cancel()<CR>' : '<End>'
 inoremap <C-y> <Cmd>call pum#map#confirm()<CR>
 inoremap <C-o> <Cmd>call pum#map#confirm_word()<CR>
-inoremap <expr> <CR> pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' : '<CR>'
+" inoremap <expr> <CR> pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' : '<CR>'
 
 cnoremap <expr> <Tab>
       \ wildmenumode() ? &wildcharm->nr2char() :
@@ -46,4 +46,4 @@ cnoremap <expr> <C-p> pum#visible() ? '<Cmd>call pum#map#select_relative(-1)<CR>
 cnoremap <expr> <C-e> pum#visible() ? '<Cmd>call pum#map#cancel()<CR>' : '<End>'
 cnoremap <C-y> <Cmd>call pum#map#confirm()<CR>
 cnoremap <C-o> <Cmd>call pum#map#confirm()<CR>
-cnoremap <expr><CR> pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' : '<CR>'
+" cnoremap <expr><CR> pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' : '<CR>'

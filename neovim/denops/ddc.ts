@@ -7,8 +7,20 @@ export class Config extends BaseConfig {
   ): Promise<void> {
     contextBuilder.patchGlobal({
       ui: "pum",
-      autoCompleteDelay: 0,
-      autoCompleteEvents: [],
+      uiParams: {
+        pum: {
+          insert: false,
+        },
+      },
+      autoCompleteDelay: 50,
+      autoCompleteEvents: [
+        "InsertEnter",
+        "TextChangedI",
+        "TextChangedP",
+        "CmdlineEnter",
+        "CmdlineChanged",
+        "TextChangedT",
+      ],
       backspaceCompletion: false,
       sources: [
         "lsp",
