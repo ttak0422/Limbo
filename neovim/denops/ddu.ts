@@ -1,6 +1,6 @@
-import { BaseConfig } from "https://deno.land/x/ddu_vim@v3.8.1/types.ts";
-import { ConfigArguments } from "https://deno.land/x/ddu_vim@v3.8.1/base/config.ts";
-import { Denops } from "https://deno.land/x/ddu_vim@v3.8.1/deps.ts";
+import { BaseConfig } from "https://deno.land/x/ddu_vim@v3.10.2/types.ts";
+import { ConfigArguments } from "https://deno.land/x/ddu_vim@v3.10.2/base/config.ts";
+import { Denops } from "https://deno.land/x/ddu_vim@v3.10.2/deps.ts";
 import {
   Params as FfParams,
   Ui as FfUi,
@@ -26,11 +26,18 @@ export class Config extends BaseConfig {
       },
       autoResize: false,
       displaySourceName: "no",
-      filterSplitDirection: "floating",
+      floatingBorder: "none",
+      split: "floating",
+      winCol: "1",
+      winWidth: "&columns / 2 - 2",
+      winRow: "&lines / 3 * 2",
+      winHeight: "&lines / 3",
+      filterFloatingPosition: "top",
+      filterSplitDirection: "topleft",
       highlights: {
         filterText: "Statement",
         floating: "Normal",
-        floatingBorder: "Special",
+        floatingBorder: "none",
         selected: "CursorLine",
       },
       onPreview: async (args: {
@@ -38,13 +45,19 @@ export class Config extends BaseConfig {
         previewWinId: number;
       }) => {
         await args.denops.batch(
-          ["execute", "normal! zz"],
+          ["execute", "normal! zt"],
+          // ["execute", "normal! zz"],
           ["execute", "setlocal nu"],
-          ["execute", "set nobuflisted"],
+          // ["execute", "set nobuflisted"],
         );
       },
-      previewHeight: "&lines / 3 * 2 - 2",
-      previewSplit: "no",
+      previewFloating: true,
+      previewFloatingBorder: "none",
+      previewSplit: "vertical",
+      previewCol: "&columns / 2",
+      // previewRow: "&columns / 3 * 2",
+      previewWidth: "&columns / 2 - 2",
+      previewHeight: "&lines / 3",
       startFilter: true,
       prompt: " ",
       statusline: false,
