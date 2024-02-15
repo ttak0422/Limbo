@@ -17,7 +17,8 @@
         end
       '';
 
-    in {
+    in
+    {
       _module.args.pkgs = import inputs.nixpkgs {
         inherit system;
         overlays = import ./overlays.nix inputs;
@@ -74,7 +75,7 @@
             indent-o-matic
             # ionide
             jabs
-            # jdtls
+            jdtls
             # jukit
             leap
             legendary
