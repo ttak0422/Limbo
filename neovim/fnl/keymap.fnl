@@ -141,4 +141,5 @@
   (map [:n :x] :gs (lua_cmd "require('reacher').start()")
        (desc "search displayed"))
   (map [:n :x] :gS (lua_cmd "require('reacher').start_multiple()")
-       (desc "search displayed")))
+       (desc "search displayed"))
+  (map [:n :i :c :t] "¥" "\\"))
