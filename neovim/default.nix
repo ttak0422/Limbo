@@ -32,9 +32,7 @@
           eagerPlugins = with plugins; [
             config-local
             direnv
-            hydra
             kanagawa
-            stickybuf
           ];
           lazyPlugins = with plugins; [
             ambiwidth
@@ -130,6 +128,8 @@
             window-picker
             winsep
             winshift
+            hydra
+            stickybuf
           ];
           lazyGroups = with groups; [
             dap
