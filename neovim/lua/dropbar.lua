@@ -25,7 +25,7 @@ local function _1_(buf, _)
     if (buftype == "terminal") then
       return {sources.terminal}
     else
-      return {sources.path, utils.source.fallback({sources.treesitter})}
+      return {sources.path}
     end
   end
 end

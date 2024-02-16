@@ -95,9 +95,10 @@
                         (if (= ft :markdown) [sources.path sources.markdown]
                             (if (= buftype :terminal) [sources.terminal]
                                 [sources.path
-                                 (utils.source.fallback [
-                                                        ;; sources.lsp
-                                                         sources.treesitter])]))))
+                                 ; (utils.source.fallback [
+                                 ;                        sources.lsp
+                                 ;                         sources.treesitter])
+                                 ]))))
            :padding {:left 1 :right 1}
            :pick {:pivots :abcdefghijklmnopqrstuvwxyz}
            :truncate true}
