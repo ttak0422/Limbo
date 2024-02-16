@@ -16,25 +16,11 @@ let
         code = readFile ./lua/config-local.lua;
       };
     };
-    stickybuf = {
-      plugin = stickybuf-nvim;
-      startupConfig = {
-        language = "lua";
-        code = readFile ./lua/stickybuf.lua;
-      };
-    };
     direnv = {
       plugin = direnv-vim;
       startupConfig = {
         language = "lua";
         code = readFile ./lua/direnv.lua;
-      };
-    };
-    hydra = {
-      plugin = hydra-nvim;
-      startupConfig = {
-        language = "lua";
-        code = readFile ./lua/hydra.lua;
       };
     };
   };
@@ -87,36 +73,37 @@ let
       plugin = nvim-jdtls;
       dependPlugins = [ ];
       dependGroups = [ "lsp" ];
-      postConfig = let jdtLsp = pkgs.jdt-language-server;
-      in {
-        language = "lua";
-        code = readFile ./lua/jdtls.lua;
-        args = {
-          runtimes = [
-            {
-              name = "JavaSE-11";
-              path = pkgs.jdk11;
-            }
-            {
-              name = "JavaSE-17";
-              path = pkgs.jdk17;
-              default = true;
-            }
-          ];
-          on_attach_path = ./lua/on_attach.lua;
-          capabilities_path = ./lua/capabilities.lua;
-          java_path = "${pkgs.jdk17}/bin/java";
-          jdtls_config_path = "${jdtLsp}/share/config";
-          lombok_jar_path = "${pkgs.lombok}/share/java/lombok.jar";
-          jdtls_jar_pattern =
-            "${jdtLsp}/share/java/plugins/org.eclipse.equinox.launcher_*.jar";
-          java_debug_jar_pattern =
-            "${pkgs.vscode-extensions.vscjava.vscode-java-debug}/share/vscode/extensions/vscjava.vscode-java-debug/server/com.microsoft.java.debug.plugin-*.jar";
-          java_test_jar_pattern =
-            "${pkgs.vscode-extensions.vscjava.vscode-java-test}/share/vscode/extensions/vscjava.vscode-java-test/server/*.jar";
-          jol_jar_path = pkgs.javaPackages.jol;
+      postConfig =
+        let jdtLsp = pkgs.jdt-language-server;
+        in {
+          language = "lua";
+          code = readFile ./lua/jdtls.lua;
+          args = {
+            runtimes = [
+              {
+                name = "JavaSE-11";
+                path = pkgs.jdk11;
+              }
+              {
+                name = "JavaSE-17";
+                path = pkgs.jdk17;
+                default = true;
+              }
+            ];
+            on_attach_path = ./lua/on_attach.lua;
+            capabilities_path = ./lua/capabilities.lua;
+            java_path = "${pkgs.jdk17}/bin/java";
+            jdtls_config_path = "${jdtLsp}/share/config";
+            lombok_jar_path = "${pkgs.lombok}/share/java/lombok.jar";
+            jdtls_jar_pattern =
+              "${jdtLsp}/share/java/plugins/org.eclipse.equinox.launcher_*.jar";
+            java_debug_jar_pattern =
+              "${pkgs.vscode-extensions.vscjava.vscode-java-debug}/share/vscode/extensions/vscjava.vscode-java-debug/server/com.microsoft.java.debug.plugin-*.jar";
+            java_test_jar_pattern =
+              "${pkgs.vscode-extensions.vscjava.vscode-java-test}/share/vscode/extensions/vscjava.vscode-java-test/server/*.jar";
+            jol_jar_path = pkgs.javaPackages.jol;
+          };
         };
-      };
       onFiletypes = [ "java" ];
     };
     vtsls = {
@@ -531,6 +518,14 @@ let
     };
   };
   override = with pkgs.vimPlugins; {
+    hydra = {
+      plugin = hydra-nvim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/hydra.lua;
+      };
+      onEvents = [ "CmdlineEnter" "CursorMoved" ];
+    };
     hlslens = {
       plugin = nvim-hlslens;
       postConfig = {
@@ -646,6 +641,13 @@ let
     };
   };
   helper = with pkgs.vimPlugins; {
+    stickybuf = {
+      plugin = stickybuf-nvim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/stickybuf.lua;
+      };
+    };
     early-retirement = {
       plugin = nvim-early-retirement;
       postConfig = {
@@ -786,7 +788,7 @@ let
         language = "lua";
         code = readFile ./lua/nvim-tree.lua;
       };
-      dependPlugins = [ nvim-web-devicons dressing-nvim ];
+      dependPlugins = [ nvim-web-devicons dressing-nvim stickybuf-nvim ];
       onCommands = [ "NvimTreeToggle" ];
     };
     neotree = {
@@ -1007,7 +1009,8 @@ let
     };
   };
 
-in with pkgs.vimPlugins;
+in
+with pkgs.vimPlugins;
 {
   tshjkl = {
     # Tree-sitter hjkl movement for neovim

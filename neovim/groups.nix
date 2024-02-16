@@ -558,6 +558,7 @@ in with pkgs.vimPlugins; {
       nvim-dap-go
       overseer-nvim
     ];
+    dependPlugins = [ stickybuf-nvim ];
     dependGroups = [ "treesitter" ];
     postConfig = {
       language = "lua";
