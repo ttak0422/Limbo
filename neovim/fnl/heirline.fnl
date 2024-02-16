@@ -281,17 +281,17 @@
                 :on_click {:callback (fn []
                                        ((. (require :piccolo-pomodoro) :toggle)))
                            :name :toggle_pomodoro}}
-      search_count {:condition (fn []
-                                 (and (not= vim.v.hlsearch 0)
-                                      (= vim.o.cmdheight 0)))
-                    :init (fn [self]
-                            (let [(ok search) (pcall vim.fn.searchcount)]
-                              (if (and ok search.total)
-                                  (set self.search search))))
-                    :provider (fn [self]
-                                (string.format "[%d/%d]" self.search.current
-                                               (math.min self.search.total
-                                                         self.search.maxcount)))}
+      ; search_count {:condition (fn []
+      ;                            (and (not= vim.v.hlsearch 0)
+      ;                                 (= vim.o.cmdheight 0)))
+      ;               :init (fn [self]
+      ;                       (let [(ok search) (pcall vim.fn.searchcount)]
+      ;                         (if (and ok search.total)
+      ;                             (set self.search search))))
+      ;               :provider (fn [self]
+      ;                           (string.format "[%d/%d]" self.search.current
+      ;                                          (math.min self.search.total
+      ;                                                    self.search.maxcount)))}
       ruler {:provider "%7(%l,%c%)"}
       file_properties (let [encoding {:condition (fn [self]
                                                    (set self.encoding
@@ -499,7 +499,7 @@
                            pomodoro
                            align
                            ;; center
-                           search_count
+                           ;; search_count
                            align
                            ;; right
                            ruler

@@ -1,6 +1,6 @@
 -- [nfnl] Compiled from neovim/fnl/treesitter.fnl by https://github.com/Olical/nfnl, do not edit.
 local parser_install_dir = (vim.fn.stdpath("state") .. "/parser")
-do end (vim.opt.runtimepath):prepend(parser_install_dir)
+do end (vim.opt.runtimepath):append(parser_install_dir)
 local config = require("nvim-treesitter.configs")
 local highlight
 local function _1_(lang, buf)
