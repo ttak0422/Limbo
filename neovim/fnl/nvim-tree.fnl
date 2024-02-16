@@ -66,7 +66,7 @@
                            :folder_arrow true
                            :git true
                            :modified true
-                           :diagnostics true
+                           :diagnostics false
                            :bookmarks true}
                      glyphs {:default ""
                              :symlink ""
