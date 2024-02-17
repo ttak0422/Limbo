@@ -7,7 +7,7 @@
                     (set vim.g.neovide_fullscreen
                          (not vim.g.neovide_fullscreen)))]
   (do
-    (m [:n :i "c:" :t] "¥" "\\")
+    (m [:n :i :c :t] "¥" "\\")
     (m :n :<C-+> (fn [] (change_scale scale)))
     (m :n :<C--> (fn [] (change_scale (/ 1 scale))))
     (m :n :<A-Enter> toggle_zoom)
