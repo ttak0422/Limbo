@@ -33,11 +33,11 @@ inoremap <C-y> <Cmd>call pum#map#confirm()<CR>
 inoremap <C-o> <Cmd>call pum#map#confirm_word()<CR>
 " inoremap <expr> <CR> pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' : '<CR>'
 
-cnoremap <expr> <Tab>
-      \ wildmenumode() ? &wildcharm->nr2char() :
-      \ pum#visible() ? '<Cmd>call pum#map#select_relative(+1)<CR>' :
-      \ ddc#map#manual_complete()
-cnoremap <S-Tab> <Cmd>call pum#map#insert_relative(-1)<CR>
+" cnoremap <expr> <Tab>
+"       \ wildmenumode() ? &wildcharm->nr2char() :
+"       \ pum#visible() ? '<Cmd>call pum#map#select_relative(+1)<CR>' :
+"       \ ddc#map#manual_complete()
+" cnoremap <S-Tab> <Cmd>call pum#map#insert_relative(-1)<CR>
 cnoremap <expr> <C-a> '<Home>'
 cnoremap <expr> <C-b> '<Left>'
 cnoremap <expr> <C-f> '<Right>'
