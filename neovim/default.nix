@@ -143,6 +143,7 @@
             telescope
             treesitter
             cmdlineHook
+            bufferHook
           ];
           after.ftplugin = with ftplugins; {
             inherit ddu-ff ddu-ff-filter qf gina-blame rust;
