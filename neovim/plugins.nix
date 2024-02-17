@@ -25,6 +25,27 @@ let
     };
   };
   lsp = with pkgs.vimPlugins; {
+    rustaceanvim = {
+      plugin = rustaceanvim;
+      postConfig = {
+        language = "lua";
+        code = ''
+          vim.g.rustaceanvim = function()
+            return {
+              server = {
+                on_attach = dofile(args.on_attach_path)
+              },
+            }
+          end
+          vim.cmd([[source ${rustaceanvim}/ftplugin/rust.vim]])
+          dofile("${rustaceanvim}/ftplugin/rust.lua")
+        '';
+        args = { on_attach_path = ./lua/on_attach.lua; };
+      };
+      extraPackages = with pkgs; [ graphviz ];
+      dependGroups = [ "lsp" ];
+      onFiletypes = [ "rust" ];
+    };
     trouble = {
       # A pretty diagnostics, references, telescope results, quickfix and location list to help you solve all the trouble your code is causing.
       plugin = trouble-nvim;

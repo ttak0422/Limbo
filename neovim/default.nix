@@ -130,6 +130,7 @@
             winshift
             hydra
             stickybuf
+            rustaceanvim
           ];
           lazyGroups = with groups; [
             dap
