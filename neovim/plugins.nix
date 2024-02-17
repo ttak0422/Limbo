@@ -29,22 +29,15 @@ let
       plugin = rustaceanvim;
       postConfig = {
         language = "lua";
-        code = ''
-          vim.g.rustaceanvim = function()
-            return {
-              server = {
-                on_attach = dofile(args.on_attach_path)
-              },
-            }
-          end
-          vim.cmd([[source ${rustaceanvim}/ftplugin/rust.vim]])
-          dofile("${rustaceanvim}/ftplugin/rust.lua")
-        '';
+        code = readFile ./lua/rustaceanvim.lua;
         args = { on_attach_path = ./lua/on_attach.lua; };
       };
       extraPackages = with pkgs; [ graphviz ];
+      dependPlugins = [ toggleterm-nvim ];
       dependGroups = [ "lsp" ];
-      onFiletypes = [ "rust" ];
+      # loaded by ftplugin
+      # onFiletypes = [ "rust" ];
+      onModules = [ "rustaceanvim" ];
     };
     trouble = {
       # A pretty diagnostics, references, telescope results, quickfix and location list to help you solve all the trouble your code is causing.
@@ -94,37 +87,36 @@ let
       plugin = nvim-jdtls;
       dependPlugins = [ ];
       dependGroups = [ "lsp" ];
-      postConfig =
-        let jdtLsp = pkgs.jdt-language-server;
-        in {
-          language = "lua";
-          code = readFile ./lua/jdtls.lua;
-          args = {
-            runtimes = [
-              {
-                name = "JavaSE-11";
-                path = pkgs.jdk11;
-              }
-              {
-                name = "JavaSE-17";
-                path = pkgs.jdk17;
-                default = true;
-              }
-            ];
-            on_attach_path = ./lua/on_attach.lua;
-            capabilities_path = ./lua/capabilities.lua;
-            java_path = "${pkgs.jdk17}/bin/java";
-            jdtls_config_path = "${jdtLsp}/share/config";
-            lombok_jar_path = "${pkgs.lombok}/share/java/lombok.jar";
-            jdtls_jar_pattern =
-              "${jdtLsp}/share/java/plugins/org.eclipse.equinox.launcher_*.jar";
-            java_debug_jar_pattern =
-              "${pkgs.vscode-extensions.vscjava.vscode-java-debug}/share/vscode/extensions/vscjava.vscode-java-debug/server/com.microsoft.java.debug.plugin-*.jar";
-            java_test_jar_pattern =
-              "${pkgs.vscode-extensions.vscjava.vscode-java-test}/share/vscode/extensions/vscjava.vscode-java-test/server/*.jar";
-            jol_jar_path = pkgs.javaPackages.jol;
-          };
+      postConfig = let jdtLsp = pkgs.jdt-language-server;
+      in {
+        language = "lua";
+        code = readFile ./lua/jdtls.lua;
+        args = {
+          runtimes = [
+            {
+              name = "JavaSE-11";
+              path = pkgs.jdk11;
+            }
+            {
+              name = "JavaSE-17";
+              path = pkgs.jdk17;
+              default = true;
+            }
+          ];
+          on_attach_path = ./lua/on_attach.lua;
+          capabilities_path = ./lua/capabilities.lua;
+          java_path = "${pkgs.jdk17}/bin/java";
+          jdtls_config_path = "${jdtLsp}/share/config";
+          lombok_jar_path = "${pkgs.lombok}/share/java/lombok.jar";
+          jdtls_jar_pattern =
+            "${jdtLsp}/share/java/plugins/org.eclipse.equinox.launcher_*.jar";
+          java_debug_jar_pattern =
+            "${pkgs.vscode-extensions.vscjava.vscode-java-debug}/share/vscode/extensions/vscjava.vscode-java-debug/server/com.microsoft.java.debug.plugin-*.jar";
+          java_test_jar_pattern =
+            "${pkgs.vscode-extensions.vscjava.vscode-java-test}/share/vscode/extensions/vscjava.vscode-java-test/server/*.jar";
+          jol_jar_path = pkgs.javaPackages.jol;
         };
+      };
       onFiletypes = [ "java" ];
     };
     vtsls = {
@@ -1031,8 +1023,7 @@ let
     };
   };
 
-in
-with pkgs.vimPlugins;
+in with pkgs.vimPlugins;
 {
   tshjkl = {
     # Tree-sitter hjkl movement for neovim
