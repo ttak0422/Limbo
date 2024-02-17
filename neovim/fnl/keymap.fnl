@@ -72,7 +72,7 @@
           [:<leader>q (cmd :BufDel)]
           [:<leader>Q (cmd :BufDel!)]
           [:<leader>A (cmd :tabclose)]
-          [:<leader>E (cmd :FeMco) (desc "edit code block")]
+          [:<leader>E (cmd :FeMaco) (desc "edit code block")]
           ;; buffer
           [:<leader>br
            (lua_cmd "require('harpoon.mark').add_file()")
@@ -129,7 +129,7 @@
   (each [_ keymap (ipairs is)]
     (map :v (. keymap 1) (. keymap 2) (or (. keymap 3) os)))
   (for [i 0 9]
-    (map [:n :t :i] (.. :<C- i ">") (cmd (.. "TermToggle " i))
+    (map [:n :t :i] (.. :<M- i ">") (cmd (.. "TermToggle " i))
          (desc (.. "toggle terminal " i))))
   ;; toggle
   (map :n :<leader>tq (mk_toggle 1 :quickfix nil (desc "toggle quickfix")))
