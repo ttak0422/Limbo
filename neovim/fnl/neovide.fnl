@@ -6,9 +6,9 @@
       toggle_zoom (fn []
                     (set vim.g.neovide_fullscreen
                          (not vim.g.neovide_fullscreen)))]
-  (do
-    (m [:n :i :c :t] "¥" "\\")
-    (m :n :<C-+> (fn [] (change_scale scale)))
-    (m :n :<C--> (fn [] (change_scale (/ 1 scale))))
-    (m :n :<A-Enter> toggle_zoom)
-    (vim.api.nvim_create_user_command :ToggleNeovideFullScreen toggle_zoom {})))
+  (set vim.o.guifont "PlemolJP Console NF:h15")
+  (m [:n :i :c :t] "¥" "\\")
+  (m :n :<C-+> (fn [] (change_scale scale)))
+  (m :n :<C--> (fn [] (change_scale (/ 1 scale))))
+  (m :n :<A-Enter> toggle_zoom)
+  (vim.api.nvim_create_user_command :ToggleNeovideFullScreen toggle_zoom {}))

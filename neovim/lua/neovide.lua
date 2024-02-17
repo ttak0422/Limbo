@@ -13,6 +13,7 @@ local function _2_()
   return nil
 end
 toggle_zoom = _2_
+vim.o.guifont = "PlemolJP Console NF:h15"
 m({"n", "i", "c", "t"}, "\194\165", "\\")
 local function _3_()
   return change_scale(scale)
