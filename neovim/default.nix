@@ -142,6 +142,7 @@
             skk
             telescope
             treesitter
+            cmdlineHook
           ];
           after.ftplugin = with ftplugins; {
             inherit ddu-ff ddu-ff-filter qf gina-blame rust;

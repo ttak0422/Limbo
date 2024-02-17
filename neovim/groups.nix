@@ -10,6 +10,15 @@ in with pkgs.vimPlugins; {
       source ${pkgs.fzf}/share/nvim/site/plugin/fzf.vim
     '';
   };
+  cmdlineHook = {
+    name = "cmdlineHook";
+    plugins = [ ];
+    postConfig = {
+      language = "lua";
+      code = readFile ./lua/cmdline_hook.lua;
+    };
+    onEvents = [ "CmdlineEnter" ];
+  };
   treesitter = {
     name = "treesitter";
     plugins = [
