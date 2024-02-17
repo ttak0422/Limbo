@@ -890,6 +890,7 @@ let
         code = readFile ./lua/harpoon.lua;
       };
       dependPlugins = [ plenary-nvim ];
+      onModules = [ "harpoon.ui" ];
     };
     nvim-window = {
       # Easily jump between NeoVim windows.
