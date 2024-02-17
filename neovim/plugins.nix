@@ -16,13 +16,6 @@ let
         code = readFile ./lua/config-local.lua;
       };
     };
-    direnv = {
-      plugin = direnv-vim;
-      startupConfig = {
-        language = "lua";
-        code = readFile ./lua/direnv.lua;
-      };
-    };
   };
   lsp = with pkgs.vimPlugins; {
     rustaceanvim = {
@@ -654,6 +647,14 @@ let
     };
   };
   helper = with pkgs.vimPlugins; {
+    direnv = {
+      plugin = direnv-vim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/direnv.lua;
+      };
+      onEvents = [ "DirChangedPre" ];
+    };
     stickybuf = {
       plugin = stickybuf-nvim;
       postConfig = {

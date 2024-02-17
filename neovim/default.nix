@@ -31,10 +31,10 @@
           package = pkgs.neovim-nightly;
           eagerPlugins = with plugins; [
             config-local
-            direnv
             kanagawa
           ];
           lazyPlugins = with plugins; [
+            direnv
             ambiwidth
             asterisk
             auto-indent
