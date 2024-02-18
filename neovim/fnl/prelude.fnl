@@ -1,28 +1,11 @@
-(let [cache-path (vim.fn.stdpath :cache)
-      opts {;; 日本語の優先度を上げる
-            :helplang "ja,en"
-            ;; マウス操作
-            :mouse :a
-            ;; 大文字・小文字を区別しない
-            :ignorecase true
-            ;; 大文字検索時に通常検索
-            :smartcase true
-            ;; 検索結果をハイライトする
-            :hlsearch true
-            ;; インクリメンタル検索
-            :incsearch true
-            ;; 未保存のバッファ切り替えを許容
-            :hidden true
+(let [
+      opts {
             ;; guifg, guibgの有効化
             :termguicolors true
             ;; モードを非表示
             :showmode false
-            ;; 外部で更新されたファイルを自動再読み込み
-            :autoread true
             ;; 入力時に対応する括弧を強調
             :showmatch true
-            ;; デフォルトモーションで移動時に日空白文字列に移動
-            :startofline false
             ;; 補完オプション
             ;; :completeopt (.. :menu "," :menuone "," :preview)
             :completeopt ""
@@ -38,16 +21,6 @@
             :laststatus 3
             ;; tablineを常に表示する
             :showtabline 2
-            ;; undofile
-            :undofile true
-            :undodir (.. cache-path :/undo)
-            ;; swapfile
-            :swapfile true
-            :directory (.. cache-path :/swap)
-            ;; カレントウィンドウの最小幅
-            :winwidth 20
-            ;; カレントウィンドウの最小高
-            :winheight 1
             ;; タブでスペースを入力
             :expandtab true
             ;; タブ幅を2
@@ -59,19 +32,8 @@
             :foldlevelstart 99
             :foldenable true
             :fillchars "eob: ,fold: ,foldopen:,foldsep: ,foldclose:"
-            ;; ウィンドウ分割時にサイズを均等にしようとしない
-            :equalalways false
-            ;; backup
-            :backup true
-            ;; inodeの挙動変更
-            :backupcopy :yes
-            :backupdir (.. cache-path :/backup)
-            ;; 分割の挙動を変更
-            :splitright true
-            :splitbelow true
-            ;; diffの挙動制御
-            :diffopt "internal,filler,closeoff,vertical"
-            :cursorline true}
+            :cursorline true
+            }
       disable_plugins [;; https://qiita.com/yasunori-kirin0418/items/4672919be73a524afb47
                        ;; DisableTOhtml.
                        :loaded_2html_plugin

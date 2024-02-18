@@ -27,7 +27,7 @@ with pkgs.vimPlugins; {
       language = "lua";
       code = readFile ./lua/bufferHook.lua;
     };
-    onEvents = [ "BufAdd" ];
+    onEvents = [ "BufAdd" "BufNew" ];
   };
   treesitter = {
     name = "treesitter";

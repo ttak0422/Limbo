@@ -1,4 +1,37 @@
-(let [default_ops {:noremap true :silent true}
+(let [cache-path (vim.fn.stdpath :cache)
+      opts {;; 日本語の優先度を上げる
+            :helplang "ja,en"
+            ;; マウス操作
+            :mouse :a
+            ;; 未保存のバッファ切り替えを許容
+            :hidden true
+            ;; 外部で更新されたファイルを自動再読み込み
+            :autoread true
+            ;; デフォルトモーションで移動時に日空白文字列に移動
+            :startofline false
+            ;; undofile
+            :undofile true
+            :undodir (.. cache-path :/undo)
+            ;; swapfile
+            :swapfile true
+            :directory (.. cache-path :/swap)
+            ;; backup
+            :backup true
+            ;; inodeの挙動変更
+            :backupcopy :yes
+            :backupdir (.. cache-path :/backup)
+            ;; diffの挙動制御
+            :diffopt "internal,filler,closeoff,vertical"
+            ;; 分割の挙動を変更
+            :splitright true
+            :splitbelow true
+            ;; ウィンドウ分割時にサイズを均等にしようとしない
+            :equalalways false
+            ;; カレントウィンドウの最小幅
+            :winwidth 20
+            ;; カレントウィンドウの最小高
+            :winheight 1}
+      default_ops {:noremap true :silent true}
       mk_desc (fn [d] {:noremap true :silent true :desc d})
       cmd (fn [c] (.. :<cmd> c :<cr>))
       lua_cmd (fn [c] (cmd (.. "lua " c)))
@@ -39,6 +72,9 @@
           [:<leader>rr (cmd :FlowRunFile)]]
       vs [;; runner
           [:<leader>r (cmd :FlowRunSelected)]]]
+  ;; options ;;
+  (each [k v (pairs opts)]
+    (tset vim.o k v))
   ;; keymap ;;
   (each [_ k (ipairs ns)]
     (vim.keymap.set :n (. k 1) (. k 2) (or (. k 3) default_ops)))
