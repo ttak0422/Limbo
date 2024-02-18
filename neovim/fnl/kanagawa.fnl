@@ -1,21 +1,9 @@
-(let [kanagawa (require :kanagawa)]
-  (kanagawa.setup {:compile true
-                   :undercurl true
-                   :commentStyle {:italic true}
-                   :functionStyle {}
-                   :keywordStyle {:italic true}
-                   :statementStyle {:bold true}
-                   :typeStyle {}
-                   :transparent false
-                   :dimInactive false
-                   :terminalColors true
-                   :colors {:palette {:samuraiRed "#fa4343"}
-                            :theme {:wave {} :lotus {} :dragon {} :all {}}}
-                   :overrides (fn [colors]
+(let [M (require :kanagawa)]
+  (M.setup {:compile true
+                   :colors {:palette {:samuraiRed "#fa4343"}}
+                   :overrides (fn [_]
                                 {:NormalFloat {:bg :none}
                                  :FloatBorder {:bg :none}
-                                 :FloatTitle {:bg :none}})
-                   :theme :wave
-                   :background {:dark :wave :light :lotus}}))
+                                 :FloatTitle {:bg :none}})}))
 
 (vim.cmd "colorscheme kanagawa")
