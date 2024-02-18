@@ -31,7 +31,7 @@
   (M.setup {:position :bottom
             :height 10
             :icons true
-            :mode :workspace_diagnostics
+            :mode :document_diagnostics
             :severity vim.diagnostic.severity.INFO
             :fold_open ""
             :fold_closed ""
