@@ -1,6 +1,9 @@
-{ inputs, ... }: {
-  imports = [ inputs.bundler.flakeModules.neovim ];
-  perSystem = { system, config, pkgs, lib, ... }:
+{ inputs, system, ... }: {
+  imports = [
+    inputs.bundler.flakeModules.neovim
+    # inputs.loaded-nvim.flakeModule
+  ];
+  perSystem = { inputs', system, config, pkgs, lib, ... }:
     let
       inherit (builtins) readFile;
       inherit (pkgs) callPackage;
@@ -24,15 +27,15 @@
         overlays = import ./overlays.nix inputs;
       };
 
+      # loaded-nvim = { package = pkgs.neovim-nightly; };
+
       bundler-nvim = {
         default = {
           inherit extraConfig extraLuaConfig;
           # logLevel = "debug";
           package = pkgs.neovim-nightly;
-          eagerPlugins = with plugins; [
-            config-local
-            kanagawa
-          ];
+          # package = inputs.loaded-nvim.packages.${system}.default;
+          eagerPlugins = with plugins; [ config-local kanagawa ];
           lazyPlugins = with plugins; [
             direnv
             ambiwidth

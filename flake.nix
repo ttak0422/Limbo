@@ -24,6 +24,15 @@
         flake-compat.follows = "flake-compat";
       };
     };
+    # loaded-nvim = {
+    #   url = "path:/Users/ttak0422/ghq/github.com/ttak0422/loaded-nvim";
+    #   inputs = {
+    #     systems.follows = "systems";
+    #     nixpkgs.follows = "nixpkgs";
+    #     flake-parts.follows = "flake-parts";
+    #     nix-filter.follows = "nix-filter";
+    #   };
+    # };
     vim-plugins-overlay = {
       url = "github:ttak0422/vim-plugins-overlay";
       inputs = { nixpkgs.follows = "nixpkgs"; };
