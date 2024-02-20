@@ -14,6 +14,11 @@ with inputs; [
         config.allowUnfree = true;
       };
       vimPlugins = prev.vimPlugins // {
+        nvim-jdtls = prev.vimUtils.buildVimPlugin {
+          pname = "nvim-jdtls";
+          version = "unstable";
+          src = inputs.nvim-jdtls;
+        };
         tsnip-nvim = prev.vimUtils.buildVimPlugin {
           pname = "tsnip-nvim";
           version = "unstable";
@@ -87,19 +92,19 @@ with inputs; [
         '';
       };
 
-      jdt-language-server =
-        let
-          version = "1.30.1";
-          timestamp = "202312071447";
-        in
-        prev.jdt-language-server.overrideAttrs (old: {
-          src = prev.fetchurl {
-            url =
-              "https://download.eclipse.org/jdtls/milestones/${version}/jdt-language-server-${version}-${timestamp}.tar.gz";
-            sha256 =
-              "4c005ede9df73e60cfb8f611373808c9121286d3adbfb745384cced9f19b2de3";
-          };
-        });
+      # jdt-language-server =
+      #   let
+      #     version = "1.30.1";
+      #     timestamp = "202312071447";
+      #   in
+      #   prev.jdt-language-server.overrideAttrs (old: {
+      #     src = prev.fetchurl {
+      #       url =
+      #         "https://download.eclipse.org/jdtls/milestones/${version}/jdt-language-server-${version}-${timestamp}.tar.gz";
+      #       sha256 =
+      #         "4c005ede9df73e60cfb8f611373808c9121286d3adbfb745384cced9f19b2de3";
+      #     };
+      #   });
       fennel-ls = mkDerivation {
         name = "fennel-ls";
         src = inputs.fennel-ls-src;

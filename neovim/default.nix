@@ -33,7 +33,7 @@
         default = {
           inherit extraConfig extraLuaConfig;
           # logLevel = "debug";
-          package = pkgs.neovim-nightly;
+          # package = pkgs.neovim-nightly;
           # package = inputs.loaded-nvim.packages.${system}.default;
           eagerPlugins = with plugins; [ config-local kanagawa ];
           lazyPlugins = with plugins; [

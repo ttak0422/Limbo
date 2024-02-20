@@ -24,6 +24,11 @@
         flake-compat.follows = "flake-compat";
       };
     };
+    nvim-jdtls = {
+      url =
+        "github:mfussenegger/nvim-jdtls?rev=66b5ace68a5d1c45fdfb1afa8d847e87af2aa1f8";
+      flake = false;
+    };
     # loaded-nvim = {
     #   url = "path:/Users/ttak0422/ghq/github.com/ttak0422/loaded-nvim";
     #   inputs = {

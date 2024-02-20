@@ -5723,6 +5723,23 @@
       "original": {
         "owner": "mfussenegger",
         "repo": "nvim-jdtls",
+        "rev": "66b5ace68a5d1c45fdfb1afa8d847e87af2aa1f8",
+        "type": "github"
+      }
+    },
+    "nvim-jdtls_2": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1701200682,
+        "narHash": "sha256-xoMcOUo64G0YwB4I3SCT8jdyWwBTj8U2KjXouqVWzLM=",
+        "owner": "mfussenegger",
+        "repo": "nvim-jdtls",
+        "rev": "66b5ace68a5d1c45fdfb1afa8d847e87af2aa1f8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mfussenegger",
+        "repo": "nvim-jdtls",
         "type": "github"
       }
     },
@@ -6863,6 +6880,7 @@
         "nix-filter": "nix-filter_2",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "nvim-jdtls": "nvim-jdtls",
         "systems": "systems_3",
         "tsnip-nvim-src": "tsnip-nvim-src",
         "vim-plugins-overlay": "vim-plugins-overlay"
@@ -8609,7 +8627,7 @@
         "nvim-fundo": "nvim-fundo",
         "nvim-genghis": "nvim-genghis",
         "nvim-hlslens": "nvim-hlslens",
-        "nvim-jdtls": "nvim-jdtls",
+        "nvim-jdtls": "nvim-jdtls_2",
         "nvim-lint": "nvim-lint",
         "nvim-lspconfig": "nvim-lspconfig",
         "nvim-navbuddy": "nvim-navbuddy",
