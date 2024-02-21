@@ -50,8 +50,8 @@
                      :mode [:n :v :o]}
                  :q {:prev {:rhs (cmd :Qprev) :opts {:desc "prev quickfix"}}
                      :next {:rhs (cmd :Qnext) :opts {:desc "next quickfix"}}}
-                 :Q {:prev {:rhs (cmd :qfirst) :opts {:desc "first quickfix"}}
-                     :next {:rhs (cmd :qlast) :opts {:desc "last quickfix"}}}
+                 :Q {:prev {:rhs (cmd :cfirst) :opts {:desc "first quickfix"}}
+                     :next {:rhs (cmd :clast) :opts {:desc "last quickfix"}}}
                  :<C-q> {:prev {:rhs (cmd :cpfile)
                                 :opts {:desc "prev quickfix file"}}
                          :next {:rhs (cmd :cnfile)
