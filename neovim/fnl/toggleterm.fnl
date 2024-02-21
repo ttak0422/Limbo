@@ -8,12 +8,12 @@
       toggle_term ((fn []
                      (let [terms {}]
                        (fn [idx]
-                         (let [term (if terms.idx terms.idx
+                         (let [term (if (. terms idx) (. terms idx)
                                         (do
-                                          (set terms.idx
+                                          (tset terms idx
                                                (: Terminal :new
                                                   {:direction :float}))
-                                          terms.idx))
+                                          (. terms idx)))
                                is_open (: term :is_open)
                                is_focused (: term :is_focused)]
                            (if is_open

@@ -89,7 +89,7 @@
   (each [_ keymap (ipairs ns)]
     (map :n (. keymap 1) (. keymap 2) (or (. keymap 3) os)))
   (for [i 0 9]
-    (map [:n :t :i] (.. :<M- i ">") (cmd (.. "TermToggle " i))
+    (map [:n :t] (.. :<leader>t i) (cmd (.. "TermToggle " i))
          (mk_desc (.. "toggle terminal " i))))
   ;; toggle
   (map :n :<leader>tq (mk_toggle 1 :quickfix nil (mk_desc "toggle quickfix")))

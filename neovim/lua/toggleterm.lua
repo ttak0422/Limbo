@@ -17,11 +17,11 @@ local function _3_()
   local terms = {}
   local function _4_(idx)
     local term
-    if terms.idx then
-      term = terms.idx
+    if terms[idx] then
+      term = terms[idx]
     else
-      terms.idx = Terminal:new({direction = "float"})
-      term = terms.idx
+      terms[idx] = Terminal:new({direction = "float"})
+      term = terms[idx]
     end
     local is_open = term:is_open()
     local is_focused = term:is_focused()
