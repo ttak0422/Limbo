@@ -29,15 +29,14 @@
         "github:mfussenegger/nvim-jdtls?rev=66b5ace68a5d1c45fdfb1afa8d847e87af2aa1f8";
       flake = false;
     };
-    # loaded-nvim = {
-    #   url = "path:/Users/ttak0422/ghq/github.com/ttak0422/loaded-nvim";
-    #   inputs = {
-    #     systems.follows = "systems";
-    #     nixpkgs.follows = "nixpkgs";
-    #     flake-parts.follows = "flake-parts";
-    #     nix-filter.follows = "nix-filter";
-    #   };
-    # };
+    loaded-nvim = {
+      url = "github:ttak0422/loaded-nvim";
+      inputs = {
+        systems.follows = "systems";
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+      };
+    };
     vim-plugins-overlay = {
       url = "github:ttak0422/vim-plugins-overlay";
       inputs = { nixpkgs.follows = "nixpkgs"; };
