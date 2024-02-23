@@ -36,6 +36,7 @@
           ;  (lcmd "require('treesj').toggle({ split = { recursive = true } })")
           ;  (d "toggle split/join rec")]
           ;; toggle
+          [:gb (cmd :NvimTreeFocus)]
           [:<leader>tb (cmd :NvimTreeToggle)]
           ; [:<leader>tB (cmd "Neotree toggle")]
           [:<leader>to (cmd :SidebarNvimToggle)]

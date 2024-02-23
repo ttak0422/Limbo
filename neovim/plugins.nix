@@ -803,7 +803,7 @@ let
         code = readFile ./lua/nvim-tree.lua;
       };
       dependPlugins = [ nvim-web-devicons dressing-nvim stickybuf-nvim ];
-      onCommands = [ "NvimTreeToggle" ];
+      onCommands = [ "NvimTreeFocus" "NvimTreeToggle" ];
     };
     neotree = {
       plugin = neotree-nvim-3;
