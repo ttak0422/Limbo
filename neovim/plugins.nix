@@ -475,8 +475,8 @@ let
         language = "lua";
         code = readFile ./lua/dropbar.lua;
       };
-      dependPlugins = [ nvim-web-devicons telescope-fzf-native-nvim ];
-      # dependGroups [ "fzf" ];
+      dependPlugins = [ nvim-web-devicons ];
+      dependGroups = [ "telescope" ];
       onModules = [ "dropbar.api" ];
       useTimer = true;
     };

@@ -7,13 +7,16 @@ with inputs; [
     let
       inherit (prev.stdenv) mkDerivation isDarwin;
       inherit (prev.stdenv) system;
-    in
-    {
+    in {
       pkgs-unstable = import inputs.nixpkgs-unstable {
         inherit system;
         config.allowUnfree = true;
       };
       vimPlugins = prev.vimPlugins // {
+        telescope-fzf-native-nvim =
+          prev.vimPlugins.telescope-fzf-native-nvim.overrideAttrs {
+            dependencies = [ ];
+          };
         nvim-jdtls = prev.vimUtils.buildVimPlugin {
           pname = "nvim-jdtls";
           version = "unstable";
@@ -43,45 +46,45 @@ with inputs; [
       javaPackages = prev.javaPackages // { inherit (inputs) jol; };
       python3Packages = prev.python3Packages
         // (with prev.python3Packages; rec {
-        wrapt = buildPythonPackage rec {
-          pname = "wrapt";
-          version = "1.15.0";
-          src = prev.fetchPypi {
-            inherit pname version;
-            sha256 = "sha256-0Gcwxq7XjO5BJiNM8tBx4BtEuRXnJabLQ5qHnsl1Sjo=";
+          wrapt = buildPythonPackage rec {
+            pname = "wrapt";
+            version = "1.15.0";
+            src = prev.fetchPypi {
+              inherit pname version;
+              sha256 = "sha256-0Gcwxq7XjO5BJiNM8tBx4BtEuRXnJabLQ5qHnsl1Sjo=";
+            };
+            doCheck = false;
           };
-          doCheck = false;
-        };
-        Deprecated = buildPythonPackage rec {
-          pname = "Deprecated";
-          version = "1.2.14";
-          src = prev.fetchPypi {
-            inherit pname version;
-            sha256 = "sha256-5TI+uTZFjczCWC3G+cMiyFKndaJwZf8rDElwudU9AbM=";
+          Deprecated = buildPythonPackage rec {
+            pname = "Deprecated";
+            version = "1.2.14";
+            src = prev.fetchPypi {
+              inherit pname version;
+              sha256 = "sha256-5TI+uTZFjczCWC3G+cMiyFKndaJwZf8rDElwudU9AbM=";
+            };
+            doCheck = false;
+            propagatedBuildInputs = [ wrapt ];
           };
-          doCheck = false;
-          propagatedBuildInputs = [ wrapt ];
-        };
-        jaconv = buildPythonPackage rec {
-          pname = "jaconv";
-          version = "0.3.4";
-          src = prev.fetchPypi {
-            inherit pname version;
-            sha256 = "sha256-nnxV8/Cw4tutYvbJ+gww/G//27eCl5VVCdkIVrOjHW0=";
+          jaconv = buildPythonPackage rec {
+            pname = "jaconv";
+            version = "0.3.4";
+            src = prev.fetchPypi {
+              inherit pname version;
+              sha256 = "sha256-nnxV8/Cw4tutYvbJ+gww/G//27eCl5VVCdkIVrOjHW0=";
+            };
+            doCheck = false;
           };
-          doCheck = false;
-        };
-        pykakasi = buildPythonPackage rec {
-          pname = "pykakasi";
-          version = "2.2.1";
-          src = prev.fetchPypi {
-            inherit pname version;
-            sha256 = "sha256-OjUQkppVlsrlH/+pz3jA90LZbOvZP3JslqzuUUB9GMw=";
+          pykakasi = buildPythonPackage rec {
+            pname = "pykakasi";
+            version = "2.2.1";
+            src = prev.fetchPypi {
+              inherit pname version;
+              sha256 = "sha256-OjUQkppVlsrlH/+pz3jA90LZbOvZP3JslqzuUUB9GMw=";
+            };
+            doCheck = false;
+            propagatedBuildInputs = [ Deprecated jaconv setuptools ];
           };
-          doCheck = false;
-          propagatedBuildInputs = [ Deprecated jaconv setuptools ];
-        };
-      });
+        });
 
       sonicCustomTemplates = mkDerivation {
         name = "sonic-custom-templates";

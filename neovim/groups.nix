@@ -2,8 +2,7 @@
 let
   inherit (builtins) readFile;
   inherit (lib.strings) concatStringsSep;
-in
-with pkgs.vimPlugins; {
+in with pkgs.vimPlugins; {
   fzf = {
     name = "fzf";
     plugins = [ ]; # hack
@@ -58,27 +57,25 @@ with pkgs.vimPlugins; {
         };
       }
     ];
-    postConfig =
-      let
-        parser = pkgs.stdenv.mkDerivation {
-          name = "treesitter-all-grammars";
-          buildCommand = ''
-            mkdir -p $out/parser
-            echo "${
-              concatStringsSep ","
-              pkgs.pkgs-unstable.vimPlugins.nvim-treesitter.withAllGrammars.dependencies
-            }" \
-              | tr ',' '\n' \
-              | xargs -I {} find {} -not -type d \
-              | xargs -I {} ln -s {} $out/parser
-          '';
-        };
-      in
-      {
-        language = "lua";
-        code = readFile ./lua/treesitter.lua;
-        args = { inherit parser; };
+    postConfig = let
+      parser = pkgs.stdenv.mkDerivation {
+        name = "treesitter-all-grammars";
+        buildCommand = ''
+          mkdir -p $out/parser
+          echo "${
+            concatStringsSep ","
+            pkgs.pkgs-unstable.vimPlugins.nvim-treesitter.withAllGrammars.dependencies
+          }" \
+            | tr ',' '\n' \
+            | xargs -I {} find {} -not -type d \
+            | xargs -I {} ln -s {} $out/parser
+        '';
       };
+    in {
+      language = "lua";
+      code = readFile ./lua/treesitter.lua;
+      args = { inherit parser; };
+    };
     extraPackages = [ pkgs.pkgs-unstable.tree-sitter ];
     useTimer = true;
   };
@@ -117,6 +114,7 @@ with pkgs.vimPlugins; {
     name = "telescope";
     plugins = [
       telescope-nvim
+      telescope-fzf-native-nvim
       {
         plugin = telescope-live-grep-args-nvim;
         extraPackages = with pkgs; [ ripgrep ];
