@@ -29,6 +29,14 @@ with pkgs.vimPlugins; {
     };
     onEvents = [ "BufAdd" "BufNew" ];
   };
+  editHook = {
+    name = "editHook";
+    postConfig = {
+      language = "lua";
+      code = readFile ./lua/editHook.lua;
+    };
+    onEvents = [ "InsertEnter" "CursorMoved" ];
+  };
   treesitter = {
     name = "treesitter";
     plugins = [

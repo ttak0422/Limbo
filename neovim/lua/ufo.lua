@@ -6,7 +6,11 @@ local function _1_(bufnr, filetype, buftype)
 end
 provider_selector = _1_
 local map = vim.keymap.set
+local opts = {foldcolumn = "1", foldlevel = 99, foldlevelstart = 99, foldenable = true, fillchars = "eob: ,fold: ,foldopen:\239\145\188,foldsep: ,foldclose:\239\145\160"}
 local opt = {noremap = true, silent = true}
+for k, v in pairs(opts) do
+  vim.o[k] = v
+end
 M.setup({provider_selector = provider_selector})
 map("n", "zR", M.openAllFolds, opt)
 map("n", "zM", M.closeAllFolds, opt)

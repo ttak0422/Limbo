@@ -266,4 +266,7 @@ end
 terminal_status = {mode, align, terminal_name, align, {provider = _47_, hl = {fg = colors.bg, bg = colors.red}, update = {"WinNew", "WinClosed", "BufEnter"}}, condition = _48_}
 local default_status_line = {mode, space, git, round_right, diagnostics, round_right, pomodoro, align, align, ruler, bar, file_properties, space, root}
 local statusline = {hydra_status, special_status, terminal_status, default_status_line, hl = {fg = colors.fg, bg = colors.bg, bold = true}, fallthrough = false}
+vim.o.showtabline = 2
+vim.o.cmdheight = 0
+vim.o.laststatus = 3
 return heirline.setup({statusline = statusline, tabline = tabline, opts = opts})

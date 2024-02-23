@@ -2,35 +2,12 @@
             :termguicolors true
             ;; モードを非表示
             :showmode false
-            ;; 入力時に対応する括弧を強調
-            :showmatch true
-            ;; 補完オプション
-            ;; :completeopt (.. :menu "," :menuone "," :preview)
-            :completeopt ""
-            ;; 行数表示
-            :number true
-            ;; signcolumnのがたつきを無くす
-            :signcolumn :yes
-            ;; 短径選択を寛容に
-            :virtualedit :block
-            ;; コマンドライン非表示
-            :cmdheight 0
-            ;; ステータスラインを集約
-            :laststatus 3
-            ;; tablineを常に表示する
-            :showtabline 2
-            ;; タブでスペースを入力
-            :expandtab true
-            ;; タブ幅を2
-            :tabstop 2
-            ;; インデント幅
-            :shiftwidth 2
-            :foldcolumn :1
-            :foldlevel 99
-            :foldlevelstart 99
-            :foldenable true
-            :fillchars "eob: ,fold: ,foldopen:,foldsep: ,foldclose:"
-            :cursorline true}
+            ;; 起動時に行数を非表示表示
+            :number false
+            ;; signcolumnを起動時に非表示
+            :signcolumn :no
+            ;; tablineを起動時に非表示
+            :showtabline 0}
       ; disable_plugins [;; https://qiita.com/yasunori-kirin0418/items/4672919be73a524afb47
       ;                  ;; DisableTOhtml.
       ;                  :loaded_2html_plugin

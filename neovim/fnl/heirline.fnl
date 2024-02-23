@@ -515,4 +515,10 @@
                   2 special_status
                   3 terminal_status
                   4 default_status_line}]
+  ;; tablineを常に表示する
+  (set vim.o.showtabline 2)
+  ;; コマンドライン非表示
+  (set vim.o.cmdheight 0)
+  ;; ステータスラインを集約
+  (set vim.o.laststatus 3)
   (heirline.setup {: statusline : tabline : opts}))

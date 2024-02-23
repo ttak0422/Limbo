@@ -3,4 +3,8 @@
       segments [{:text ["%s"] :click "v:lua.ScSa"}
                 {:text [B.lnumfunc] :click "v:lua.ScLa"}
                 {:text [" " B.foldfunc " "] :click "v:lua.ScFa"}]]
+  ;; 行数表示
+  (set vim.o.number true)
+  ;; signcolumnのがたつきを無くす
+  (set vim.o.signcolumn :yes)
   (M.setup {:setopt true :relculright false : segments}))
