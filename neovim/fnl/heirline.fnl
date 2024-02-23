@@ -389,23 +389,38 @@
                     ;; center
                     buffer_line (let [get_bg (fn [hl]
                                                (. (utils.get_highlight hl) :bg))
-                                      file_name {:provider (fn [self]
-                                                             (let [name self.filename]
-                                                               (if (or (= name
-                                                                          "")
-                                                                       (= name
-                                                                          nil))
-                                                                   "[No Name]"
-                                                                   (vim.fn.fnamemodify name
-                                                                                       ":t"))))
-                                                 :hl (fn [self]
-                                                       {:bold (or self.is_active
-                                                                  self.is_visible)})}
+                                      label {:provider (fn [self]
+                                                         (let [bufname (vim.api.nvim_buf_get_name self.bufnr)
+                                                               buf_label (if (or (= bufname
+                                                                                    "")
+                                                                                 (= bufname
+                                                                                    nil))
+                                                                             "[No Name]"
+                                                                             (vim.fn.fnamemodify bufname
+                                                                                                 ":t"))]
+                                                           buf_label))
+                                             :hl (fn [self]
+                                                   {:bold (or self.is_active
+                                                              self.is_visible)
+                                                    :fg (if self.is_active
+                                                            colors.bg
+                                                            colors.fg)
+                                                    :bg (if self.is_active
+                                                            colors.orange
+                                                            colors.bg)})}
                                       file_flags {:condition (fn [self]
                                                                (vim.api.nvim_buf_get_option self.bufnr
                                                                                             :modified))
-                                                  :provider " [+]"
-                                                  :hl {:fg colors.green}}
+                                                  :provider (let [] " [+]")
+                                                  :hl (fn [self]
+                                                        (let [active (or self.is_active
+                                                                         self.is_visible)]
+                                                          {:fg (if active
+                                                                   colors.bg
+                                                                   colors.green)
+                                                           :bg (if active
+                                                                   colors.orange
+                                                                   colors.bg)}))}
                                       file_block {:init (fn [self]
                                                           (set self.filename
                                                                (vim.api.nvim_buf_get_name self.bufnr)))
@@ -413,14 +428,24 @@
                                                         (if self.is_active
                                                             :TabLineSel
                                                             :TabLine))
-                                                  1 file_name
+                                                  1 label
                                                   2 file_flags}
                                       buffer_block (utils.surround [icons.fill
                                                                     icons.fill]
                                                                    (fn [self]
                                                                      (if self.is_active
-                                                                         (get_bg :TabLineSel)
-                                                                         (get_bg :TabLine)))
+                                                                         colors.orange
+                                                                         colors.bg
+                                                                         ;;{;;:bold active
+                                                                         ; :fg (if self.is_active
+                                                                         ;         colors.bg
+                                                                         ;         colors.fg)
+                                                                         ; :bg (if self.is_active
+                                                                         ;         colors.orange
+                                                                         ;         colors.bg)}
+                                                                         ; (get_bg :TabLineSel)
+                                                                         ; ;                    (get_bg :TabLine)
+                                                                         ))
                                                                    [file_block])]
                                   (utils.make_buflist buffer_block
                                                       {:provider "<"
@@ -449,8 +474,7 @@
                                                 (hydra.get_name)))))
                       :static {:hydra_ignore {:BarBar true}}
                       ;; left
-                      1 (utils.surround [icons.left_rounded
-                                         icons.right_rounded]
+                      1 (utils.surround [icons.fill icons.fill]
                                         (fn [] colors.cyan) [name])
                       2 align
                       ;; center

@@ -171,99 +171,133 @@ do
       return utils.get_highlight(hl).bg
     end
     get_bg = _28_
-    local file_name
+    local label
     local function _29_(self)
-      local name = self.filename
-      if ((name == "") or (name == nil)) then
-        return "[No Name]"
+      local bufname = vim.api.nvim_buf_get_name(self.bufnr)
+      local buf_label
+      if ((bufname == "") or (bufname == nil)) then
+        buf_label = "[No Name]"
       else
-        return vim.fn.fnamemodify(name, ":t")
+        buf_label = vim.fn.fnamemodify(bufname, ":t")
       end
+      return buf_label
     end
     local function _31_(self)
-      return {bold = (self.is_active or self.is_visible)}
+      local _32_
+      if self.is_active then
+        _32_ = colors.bg
+      else
+        _32_ = colors.fg
+      end
+      local _34_
+      if self.is_active then
+        _34_ = colors.orange
+      else
+        _34_ = colors.bg
+      end
+      return {bold = (self.is_active or self.is_visible), fg = _32_, bg = _34_}
     end
-    file_name = {provider = _29_, hl = _31_}
+    label = {provider = _29_, hl = _31_}
     local file_flags
-    local function _32_(self)
+    local function _36_(self)
       return vim.api.nvim_buf_get_option(self.bufnr, "modified")
     end
-    file_flags = {condition = _32_, provider = " [+]", hl = {fg = colors.green}}
+    local _37_
+    do
+      _37_ = " [+]"
+    end
+    local function _38_(self)
+      local active = (self.is_active or self.is_visible)
+      local _39_
+      if active then
+        _39_ = colors.bg
+      else
+        _39_ = colors.green
+      end
+      local _41_
+      if active then
+        _41_ = colors.orange
+      else
+        _41_ = colors.bg
+      end
+      return {fg = _39_, bg = _41_}
+    end
+    file_flags = {condition = _36_, provider = _37_, hl = _38_}
     local file_block
-    local function _33_(self)
+    local function _43_(self)
       self.filename = vim.api.nvim_buf_get_name(self.bufnr)
       return nil
     end
-    local function _34_(self)
+    local function _44_(self)
       if self.is_active then
         return "TabLineSel"
       else
         return "TabLine"
       end
     end
-    file_block = {file_name, file_flags, init = _33_, hl = _34_}
+    file_block = {label, file_flags, init = _43_, hl = _44_}
     local buffer_block
-    local function _36_(self)
+    local function _46_(self)
       if self.is_active then
-        return get_bg("TabLineSel")
+        return colors.orange
       else
-        return get_bg("TabLine")
+        return colors.bg
       end
     end
-    buffer_block = utils.surround({icons.fill, icons.fill}, _36_, {file_block})
+    buffer_block = utils.surround({icons.fill, icons.fill}, _46_, {file_block})
     buffer_line = utils.make_buflist(buffer_block, {provider = "<", hl = {fg = colors.grey}}, {provider = ">", hl = {fg = colors.grey}})
   end
   local tabpage
-  local function _38_(self)
+  local function _48_(self)
     return (" %" .. self.tabnr .. "T" .. self.tabpage .. " %T")
   end
-  local function _39_(self)
+  local function _49_(self)
     if not self.is_active then
       return "TabLine"
     else
       return "TabLineSel"
     end
   end
-  tabpage = {provider = _38_, hl = _39_}
+  tabpage = {provider = _48_, hl = _49_}
   local tabpages
-  local function _41_()
+  local function _51_()
     return (#vim.api.nvim_list_tabpages() >= 2)
   end
-  tabpages = {align0, utils.make_tablist(tabpage), condition = _41_}
+  tabpages = {align0, utils.make_tablist(tabpage), condition = _51_}
   tabline = {offset, buffer_line, tabpages}
 end
 local hydra_status
 do
   local name
-  local function _42_()
+  local function _52_()
     return (hydra.get_name() or "HYDRA")
   end
-  name = {provider = _42_}
+  name = {provider = _52_}
   local hint = {condition = hydra.get_hint, provider = hydra.get_hint}
-  local function _43_()
+  local function _53_()
     return colors.cyan
   end
-  local function _44_(self)
+  local function _54_(self)
     return (hydra.is_active() and not self.hydra_ignore[hydra.get_name()])
   end
-  hydra_status = {utils.surround({icons.left_rounded, icons.right_rounded}, _43_, {name}), align, hint, align, condition = _44_, static = {hydra_ignore = {BarBar = true}}}
+  hydra_status = {utils.surround({icons.fill, icons.fill}, _53_, {name}), align, hint, align, condition = _54_, static = {hydra_ignore = {BarBar = true}}}
 end
 local special_status
-local function _45_()
+local function _55_()
   return (" " .. icons.document .. " " .. string.upper(vim.bo.filetype) .. " ")
 end
-local function _46_()
+local function _56_()
   return conditions.buffer_matches({buftype = {"nofile", "prompt", "help", "quickfix"}, filetype = {"^git.*", "fugative"}})
 end
-special_status = {mode, align, help_name, align, {provider = _45_, hl = {fg = colors.bg, bg = colors.blue}, update = {"WinNew", "WinClosed", "BufEnter"}}, condition = _46_}
+special_status = {mode, align, help_name, align, {provider = _55_, hl = {fg = colors.bg, bg = colors.blue}, update = {"WinNew", "WinClosed", "BufEnter"}}, condition = _56_}
 local terminal_status
-local function _47_()
+local function _57_()
   return (" " .. icons.terminal .. " TERMINAL ")
 end
-local function _48_()
+local function _58_()
   return conditions.buffer_matches({buftype = {"terminal"}})
 end
-terminal_status = {mode, align, terminal_name, align, {provider = _47_, hl = {fg = colors.bg, bg = colors.red}, update = {"WinNew", "WinClosed", "BufEnter"}}, condition = _48_}
+terminal_status = {mode, align, terminal_name, align, {provider = _57_, hl = {fg = colors.bg, bg = colors.red}, update = {"WinNew", "WinClosed", "BufEnter"}}, condition = _58_}
 local default_status_line = {mode, space, git, round_right, diagnostics, round_right, pomodoro, align, align, ruler, bar, file_properties, space, root}
 local statusline = {hydra_status, special_status, terminal_status, default_status_line, hl = {fg = colors.fg, bg = colors.bg, bold = true}, fallthrough = false}
 vim.o.showtabline = 2
