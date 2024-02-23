@@ -41,6 +41,10 @@
       url = "github:ttak0422/vim-plugins-overlay";
       inputs = { nixpkgs.follows = "nixpkgs"; };
     };
+    vim-plugins-overlay-unstable = {
+      url = "github:ttak0422/vim-plugins-overlay";
+      inputs = { nixpkgs.follows = "nixpkgs"; };
+    };
     bundler = {
       url = "github:ttak0422/bundler";
       # url = "path:/Users/ttak0422/ghq/github.com/ttak0422/bundler";

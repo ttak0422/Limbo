@@ -12,6 +12,7 @@ with inputs; [
         inherit system;
         config.allowUnfree = true;
       };
+      vimPluginsUnstable = vim-plugins-overlay-unstable.packages.${prev.system};
       vimPlugins = prev.vimPlugins // {
         telescope-fzf-native-nvim =
           prev.vimPlugins.telescope-fzf-native-nvim.overrideAttrs {

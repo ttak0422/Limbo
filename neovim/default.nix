@@ -148,6 +148,7 @@
             hydra
             stickybuf
             rustaceanvim
+            oil
           ];
           lazyGroups = with groups; [
             dap
