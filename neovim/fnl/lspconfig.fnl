@@ -36,7 +36,9 @@
                                     :telemetry {:enable false}}})
 
 ;; fennel
-(lspconfig.fennel_ls.setup {: on_attach : capabilities})
+(lspconfig.fennel_ls.setup {: on_attach
+                            : capabilities
+                            :settings {:fennel-ls {:extra-globals :vim}}})
 
 ;; nix
 (lspconfig.nil_ls.setup {: on_attach

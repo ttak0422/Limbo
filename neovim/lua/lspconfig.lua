@@ -16,7 +16,7 @@ local climb = require("climbdir")
 local marker = require("climbdir.marker")
 windows.default_options.border = {"\226\148\143", "\226\148\129", "\226\148\147", "\226\148\131", "\226\148\155", "\226\148\129", "\226\148\151", "\226\148\131"}
 lspconfig.lua_ls.setup({on_attach = on_attach, capabilities = capabilities, settings = {Lua = {runtime = {version = "LuaJIT"}, diagnostics = {globals = {"vim"}}}, workspace = {}, telemetry = {enable = false}}})
-lspconfig.fennel_ls.setup({on_attach = on_attach, capabilities = capabilities})
+lspconfig.fennel_ls.setup({on_attach = on_attach, capabilities = capabilities, settings = {["fennel-ls"] = {["extra-globals"] = "vim"}}})
 lspconfig.nil_ls.setup({on_attach = on_attach, capabilities = capabilities, autostart = true, settings = {["nil"] = {formatting = {command = {"nixpkgs-fmt"}}}}})
 lspconfig.bashls.setup({on_attach = on_attach, capabilities = capabilities})
 lspconfig.csharp_ls.setup({on_attach = on_attach, capabilities = capabilities})
