@@ -56,7 +56,7 @@ for _, keymap in ipairs(ns) do
   map("n", keymap[1], keymap[2], (keymap[3] or os))
 end
 for i = 0, 9 do
-  map({"n", "t"}, ("<leader>t" .. i), cmd(("TermToggle " .. i)), mk_desc(("toggle terminal " .. i)))
+  map({"n", "t", "i"}, ("<C-" .. i .. ">"), cmd(("TermToggle " .. i)), mk_desc(("toggle terminal " .. i)))
 end
 map("n", "<leader>tq", mk_toggle(1, "quickfix", nil, mk_desc("toggle quickfix")))
 map("n", "<leader>td", mk_toggle(2, "trouble", {mode = "document_diagnostics"}), mk_desc("toggle diagnostics (document)"))
