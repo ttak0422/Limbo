@@ -413,14 +413,12 @@
                                                                                             :modified))
                                                   :provider (let [] " [+]")
                                                   :hl (fn [self]
-                                                        (let [active (or self.is_active
-                                                                         self.is_visible)]
-                                                          {:fg (if active
-                                                                   colors.bg
-                                                                   colors.green)
-                                                           :bg (if active
-                                                                   colors.orange
-                                                                   colors.bg)}))}
+                                                        {:fg (if self.is_active
+                                                                 colors.bg
+                                                                 colors.green)
+                                                         :bg (if self.is_active
+                                                                 colors.orange
+                                                                 colors.bg)})}
                                       file_block {:init (fn [self]
                                                           (set self.filename
                                                                (vim.api.nvim_buf_get_name self.bufnr)))

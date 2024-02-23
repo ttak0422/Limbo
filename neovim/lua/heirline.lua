@@ -207,15 +207,14 @@ do
       _37_ = " [+]"
     end
     local function _38_(self)
-      local active = (self.is_active or self.is_visible)
       local _39_
-      if active then
+      if self.is_active then
         _39_ = colors.bg
       else
         _39_ = colors.green
       end
       local _41_
-      if active then
+      if self.is_active then
         _41_ = colors.orange
       else
         _41_ = colors.bg
