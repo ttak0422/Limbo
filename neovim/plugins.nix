@@ -734,15 +734,6 @@ let
     };
   };
   tool = with pkgs.vimPlugins; {
-    oil = {
-      plugin = pkgs.vimPluginsUnstable.oil-nvim;
-      postConfig = {
-        language = "lua";
-        code = readFile ./lua/oil.lua;
-      };
-      dependPlugins = [ nvim-web-devicons ];
-      onCommands = [ "Oil" ];
-    };
     sqlite = {
       plugin = sqlite-lua;
       preConfig = ''

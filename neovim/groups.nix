@@ -36,6 +36,31 @@ in with pkgs.vimPlugins; {
     };
     onEvents = [ "InsertEnter" "CursorMoved" ];
   };
+  oil = {
+    name = "oil";
+    plugins = [
+      {
+        plugin = pkgs.vimPluginsUnstable.oil-nvim;
+        postConfig = {
+          language = "lua";
+          code = readFile ./lua/oil.lua;
+        };
+        dependPlugins =
+          [ nvim-web-devicons ];
+      }
+      {
+        plugin = pkgs.vimPluginsUnstable.oil-vcs-status;
+        postConfig = {
+          language = "lua";
+          code = readFile ./lua/oil-vcs-status.lua;
+        };
+        # WIP
+        onCommands = [ "Oil" ];
+        dependPlugins = [ pkgs.vimPluginsUnstable.oil-nvim ];
+      }
+    ];
+    # onCommands = [ "Oil" ];
+  };
   treesitter = {
     name = "treesitter";
     plugins = [
@@ -113,7 +138,10 @@ in with pkgs.vimPlugins; {
   telescope = {
     name = "telescope";
     plugins = [
-      telescope-nvim
+      {
+        plugin = telescope-nvim;
+        onModules = [ "telescope.themes" ];
+      }
       telescope-fzf-native-nvim
       {
         plugin = telescope-live-grep-args-nvim;
@@ -249,7 +277,7 @@ in with pkgs.vimPlugins; {
         code = readFile ./lua/fidget.lua;
       };
     }];
-    dependGroups = [ "ddc" ];
+    dependGroups = [ "ddc" "telescope" ];
     useTimer = true;
   };
   neotest = {

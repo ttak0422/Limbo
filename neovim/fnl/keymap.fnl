@@ -38,6 +38,7 @@
           ;; toggle
           [:gb (cmd :NvimTreeFocus)]
           [:<leader>tb (cmd :NvimTreeToggle)]
+          [:<leader>tB (cmd :Oil)]
           ; [:<leader>tB (cmd "Neotree toggle")]
           [:<leader>to (cmd :SidebarNvimToggle)]
           [:<leader>tm
