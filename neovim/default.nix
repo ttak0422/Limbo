@@ -86,7 +86,7 @@
             # haskell-tools
             heirline
             history-ignore
-            hlchunk
+            # hlchunk
             hlslens
             indent-o-matic
             # ionide
@@ -151,6 +151,7 @@
             rustaceanvim
             dotfyle
             lastplace
+            indent-blankline
           ];
           lazyGroups = with groups; [
             oil

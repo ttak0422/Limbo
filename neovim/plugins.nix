@@ -340,6 +340,14 @@ let
       };
       onEvents = [ "CmdlineEnter" ];
     };
+    indent-blankline = {
+      plugin = indent-blankline-nvim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/indent-blankline.lua;
+      };
+      dependPlugins = [ rainbow-delimiters-nvim ];
+    };
     hlchunk = {
       # This is the lua implementation of nvim-hlchunk, you can use this neovim plugin to highlight your indent line and the current chunk (context) your cursor stayed
       plugin = hlchunk-nvim;
