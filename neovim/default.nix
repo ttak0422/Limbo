@@ -152,6 +152,7 @@
             dotfyle
             lastplace
             indent-blankline
+            global-note
           ];
           lazyGroups = with groups; [
             oil

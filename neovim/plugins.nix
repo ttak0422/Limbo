@@ -747,6 +747,14 @@ let
     };
   };
   tool = with pkgs.vimPlugins; {
+    global-note = {
+      plugin = pkgs.vimPluginsUnstable.global-note-nvim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/global-note.lua;
+      };
+      onCommands = [ "GlobalNote" "ProjectNote" ];
+    };
     dotfyle = {
       plugin = pkgs.vimPluginsUnstable.dotfyle-metadata-nvim;
       onCommands = [ "DotfyleGenerate" ];
