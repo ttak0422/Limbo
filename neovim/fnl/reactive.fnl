@@ -9,15 +9,15 @@
                                                     :d {:winhl {:CursorLine {:bg "#363646"}}}
                                                     ;; yank
                                                     :y {:winhl {:CursorLine {:bg "#363646"}}}}}
-                                   :i {:winhl {:CursorLine {:bg "#363646"}}}
-                                   :c {:winhl {:CursorLine {:bg "#363646"}}}
+                                   :i {:winhl {:CursorLine {:bg "#3e3e4e"}}}
+                                   :c {:winhl {:CursorLine {:bg "#404046"}}}
                                    :n {:winhl {:CursorLine {:bg "#363646"}}}
                                    ;; visual
-                                   [:v :V "\022"] {:winhl {:Visual {:bg "#363646"}}}
+                                   [:v :V "\022"] {:winhl {:Visual {:bg "#36365a"}}}
                                    ;; select
                                    [:s :S "\019"] {:winhl {:Visual {:bg "#363646"}}}
                                    ;; replace
-                                   :R {:winhl {:CursorLine {:bg "#363646"}}}}}]
+                                   :R {:winhl {:CursorLine {:bg "#404046"}}}}}]
 
   (M.add_preset custom)
-  (M.setup {:load [:custom]}))
+  (M.setup {}))
