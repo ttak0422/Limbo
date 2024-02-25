@@ -30,6 +30,20 @@ in with pkgs.vimPlugins; {
   };
   editHook = {
     name = "editHook";
+    plugins = [{
+      plugin = pkgs.vimPluginsUnstable.reactive-nvim;
+      # plugin = pkgs.vimPluginsUnstable.reactive-nvim.overrideAttrs (drv: {
+      #   version = "patched";
+      #   postInstall = ''
+      #     mkdir -p $out/lua/reactive/presets
+      #     ln -s ${./lua/reactive_kanagawa.lua} $out/lua/reactive/presets/kanagawa.lua
+      #   '';
+      # });
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/reactive.lua;
+      };
+    }];
     postConfig = {
       language = "lua";
       code = readFile ./lua/editHook.lua;
@@ -45,8 +59,7 @@ in with pkgs.vimPlugins; {
           language = "lua";
           code = readFile ./lua/oil.lua;
         };
-        dependPlugins =
-          [ nvim-web-devicons ];
+        dependPlugins = [ nvim-web-devicons ];
       }
       {
         plugin = pkgs.vimPluginsUnstable.oil-vcs-status;
