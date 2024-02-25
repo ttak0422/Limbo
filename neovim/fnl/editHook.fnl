@@ -9,7 +9,6 @@
             ;; 補完オプション
             :completeopt ""
             ;; 短径選択を寛容に
-            :virtualedit :block
-            :cursorline true}]
+            :virtualedit :block}]
   (each [k v (pairs opts)]
     (tset vim.o k v)))
