@@ -647,6 +647,11 @@ let
     };
   };
   helper = with pkgs.vimPlugins; {
+    lastplace = {
+      plugin = pkgs.vimPluginsUnstable.nvim-lastplace;
+      preConfig = readFile ./lua/lastplace-pre.lua;
+      onCommands = [ "BufNew" "BufAdd" ];
+    };
     direnv = {
       plugin = direnv-vim;
       postConfig = {

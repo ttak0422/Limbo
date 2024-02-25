@@ -150,6 +150,7 @@
             stickybuf
             rustaceanvim
             dotfyle
+            lastplace
           ];
           lazyGroups = with groups; [
             oil
