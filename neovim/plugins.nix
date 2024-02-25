@@ -734,6 +734,10 @@ let
     };
   };
   tool = with pkgs.vimPlugins; {
+    dotfyle = {
+      plugin = pkgs.vimPluginsUnstable.dotfyle-metadata-nvim;
+      onCommands = [ "DotfyleGenerate" ];
+    };
     sqlite = {
       plugin = sqlite-lua;
       preConfig = ''

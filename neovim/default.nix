@@ -149,6 +149,7 @@
             hydra
             stickybuf
             rustaceanvim
+            dotfyle
           ];
           lazyGroups = with groups; [
             oil
