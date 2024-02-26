@@ -105,7 +105,7 @@
             neozoom
             nfnl
             noice
-            none-ls
+            # none-ls
             notify
             numb
             nvim-tree
