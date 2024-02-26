@@ -11,8 +11,8 @@
                   :keymap {:accept :<C-a>
                            :accept_word false
                            :accept_line false
-                           :next "<C-]>"
-                           :prev "<C-[>"
+                           :next "<M-]>"
+                           :prev "<M-[>"
                            :dismiss :<M-e>}}
       filetypes {:help false :gitrebase false :. false}]
   (M.setup {:enabled true
