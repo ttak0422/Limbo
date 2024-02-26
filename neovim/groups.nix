@@ -2,8 +2,7 @@
 let
   inherit (builtins) readFile;
   inherit (lib.strings) concatStringsSep;
-in
-with pkgs.vimPlugins; {
+in with pkgs.vimPlugins; {
   fzf = {
     name = "fzf";
     plugins = [ ]; # hack
@@ -32,6 +31,17 @@ with pkgs.vimPlugins; {
   editHook = {
     name = "editHook";
     plugins = [
+      {
+        # Lightweight yet powerful formatter plugin for Neovim
+        plugin = confirm-nvim; # TODO: fix
+        postConfig = {
+          language = "lua";
+          code = readFile ./lua/conform.lua;
+        };
+        extraPackages = with pkgs; [
+        fnlfmt
+        ];
+      }
       {
         # An asynchronous linter plugin for Neovim complementary to the built-in Language Server Protocol support.
         plugin = nvim-lint;
@@ -120,27 +130,25 @@ with pkgs.vimPlugins; {
         };
       }
     ];
-    postConfig =
-      let
-        parser = pkgs.stdenv.mkDerivation {
-          name = "treesitter-all-grammars";
-          buildCommand = ''
-            mkdir -p $out/parser
-            echo "${
-              concatStringsSep ","
-              pkgs.pkgs-unstable.vimPlugins.nvim-treesitter.withAllGrammars.dependencies
-            }" \
-              | tr ',' '\n' \
-              | xargs -I {} find {} -not -type d \
-              | xargs -I {} ln -s {} $out/parser
-          '';
-        };
-      in
-      {
-        language = "lua";
-        code = readFile ./lua/treesitter.lua;
-        args = { inherit parser; };
+    postConfig = let
+      parser = pkgs.stdenv.mkDerivation {
+        name = "treesitter-all-grammars";
+        buildCommand = ''
+          mkdir -p $out/parser
+          echo "${
+            concatStringsSep ","
+            pkgs.pkgs-unstable.vimPlugins.nvim-treesitter.withAllGrammars.dependencies
+          }" \
+            | tr ',' '\n' \
+            | xargs -I {} find {} -not -type d \
+            | xargs -I {} ln -s {} $out/parser
+        '';
       };
+    in {
+      language = "lua";
+      code = readFile ./lua/treesitter.lua;
+      args = { inherit parser; };
+    };
     extraPackages = [ pkgs.pkgs-unstable.tree-sitter ];
     useTimer = true;
   };
