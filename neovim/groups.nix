@@ -30,20 +30,30 @@ in with pkgs.vimPlugins; {
   };
   editHook = {
     name = "editHook";
-    plugins = [{
-      plugin = pkgs.vimPluginsUnstable.reactive-nvim;
-      # plugin = pkgs.vimPluginsUnstable.reactive-nvim.overrideAttrs (drv: {
-      #   version = "patched";
-      #   postInstall = ''
-      #     mkdir -p $out/lua/reactive/presets
-      #     ln -s ${./lua/reactive_kanagawa.lua} $out/lua/reactive/presets/kanagawa.lua
-      #   '';
-      # });
-      postConfig = {
-        language = "lua";
-        code = readFile ./lua/reactive.lua;
-      };
-    }];
+    plugins = [
+      {
+        # Fully featured & enhanced replacement for copilot.vim complete with API for interacting with Github Copilot
+        plugin = copilot-lua;
+        postConfig = {
+          language = "lua";
+          code = readFile ./lua/copilot.lua;
+        };
+      }
+      {
+        plugin = pkgs.vimPluginsUnstable.reactive-nvim;
+        # plugin = pkgs.vimPluginsUnstable.reactive-nvim.overrideAttrs (drv: {
+        #   version = "patched";
+        #   postInstall = ''
+        #     mkdir -p $out/lua/reactive/presets
+        #     ln -s ${./lua/reactive_kanagawa.lua} $out/lua/reactive/presets/kanagawa.lua
+        #   '';
+        # });
+        postConfig = {
+          language = "lua";
+          code = readFile ./lua/reactive.lua;
+        };
+      }
+    ];
     postConfig = {
       language = "lua";
       code = readFile ./lua/editHook.lua;

@@ -63,7 +63,6 @@
             colorizer
             comment
             context-vt
-            copilot
             # dap-go
             dd
             detour

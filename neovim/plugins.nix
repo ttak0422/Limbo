@@ -1090,14 +1090,6 @@ in with pkgs.vimPlugins;
     };
     onEvents = [ "InsertEnter" ];
   };
-  copilot = {
-    # Fully featured & enhanced replacement for copilot.vim complete with API for interacting with Github Copilot
-    plugin = copilot-lua;
-    postConfig = {
-      language = "lua";
-      code = readFile ./lua/copilot.lua;
-    };
-  };
   treesj = {
     # Neovim plugin for splitting/joining blocks of code
     plugin = treesj;
