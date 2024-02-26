@@ -8,11 +8,11 @@
       suggestion {:enabled true
                   :auto_trigger true
                   :debounce 150
-                  :keymap {:accept :<M-y>
+                  :keymap {:accept :<C-a>
                            :accept_word false
                            :accept_line false
-                           :next "<M-]>"
-                           :prev "<M-[>"
+                           :next "<C-]>"
+                           :prev "<C-[>"
                            :dismiss :<M-e>}}
       filetypes {:help false :gitrebase false :. false}]
   (M.setup {:enabled true
