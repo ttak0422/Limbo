@@ -75,7 +75,7 @@
                                           :args [:$FILENAME]
                                           :to_stdin true})}
       sources [;;; code actions ;;;
-               cspell_append_action
+               ; cspell_append_action
                ;;; completion ;;;
                ;;; diagnostics ;;;
                (null.builtins.diagnostics.eslint.with {:prefer_local :node_modules/.bin
@@ -89,16 +89,16 @@
                                                                                           :.eslintrc.yaml
                                                                                           :.eslintrc.yml
                                                                                           :.eslintrc.json]))})
-               (null.builtins.diagnostics.cspell.with {:diagnostics_postprocess (fn [diagnostic]
-                                                                                  (set diagnostic.severity
-                                                                                       (. vim.diagnostic.severity
-                                                                                          :WARN)))
-                                                       :disabled_filetypes [:NvimTree]
-                                                       :condition (fn []
-                                                                    (> (vim.fn.executable :cspell)
-                                                                       0))
-                                                       :extra_args [:--config
-                                                                    "~/.config/cspell/cspell.json"]})
+               ; (null.builtins.diagnostics.cspell.with {:diagnostics_postprocess (fn [diagnostic]
+               ;                                                                    (set diagnostic.severity
+               ;                                                                         (. vim.diagnostic.severity
+               ;                                                                            :WARN)))
+               ;                                         :disabled_filetypes [:NvimTree]
+               ;                                         :condition (fn []
+               ;                                                      (> (vim.fn.executable :cspell)
+               ;                                                         0))
+               ;                                         :extra_args [:--config
+               ;                                                      "~/.config/cspell/cspell.json"]})
                ; null.builtins.diagnostics.textlint
                ;;; formatting ;;;
                null.builtins.formatting.tidy
