@@ -34,7 +34,8 @@
                                    :Event " "
                                    :Field " "
                                    :File "󰈔 "
-                                   :Folder "󰉋 "
+                                   ;; :Folder "󰉋 "
+                                   :Folder ""
                                    :ForStatement "󰑖 "
                                    :Function "󰊕 "
                                    :H1Marker "󰉫 "
@@ -85,8 +86,8 @@
                                    :Value "󰎠 "
                                    :Variable "󰀫 "
                                    :WhileStatement "󰑖 "}}
-                  ui {:bar {:separator " " :extends "…"}
-                      :menu {:separator " " :indicator " "}}]
+                  ui {:bar {:separator "  " :extends "…"}
+                      :menu {:separator " " :indicator "  "}}]
               {:enable true : kinds : ui})
       bar {:hover true
            :sources (fn [buf _]
