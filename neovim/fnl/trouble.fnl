@@ -32,7 +32,7 @@
             :height 10
             :icons true
             :mode :document_diagnostics
-            :severity vim.diagnostic.severity.INFO
+            ; :severity vim.diagnostic.severity.INFO
             :fold_open ""
             :fold_closed ""
             :group true
