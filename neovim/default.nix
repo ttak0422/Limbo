@@ -114,7 +114,6 @@
             project
             qf
             qfheight
-            pqf
             reacher
             registers
             # rust-tools
