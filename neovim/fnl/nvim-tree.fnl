@@ -118,7 +118,7 @@
            :disable_for_dirs []
            :timeout 500
            :cygwin_support false}
-      diagnostics {:enable true
+      diagnostics {:enable false
                    :debounce_delay 100
                    :show_on_dirs false
                    :show_on_open_dirs true
