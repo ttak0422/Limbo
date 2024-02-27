@@ -133,7 +133,7 @@
                :custom [:.DS_Store :.git]
                :exclude []}
       live_filter {:prefix "[FILTER]: " :always_show_folders true}
-      actions (let [change_dir {:enable true
+      actions (let [change_dir {:enable false ;; WIP (https://github.com/nvim-tree/nvim-tree.lua/issues/2552)
                                 :global false
                                 :restrict_above_cwd false}
                     expand_all {:max_folder_discovery 300 :exclude []}
