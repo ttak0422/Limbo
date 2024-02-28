@@ -13,7 +13,13 @@
 ![image](https://github.com/ttak0422/Limbo/assets/15827817/d3a36fac-7b5b-4173-843d-ff08be6d1286)
 
 ```shell
-nix run .#bundler-nvim
+# just run
+nix run 'github:ttak0422/Limbo#bundler-nvim'
+```
+
+```nix
+# run with tag
+nix run 'github:ttak0422/Limbo/2024-02-28#bundler-nvim'
 ```
 
 ## Vim
