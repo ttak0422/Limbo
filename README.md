@@ -10,7 +10,7 @@
 
 ## Neovim
 
-![image](https://github.com/ttak0422/Limbo/assets/15827817/d3a36fac-7b5b-4173-843d-ff08be6d1286)
+![image](https://github.com/ttak0422/Limbo/assets/15827817/8bd61f0d-6be0-4616-9a44-ad76a1a1a6bf)
 
 ```shell
 # just run
