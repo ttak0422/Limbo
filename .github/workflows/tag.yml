@@ -1,0 +1,15 @@
+name: Git Tag
+on:
+  schedule:
+    - cron: "0 0 * * *" # UTC
+  workflow_dispatch:
+jobs:
+  tag-push:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - run: |
+        TAG_NAME=`date '+%Y-%m-%d'`
+        echo $TAG_NAME
+        git tag $TAG_NAME
+        git push origin $TAG_NAME
