@@ -17,7 +17,7 @@
 nix run 'github:ttak0422/Limbo#bundler-nvim'
 ```
 
-```nix
+```shell
 # run with tag
 nix run 'github:ttak0422/Limbo/2024-02-28#bundler-nvim'
 ```
