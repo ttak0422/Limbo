@@ -26,6 +26,7 @@
       };
 
       loaded-nvim = {
+        package = pkgs.neovim-nightly;
         # did_load_ftplugin = true;
         # did_indent_on = true;
         did_install_default_menus = true;
@@ -104,7 +105,7 @@
             # neotree
             neozoom
             nfnl
-            noice
+            # noice
             # none-ls
             notify
             numb

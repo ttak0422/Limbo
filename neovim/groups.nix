@@ -335,7 +335,7 @@ in with pkgs.vimPlugins; {
       #   plugin = diagflow-nvim;
       #  postConfig = readFile ./../../../nvim/diagflow.lua;
       # }
-      noice-nvim
+      # noice-nvim
       # {
       #   plugin = suit-nvim;
       #  postConfig = readFile ./../../../nvim/lua/suit.lua;
@@ -410,7 +410,7 @@ in with pkgs.vimPlugins; {
         dependPlugins = [{
           plugin = pum-vim;
           dependPlugins = [
-            noice-nvim
+            # noice-nvim
             {
               plugin = nvim-autopairs;
               dependGroups = [ "treesitter" ];
