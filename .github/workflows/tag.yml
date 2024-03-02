@@ -1,7 +1,7 @@
 name: Git Tag
 on:
   schedule:
-    - cron: "0 0 * * *" # UTC
+    - cron: "30 0 * * *" # UTC
   workflow_dispatch:
 jobs:
   tag-push:
