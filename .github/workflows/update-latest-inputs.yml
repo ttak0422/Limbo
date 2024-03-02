@@ -20,7 +20,7 @@ jobs:
     - uses: cachix/install-nix-action@v25
     - uses: DeterminateSystems/update-flake-lock@v21
       with:
-        token: ${{ steps.generate_token.outputs.token }}
+        token: ${{ steps.app-token.outputs.token }}
         inputs: "vim-plugins-overlay-latest neovim-nightly-overlay-latest"
     - name: Setup merge
       env:
