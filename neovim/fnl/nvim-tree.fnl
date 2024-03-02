@@ -33,7 +33,7 @@
                                api.tree.toggle_hidden_filter
                                "Toggle Hidden"]
                               [:I
-                               api.tree.toggle_hidden_filter
+                               api.tree.toggle_gitignore_filter
                                "Toggle Ignore"]
                               ["." api.node.run.cmd "Run Command"]
                               [:o api.node.open.edit :Open]
@@ -130,10 +130,11 @@
                :dotfiles false
                :git_clean false
                :no_buffer false
-               :custom [:.DS_Store :.git]
+               :custom [:.DS_Store "^\\.git$"]
                :exclude []}
       live_filter {:prefix "[FILTER]: " :always_show_folders true}
-      actions (let [change_dir {:enable false ;; WIP (https://github.com/nvim-tree/nvim-tree.lua/issues/2552)
+      actions (let [change_dir {:enable false
+                                ;; WIP (https://github.com/nvim-tree/nvim-tree.lua/issues/2552)
                                 :global false
                                 :restrict_above_cwd false}
                     expand_all {:max_folder_discovery 300 :exclude []}
