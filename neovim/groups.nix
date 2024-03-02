@@ -227,6 +227,13 @@ in with pkgs.vimPlugins; {
   lsp = {
     name = "lsp";
     plugins = [
+      # {
+      #   plugin = hover-nvim;
+      #   postConfig = {
+      #     language = "lua";
+      #     code = readFile ./lua/hover.lua;
+      #   };
+      # }
       {
         plugin = garbage-day-nvim;
         preConfig = {
