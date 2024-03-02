@@ -86,5 +86,23 @@
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = import inputs.systems;
       imports = [ ./neovim ];
+      perSystem = { inputs, pkgs, ... }: {
+        apps = {
+          show-latest-inputs = let
+            drv = pkgs.writeShellApplication {
+              name = "app";
+              runtimeInputs = with pkgs; [ jq coreutils ];
+              text = ''
+                nix flake show --json \
+                      | jq -r '.packages.["x86_64-linux"] | keys[]' \
+                      | tr '\n' ' '
+              '';
+            };
+          in {
+            type = "app";
+            program = "${drv}/bin/app";
+          };
+        };
+      };
     };
 }
