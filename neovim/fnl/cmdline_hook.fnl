@@ -29,4 +29,6 @@
                          (let [command (if opts.bang :vimgrepadd :vimgrep)
                                pattern "//gj %"]
                            (vim.cmd (.. command " " pattern))))
-                       {:bang true}))
+                       {:bang true})
+  ;; cabbrevの設定
+  (vim.cmd (.. "source " args.cabbrev)))

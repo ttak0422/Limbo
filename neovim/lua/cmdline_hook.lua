@@ -34,4 +34,5 @@ local function _4_(opts0)
   local pattern = "//gj %"
   return vim.cmd((command .. " " .. pattern))
 end
-return create_user_command("SearchToQf", _4_, {bang = true})
+create_user_command("SearchToQf", _4_, {bang = true})
+return vim.cmd(("source " .. args.cabbrev))

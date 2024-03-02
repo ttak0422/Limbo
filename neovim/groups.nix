@@ -5,17 +5,16 @@ let
 in with pkgs.vimPlugins; {
   fzf = {
     name = "fzf";
-    plugins = [ ]; # hack
     preConfig = ''
       source ${pkgs.fzf}/share/nvim/site/plugin/fzf.vim
     '';
   };
   cmdlineHook = {
     name = "cmdlineHook";
-    plugins = [ ];
     postConfig = {
       language = "lua";
       code = readFile ./lua/cmdline_hook.lua;
+      args = { cabbrev = ./vim/cabbrev.vim; };
     };
     onEvents = [ "CmdlineEnter" ];
   };
