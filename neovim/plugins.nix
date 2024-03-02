@@ -1114,5 +1114,9 @@ with pkgs.vimPlugins;
     };
     onCommands = [ "Neogen" ];
   };
+  denops = {
+    plugin = denops-vim;
+    extraPackages = with pkgs.pkgs-unstable; [ deno ];
+  };
 } // startup // lsp // dap // filetype // git // style // override // helper
 // tool // search // motion

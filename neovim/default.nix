@@ -153,6 +153,7 @@
             lastplace
             indent-blankline
             global-note
+            denops
           ];
           lazyGroups = with groups; [
             oil
