@@ -1,6 +1,6 @@
 import { BaseConfig } from "https://deno.land/x/ddu_vim@v3.10.2/types.ts";
 import { ConfigArguments } from "https://deno.land/x/ddu_vim@v3.10.2/base/config.ts";
-import { Denops } from "https://deno.land/x/ddu_vim@v3.10.2/deps.ts";
+import { Denops, fn } from "https://deno.land/x/ddu_vim@v3.10.2/deps.ts";
 import {
   Params as FfParams,
   Ui as FfUi,
@@ -19,7 +19,7 @@ export class Config extends BaseConfig {
     const ffUiParams: FfParams = {
       ...ffParamsDefault,
       ignoreEmpty: true,
-      startAutoAction: true,
+      startAutoAction: false,
       autoAction: {
         name: "preview",
         delay: 250, // same as telescope.nvim
@@ -28,11 +28,14 @@ export class Config extends BaseConfig {
       displaySourceName: "no",
       floatingBorder: "none",
       split: "floating",
-      // winCol: "1",
-      winCol: "&columns / 2",
-      winWidth: "&columns / 2 - 2",
-      winRow: "&lines / 3 * 2",
-      winHeight: "&lines / 3",
+      winCol: "1",
+      winCol: "&columns / 4",
+      winWidth: "&columns / 2",
+      winRow: "&lines / 3",
+      // winCol: "&columns / 2",
+      // winWidth: "&columns / 2 - 2",
+      // winRow: "&lines / 3 * 2",
+      // winHeight: "&lines / 3",
       filterFloatingPosition: "top",
       filterSplitDirection: "topleft",
       highlights: {
@@ -45,12 +48,7 @@ export class Config extends BaseConfig {
         denops: Denops;
         previewWinId: number;
       }) => {
-        await args.denops.batch(
-          ["execute", "normal! zt"],
-          // ["execute", "normal! zz"],
-          ["execute", "setlocal nu"],
-          // ["execute", "set nobuflisted"],
-        );
+        await fn.win_execute(args.denops, args.previewWinId, "normal! zt");
       },
       previewFloating: true,
       previewFloatingBorder: "none",
