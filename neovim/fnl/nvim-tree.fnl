@@ -85,7 +85,7 @@
                                    :renamed "➜"
                                    :untracked "★"
                                    :deleted ""
-                                   :ignored "◌"}}
+                                   :ignored ""}}
                      icons {:git_placement :before
                             :diagnostics_placement :signcolumn
                             :modified_placement :after

@@ -17,33 +17,33 @@ end
 on_attach = _1_
 local root_dirs = {}
 local sort = {sorter = "name", folders_first = true, files_first = false}
-local view = {cursorline = true, debounce_delay = 50, side = "left", signcolumn = "yes", width = {min = 30, max = -1, padding = 1}, float = {quit_on_focus_loss = true, enable = false}, preserve_window_proportions = false, centralize_selection = false, relativenumber = false, number = false}
+local view = {cursorline = true, debounce_delay = 50, side = "left", signcolumn = "yes", width = {min = 30, max = -1, padding = 1}, float = {quit_on_focus_loss = true, enable = false}, preserve_window_proportions = false, centralize_selection = false, number = false, relativenumber = false}
 local renderer
 do
   local indent_markers = {enable = true, icons = {corner = " ", edge = " ", item = " ", bottom = " ", none = " "}}
   local web_devicons = {file = {enable = true, color = false}, folder = {enable = true, color = false}}
   local show = {file = true, folder = true, folder_arrow = true, git = true, modified = true, bookmarks = true, diagnostics = false}
-  local glyphs = {default = "\239\146\165", symlink = "\239\146\129", modified = "\226\151\143", folder = {arrow_closed = "\239\145\160", arrow_open = "\239\145\188", default = "\238\151\191", open = "\238\151\190", empty = "\239\132\148", empty_open = "\239\132\149", symlink = "\239\146\130", symlink_open = "\239\146\130"}, git = {unstaged = "\226\156\151", staged = "\226\156\147", unmerged = "\238\156\167", renamed = "\226\158\156", untracked = "\226\152\133", deleted = "\239\145\152", ignored = "\226\151\140"}}
+  local glyphs = {default = "\239\146\165", symlink = "\239\146\129", modified = "\226\151\143", folder = {arrow_closed = "\239\145\160", arrow_open = "\239\145\188", default = "\238\151\191", open = "\238\151\190", empty = "\239\132\148", empty_open = "\239\132\149", symlink = "\239\146\130", symlink_open = "\239\146\130"}, git = {unstaged = "\226\156\151", staged = "\226\156\147", unmerged = "\238\156\167", renamed = "\226\158\156", untracked = "\226\152\133", deleted = "\239\145\152", ignored = ""}}
   local icons = {git_placement = "before", diagnostics_placement = "signcolumn", modified_placement = "after", bookmarks_placement = "signcolumn", padding = " ", symlink_arrow = " \226\158\155 ", web_devicons = web_devicons, show = show, glyphs = glyphs}
-  renderer = {group_empty = true, indent_width = 1, special_files = {"README.md", "LICENSE"}, symlink_destination = true, highlight_git = "name", highlight_diagnostics = "name", highlight_opened_files = "none", highlight_modified = "none", highlight_bookmarks = "none", highlight_clipboard = "none", indent_markers = indent_markers, icons = icons, add_trailing = false, full_name = false, root_folder_label = false}
+  renderer = {group_empty = true, indent_width = 1, special_files = {"README.md", "LICENSE"}, symlink_destination = true, highlight_git = "name", highlight_diagnostics = "name", highlight_opened_files = "none", highlight_modified = "none", highlight_bookmarks = "none", highlight_clipboard = "none", indent_markers = indent_markers, icons = icons, root_folder_label = false, add_trailing = false, full_name = false}
 end
 local hijack_directories = {enable = true, auto_open = true}
 local update_focused_file = {enable = true, update_root = false}
 local git = {enable = true, show_on_dirs = true, show_on_open_dirs = true, disable_for_dirs = {}, timeout = 500, cygwin_support = false}
-local diagnostics = {debounce_delay = 100, show_on_open_dirs = true, severity = {min = vim.diagnostic.severity.INFO, max = vim.diagnostic.severity.ERROR}, icons = {hint = "", info = "", warning = "", error = ""}, enable = false, show_on_dirs = false}
+local diagnostics = {debounce_delay = 100, show_on_open_dirs = true, severity = {min = vim.diagnostic.severity.INFO, max = vim.diagnostic.severity.ERROR}, icons = {hint = "", info = "", warning = "", error = ""}, show_on_dirs = false, enable = false}
 local modified = {enable = true, show_on_dirs = true, show_on_open_dirs = true}
 local filters = {custom = {".DS_Store", "^\\.git$"}, exclude = {}, git_ignored = false, git_clean = false, no_buffer = false, dotfiles = false}
 local live_filter = {prefix = "[FILTER]: ", always_show_folders = true}
 local actions
 do
-  local change_dir = {enable = false, global = false, restrict_above_cwd = false}
+  local change_dir = {restrict_above_cwd = false, enable = false, global = false}
   local expand_all = {max_folder_discovery = 300, exclude = {}}
   local file_popup = {open_win_config = {col = 1, row = 1, relative = "cursor", border = "single", style = "minimal"}}
   local open_file = {eject = true, resize_window = true, window_picker = {enable = true, picker = "default", chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890", exclude = {filetype = {"notify", "qf"}, buftype = {"nofile", "terminal", "help"}}}, quit_on_open = false}
   local remove_file = {close_window = true}
   actions = {change_dir = change_dir, expand_all = expand_all, file_popup = file_popup, open_file = open_file, remove_file = remove_file}
 end
-local tab = {sync = {ignore = {}, close = false, open = false}}
+local tab = {sync = {ignore = {}, open = false, close = false}}
 local notify = {threshold = vim.log.levels.INFO, absolute_path = true}
 local help = {sort_by = "key"}
 local ui = {confirm = {remove = true, trash = true, default_yes = false}}
