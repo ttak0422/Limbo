@@ -67,6 +67,19 @@
         "https://repo.maven.apache.org/maven2/org/openjdk/jol/jol-cli/0.16/jol-cli-0.16-full.jar";
       flake = false;
     };
+    # update automatic
+    vim-plugins-overlay-nightly = {
+      url = "github:ttak0422/vim-plugins-overlay";
+      inputs = { nixpkgs.follows = "nixpkgs"; };
+    };
+    neovim-nightly-overlay-nightly = {
+      url = "github:nix-community/neovim-nightly-overlay";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+        flake-compat.follows = "flake-compat";
+      };
+    };
   };
 
   outputs = inputs@{ flake-parts, ... }:
