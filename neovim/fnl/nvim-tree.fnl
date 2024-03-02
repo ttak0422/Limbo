@@ -101,7 +101,7 @@
                   :root_folder_label false
                   :indent_width 1
                   :special_files [:README.md :LICENSE]
-                  :symlink_destination true
+                  :symlink_destination false
                   :highlight_git :name
                   :highlight_diagnostics :name
                   :highlight_opened_files :none
