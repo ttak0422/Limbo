@@ -33,13 +33,38 @@ in with pkgs.vimPlugins; {
     plugins = [
       {
         # Lightweight yet powerful formatter plugin for Neovim
-        plugin = confirm-nvim; # TODO: fix
+        plugin = conform-nvim;
         postConfig = {
           language = "lua";
           code = readFile ./lua/conform.lua;
         };
         extraPackages = with pkgs; [
-        fnlfmt
+          # Dart → dart_format
+          # JSON
+          nodePackages.fixjson
+          # Go → gofmt
+          # Rust
+          rustfmt
+          # Shell
+          shfmt
+          # Lua
+          stylua
+          # TOML
+          taplo
+          # HTML
+          rubyPackages.htmlbeautifier
+          # YAML
+          yamlfmt
+          # Python
+          yapf
+          # Fennel
+          fnlfmt
+          # Java
+          google-java-format
+          # Nix
+          nixfmt
+          # TypeScript
+          # WIP
         ];
       }
       {
