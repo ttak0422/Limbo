@@ -8623,7 +8623,7 @@
     "flake-parts_4": {
       "inputs": {
         "nixpkgs-lib": [
-          "neovim-nightly-overlay-nightly",
+          "neovim-nightly-overlay-latest",
           "hercules-ci-effects",
           "nixpkgs"
         ]
@@ -10410,7 +10410,7 @@
       "inputs": {
         "flake-parts": "flake-parts_4",
         "nixpkgs": [
-          "neovim-nightly-overlay-nightly",
+          "neovim-nightly-overlay-latest",
           "nixpkgs"
         ]
       },
@@ -15063,7 +15063,7 @@
       "inputs": {
         "flake-utils": "flake-utils_3",
         "nixpkgs": [
-          "neovim-nightly-overlay-nightly",
+          "neovim-nightly-overlay-latest",
           "nixpkgs"
         ]
       },
@@ -15111,7 +15111,7 @@
         "type": "github"
       }
     },
-    "neovim-nightly-overlay-nightly": {
+    "neovim-nightly-overlay-latest": {
       "inputs": {
         "flake-compat": [
           "flake-compat"
@@ -20249,7 +20249,7 @@
         "jol": "jol",
         "loaded-nvim": "loaded-nvim",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
-        "neovim-nightly-overlay-nightly": "neovim-nightly-overlay-nightly",
+        "neovim-nightly-overlay-latest": "neovim-nightly-overlay-latest",
         "nix-filter": "nix-filter_2",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
@@ -20257,7 +20257,7 @@
         "systems": "systems_4",
         "tsnip-nvim-src": "tsnip-nvim-src",
         "vim-plugins-overlay": "vim-plugins-overlay",
-        "vim-plugins-overlay-nightly": "vim-plugins-overlay-nightly",
+        "vim-plugins-overlay-latest": "vim-plugins-overlay-latest",
         "vim-plugins-overlay-unstable": "vim-plugins-overlay-unstable"
       }
     },
@@ -24972,7 +24972,7 @@
         "type": "github"
       }
     },
-    "vim-plugins-overlay-nightly": {
+    "vim-plugins-overlay-latest": {
       "inputs": {
         "BufferBrowser": "BufferBrowser_2",
         "ChatGPT-nvim": "ChatGPT-nvim_2",

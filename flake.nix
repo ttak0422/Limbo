@@ -68,11 +68,11 @@
       flake = false;
     };
     # update automatic
-    vim-plugins-overlay-nightly = {
+    vim-plugins-overlay-latest = {
       url = "github:ttak0422/vim-plugins-overlay";
       inputs = { nixpkgs.follows = "nixpkgs"; };
     };
-    neovim-nightly-overlay-nightly = {
+    neovim-nightly-overlay-latest = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs = {
         nixpkgs.follows = "nixpkgs";
