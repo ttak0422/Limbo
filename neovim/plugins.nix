@@ -487,7 +487,7 @@ let
         code = readFile ./lua/dropbar.lua;
       };
       dependPlugins = [ nvim-web-devicons ];
-      dependGroups = [ "telescope" ];
+      dependGroups = [ "telescope" "treesitter" ];
       onModules = [ "dropbar.api" ];
       useTimer = true;
     };

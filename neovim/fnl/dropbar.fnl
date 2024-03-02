@@ -96,6 +96,7 @@
                         (if (= ft :markdown) [sources.path sources.markdown]
                             (if (= buftype :terminal) [sources.terminal]
                                 [sources.path
+                                 sources.treesitter
                                  ; (utils.source.fallback [
                                  ;                        sources.lsp
                                  ;                         sources.treesitter])
