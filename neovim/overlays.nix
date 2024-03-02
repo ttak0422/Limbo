@@ -12,6 +12,7 @@ with inputs; [
         inherit system;
         config.allowUnfree = true;
       };
+      neovim-nightly-latest = neovim-nightly-overlay-latest.packages.${prev.system}.neovim;
       vimPluginsUnstable = vim-plugins-overlay-unstable.packages.${prev.system};
       vimPlugins = prev.vimPlugins // {
         telescope-fzf-native-nvim =
