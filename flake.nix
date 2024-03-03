@@ -16,14 +16,7 @@
       url = "github:LnL7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    neovim-nightly-overlay = {
-      url = "github:nix-community/neovim-nightly-overlay";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-        flake-compat.follows = "flake-compat";
-      };
-    };
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     nvim-jdtls = {
       url =
         "github:mfussenegger/nvim-jdtls?rev=66b5ace68a5d1c45fdfb1afa8d847e87af2aa1f8";
@@ -72,14 +65,8 @@
       url = "github:ttak0422/vim-plugins-overlay";
       inputs = { nixpkgs.follows = "nixpkgs"; };
     };
-    neovim-nightly-overlay-latest = {
-      url = "github:nix-community/neovim-nightly-overlay";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-        flake-compat.follows = "flake-compat";
-      };
-    };
+    neovim-nightly-overlay-latest.url =
+      "github:nix-community/neovim-nightly-overlay";
   };
 
   outputs = inputs@{ flake-parts, ... }:
