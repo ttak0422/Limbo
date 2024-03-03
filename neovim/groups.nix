@@ -14,7 +14,9 @@ in with pkgs.vimPlugins; {
     postConfig = {
       language = "lua";
       code = readFile ./lua/cmdline_hook.lua;
-      args = { cabbrev = ./vim/cabbrev.vim; };
+      args = {
+        viml = ./vim/cmdline-hook.vim;
+        cabbrev = ./vim/cabbrev.vim; };
     };
     onEvents = [ "CmdlineEnter" ];
   };

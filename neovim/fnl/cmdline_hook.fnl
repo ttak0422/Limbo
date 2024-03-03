@@ -30,5 +30,7 @@
                                pattern "//gj %"]
                            (vim.cmd (.. command " " pattern))))
                        {:bang true})
+  ;; vimscriptによる設定
+  (vim.cmd (.. "source " args.viml))
   ;; cabbrevの設定
   (vim.cmd (.. "source " args.cabbrev)))

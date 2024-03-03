@@ -35,4 +35,5 @@ local function _4_(opts0)
   return vim.cmd((command .. " " .. pattern))
 end
 create_user_command("SearchToQf", _4_, {bang = true})
+vim.cmd(("source " .. args.viml))
 return vim.cmd(("source " .. args.cabbrev))

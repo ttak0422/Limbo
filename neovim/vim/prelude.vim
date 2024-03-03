@@ -5,3 +5,4 @@ au WinEnter * checktime
 au FileType * setlocal formatoptions-=ro
 au FileType * if index(['wipe', 'delete'], &bufhidden) >= 0 | set nobuflisted | endif
 set cursorline
+set cmdheight=0
