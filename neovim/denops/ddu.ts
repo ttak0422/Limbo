@@ -28,7 +28,6 @@ export class Config extends BaseConfig {
       displaySourceName: "no",
       floatingBorder: "none",
       split: "floating",
-      winCol: "1",
       winCol: "&columns / 4",
       winWidth: "&columns / 2",
       winRow: "&lines / 3",
