@@ -65,9 +65,9 @@
                            :folder true
                            :folder_arrow true
                            :git true
-                           :modified true
+                           :modified false
                            :diagnostics false
-                           :bookmarks true}
+                           :bookmarks false}
                      glyphs {:default ""
                              :symlink ""
                              :modified "●"
@@ -110,7 +110,7 @@
                   :highlight_clipboard :none
                   : indent_markers
                   : icons})
-      hijack_directories {:enable true :auto_open true}
+      hijack_directories {:enable false :auto_open true}
       update_focused_file {:enable true :update_root false}
       git {:enable true
            :show_on_dirs true
@@ -121,7 +121,7 @@
       diagnostics {:enable false
                    :debounce_delay 100
                    :show_on_dirs false
-                   :show_on_open_dirs true
+                   :show_on_open_dirs false
                    :severity {:min vim.diagnostic.severity.INFO
                               :max vim.diagnostic.severity.ERROR}
                    :icons {:hint "" :info "" :warning "" :error ""}}
