@@ -16,7 +16,8 @@ in with pkgs.vimPlugins; {
       code = readFile ./lua/cmdline_hook.lua;
       args = {
         viml = ./vim/cmdline-hook.vim;
-        cabbrev = ./vim/cabbrev.vim; };
+        cabbrev = ./vim/cabbrev.vim;
+      };
     };
     onEvents = [ "CmdlineEnter" ];
   };
@@ -147,7 +148,7 @@ in with pkgs.vimPlugins; {
   treesitter = {
     name = "treesitter";
     plugins = [
-      nvim-treesitter
+      pkgs.pkgs-unstable.vimPlugins.nvim-treesitter
       nvim-yati
       {
         plugin = vim-matchup;
