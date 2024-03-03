@@ -747,6 +747,10 @@ let
     };
   };
   tool = with pkgs.vimPlugins; {
+    qfreplace = {
+      plugin = vim-qfreplace;
+      onCommands = [ "Qfreplace" ];
+    };
     global-note = {
       plugin = pkgs.vimPluginsUnstable.global-note-nvim;
       postConfig = {

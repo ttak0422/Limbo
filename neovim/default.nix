@@ -18,8 +18,7 @@
         end
       '';
 
-    in
-    {
+    in {
       _module.args.pkgs = import inputs.nixpkgs {
         inherit system;
         overlays = import ./overlays.nix inputs;
@@ -46,7 +45,7 @@
       };
 
       bundler-nvim = {
-        inherit (callPackage ./neovim-ci.nix {}) ci-nightly-latest;
+        inherit (callPackage ./neovim-ci.nix { }) ci-nightly-latest;
         default = {
           inherit extraConfig extraLuaConfig;
           # logLevel = "debug";
@@ -153,6 +152,7 @@
             indent-blankline
             global-note
             denops
+            qfreplace
           ];
           lazyGroups = with groups; [
             oil
