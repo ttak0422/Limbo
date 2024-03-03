@@ -124,7 +124,6 @@
             spectre
             startuptime
             statuscol
-            surround
             tabout
             tint
             todo-comments

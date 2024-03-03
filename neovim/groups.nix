@@ -65,6 +65,7 @@ in with pkgs.vimPlugins; {
           # TypeScript
           # WIP
         ];
+        onCommands = [ "Format" ];
       }
       {
         # An asynchronous linter plugin for Neovim complementary to the built-in Language Server Protocol support.
@@ -100,6 +101,14 @@ in with pkgs.vimPlugins; {
         postConfig = {
           language = "lua";
           code = readFile ./lua/reactive.lua;
+        };
+      }
+      {
+        # Add/change/delete surrounding delimiter pairs with ease.
+        plugin = nvim-surround;
+        postConfig = {
+          language = "lua";
+          code = readFile ./lua/surround.lua;
         };
       }
     ];
