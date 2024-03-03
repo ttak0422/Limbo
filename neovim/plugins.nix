@@ -475,6 +475,9 @@ let
       postConfig = {
         language = "lua";
         code = readFile ./lua/winsep.lua;
+        args = {
+          exclude_ft_path = ./lua/exclude_ft.lua;
+        };
       };
     };
     dropbar = {
