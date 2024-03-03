@@ -26,7 +26,7 @@ export class Config extends BaseConfig {
       },
       autoResize: false,
       displaySourceName: "no",
-      floatingBorder: "none",
+      floatingBorder: ["┏", "━", "┓", "┃", "┛", "━", "┗", "┃"],
       split: "floating",
       winCol: "&columns / 4",
       winWidth: "&columns / 2",
