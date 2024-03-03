@@ -4,6 +4,7 @@
 
 (vim.diagnostic.config {:severity_sort true})
 (vim.lsp.set_log_level :WARN)
+(tset vim.lsp.handlers "textDocument/hover" (vim.lsp.with vim.lsp.handlers.hover { :border :single }))
 
 (let [signs [{:name :DiagnosticSignError :text ""}
              {:name :DiagnosticSignWarn :text ""}

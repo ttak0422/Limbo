@@ -3,6 +3,7 @@ local on_attach = dofile(args.on_attach_path)
 local capabilities = dofile(args.capabilities_path)
 vim.diagnostic.config({severity_sort = true})
 vim.lsp.set_log_level("WARN")
+do end (vim.lsp.handlers)["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {border = "single"})
 do
   local signs = {{name = "DiagnosticSignError", text = "\239\129\151"}, {name = "DiagnosticSignWarn", text = "\239\129\177"}, {name = "DiagnosticSignInfo", text = "\239\129\154"}, {name = "DiagnosticSignHint", text = "\239\129\153"}}
   for _, sign in ipairs(signs) do
