@@ -93,7 +93,7 @@ in with pkgs.vimPlugins; {
         };
       }
       {
-        plugin = pkgs.vimPluginsUnstable.reactive-nvim;
+        plugin = reactive-nvim;
         # plugin = pkgs.vimPluginsUnstable.reactive-nvim.overrideAttrs (drv: {
         #   version = "patched";
         #   postInstall = ''
@@ -125,7 +125,7 @@ in with pkgs.vimPlugins; {
     name = "oil";
     plugins = [
       {
-        plugin = pkgs.vimPluginsUnstable.oil-nvim;
+        plugin = oil-nvim;
         postConfig = {
           language = "lua";
           code = readFile ./lua/oil.lua;
@@ -133,14 +133,14 @@ in with pkgs.vimPlugins; {
         dependPlugins = [ nvim-web-devicons ];
       }
       {
-        plugin = pkgs.vimPluginsUnstable.oil-vcs-status;
+        plugin = oil-vcs-status;
         postConfig = {
           language = "lua";
           code = readFile ./lua/oil-vcs-status.lua;
         };
         # WIP
         onCommands = [ "Oil" ];
-        dependPlugins = [ pkgs.vimPluginsUnstable.oil-nvim ];
+        dependPlugins = [ oil-nvim ];
       }
     ];
     # onCommands = [ "Oil" ];

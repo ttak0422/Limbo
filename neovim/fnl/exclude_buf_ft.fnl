@@ -1,1 +1,1 @@
-[:terminal]
+[:terminal :quickfix :nofile :help]

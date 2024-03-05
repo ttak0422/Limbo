@@ -659,8 +659,15 @@ let
   };
   helper = with pkgs.vimPlugins; {
     lastplace = {
-      plugin = pkgs.vimPluginsUnstable.nvim-lastplace;
-      preConfig = readFile ./lua/lastplace-pre.lua;
+      plugin = nvim-lastplace;
+      preConfig = {
+        language = "lua";
+        code = readFile ./lua/lastplace-pre.lua;
+        args = {
+          exclude_ft_path = ./lua/exclude_ft.lua;
+          exclude_buf_ft_path = ./lua/exclude_buf_ft.lua;
+        };
+      };
       onCommands = [ "BufNew" "BufAdd" ];
     };
     direnv = {
@@ -755,7 +762,7 @@ let
       onCommands = [ "Qfreplace" ];
     };
     global-note = {
-      plugin = pkgs.vimPluginsUnstable.global-note-nvim;
+      plugin = global-note-nvim;
       postConfig = {
         language = "lua";
         code = readFile ./lua/global-note.lua;
@@ -763,7 +770,7 @@ let
       onCommands = [ "GlobalNote" "ProjectNote" ];
     };
     dotfyle = {
-      plugin = pkgs.vimPluginsUnstable.dotfyle-metadata-nvim;
+      plugin = dotfyle-metadata-nvim;
       onCommands = [ "DotfyleGenerate" ];
     };
     sqlite = {
@@ -829,7 +836,7 @@ let
       onModules = [ "window-picker" ];
     };
     nvim-tree = {
-      plugin = nvim-tree-lua;
+      plugin = pkgs.vimPluginsUnstable.nvim-tree-lua;
       postConfig = {
         language = "lua";
         code = readFile ./lua/nvim-tree.lua;
