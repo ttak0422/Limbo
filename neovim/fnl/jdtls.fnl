@@ -81,7 +81,7 @@
                                   :androidSupport enabled}}
                        :maven {:downloadSources true :updateSnapshots true}
                        ; default is 1
-                       :maxConcurrentBuilds 2
+                       :maxConcurrentBuilds 8
                        :project {; "ignore" | "warning" | "setDefault", default is "ignore"
                                  :encoding :ignore
                                  :referencedLibraries [:lib/**/*.jar]}
