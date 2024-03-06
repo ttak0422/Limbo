@@ -27,7 +27,7 @@
       disabled {:enabled false}
       settings {;; https://github.com/eclipse/eclipse.jdt.ls/blob/master/org.eclipse.jdt.ls.core/src/org/eclipse/jdt/ls/core/internal/preferences/Preferences.java
                 ;; https://github.com/redhat-developer/vscode-java/blob/master/package.json
-                :java {:autobuild enabled
+                :java {:autobuild disabled
                        :completion {:enabled true
                                     :postfix enabled
                                     :chain enabled
