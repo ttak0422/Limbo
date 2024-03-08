@@ -10,9 +10,17 @@ local function _1_()
     vim.keymap.set("t", "<Esc>", "<Esc>", {buffer = true})
     vim.cmd.startinsert()
     local function _2_()
+      local buf_id = vim.api.nvim_get_current_buf()
+      local function _3_()
+        return vim.cmd(("bd! " .. buf_id))
+      end
+      return {buffer = buf_id, callback = _3_}
+    end
+    vim.api.nvim_create_autocmd({"BufLeave"}, _2_())
+    local function _4_()
       return vim.api.nvim_feedkeys("i", "n", false)
     end
-    return vim.api.nvim_create_autocmd({"TermClose"}, {buffer = vim.api.nvim_get_current_buf(), callback = _2_})
+    return vim.api.nvim_create_autocmd({"TermClose"}, {buffer = vim.api.nvim_get_current_buf(), callback = _4_})
   else
     return nil
   end

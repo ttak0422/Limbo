@@ -11,6 +11,12 @@
                                             (vim.keymap.set :t :<Esc> :<Esc>
                                                             {:buffer true})
                                             (vim.cmd.startinsert)
+                                            (vim.api.nvim_create_autocmd [:BufLeave]
+                                                                         (let [buf_id (vim.api.nvim_get_current_buf)]
+                                                                           {:buffer buf_id
+                                                                            :callback (fn []
+                                                                                        (vim.cmd (.. "bd! "
+                                                                                                     buf_id)))}))
                                             (vim.api.nvim_create_autocmd [:TermClose]
                                                                          {:buffer (vim.api.nvim_get_current_buf)
                                                                           :callback (fn []
