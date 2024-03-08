@@ -8,4 +8,4 @@
       ;                                                                :filetype)]
       ;                      (if (= filetype :NvimTree) (M.NvimSeparatorDel)))))
       ]
-  (M.setup {: symbols : no_exec_files}))
+  (M.setup {:smooth false : symbols : no_exec_files}))
