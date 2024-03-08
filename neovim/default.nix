@@ -153,6 +153,7 @@
             global-note
             denops
             qfreplace
+            undotree
           ];
           lazyGroups = with groups; [
             oil

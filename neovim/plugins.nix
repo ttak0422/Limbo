@@ -757,6 +757,11 @@ let
     };
   };
   tool = with pkgs.vimPlugins; {
+    undotree = {
+      plugin = undotree;
+      onCommands = [ "UndotreeToggle" ];
+      preConfig = readFile ./vim/undotree-pre.vim;
+    };
     qfreplace = {
       plugin = vim-qfreplace;
       onCommands = [ "Qfreplace" ];
