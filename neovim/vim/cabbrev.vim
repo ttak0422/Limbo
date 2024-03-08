@@ -1,1 +1,1 @@
-cabbrev <expr> r getcmdtype() .. getcmdline() ==# ':r' ? [getchar(), ''][1] .. "%s//g<Left><Left>" : 'r'
+cabbrev <expr> r getcmdtype() .. getcmdline() ==# ':r' ? [getchar(), ''][1] .. "%s/" : 'r'
