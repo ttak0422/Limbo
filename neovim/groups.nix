@@ -121,6 +121,15 @@ in with pkgs.vimPlugins; {
     };
     onEvents = [ "InsertEnter" "CursorMoved" ];
   };
+  myTig = {
+    name = "myTig";
+    postConfig = {
+      language = "lua";
+      code = readFile ./lua/my-tig.lua;
+    };
+    # onCommands = [ "TigTermToggle" ];
+    useTimer = true;
+  };
   oil = {
     name = "oil";
     plugins = [
@@ -172,8 +181,7 @@ in with pkgs.vimPlugins; {
         buildCommand = ''
           mkdir -p $out/parser
           echo "${
-            concatStringsSep ","
-            nvim-treesitter.withAllGrammars.dependencies
+            concatStringsSep "," nvim-treesitter.withAllGrammars.dependencies
           }" \
             | tr ',' '\n' \
             | xargs -I {} find {} -not -type d \

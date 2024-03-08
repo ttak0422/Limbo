@@ -40,18 +40,8 @@ local function _3_()
   return _4_
 end
 toggle_term = _3_()
-local toggle_tig
-local function _8_()
-  local tig = Terminal:new({cmd = "tig", dir = "git_dir", direction = "float"})
-  local function _9_()
-    return tig:toggle()
-  end
-  return _9_
-end
-toggle_tig = _8_()
 M.setup({size = size, start_in_insert = true, winbar = {enabled = true}, shade_terminals = false, auto_scroll = false})
-local function _10_(opts)
+local function _8_(opts)
   return toggle_term(opts.args)
 end
-create_cmd("TermToggle", _10_, {nargs = 1})
-return create_cmd("TigTermToggle", toggle_tig, {})
+return create_cmd("TermToggle", _8_, {nargs = 1})

@@ -11,8 +11,8 @@
                          (let [term (if (. terms idx) (. terms idx)
                                         (do
                                           (tset terms idx
-                                               (: Terminal :new
-                                                  {:direction :float}))
+                                                (: Terminal :new
+                                                   {:direction :float}))
                                           (. terms idx)))
                                is_open (: term :is_open)
                                is_focused (: term :is_focused)]
@@ -27,15 +27,10 @@
                                ;; open
                                (do
                                  (: term :toggle)
-                                 (vim.cmd :startinsert))))))))
-      toggle_tig ((fn []
-                    (let [tig (: Terminal :new
-                                 {:cmd :tig :dir :git_dir :direction :float})]
-                      (fn [] (: tig :toggle)))))]
+                                 (vim.cmd :startinsert))))))))]
   (M.setup {: size
             :shade_terminals false
             :auto_scroll false
             :start_in_insert true
             :winbar {:enabled true}})
-  (create_cmd :TermToggle (fn [opts] (toggle_term opts.args)) {:nargs 1})
-  (create_cmd :TigTermToggle toggle_tig {}))
+  (create_cmd :TermToggle (fn [opts] (toggle_term opts.args)) {:nargs 1}))

@@ -810,7 +810,7 @@ let
         language = "lua";
         code = readFile ./lua/toggleterm.lua;
       };
-      onCommands = [ "ToggleTerm" "TigToggleTerm" "TermToggle" ];
+      onCommands = [ "ToggleTerm" "TermToggle" ];
     };
     vimdoc-ja = {
       # A project which translate Vim documents into Japanese.
