@@ -148,7 +148,7 @@ in with pkgs.vimPlugins; {
   treesitter = {
     name = "treesitter";
     plugins = [
-      pkgs.pkgs-unstable.vimPlugins.nvim-treesitter
+      nvim-treesitter
       nvim-yati
       {
         plugin = vim-matchup;
@@ -173,7 +173,7 @@ in with pkgs.vimPlugins; {
           mkdir -p $out/parser
           echo "${
             concatStringsSep ","
-            pkgs.pkgs-unstable.vimPlugins.nvim-treesitter.withAllGrammars.dependencies
+            nvim-treesitter.withAllGrammars.dependencies
           }" \
             | tr ',' '\n' \
             | xargs -I {} find {} -not -type d \
@@ -185,7 +185,7 @@ in with pkgs.vimPlugins; {
       code = readFile ./lua/treesitter.lua;
       args = { inherit parser; };
     };
-    extraPackages = [ pkgs.pkgs-unstable.tree-sitter ];
+    extraPackages = with pkgs; [ tree-sitter ];
     useTimer = true;
   };
   skk = {
