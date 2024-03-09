@@ -1,6 +1,7 @@
 (let [Hydra (require :hydra)
       KeymapUtil (require :hydra.keymap-util)
-      Cmd KeymapUtil.cmd]
+      Cmd KeymapUtil.cmd
+      float_opts {:border ["┏" "━" "┓" "┃" "┛" "━" "┗" "┃"]}]
   ;; default configuration
   (Hydra.setup {:debug false
                 :exit false
@@ -68,20 +69,37 @@
                ;;[:<CR> nil {:desc false :exit true}]
                ]
         config {:invoke_on_body true
-                :hint {:type :window
-                       :position :middle
-                       :float_opts {:border ["┏"
-                                             "━"
-                                             "┓"
-                                             "┃"
-                                             "┛"
-                                             "━"
-                                             "┗"
-                                             "┃"]}}}
+                ; :on_exit (fn []
+                ;            (vim.schedule (fn []
+                ;                            (vim.cmd :redrawstatus))))
+                :hint {:type :window :position :middle : float_opts}}
         hint ":Move                 :Swap     :Utils
 --------------------  -------   ------------------------
    _k_       _<C-k>_         _K_       _e_: start resize mode
  _h_   _l_  _<C-h>_ _<C-l>_    _H_   _L_     _<CR>_ open popup window
    _j_       _<C-j>_         _J_
 "]
-    (Hydra {:name :Windows :mode :n :body :<C-w> : heads : config : hint})))
+    (Hydra {:name :Windows :mode :n :body :<C-w> : heads : config : hint}))
+  ;; venn
+  (let [heads [[:H "<C-v>h:VBox<CR>"]
+               [:J "<C-v>j:VBox<CR>"]
+               [:K "<C-v>k:VBox<CR>"]
+               [:L "<C-v>l:VBox<CR>"]
+               [:f ":VBox<CR>" {:mode :v}]
+               [:<Esc> nil {:desc :close :exit true}]]
+        config {:invoke_on_body true
+                :color :pink
+                :on_enter (fn [] (vim.cmd "setlocal ve=all"))
+                :on_exit (fn [] (vim.cmd "setlocal ve="))
+                :hint {:type :window :position :bottom-right : float_opts}}
+        hint ":Move    Select region with <C-v>
+-------  -------------------------
+   _K_
+ _H_   _L_   _f_: surround it with box
+   _J_"]
+    (Hydra {:name "Draw Diagram"
+            :mode :n
+            :body :<Leader>V
+            : heads
+            : config
+            : hint})))

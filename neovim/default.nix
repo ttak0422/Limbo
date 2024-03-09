@@ -155,6 +155,7 @@
             denops
             qfreplace
             undotree
+            venn
           ];
           lazyGroups = with groups; [
             bufferHook

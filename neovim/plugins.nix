@@ -755,6 +755,10 @@ let
     };
   };
   tool = with pkgs.vimPlugins; {
+    venn = {
+      plugin = venn-nvim;
+      onCommands = [ "VBox" ];
+    };
     undotree = {
       plugin = undotree;
       onCommands = [ "UndotreeToggle" ];
