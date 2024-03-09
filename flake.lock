@@ -12405,6 +12405,22 @@
     "lir-nvim": {
       "flake": false,
       "locked": {
+        "lastModified": 1709994097,
+        "narHash": "sha256-qDm399GLsD5lqZd08vcOpCp9JqP+5dYSbQsUHqb++54=",
+        "owner": "ttak0422",
+        "repo": "lir.nvim",
+        "rev": "8a8b34c239767d26d49d68d0a2244c107399bb3a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ttak0422",
+        "repo": "lir.nvim",
+        "type": "github"
+      }
+    },
+    "lir-nvim_2": {
+      "flake": false,
+      "locked": {
         "lastModified": 1689169554,
         "narHash": "sha256-+ORY3w9e+rY9wvzuu1w5iiO1mUr7ADoB6CRnJ1bUNec=",
         "owner": "tamago324",
@@ -15589,11 +15605,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1705641746,
-        "narHash": "sha256-D6c2aH8HQbWc7ZWSV0BUpFpd94ImFyCP8jFIsKQ4Slg=",
+        "lastModified": 1709884566,
+        "narHash": "sha256-NSYJg2sfdO/XS3L8XN/59Zhzn0dqWm7XtVnKI2mHq3w=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "d2003f2223cbb8cd95134e4a0541beea215c1073",
+        "rev": "2be119add7b37dc535da2dd4cba68e2cf8d1517e",
         "type": "github"
       },
       "original": {
@@ -20629,6 +20645,7 @@
         "flake-parts": "flake-parts_2",
         "flake-utils": "flake-utils",
         "jol": "jol",
+        "lir-nvim": "lir-nvim",
         "loaded-nvim": "loaded-nvim",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "neovim-nightly-overlay-latest": "neovim-nightly-overlay-latest",
@@ -26231,7 +26248,7 @@
         "lexima-vim": "lexima-vim_3",
         "linediff-vim": "linediff-vim_3",
         "lir-git-status-nvim": "lir-git-status-nvim",
-        "lir-nvim": "lir-nvim",
+        "lir-nvim": "lir-nvim_2",
         "lsp-colors-nvim": "lsp-colors-nvim_3",
         "lsp-inlayhints-nvim": "lsp-inlayhints-nvim_3",
         "lsp-lens-nvim": "lsp-lens-nvim_3",

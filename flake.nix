@@ -2,6 +2,10 @@
   description = "dotfiles v4";
 
   inputs = {
+    lir-nvim = {
+      url = "github:ttak0422/lir.nvim";
+      flake = false;
+    };
     systems.url = "github:nix-systems/default";
     flake-parts.url = "github:hercules-ci/flake-parts";
     flake-utils.url = "github:numtide/flake-utils";

@@ -13,14 +13,14 @@
                 :r actions.rename
                 :d actions.delete}
       float {:winblend 0
-             :curdir_window {:enable false :highlight_dirname false}
+             :curdir_window {:enable true :highlight_dirname true}
              :win_opts (fn []
                          (let [width (math.floor (/ vim.o.columns 2))
                                height (math.floor (/ vim.o.lines 2))]
-                           {: width
+                           {:relative :editor
+                            : width
                             : height
-                            ; :row 10
-                            ; :col (math.floor (/ (- vim.o.columns width) 2))
+                            :style :minimal
                             :border ["┏"
                                      "━"
                                      "┓"
