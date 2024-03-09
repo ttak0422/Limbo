@@ -142,7 +142,7 @@
             waitevent
             which-key
             window-picker
-            winsep
+            # winsep
             winshift
             hydra
             stickybuf
