@@ -12386,6 +12386,22 @@
         "type": "github"
       }
     },
+    "lir-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1689169554,
+        "narHash": "sha256-+ORY3w9e+rY9wvzuu1w5iiO1mUr7ADoB6CRnJ1bUNec=",
+        "owner": "tamago324",
+        "repo": "lir.nvim",
+        "rev": "969e95bd07ec315b5efc53af69c881278c2b74fa",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tamago324",
+        "repo": "lir.nvim",
+        "type": "github"
+      }
+    },
     "loaded-nvim": {
       "inputs": {
         "flake-parts": [
@@ -26198,6 +26214,7 @@
         "legendary-nvim": "legendary-nvim_3",
         "lexima-vim": "lexima-vim_3",
         "linediff-vim": "linediff-vim_3",
+        "lir-nvim": "lir-nvim",
         "lsp-colors-nvim": "lsp-colors-nvim_3",
         "lsp-inlayhints-nvim": "lsp-inlayhints-nvim_3",
         "lsp-lens-nvim": "lsp-lens-nvim_3",
@@ -26492,11 +26509,11 @@
         "zoomwintab-vim": "zoomwintab-vim_3"
       },
       "locked": {
-        "lastModified": 1709956619,
-        "narHash": "sha256-oyjn591b6J5Le0ypnXnKj5ymvMrtxDaRIfXKmy+Q3mM=",
+        "lastModified": 1709969429,
+        "narHash": "sha256-RFVM/yjd8lNaH4rKjZ13fexyORjbKt4Svm71hzknf1o=",
         "owner": "ttak0422",
         "repo": "vim-plugins-overlay",
-        "rev": "7b667e89d4ac8319d88b412e157255dbc2a8b8e0",
+        "rev": "fb70edf5406258037d160bce10492b3030de8709",
         "type": "github"
       },
       "original": {
