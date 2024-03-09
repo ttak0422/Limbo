@@ -8,7 +8,7 @@
             :default_mappings false
             :resizing_mappings false
             :focus_on_open true
-            :dismiss_on_move true
+            :dismiss_on_move false
             :debug false
             :opacity nil
             : border

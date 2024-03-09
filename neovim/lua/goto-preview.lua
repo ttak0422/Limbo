@@ -7,4 +7,4 @@ local function _1_(_, win)
 end
 post_open_hook = _1_
 local post_close_hook = nil
-return M.setup({height = 20, width = 120, focus_on_open = true, dismiss_on_move = true, opacity = nil, border = border, post_open_hook = post_open_hook, post_close_hook = post_close_hook, resizing_mappings = false, default_mappings = false, debug = false})
+return M.setup({height = 20, width = 120, focus_on_open = true, opacity = nil, border = border, post_open_hook = post_open_hook, post_close_hook = post_close_hook, dismiss_on_move = false, default_mappings = false, resizing_mappings = false, debug = false})
