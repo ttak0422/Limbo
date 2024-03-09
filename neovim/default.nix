@@ -156,20 +156,21 @@
             undotree
           ];
           lazyGroups = with groups; [
-            oil
+            bufferHook
+            cmdlineHook
             dap
             ddc
             ddu
+            editHook
             fzf
+            lir
             lsp
+            myTig
             neotest
+            oil
             skk
             telescope
             treesitter
-            cmdlineHook
-            bufferHook
-            editHook
-            myTig
           ];
           after.ftplugin = with ftplugins; {
             inherit ddu-ff ddu-ff-filter qf gina-blame rust;

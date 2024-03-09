@@ -3,6 +3,29 @@ let
   inherit (builtins) readFile;
   inherit (lib.strings) concatStringsSep;
 in with pkgs.vimPlugins; {
+  lir = {
+    name = "lir";
+    plugins = [
+      {
+        plugin = pkgs.vimPluginsUnstable.lir-nvim;
+        postConfig = {
+          language = "lua";
+          code = readFile ./lua/lir.lua;
+        };
+        dependPlugins = [ plenary-nvim nvim-web-devicons ];
+      }
+      {
+        plugin = pkgs.vimPluginsUnstable.lir-git-status-nvim;
+        postConfig = {
+          language = "lua";
+          code = readFile ./lua/lir-git-status.lua;
+        };
+        dependPlugins = [ plenary-nvim pkgs.vimPluginsUnstable.lir-nvim ];
+        # TODO: fix bundler.nvim
+        onModules = [ "lir.float" ];
+      }
+    ];
+  };
   fzf = {
     name = "fzf";
     preConfig = ''

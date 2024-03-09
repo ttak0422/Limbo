@@ -37,7 +37,8 @@
           ;  (d "toggle split/join rec")]
           ;; toggle
           [:gb (cmd :NvimTreeFocus)]
-          [:<leader>tb (cmd :NvimTreeToggle)]
+          ;; [:<leader>tb (cmd :NvimTreeToggle)]
+          [:<leader>tb (lua_cmd "require('lir.float').toggle()")]
           [:<leader>tB (cmd :Oil)]
           ; [:<leader>tB (cmd "Neotree toggle")]
           [:<leader>to (cmd :SidebarNvimToggle)]
