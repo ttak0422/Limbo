@@ -840,6 +840,14 @@ let
       };
       onModules = [ "window-picker" ];
     };
+    nnn = {
+      plugin = pkgs.vimPluginsUnstable.nnn-nvim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/nnn.lua;
+      };
+      extraPackages = with pkgs; [ nnn ];
+    };
     nvim-tree = {
       plugin = pkgs.vimPluginsUnstable.nvim-tree-lua;
       postConfig = {
