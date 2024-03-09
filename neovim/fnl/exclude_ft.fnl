@@ -24,4 +24,5 @@
  :qf
  :quickfix
  :registers
- :toggleterm]
+ :toggleterm
+ :lir]
