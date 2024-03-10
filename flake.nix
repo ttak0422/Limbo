@@ -20,7 +20,8 @@
       url = "github:LnL7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    neovim-nightly-overlay.url = "github:ttak0422/neovim-treesitter-overlay";
     nvim-jdtls = {
       url =
         "github:mfussenegger/nvim-jdtls?rev=66b5ace68a5d1c45fdfb1afa8d847e87af2aa1f8";

@@ -1,7 +1,7 @@
 inputs:
 with inputs; [
-  neovim-nightly-overlay.overlay
   vim-plugins-overlay.overlay
+  neovim-nightly-overlay.overlay
   nix-filter.overlays.default
   (final: prev:
     let
