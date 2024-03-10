@@ -10,6 +10,7 @@
                 :<CR> actions.edit
                 :h actions.up
                 :q actions.quit
+                :<C-c> actions.quit
                 :a actions.newfile
                 :r actions.rename
                 :d actions.delete}
