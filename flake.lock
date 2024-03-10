@@ -15413,14 +15413,17 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1710071870,
-        "narHash": "sha256-bx+ICS/FfWXth671Zbl4cm9QFyUsfpd6TDfUhgWIwqE=",
-        "path": "/Users/ttak0422/ghq/github.com/ttak0422/neovim-treesitter-overlay",
-        "type": "path"
+        "lastModified": 1710077976,
+        "narHash": "sha256-Uw5nuwYim/cItLz+epe5pW8A4rXboPzFrP0v33D4nM4=",
+        "owner": "ttak0422",
+        "repo": "neovim-treesitter-overlay",
+        "rev": "f00ecaf21816457d2faaf046f23d3c79c26a1eca",
+        "type": "github"
       },
       "original": {
-        "path": "/Users/ttak0422/ghq/github.com/ttak0422/neovim-treesitter-overlay",
-        "type": "path"
+        "owner": "ttak0422",
+        "repo": "neovim-treesitter-overlay",
+        "type": "github"
       }
     },
     "neovim-nightly-overlay-latest": {
