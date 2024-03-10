@@ -13,8 +13,5 @@ local function _1_(lang, buf)
   end
 end
 highlight = {enable = true, disable = _1_, additional_vim_regex_highlighting = false}
-local yati = {enable = true, default_lazy = true, default_fallback = "auto"}
 local indent = {enable = false}
-local matchup = {enable = true}
-local textobjects = {select = {enable = true, loopable = true, keymaps = {af = {query = "@function.outer", desc = "outer part of function"}, ["if"] = {query = "@function.inner", desc = "inner part of function"}, ac = {query = "@class.outer", desc = "outer part of class"}, ic = {query = "@class.inner", desc = "inner partof class"}}}, move = {enable = true, set_jumps = true, goto_next_start = {["]f"] = {query = "@function.outer", desc = "next function (start)"}, ["]z"] = {query = "@fold", desc = "next fold (start)"}}, goto_next_end = {["]F"] = {query = "@function.outer", desc = "next function (end)"}}, goto_previous_start = {["[f"] = {query = "@function.outer", desc = "prev function (start)"}, ["[z"] = {query = "@fold", desc = "prev fold (start)"}}, goto_previous_end = {["[F"] = {query = "@function.outer", desc = "prev function (end)"}}}}
-return config.setup({ignore_install = {}, parser_install_dir = parser_install_dir, highlight = highlight, yati = yati, indent = indent, matchup = matchup, textobjects = textobjects, sync_install = false, auto_install = false})
+return config.setup({ignore_install = {}, parser_install_dir = parser_install_dir, highlight = highlight, indent = indent, sync_install = false, auto_install = false})

@@ -181,22 +181,22 @@ in with pkgs.vimPlugins; {
     name = "treesitter";
     plugins = [
       nvim-treesitter
-      nvim-yati
-      {
-        plugin = vim-matchup;
-        preConfig = {
-          language = "lua";
-          code = readFile ./lua/vim-matchup-pre.lua;
-        };
-      }
-      nvim-treesitter-textobjects
-      {
-        plugin = rainbow-delimiters-nvim;
-        postConfig = {
-          language = "lua";
-          code = readFile ./lua/rainbow-delimiters.lua;
-        };
-      }
+      # nvim-yati
+      # {
+      #   plugin = vim-matchup;
+      #   preConfig = {
+      #     language = "lua";
+      #     code = readFile ./lua/vim-matchup-pre.lua;
+      #   };
+      # }
+      # nvim-treesitter-textobjects
+      # {
+      #   plugin = rainbow-delimiters-nvim;
+      #   postConfig = {
+      #     language = "lua";
+      #     code = readFile ./lua/rainbow-delimiters.lua;
+      #   };
+      # }
     ];
     postConfig = let
       parser = pkgs.stdenv.mkDerivation {
@@ -216,7 +216,7 @@ in with pkgs.vimPlugins; {
       code = readFile ./lua/treesitter.lua;
       args = { inherit parser; };
     };
-    extraPackages = with pkgs; [ tree-sitter ];
+    # extraPackages = with pkgs; [ tree-sitter ];
     useTimer = true;
   };
   skk = {
