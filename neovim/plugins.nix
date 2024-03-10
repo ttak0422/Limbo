@@ -259,6 +259,16 @@ let
     };
   };
   git = with pkgs.vimPlugins; {
+    neogit = {
+      plugin = neogit;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/neogit.lua;
+      };
+      dependPlugins = [ plenary-nvim diffview-nvim ];
+      dependGroups = [ "telescope" ];
+      onCommands = [ "Neogit" ];
+    };
     git-conflict = {
       plugin = git-conflict-nvim;
       postConfig = {

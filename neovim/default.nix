@@ -156,6 +156,7 @@
             qfreplace
             undotree
             venn
+            neogit
           ];
           lazyGroups = with groups; [
             bufferHook
