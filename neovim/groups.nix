@@ -21,10 +21,10 @@ in with pkgs.vimPlugins; {
           code = readFile ./lua/lir-git-status.lua;
         };
         dependPlugins = [ plenary-nvim pkgs.vimPluginsUnstable.lir-nvim ];
-        # TODO: fix bundler.nvim
-        onModules = [ "lir.float" ];
       }
     ];
+    onModules = [ "lir.float" ];
+    onEvents = [ "CmdlineEnter" ];
   };
   fzf = {
     name = "fzf";
