@@ -2,8 +2,6 @@
       provider_selector (fn [bufnr filetype buftype] [:treesitter :indent])
       map vim.keymap.set
       opts {:foldcolumn :1
-            :foldlevel 99
-            :foldlevelstart 99
             :foldenable true
             :fillchars "eob: ,fold: ,foldopen:,foldsep: ,foldclose:"}
       opt {:noremap true :silent true}]

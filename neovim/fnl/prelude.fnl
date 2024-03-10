@@ -7,7 +7,9 @@
             ;; signcolumnを起動時に非表示
             :signcolumn :no
             ;; tablineを起動時に非表示
-            :showtabline 0}
+            :showtabline 0
+            :foldlevel 99
+            :foldlevelstart 99}
       ; disable_plugins [;; https://qiita.com/yasunori-kirin0418/items/4672919be73a524afb47
       ;                  ;; DisableTOhtml.
       ;                  :loaded_2html_plugin
