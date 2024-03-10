@@ -25,4 +25,6 @@
  :quickfix
  :registers
  :toggleterm
- :lir]
+ :lir
+ :oil
+ ]

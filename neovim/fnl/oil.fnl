@@ -73,6 +73,7 @@
             : win_options
             : keymaps
             : keymaps_help
+            : view_options
             : float
             : preview
             : progress

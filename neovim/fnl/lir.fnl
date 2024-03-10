@@ -6,6 +6,7 @@
       devicons {:enable true :highlight_dirname true}
       mappings {:e actions.edit
                 :l actions.edit
+                :o actions.edit
                 :<CR> actions.edit
                 :h actions.up
                 :q actions.quit
