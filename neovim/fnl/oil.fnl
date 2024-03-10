@@ -1,5 +1,6 @@
 (let [M (require :oil)
       columns [:icon]
+      border ["┏" "━" "┓" "┃" "┛" "━" "┗" "┃"]
       buf_options {:buflisted false :bufhidden :hide}
       win_options {:wrap false
                    :signcolumn :number
@@ -16,6 +17,7 @@
                ; :<C-h> :actions.select_split
                ; :<C-t> :actions.select_tab
                ; :<C-p> :actions.preview
+               :q :actions.close
                :<C-c> :actions.close
                :R :actions.refresh
                :h :actions.parent
@@ -28,16 +30,16 @@
                ; :g. :actions.toggle_hidden
                ; "g\\" :actions.toggle_trash
                }
-      keymaps_help {:border :rounded}
+      keymaps_help {: border}
       view_options {:show_hidden true
                     :is_hidden_file (fn [name bufnr]
                                       (vim.startswith name "."))
                     :is_always_hidden (fn [name bufnr] false)
                     :sort [[:type :asc] [:name :asc]]}
       float {:padding 2
-             :max_width 0
-             :max_height 0
-             :border :single
+             :max_width 90
+             :max_height 45
+             : border
              :win_options {:winblend 0}
              :override (fn [conf])}
       preview {:max_width 0.9
@@ -46,7 +48,7 @@
                :max_height 0.9
                :min_height [5 0.1]
                :height nil
-               :border :single
+               : border
                :win_options {:winblend 0}
                :update_on_cursor_moved true}
       progress {:max_width 0.9
@@ -55,19 +57,20 @@
                 :max_height [10 0.9]
                 :min_height [5 0.1]
                 :height nil
-                :border :single
+                : border
                 :minimized_border :none
                 :win_options {:winblend 0}}
-      ssh {:border :single}]
+      ssh {:border :single}
+      lsp_file_methods {:timeout_ms 1000 :autosave_changes false}]
   (M.setup {:default_file_explorer false
             :delete_to_trash true
             :skip_confirm_for_simple_edits false
             :prompt_save_on_select_new_entry true
             :cleanup_delay_ms 2000
-            :lsp_rename_autosave false
             :constrain_cursor :editable
             :experimental_watch_for_changes false
             :use_default_keymaps false
+            : lsp_file_methods
             : columns
             : buf_options
             : win_options

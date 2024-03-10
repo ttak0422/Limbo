@@ -171,10 +171,11 @@ in with pkgs.vimPlugins; {
           code = readFile ./lua/oil-vcs-status.lua;
         };
         # WIP
-        onCommands = [ "Oil" ];
+        # onCommands = [ "Oil" ];
         dependPlugins = [ oil-nvim ];
       }
     ];
+    onModules = [ "oil" ];
     # onCommands = [ "Oil" ];
   };
   treesitter = {

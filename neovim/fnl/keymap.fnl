@@ -38,8 +38,8 @@
           ;; toggle
           [:gb (cmd :NvimTreeFocus)]
           ;; [:<leader>tb (cmd :NvimTreeToggle)]
-          [:<leader>tb (lua_cmd "require('lir.float').toggle()")]
-          [:<leader>tB (cmd :Oil)]
+          [:<leader>tb (lua_cmd "require('oil').open_float()")]
+          [:<leader>tB (lua_cmd "require('lir.float').toggle()")]
           ; [:<leader>tB (cmd "Neotree toggle")]
           [:<leader>to (cmd :SidebarNvimToggle)]
           [:<leader>tm
@@ -53,6 +53,7 @@
           [:<leader>nn (cmd :GlobalNote) (mk_desc "open global note")]
           [:<leader>np (cmd :ProjectNote) (mk_desc "open project local note")]
           ;; git
+          [:<leader>G (cmd :Neogit)]
           [:<leader>gg
            (fn []
              (vim.cmd (.. "Gin " (vim.fn.input "git command: "))))
