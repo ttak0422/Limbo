@@ -9,7 +9,7 @@
                 :<CR> actions.edit
                 :h actions.up
                 :q actions.quit
-                :n actions.newfile
+                :a actions.newfile
                 :r actions.rename
                 :d actions.delete}
       float {:winblend 0

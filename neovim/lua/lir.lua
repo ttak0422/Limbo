@@ -5,7 +5,7 @@ local mark_actions = require("lir.mark.actions")
 local clipboard_actions = require("lir.clipboard.actions")
 local ignore = {".DS_Store"}
 local devicons = {enable = true, highlight_dirname = true}
-local mappings = {e = actions.edit, l = actions.edit, ["<CR>"] = actions.edit, h = actions.up, q = actions.quit, n = actions.newfile, r = actions.rename, d = actions.delete}
+local mappings = {e = actions.edit, l = actions.edit, ["<CR>"] = actions.edit, h = actions.up, q = actions.quit, a = actions.newfile, r = actions.rename, d = actions.delete}
 local float
 local function _1_()
   local width = math.floor((vim.o.columns / 2))
