@@ -158,6 +158,7 @@
             venn
             neogit
             scope
+            octo
           ];
           lazyGroups = with groups; [
             bufferHook

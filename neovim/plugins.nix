@@ -259,6 +259,16 @@ let
     };
   };
   git = with pkgs.vimPlugins; {
+    octo = {
+      plugin = octo-nvim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/octo.lua;
+      };
+      dependPlugins = [ plenary-nvim nvim-web-devicons ];
+      dependGroups = [ "telescope" ];
+      onCommands = [ "Octo" ];
+    };
     neogit = {
       plugin = neogit;
       postConfig = {
@@ -268,6 +278,7 @@ let
       dependPlugins = [ plenary-nvim diffview-nvim ];
       dependGroups = [ "telescope" ];
       onCommands = [ "Neogit" ];
+      extraPackages = with pkgs; [ gh ];
     };
     git-conflict = {
       plugin = git-conflict-nvim;
