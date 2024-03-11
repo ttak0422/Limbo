@@ -466,6 +466,7 @@ let
           onModules = [ "piccolo-pomodoro" ];
         }
         hydra-nvim
+        scope-nvim
       ];
       useTimer = true;
     };

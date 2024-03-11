@@ -157,6 +157,7 @@
             undotree
             venn
             neogit
+            scope
           ];
           lazyGroups = with groups; [
             bufferHook
