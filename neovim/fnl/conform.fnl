@@ -1,5 +1,4 @@
-(let [M (require :conform) ;;
-      ;; WIP
+(let [M (require :conform)
       is_active_lsp (fn [lsp_name]
                       (let [bufnr (vim.api.nvim_get_current_buf)
                             clients (vim.lsp.buf_get_clients bufnr)]
@@ -17,8 +16,9 @@
                         :fennel [:fnlfmt]
                         :java [:google-java-format]
                         :nix [:nixfmt]
-                        ;; WIP
-                        :typescript [:prettier]
+                        :typescript (fn []
+                                      (if (is_active_lsp :denols) [:deno_fmt]
+                                          [[:prettierd :prettier]]))
                         :javascript [:prettier]}]
   (M.setup {: formatters_by_ft :notify_on_error true :format_on_save false})
   (vim.api.nvim_create_user_command :Format
