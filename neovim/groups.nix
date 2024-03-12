@@ -103,6 +103,7 @@ in with pkgs.vimPlugins; {
         extraPackages = with pkgs; [
           statix
           luajitPackages.luacheck
+          luajitPackages.fennel
           typos
           nodePackages.eslint
         ];
