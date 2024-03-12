@@ -170,7 +170,6 @@
             fzf
             lir
             lsp
-            myTig
             neotest
             oil
             skk

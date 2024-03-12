@@ -48,7 +48,7 @@
           [:<leader>tr
            (lua_cmd "require('harpoon.ui').toggle_quick_menu()")
            (mk_desc "toggle registered buffer menu")]
-          [:<leader>tg (cmd :TigTermToggle) (mk_desc "toggle tig terminal")]
+          ; [:<leader>tg (cmd :TigTermToggle) (mk_desc "toggle tig terminal")]
           ;; note
           [:<leader>nn (cmd :GlobalNote) (mk_desc "open global note")]
           [:<leader>np (cmd :ProjectNote) (mk_desc "open project local note")]

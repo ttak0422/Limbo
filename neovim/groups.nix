@@ -151,7 +151,6 @@ in with pkgs.vimPlugins; {
       code = readFile ./lua/my-tig.lua;
     };
     # onCommands = [ "TigTermToggle" ];
-    useTimer = true;
   };
   oil = {
     name = "oil";
