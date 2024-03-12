@@ -3,8 +3,8 @@ local M = require("oil")
 local columns = {"icon"}
 local border = {"\226\148\143", "\226\148\129", "\226\148\147", "\226\148\131", "\226\148\155", "\226\148\129", "\226\148\151", "\226\148\131"}
 local buf_options = {bufhidden = "hide", buflisted = false}
-local win_options = {signcolumn = "number", foldcolumn = "0", conceallevel = 3, concealcursor = "nvic", list = false, wrap = false, spell = false, cursorcolumn = false}
-local keymaps = {["g?"] = "actions.show_help", ["<CR>"] = "actions.select", e = "actions.select", q = "actions.close", ["<C-c>"] = "actions.close", R = "actions.refresh", h = "actions.parent", l = "actions.select"}
+local win_options = {signcolumn = "number", foldcolumn = "0", conceallevel = 3, concealcursor = "nvic", wrap = false, list = false, cursorcolumn = false, spell = false}
+local keymaps = {["g?"] = "actions.show_help", ["<CR>"] = "actions.select", e = "actions.select", q = "actions.close", ["<C-c>"] = "actions.close", R = "actions.refresh", H = "actions.parent", L = "actions.select"}
 local keymaps_help = {border = border}
 local view_options
 local function _1_(name, bufnr)

@@ -20,8 +20,8 @@
                :q :actions.close
                :<C-c> :actions.close
                :R :actions.refresh
-               :h :actions.parent
-               :l :actions.select
+               :H :actions.parent
+               :L :actions.select
                ; :_ :actions.open_cwd
                ; "`" :actions.cd
                ; "~" :actions.tcd
