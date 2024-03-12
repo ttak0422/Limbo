@@ -517,6 +517,7 @@ let
         language = "lua";
         code = readFile ./lua/notify.lua;
       };
+      useTimer = true;
     };
     tint = {
       plugin = tint-nvim;
