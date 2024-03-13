@@ -48,8 +48,8 @@
                                    (vim.diagnostic.goto_next diagnostic_err_options))
                             :opts {:desc "next diagnostic error"}}
                      :mode [:n :v :o]}
-                 :q {:prev {:rhs (cmd :Qprev) :opts {:desc "prev quickfix"}}
-                     :next {:rhs (cmd :Qnext) :opts {:desc "next quickfix"}}}
+                 :q {:prev {:rhs (cmd :cN) :opts {:desc "prev quickfix"}}
+                     :next {:rhs (cmd :cn) :opts {:desc "next quickfix"}}}
                  :Q {:prev {:rhs (cmd :cfirst) :opts {:desc "first quickfix"}}
                      :next {:rhs (cmd :clast) :opts {:desc "last quickfix"}}}
                  :<C-q> {:prev {:rhs (cmd :cpfile)
