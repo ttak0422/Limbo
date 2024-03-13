@@ -4,7 +4,8 @@
 
 (vim.diagnostic.config {:severity_sort true})
 (vim.lsp.set_log_level :WARN)
-(tset vim.lsp.handlers "textDocument/hover" (vim.lsp.with vim.lsp.handlers.hover { :border :single }))
+(tset vim.lsp.handlers :textDocument/hover
+      (vim.lsp.with vim.lsp.handlers.hover {:border :single}))
 
 (let [signs [{:name :DiagnosticSignError :text ""}
              {:name :DiagnosticSignWarn :text ""}
@@ -129,3 +130,40 @@
 
 ;; markdown
 (lspconfig.marksman.setup {: on_attach : capabilities})
+
+;; efm
+(let [;; linter
+      luacheck (require :efmls-configs.linters.luacheck)
+      eslint (require :efmls-configs.linters.eslint)
+      yamllint (require :efmls-configs.linters.yamllint)
+      statix (require :efmls-configs.linters.statix) ;;
+      ;; formatter
+      stylua (require :efmls-configs.formatters.stylua)
+      fnlfmt (require :efmls-configs.formatters.fnlfmt)
+      prettier (require :efmls-configs.formatters.prettier)
+      fixjson (require :efmls-configs.formatters.fixjson)
+      shfmt (require :efmls-configs.formatters.shfmt)
+      taplo (require :efmls-configs.formatters.taplo)
+      nixfmt (require :efmls-configs.formatters.nixfmt)
+      google_java_format (require :efmls-configs.formatters.google_java_format)
+      languages {:lua [luacheck stylua]
+                 :fennel [fnlfmt]
+                 :typescript [eslint prettier]
+                 :javascript [eslint prettier]
+                 :json [fixjson]
+                 :sh [shfmt]
+                 :toml [taplo]
+                 :yaml [yamllint]
+                 :nix [statix nixfmt]
+                 :java [google_java_format]}
+      settings {:rootMarkers [:.git/] : languages}
+      init_options {:documentFormatting true :documentRangeFormatting true}
+      make_settings (fn []
+                      {:single_file_support true
+                       :filetypes (vim.tbl_keys languages)
+                       : settings
+                       : init_options})]
+  (lspconfig.efm.setup (make_settings)))
+
+;; create user commands
+(vim.api.nvim_create_user_command :Format "lua vim.lsp.buf.format()" {})

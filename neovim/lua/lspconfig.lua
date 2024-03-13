@@ -44,4 +44,19 @@ local function _2_(path)
   return found
 end
 lspconfig.denols.setup({on_attach = on_attach, capabilities = capabilities, root_dir = _2_, init_options = {lint = true, suggest = {completeFunctionCalls = true, names = true, paths = true, autoImports = true, imports = {autoDiscover = true, hosts = vim.empty_dict()}}, unstable = false}, settings = {deno = {enable = true}}, single_file_support = false})
-return lspconfig.marksman.setup({on_attach = on_attach, capabilities = capabilities})
+lspconfig.marksman.setup({on_attach = on_attach, capabilities = capabilities})
+do
+  local luacheck = require("efmls-configs.linters.luacheck")
+  local stylua = require("efmls-configs.formatters.stylua")
+  local fnlfmt = require("efmls-configs.formatters.fnlfmt")
+  local languages = {lua = {luacheck, stylua}, fennel = {fnlfmt}}
+  local settings = {rootMarkers = {".git/"}, languages = languages}
+  local init_options = {documentFormatting = true, documentRangeFormatting = true}
+  local make_settings
+  local function _4_()
+    return {single_file_support = true, filetypes = vim.tbl_keys(languages), settings = settings, init_options = init_options}
+  end
+  make_settings = _4_
+  lspconfig.efm.setup(make_settings())
+end
+return vim.api.nvim_create_user_command("Format", "lua vim.lsp.buf.format()", {})

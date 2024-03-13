@@ -2,7 +2,8 @@
 let
   inherit (builtins) readFile;
   inherit (lib.strings) concatStringsSep;
-in with pkgs.vimPlugins; {
+in
+with pkgs.vimPlugins; {
   lir = {
     name = "lir";
     plugins = [
@@ -56,43 +57,41 @@ in with pkgs.vimPlugins; {
   editHook = {
     name = "editHook";
     plugins = [
-      {
-        # Lightweight yet powerful formatter plugin for Neovim
-        plugin = conform-nvim;
-        postConfig = {
-          language = "lua";
-          code = readFile ./lua/conform.lua;
-        };
-        extraPackages = with pkgs; [
-          # Dart → dart_format
-          # JSON
-          nodePackages.fixjson
-          # Go → gofmt
-          # Rust
-          rustfmt
-          # Shell
-          shfmt
-          # Lua
-          stylua
-          # TOML
-          taplo
-          # HTML
-          rubyPackages.htmlbeautifier
-          # YAML
-          yamlfmt
-          # Python
-          yapf
-          # Fennel
-          fnlfmt
-          # Java
-          google-java-format
-          # Nix
-          nixfmt
-          # TypeScript
-          # WIP
-        ];
-        onCommands = [ "Format" ];
-      }
+      # {
+      #   # Lightweight yet powerful formatter plugin for Neovim
+      #   plugin = conform-nvim;
+      #   postConfig = {
+      #     language = "lua";
+      #     code = readFile ./lua/conform.lua;
+      #   };
+      #   extraPackages = with pkgs; [
+      #     # Dart → dart_format
+      #     # JSON
+      #     nodePackages.fixjson
+      #     # Go → gofmt
+      #     # Rust
+      #     rustfmt
+      #     # Shell
+      #     shfmt
+      #     # TOML
+      #     taplo
+      #     # HTML
+      #     rubyPackages.htmlbeautifier
+      #     # YAML
+      #     yamlfmt
+      #     # Python
+      #     yapf
+      #     # Fennel
+      #     fnlfmt
+      #     # Java
+      #     google-java-format
+      #     # Nix
+      #     nixfmt
+      #     # TypeScript
+      #     # WIP
+      #   ];
+      #   onCommands = [ "Format" ];
+      # }
       {
         # An asynchronous linter plugin for Neovim complementary to the built-in Language Server Protocol support.
         plugin = nvim-lint;
@@ -101,11 +100,8 @@ in with pkgs.vimPlugins; {
           code = readFile ./lua/lint.lua;
         };
         extraPackages = with pkgs; [
-          statix
-          luajitPackages.luacheck
-          luajitPackages.fennel
           typos
-          nodePackages.eslint
+          checkstyle
         ];
       }
       {
@@ -199,24 +195,26 @@ in with pkgs.vimPlugins; {
       #   };
       # }
     ];
-    postConfig = let
-      parser = pkgs.stdenv.mkDerivation {
-        name = "treesitter-all-grammars";
-        buildCommand = ''
-          mkdir -p $out/parser
-          echo "${
-            concatStringsSep "," nvim-treesitter.withAllGrammars.dependencies
-          }" \
-            | tr ',' '\n' \
-            | xargs -I {} find {} -not -type d \
-            | xargs -I {} ln -s {} $out/parser
-        '';
+    postConfig =
+      let
+        parser = pkgs.stdenv.mkDerivation {
+          name = "treesitter-all-grammars";
+          buildCommand = ''
+            mkdir -p $out/parser
+            echo "${
+              concatStringsSep "," nvim-treesitter.withAllGrammars.dependencies
+            }" \
+              | tr ',' '\n' \
+              | xargs -I {} find {} -not -type d \
+              | xargs -I {} ln -s {} $out/parser
+          '';
+        };
+      in
+      {
+        language = "lua";
+        code = readFile ./lua/treesitter.lua;
+        args = { inherit parser; };
       };
-    in {
-      language = "lua";
-      code = readFile ./lua/treesitter.lua;
-      args = { inherit parser; };
-    };
     # extraPackages = with pkgs; [ tree-sitter ];
     useTimer = true;
   };
@@ -336,6 +334,20 @@ in with pkgs.vimPlugins; {
           rubyPackages.solargraph
           rust-analyzer
           taplo-cli
+          # efm
+          efm-langserver
+          stylua
+          luajitPackages.luacheck
+          fnlfmt
+          nodePackages.prettier
+          nodePackages.eslint
+          nodePackages.fixjson
+          shfmt
+          taplo
+          yamllint
+          statix
+          nixfmt
+          google-java-format
         ]) ++ (with pkgs.pkgs-unstable; [ nixd marksman ]);
         postConfig = {
           language = "lua";
@@ -345,7 +357,8 @@ in with pkgs.vimPlugins; {
             capabilities_path = ./lua/capabilities.lua;
           };
         };
-        dependPlugins = [ climbdir-nvim ];
+        dependPlugins =
+          [ climbdir-nvim pkgs.vimPluginsUnstable.efmls-configs-nvim ];
         useTimer = true;
       }
       {
