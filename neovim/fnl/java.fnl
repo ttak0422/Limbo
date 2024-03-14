@@ -132,6 +132,7 @@
                        : format
                        : implementationsCodeLens
                        : import
+                       : inlayhints
                        : jdt
                        : maven
                        : maxConcurrentBuilds
