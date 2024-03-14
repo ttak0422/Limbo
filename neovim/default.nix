@@ -177,7 +177,7 @@
             treesitter
           ];
           after.ftplugin = with ftplugins; {
-            inherit ddu-ff ddu-ff-filter qf gina-blame rust;
+            inherit ddu-ff ddu-ff-filter qf gina-blame rust java;
           };
         };
       };
