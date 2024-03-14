@@ -30,7 +30,6 @@ inoremap <expr> <C-Space> '<C-n>'
 cnoremap <silent> <C-x>      <Cmd>call ddc#map#manual_complete()<CR>
 cnoremap <silent> <C-x><C-x> <Cmd>call ddc#map#manual_complete()<CR>
 
-nnoremap ; :
 nnoremap <expr> : '<Cmd>call CommandlinePre()<CR>: '
 nnoremap  ? <Cmd>call CommandlinePre()<CR>?
 nnoremap  / <Cmd>call CommandlinePre()<CR>/
