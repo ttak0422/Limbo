@@ -136,7 +136,14 @@
       luacheck (require :efmls-configs.linters.luacheck)
       eslint (require :efmls-configs.linters.eslint)
       yamllint (require :efmls-configs.linters.yamllint)
-      statix (require :efmls-configs.linters.statix) ;;
+      statix (require :efmls-configs.linters.statix)
+      stylelint (require :efmls-configs.linters.stylelint)
+      vint (require :efmls-configs.linters.vint)
+      staticcheck (require :efmls-configs.linters.staticcheck)
+      shellcheck (require :efmls-configs.linters.shellcheck)
+      pylint (require :efmls-configs.linters.pylint)
+      gitlint (require :efmls-configs.linters.gitlint)
+      hadolint (require :efmls-configs.linters.hadolint) ;;
       ;; formatter
       stylua (require :efmls-configs.formatters.stylua)
       fnlfmt (require :efmls-configs.formatters.fnlfmt)
@@ -146,16 +153,31 @@
       taplo (require :efmls-configs.formatters.taplo)
       nixfmt (require :efmls-configs.formatters.nixfmt)
       google_java_format (require :efmls-configs.formatters.google_java_format)
+      yapf (require :efmls-configs.formatters.yapf)
+      goimports (require :efmls-configs.formatters.goimports)
+      gofumpt (require :efmls-configs.formatters.gofumpt)
+      rustfmt (require :efmls-configs.formatters.rustfmt)
       languages {:lua [luacheck stylua]
                  :fennel [fnlfmt]
                  :typescript [eslint prettier]
                  :javascript [eslint prettier]
                  :json [fixjson]
-                 :sh [shfmt]
+                 :sh [shellcheck shfmt]
                  :toml [taplo]
-                 :yaml [yamllint]
+                 :yaml [yamllint prettier]
                  :nix [statix nixfmt]
-                 :java [google_java_format]}
+                 :java [google_java_format]
+                 :css [stylelint prettier]
+                 :scss [stylelint prettier]
+                 :less [stylelint prettier]
+                 :saas [stylelint prettier]
+                 :html [prettier]
+                 :vim [vint]
+                 :python [pylint yapf]
+                 :go [staticcheck goimports gofumpt]
+                 :rust [rustfmt]
+                 :gitcommit [gitlint]
+                 :docker [hadolint]}
       settings {:rootMarkers [:.git/] : languages}
       init_options {:documentFormatting true :documentRangeFormatting true}
       make_settings (fn []

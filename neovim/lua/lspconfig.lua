@@ -47,9 +47,29 @@ lspconfig.denols.setup({on_attach = on_attach, capabilities = capabilities, root
 lspconfig.marksman.setup({on_attach = on_attach, capabilities = capabilities})
 do
   local luacheck = require("efmls-configs.linters.luacheck")
+  local eslint = require("efmls-configs.linters.eslint")
+  local yamllint = require("efmls-configs.linters.yamllint")
+  local statix = require("efmls-configs.linters.statix")
+  local stylelint = require("efmls-configs.linters.stylelint")
+  local vint = require("efmls-configs.linters.vint")
+  local staticcheck = require("efmls-configs.linters.staticcheck")
+  local shellcheck = require("efmls-configs.linters.shellcheck")
+  local pylint = require("efmls-configs.linters.pylint")
+  local gitlint = require("efmls-configs.linters.gitlint")
+  local hadolint = require("efmls-configs.linters.hadolint")
   local stylua = require("efmls-configs.formatters.stylua")
   local fnlfmt = require("efmls-configs.formatters.fnlfmt")
-  local languages = {lua = {luacheck, stylua}, fennel = {fnlfmt}}
+  local prettier = require("efmls-configs.formatters.prettier")
+  local fixjson = require("efmls-configs.formatters.fixjson")
+  local shfmt = require("efmls-configs.formatters.shfmt")
+  local taplo = require("efmls-configs.formatters.taplo")
+  local nixfmt = require("efmls-configs.formatters.nixfmt")
+  local google_java_format = require("efmls-configs.formatters.google_java_format")
+  local yapf = require("efmls-configs.formatters.yapf")
+  local goimports = require("efmls-configs.formatters.goimports")
+  local gofumpt = require("efmls-configs.formatters.gofumpt")
+  local rustfmt = require("efmls-configs.formatters.rustfmt")
+  local languages = {lua = {luacheck, stylua}, fennel = {fnlfmt}, typescript = {eslint, prettier}, javascript = {eslint, prettier}, json = {fixjson}, sh = {shellcheck, shfmt}, toml = {taplo}, yaml = {yamllint, prettier}, nix = {statix, nixfmt}, java = {google_java_format}, css = {stylelint, prettier}, scss = {stylelint, prettier}, less = {stylelint, prettier}, saas = {stylelint, prettier}, html = {prettier}, vim = {vint}, python = {pylint, yapf}, go = {staticcheck, goimports, gofumpt}, rust = {rustfmt}, gitcommit = {gitlint}, docker = {hadolint}}
   local settings = {rootMarkers = {".git/"}, languages = languages}
   local init_options = {documentFormatting = true, documentRangeFormatting = true}
   local make_settings

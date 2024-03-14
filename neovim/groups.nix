@@ -99,10 +99,7 @@ with pkgs.vimPlugins; {
           language = "lua";
           code = readFile ./lua/lint.lua;
         };
-        extraPackages = with pkgs; [
-          typos
-          checkstyle
-        ];
+        extraPackages = with pkgs; [ typos checkstyle ];
       }
       {
         # Fully featured & enhanced replacement for copilot.vim complete with API for interacting with Github Copilot
@@ -348,6 +345,16 @@ with pkgs.vimPlugins; {
           statix
           nixfmt
           google-java-format
+          stylelint
+          vim-vint
+          yapf
+          pylint
+          gofumpt
+          gotools
+          shellcheck
+          rustfmt
+          gitlint
+          hadolint
         ]) ++ (with pkgs.pkgs-unstable; [ nixd marksman ]);
         postConfig = {
           language = "lua";
