@@ -4,7 +4,7 @@
                 :suppress_on_insert true
                 :ignore_done_already true
                 :ignore_empty_message true
-                :ignore [:jdtls]
+                :ignore []
                 :display {:render_limit 10
                           :done_ttl 3
                           :done_icon "✔"
