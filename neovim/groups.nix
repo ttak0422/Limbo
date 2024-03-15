@@ -356,6 +356,18 @@ with pkgs.vimPlugins; {
           gitlint
           hadolint
         ]) ++ (with pkgs.pkgs-unstable; [ nixd marksman ]);
+        preConfig = {
+          language = "lua";
+          code = ''
+            local ok, wf = pcall(require, "vim.lsp._watchfiles")
+            if ok then
+               -- disable lsp watcher. Too slow on linux
+               wf._watchfunc = function()
+                 return function() end
+               end
+            end
+          '';
+        };
         postConfig = {
           language = "lua";
           code = readFile ./lua/lspconfig.lua;
@@ -413,13 +425,15 @@ with pkgs.vimPlugins; {
         dependGroups = [ "telescope" ];
       }
     ];
-    dependPlugins = [{
-      plugin = fidget-nvim;
-      postConfig = {
-        language = "lua";
-        code = readFile ./lua/fidget.lua;
-      };
-    }];
+    dependPlugins = [
+      # {
+      #   plugin = fidget-nvim;
+      #   postConfig = {
+      #     language = "lua";
+      #     code = readFile ./lua/fidget.lua;
+      #   };
+      # }
+    ];
     dependGroups = [ "ddc" "telescope" ];
     useTimer = true;
   };

@@ -281,6 +281,11 @@
                 :on_click {:callback (fn []
                                        ((. (require :piccolo-pomodoro) :toggle)))
                            :name :toggle_pomodoro}}
+      lsp_progress {:provider (. (require :lsp-progress) :progress)
+                    :update {1 :User
+                             :pattern :LspProgressStatusUpdated
+                             :callback (vim.schedule_wrap (fn []
+                                                            (vim.cmd :redrawstatus)))}}
       ; search_count {:condition (fn []
       ;                            (and (not= vim.v.hlsearch 0)
       ;                                 (= vim.o.cmdheight 0)))
@@ -519,6 +524,8 @@
                            diagnostics
                            round_right
                            pomodoro
+                           space
+                           lsp_progress
                            align
                            ;; center
                            ;; search_count

@@ -439,6 +439,13 @@ let
         plenary-nvim
         nvim-web-devicons
         {
+          plugin = pkgs.vimPluginsUnstable.lsp-progress-nvim;
+          postConfig = {
+            language = "lua";
+            code = readFile ./lua/lsp-progress.lua;
+          };
+        }
+        {
           plugin = piccolo-pomodoro-nvim;
           postConfig = {
             language = "lua";
@@ -1071,7 +1078,8 @@ let
     };
   };
 
-in with pkgs.vimPlugins;
+in
+with pkgs.vimPlugins;
 {
   tshjkl = {
     # Tree-sitter hjkl movement for neovim

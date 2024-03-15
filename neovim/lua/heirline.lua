@@ -84,60 +84,65 @@ local function _13_()
   return (require("piccolo-pomodoro")).toggle()
 end
 pomodoro = {provider = _12_, on_click = {callback = _13_, name = "toggle_pomodoro"}}
+local lsp_progress
+local function _14_()
+  return vim.cmd("redrawstatus")
+end
+lsp_progress = {provider = (require("lsp-progress")).progress, update = {"User", pattern = "LspProgressStatusUpdated", callback = vim.schedule_wrap(_14_)}}
 local ruler = {provider = "%7(%l,%c%)"}
 local file_properties
 do
   local encoding
-  local function _14_(self)
+  local function _15_(self)
     self.encoding = (((vim.bo.fileencoding ~= "") and vim.bo.fileencoding) or vim.o.encoding or nil)
     return self.encoding
   end
-  local function _15_(self)
+  local function _16_(self)
     return (self.encoding_label[self.encoding] or self.encoding)
   end
-  encoding = {condition = _14_, provider = _15_, static = {encoding_label = {["utf-"] = "UTF-"}}}
+  encoding = {condition = _15_, provider = _16_, static = {encoding_label = {["utf-"] = "UTF-"}}}
   local format
-  local function _16_(self)
+  local function _17_(self)
     self.format = vim.bo.fileformat
     return self.format
   end
-  local function _17_(self)
+  local function _18_(self)
     return (self.format_label[self.format] or self.format)
   end
-  format = {condition = _16_, provider = _17_, static = {format_label = {dos = "CRLF", mac = "CR", unix = "LF"}}}
+  format = {condition = _17_, provider = _18_, static = {format_label = {dos = "CRLF", mac = "CR", unix = "LF"}}}
   file_properties = {encoding, space, format, update = {"WinNew", "WinClosed", "BufEnter"}}
 end
 local root
 do
-  local function _18_(self)
+  local function _19_(self)
     local cwd = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
     self.root = (self.alias[cwd] or cwd)
     return nil
   end
-  local function _19_(self)
+  local function _20_(self)
     return (" \239\132\161  %4(" .. self.root .. "%) ")
   end
-  root = {init = _18_, provider = _19_, update = {"DirChanged"}, hl = {fg = colors.bg, bg = colors.orange}, static = {alias = {[""] = "ROOT"}}}
+  root = {init = _19_, provider = _20_, update = {"DirChanged"}, hl = {fg = colors.bg, bg = colors.orange}, static = {alias = {[""] = "ROOT"}}}
 end
 local help_name
-local function _20_()
+local function _21_()
   return (vim.bo.filetype == "help")
 end
-local function _21_()
+local function _22_()
   return vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":t")
 end
-help_name = {condition = _20_, provider = _21_, hl = {fg = colors.fg}}
+help_name = {condition = _21_, provider = _22_, hl = {fg = colors.fg}}
 local terminal_name
-local function _22_()
+local function _23_()
   local name, _ = vim.api.nvim_buf_get_name(0):gsub(".*:", "")
   return name
 end
-terminal_name = {provider = _22_, hl = {fg = colors.fg}}
+terminal_name = {provider = _23_, hl = {fg = colors.fg}}
 local tabline
 do
   local align0 = {provider = "%="}
   local offset
-  local function _23_(self)
+  local function _24_(self)
     local win = (vim.api.nvim_tabpage_list_wins(0))[1]
     local bufnr = vim.api.nvim_win_get_buf(win)
     local ft = vim.bo[bufnr].filetype
@@ -149,30 +154,30 @@ do
       return false
     end
   end
-  local function _25_(self)
+  local function _26_(self)
     local title = self.title
     local width = vim.api.nvim_win_get_width(self.win)
     local pad_size = math.ceil(((width - #title) / 2))
     local pad = string.rep(" ", pad_size)
     return (pad .. title .. pad)
   end
-  local function _26_(self)
+  local function _27_(self)
     if (vim.api.nvim_get_current_win() == self.win) then
       return "TablineSel"
     else
       return "Tabline"
     end
   end
-  offset = {condition = _23_, provider = _25_, hl = _26_}
+  offset = {condition = _24_, provider = _26_, hl = _27_}
   local buffer_line
   do
     local get_bg
-    local function _28_(hl)
+    local function _29_(hl)
       return utils.get_highlight(hl).bg
     end
-    get_bg = _28_
+    get_bg = _29_
     local label
-    local function _29_(self)
+    local function _30_(self)
       local bufname = vim.api.nvim_buf_get_name(self.bufnr)
       local buf_label
       if ((bufname == "") or (bufname == nil)) then
@@ -182,122 +187,122 @@ do
       end
       return buf_label
     end
-    local function _31_(self)
-      local _32_
+    local function _32_(self)
+      local _33_
       if self.is_active then
-        _32_ = colors.bg
+        _33_ = colors.bg
       else
-        _32_ = colors.fg
+        _33_ = colors.fg
       end
-      local _34_
+      local _35_
       if self.is_active then
-        _34_ = colors.orange
+        _35_ = colors.orange
       else
-        _34_ = colors.bg
+        _35_ = colors.bg
       end
-      return {bold = (self.is_active or self.is_visible), fg = _32_, bg = _34_}
+      return {bold = (self.is_active or self.is_visible), fg = _33_, bg = _35_}
     end
-    label = {provider = _29_, hl = _31_}
+    label = {provider = _30_, hl = _32_}
     local file_flags
-    local function _36_(self)
+    local function _37_(self)
       return vim.api.nvim_buf_get_option(self.bufnr, "modified")
     end
-    local _37_
+    local _38_
     do
-      _37_ = " [+]"
+      _38_ = " [+]"
     end
-    local function _38_(self)
-      local _39_
+    local function _39_(self)
+      local _40_
       if self.is_active then
-        _39_ = colors.bg
+        _40_ = colors.bg
       else
-        _39_ = colors.green
+        _40_ = colors.green
       end
-      local _41_
+      local _42_
       if self.is_active then
-        _41_ = colors.orange
+        _42_ = colors.orange
       else
-        _41_ = colors.bg
+        _42_ = colors.bg
       end
-      return {fg = _39_, bg = _41_}
+      return {fg = _40_, bg = _42_}
     end
-    file_flags = {condition = _36_, provider = _37_, hl = _38_}
+    file_flags = {condition = _37_, provider = _38_, hl = _39_}
     local file_block
-    local function _43_(self)
+    local function _44_(self)
       self.filename = vim.api.nvim_buf_get_name(self.bufnr)
       return nil
     end
-    local function _44_(self)
+    local function _45_(self)
       if self.is_active then
         return "TabLineSel"
       else
         return "TabLine"
       end
     end
-    file_block = {label, file_flags, init = _43_, hl = _44_}
+    file_block = {label, file_flags, init = _44_, hl = _45_}
     local buffer_block
-    local function _46_(self)
+    local function _47_(self)
       if self.is_active then
         return colors.orange
       else
         return colors.bg
       end
     end
-    buffer_block = utils.surround({icons.fill, icons.fill}, _46_, {file_block})
+    buffer_block = utils.surround({icons.fill, icons.fill}, _47_, {file_block})
     buffer_line = utils.make_buflist(buffer_block, {provider = "<", hl = {fg = colors.grey}}, {provider = ">", hl = {fg = colors.grey}})
   end
   local tabpage
-  local function _48_(self)
+  local function _49_(self)
     return (" %" .. self.tabnr .. "T" .. self.tabpage .. " %T")
   end
-  local function _49_(self)
+  local function _50_(self)
     if not self.is_active then
       return "TabLine"
     else
       return "TabLineSel"
     end
   end
-  tabpage = {provider = _48_, hl = _49_}
+  tabpage = {provider = _49_, hl = _50_}
   local tabpages
-  local function _51_()
+  local function _52_()
     return (#vim.api.nvim_list_tabpages() >= 2)
   end
-  tabpages = {align0, utils.make_tablist(tabpage), condition = _51_}
+  tabpages = {align0, utils.make_tablist(tabpage), condition = _52_}
   tabline = {offset, buffer_line, tabpages}
 end
 local hydra_status
 do
   local name
-  local function _52_()
+  local function _53_()
     return (hydra.get_name() or "HYDRA")
   end
-  name = {provider = _52_}
+  name = {provider = _53_}
   local hint = {condition = hydra.get_hint, provider = hydra.get_hint}
-  local function _53_()
+  local function _54_()
     return colors.cyan
   end
-  local function _54_(self)
+  local function _55_(self)
     return (hydra.is_active() and not self.hydra_ignore[hydra.get_name()])
   end
-  hydra_status = {utils.surround({icons.fill, icons.fill}, _53_, {name}), align, hint, align, condition = _54_, static = {hydra_ignore = {BarBar = true}}}
+  hydra_status = {utils.surround({icons.fill, icons.fill}, _54_, {name}), align, hint, align, condition = _55_, static = {hydra_ignore = {BarBar = true}}}
 end
 local special_status
-local function _55_()
+local function _56_()
   return (" " .. icons.document .. " " .. string.upper(vim.bo.filetype) .. " ")
 end
-local function _56_()
+local function _57_()
   return conditions.buffer_matches({buftype = {"nofile", "prompt", "help", "quickfix"}, filetype = {"^git.*", "fugative"}})
 end
-special_status = {mode, align, help_name, align, {provider = _55_, hl = {fg = colors.bg, bg = colors.blue}, update = {"WinNew", "WinClosed", "BufEnter"}}, condition = _56_}
+special_status = {mode, align, help_name, align, {provider = _56_, hl = {fg = colors.bg, bg = colors.blue}, update = {"WinNew", "WinClosed", "BufEnter"}}, condition = _57_}
 local terminal_status
-local function _57_()
+local function _58_()
   return (" " .. icons.terminal .. " TERMINAL ")
 end
-local function _58_()
+local function _59_()
   return conditions.buffer_matches({buftype = {"terminal"}})
 end
-terminal_status = {mode, align, terminal_name, align, {provider = _57_, hl = {fg = colors.bg, bg = colors.red}, update = {"WinNew", "WinClosed", "BufEnter"}}, condition = _58_}
-local default_status_line = {mode, space, git, round_right, diagnostics, round_right, pomodoro, align, align, ruler, bar, file_properties, space, root}
+terminal_status = {mode, align, terminal_name, align, {provider = _58_, hl = {fg = colors.bg, bg = colors.red}, update = {"WinNew", "WinClosed", "BufEnter"}}, condition = _59_}
+local default_status_line = {mode, space, git, round_right, diagnostics, round_right, pomodoro, space, lsp_progress, align, align, ruler, bar, file_properties, space, root}
 local statusline = {hydra_status, special_status, terminal_status, default_status_line, hl = {fg = colors.fg, bg = colors.bg, bold = true}, fallthrough = false}
 vim.o.showtabline = 2
 vim.o.laststatus = 3
