@@ -57,7 +57,6 @@ export class Config extends BaseConfig {
       // previewRow: "&columns / 3 * 2",
       previewWidth: "&columns / 2 - 2",
       previewHeight: "&lines / 3",
-      startFilter: true,
       prompt: " ",
       statusline: false,
     };
