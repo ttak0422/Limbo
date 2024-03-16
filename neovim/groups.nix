@@ -8,7 +8,7 @@ with pkgs.vimPlugins; {
     name = "lir";
     plugins = [
       {
-        plugin = pkgs.vimPluginsUnstable.lir-nvim;
+        plugin = lir-nvim;
         postConfig = {
           language = "lua";
           code = readFile ./lua/lir.lua;
@@ -16,12 +16,12 @@ with pkgs.vimPlugins; {
         dependPlugins = [ plenary-nvim nvim-web-devicons ];
       }
       {
-        plugin = pkgs.vimPluginsUnstable.lir-git-status-nvim;
+        plugin = lir-git-status-nvim;
         postConfig = {
           language = "lua";
           code = readFile ./lua/lir-git-status.lua;
         };
-        dependPlugins = [ plenary-nvim pkgs.vimPluginsUnstable.lir-nvim ];
+        dependPlugins = [ plenary-nvim lir-nvim ];
       }
     ];
     onModules = [ "lir.float" ];
@@ -377,7 +377,7 @@ with pkgs.vimPlugins; {
           };
         };
         dependPlugins =
-          [ climbdir-nvim pkgs.vimPluginsUnstable.efmls-configs-nvim ];
+          [ climbdir-nvim efmls-configs-nvim ];
         useTimer = true;
       }
       {

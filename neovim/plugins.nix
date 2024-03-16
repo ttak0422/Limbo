@@ -439,7 +439,7 @@ let
         plenary-nvim
         nvim-web-devicons
         {
-          plugin = pkgs.vimPluginsUnstable.lsp-progress-nvim;
+          plugin = lsp-progress-nvim;
           postConfig = {
             language = "lua";
             code = readFile ./lua/lsp-progress.lua;
@@ -843,7 +843,7 @@ let
       onModules = [ "window-picker" ];
     };
     nnn = {
-      plugin = pkgs.vimPluginsUnstable.nnn-nvim;
+      plugin = nnn-nvim;
       postConfig = {
         language = "lua";
         code = readFile ./lua/nnn.lua;
@@ -851,7 +851,7 @@ let
       extraPackages = with pkgs; [ nnn ];
     };
     nvim-tree = {
-      plugin = pkgs.vimPluginsUnstable.nvim-tree-lua;
+      plugin = nvim-tree-lua;
       postConfig = {
         language = "lua";
         code = readFile ./lua/nvim-tree.lua;

@@ -71,7 +71,6 @@
             devicons
             diffview
             dropbar
-            early-retirement
             femaco
             flit
             flow
