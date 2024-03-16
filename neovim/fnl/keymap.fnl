@@ -38,8 +38,8 @@
           ;; toggle
           [:gb (cmd :NvimTreeFocus)]
           ;; [:<leader>tb (cmd :NvimTreeToggle)]
-          [:<leader>tb (lua_cmd "require('oil').open_float()")]
-          [:<leader>tB (lua_cmd "require('lir.float').toggle()")]
+          [:<leader>tb (lua_cmd "require('lir.float').toggle()")]
+          [:<leader>tB (lua_cmd "require('oil').open_float()")]
           ; [:<leader>tB (cmd "Neotree toggle")]
           [:<leader>to (cmd :SidebarNvimToggle)]
           [:<leader>tm
