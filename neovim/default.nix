@@ -46,7 +46,7 @@
 
       bundler-nvim = {
         inherit (callPackage ./neovim-ci.nix { }) ci-nightly-latest;
-        # inherit (callPackage ./neovim-test.nix { }) test-lir;
+        inherit (callPackage ./neovim-test.nix { }) test-v9;
         default = {
           inherit extraConfig extraLuaConfig;
           # logLevel = "debug";

@@ -1,5 +1,6 @@
 inputs:
 with inputs; [
+  (final: prev: { neovim-v9 = prev.neovim-unwrapped; })
   vim-plugins-overlay.overlay
   neovim-nightly-overlay.overlay
   nix-filter.overlays.default
