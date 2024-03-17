@@ -20858,6 +20858,7 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nvim-jdtls": "nvim-jdtls",
         "systems": "systems_4",
+        "tshjkl-nvim": "tshjkl-nvim",
         "tsnip-nvim-src": "tsnip-nvim-src",
         "vim-plugins-overlay": "vim-plugins-overlay",
         "vim-plugins-overlay-latest": "vim-plugins-overlay-latest",
@@ -23824,15 +23825,16 @@
     "tshjkl-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1707266334,
-        "narHash": "sha256-yoZ/3kFLRca+DzXPN20fDhyr3sNE+EXyqpE6gVgytZc=",
-        "owner": "gsuuon",
+        "lastModified": 1710674131,
+        "narHash": "sha256-vlGeNq4tuQQxAxx5XxgeIEGRFpkNXoA3RkbufKo/fuo=",
+        "owner": "ttak0422",
         "repo": "tshjkl.nvim",
-        "rev": "19d65d478c662fd28956c4f71204c3d33352816f",
+        "rev": "00a29fe1981afea9c4688201bcaa565960ca68cf",
         "type": "github"
       },
       "original": {
-        "owner": "gsuuon",
+        "owner": "ttak0422",
+        "ref": "feature/supress",
         "repo": "tshjkl.nvim",
         "type": "github"
       }
@@ -23854,6 +23856,22 @@
       }
     },
     "tshjkl-nvim_3": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1707266334,
+        "narHash": "sha256-yoZ/3kFLRca+DzXPN20fDhyr3sNE+EXyqpE6gVgytZc=",
+        "owner": "gsuuon",
+        "repo": "tshjkl.nvim",
+        "rev": "19d65d478c662fd28956c4f71204c3d33352816f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "gsuuon",
+        "repo": "tshjkl.nvim",
+        "type": "github"
+      }
+    },
+    "tshjkl-nvim_4": {
       "flake": false,
       "locked": {
         "lastModified": 1707266334,
@@ -25569,7 +25587,7 @@
         "trim-nvim": "trim-nvim",
         "trouble-nvim": "trouble-nvim",
         "true-zen": "true-zen",
-        "tshjkl-nvim": "tshjkl-nvim",
+        "tshjkl-nvim": "tshjkl-nvim_2",
         "tsnip-nvim": "tsnip-nvim",
         "twilight-nvim": "twilight-nvim",
         "typescript-nvim": "typescript-nvim",
@@ -26129,7 +26147,7 @@
         "trim-nvim": "trim-nvim_2",
         "trouble-nvim": "trouble-nvim_2",
         "true-zen": "true-zen_2",
-        "tshjkl-nvim": "tshjkl-nvim_2",
+        "tshjkl-nvim": "tshjkl-nvim_3",
         "tsnip-nvim": "tsnip-nvim_2",
         "twilight-nvim": "twilight-nvim_2",
         "typescript-nvim": "typescript-nvim_2",
@@ -26691,7 +26709,7 @@
         "trim-nvim": "trim-nvim_3",
         "trouble-nvim": "trouble-nvim_3",
         "true-zen": "true-zen_3",
-        "tshjkl-nvim": "tshjkl-nvim_3",
+        "tshjkl-nvim": "tshjkl-nvim_4",
         "tsnip-nvim": "tsnip-nvim_3",
         "twilight-nvim": "twilight-nvim_3",
         "typescript-nvim": "typescript-nvim_3",

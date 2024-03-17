@@ -13,15 +13,22 @@ with inputs; [
         inherit system;
         config.allowUnfree = true;
       };
-      neovim-nightly-latest = neovim-nightly-overlay-latest.packages.${prev.system}.neovim;
-      vimPluginsUnstable = vim-plugins-overlay-unstable.packages.${prev.system} // {
-        lir-nvim = prev.vimUtils.buildVimPlugin {
-          pname = "lir-nvim";
-          version = "unstable";
-          src = inputs.lir-nvim;
+      neovim-nightly-latest =
+        neovim-nightly-overlay-latest.packages.${prev.system}.neovim;
+      vimPluginsUnstable = vim-plugins-overlay-unstable.packages.${prev.system}
+        // {
+          # lir-nvim = prev.vimUtils.buildVimPlugin {
+          #   pname = "lir-nvim";
+          #   version = "unstable";
+          #   src = inputs.lir-nvim;
+          # };
         };
-      };
       vimPlugins = prev.vimPlugins // {
+        tshjkl-nvim = prev.vimUtils.buildVimPlugin {
+          pname = "tshjkl-nvim";
+          version = "unstable";
+          src = inputs.tshjkl-nvim;
+        };
         telescope-fzf-native-nvim =
           prev.vimPlugins.telescope-fzf-native-nvim.overrideAttrs {
             dependencies = [ ];

@@ -1,4 +1,5 @@
 -- [nfnl] Compiled from neovim/fnl/java.fnl by https://github.com/Olical/nfnl, do not edit.
+local BUILD_TIMEOUT = 7500
 local jdtls = require("jdtls")
 local setup = require("jdtls.setup")
 local dap = require("jdtls.dap")
@@ -62,16 +63,39 @@ local flags = {server_side_fuzzy_completion = true}
 local capabilities = dofile(args.capabilities_path)
 local on_attach
 local function _4_(client, bufnr)
+  local mk_opts
+  local function _5_(desc)
+    return {silent = true, buffer = bufnr, desc = desc}
+  end
+  mk_opts = _5_
+  local with_compile
+  local function _6_(f)
+    local function _7_()
+      if vim.bo.modified then
+        vim.cmd("w")
+      else
+      end
+      client.request_sync("java/buildWorkspace", false, BUILD_TIMEOUT, bufnr)
+      return f()
+    end
+    return _7_
+  end
+  with_compile = _6_
+  local n_keys = {{"<LocalLeader>o", jdtls.organize_imports, mk_opts("[JDTLS] organize imports")}, {"<LocalLeader>tc", with_compile(jdtls.test_class), mk_opts("[JDTLS] test class")}, {"<LocalLeader>tt", with_compile(jdtls.test_nearest_method), mk_opts("[JDTLS] test nearest method")}, {"<LocalLeader>tl", with_compile(dap.run_last), mk_opts("[DAP] run last")}}
   dofile(args.on_attach_path)(client, bufnr)
   setup.add_commands()
   jdtls.setup_dap({hotcodereplace = "auto"})
-  return dap.setup_dap_main_class_configs()
+  dap.setup_dap_main_class_configs()
+  for _, k in ipairs(n_keys) do
+    vim.keymap.set("n", k[1], k[2], k[3])
+  end
+  return nil
 end
 on_attach = _4_
 local handlers
-local function _5_()
+local function _9_()
 end
-handlers = {["language/status"] = _5_}
+handlers = {["language/status"] = _9_}
 local user_commands = {JdtTestClass = jdtls.test_class, JdtTestNearestMethod = jdtls.test_nearest_method}
 jdtls.jol_path = args.jol_jar_path
 jdtls.start_or_attach({root_dir = root, cmd = cmd, init_options = init_options, settings = settings, flags = flags, capabilities = capabilities, on_attach = on_attach, handlers = handlers})

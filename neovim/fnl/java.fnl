@@ -1,4 +1,5 @@
-(let [jdtls (require :jdtls)
+(let [BUILD_TIMEOUT 7500 ;; msec
+      jdtls (require :jdtls)
       setup (require :jdtls.setup)
       dap (require :jdtls.dap) ;;
       ;; system
@@ -153,10 +154,34 @@
       ;; client settings
       capabilities (dofile args.capabilities_path)
       on_attach (fn [client bufnr]
-                  ((dofile args.on_attach_path) client bufnr)
-                  (setup.add_commands)
-                  (jdtls.setup_dap {:hotcodereplace :auto})
-                  (dap.setup_dap_main_class_configs))
+                  (let [mk_opts (fn [desc] {:silent true :buffer bufnr : desc})
+                        with_compile (fn [f]
+                                       (fn []
+                                         (if vim.bo.modified
+                                             (vim.cmd :w))
+                                         (client.request_sync :java/buildWorkspace
+                                                              false
+                                                              BUILD_TIMEOUT
+                                                              bufnr)
+                                         (f)))
+                        n_keys [[:<LocalLeader>o
+                                 jdtls.organize_imports
+                                 (mk_opts "[JDTLS] organize imports")]
+                                [:<LocalLeader>tc
+                                 (with_compile jdtls.test_class)
+                                 (mk_opts "[JDTLS] test class")]
+                                [:<LocalLeader>tt
+                                 (with_compile jdtls.test_nearest_method)
+                                 (mk_opts "[JDTLS] test nearest method")]
+                                [:<LocalLeader>tl
+                                 (with_compile dap.run_last)
+                                 (mk_opts "[DAP] run last")]]]
+                    ((dofile args.on_attach_path) client bufnr)
+                    (setup.add_commands)
+                    (jdtls.setup_dap {:hotcodereplace :auto})
+                    (dap.setup_dap_main_class_configs)
+                    (each [_ k (ipairs n_keys)]
+                      (vim.keymap.set :n (. k 1) (. k 2) (. k 3)))))
       handlers {:language/status (fn [])}
       user_commands {:JdtTestClass jdtls.test_class
                      :JdtTestNearestMethod jdtls.test_nearest_method}]

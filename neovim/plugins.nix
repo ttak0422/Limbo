@@ -79,7 +79,7 @@ let
       # Extensions for the built-in LSP support in Neovim for eclipse.jdt.ls
       plugin = nvim-jdtls;
       dependPlugins = [ ];
-      dependGroups = [ "lsp" ];
+      dependGroups = [ "lsp" "dap" ];
       onModules = [ "jdtls" ];
     };
     vtsls = {
@@ -1078,8 +1078,7 @@ let
     };
   };
 
-in
-with pkgs.vimPlugins;
+in with pkgs.vimPlugins;
 {
   tshjkl = {
     # Tree-sitter hjkl movement for neovim

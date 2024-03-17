@@ -2,6 +2,10 @@
   description = "dotfiles v4";
 
   inputs = {
+    tshjkl-nvim = {
+      url = "github:ttak0422/tshjkl.nvim/feature/supress";
+      flake = false;
+    };
     systems.url = "github:nix-systems/default";
     flake-parts.url = "github:hercules-ci/flake-parts";
     flake-utils.url = "github:numtide/flake-utils";
