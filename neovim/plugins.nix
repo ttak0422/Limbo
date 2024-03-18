@@ -32,6 +32,26 @@ let
       # onFiletypes = [ "rust" ];
       onModules = [ "rustaceanvim" ];
     };
+    haskell-tools = {
+      # Supercharge your Haskell experience in neovim!
+      plugin = haskell-tools-nvim;
+      dependPlugins = [ plenary-nvim ];
+      dependGroups = [ "lsp" ];
+      extraPackages = with pkgs; [
+        ghc
+        haskellPackages.fourmolu
+        haskell-language-server
+      ];
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/haskell-tools.lua;
+        args = {
+          on_attach_path = ./lua/on_attach.lua;
+          capabilities_path = ./lua/capabilities.lua;
+        };
+      };
+      onModules = [ "haskell-tools" ];
+    };
     trouble = {
       # A pretty diagnostics, references, telescope results, quickfix and location list to help you solve all the trouble your code is causing.
       plugin = trouble-nvim;
@@ -91,25 +111,6 @@ let
       };
       dependGroups = [ "lsp" ];
       onFiletypes = [ "typescript" "javascript" ];
-    };
-    haskell-tools = {
-      # Supercharge your Haskell experience in neovim!
-      plugin = haskell-tools-nvim;
-      dependPlugins = [ plenary-nvim ];
-      dependGroups = [ "lsp" ];
-      extraPackages = with pkgs; [
-        haskellPackages.fourmolu
-        haskell-language-server
-      ];
-      postConfig = {
-        language = "lua";
-        code = readFile ./lua/haskell-tools.lua;
-        args = {
-          on_attach_path = ./lua/on_attach.lua;
-          capabilities_path = ./lua/capabilities.lua;
-        };
-      };
-      onFiletypes = [ "haskell" ];
     };
     flutter-tools = {
       # Tools to help create flutter apps in neovim using the native lsp
@@ -1078,7 +1079,8 @@ let
     };
   };
 
-in with pkgs.vimPlugins;
+in
+with pkgs.vimPlugins;
 {
   tshjkl = {
     # Tree-sitter hjkl movement for neovim

@@ -83,7 +83,7 @@
             glance
             goto-preview
             harpoon
-            # haskell-tools
+            haskell-tools
             heirline
             history-ignore
             # hlchunk
@@ -176,7 +176,8 @@
             treesitter
           ];
           after.ftplugin = with ftplugins; {
-            inherit ddu-ff ddu-ff-filter qf gina-blame rust java;
+            inherit ddu-ff ddu-ff-filter qf gina-blame rust java haskell
+              lhaskell cabal cabalproject;
           };
         };
       };
