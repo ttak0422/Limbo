@@ -132,7 +132,7 @@
 (lspconfig.marksman.setup {: on_attach : capabilities})
 
 ;; efm
-(let [;; linter
+(let [fs (require :efmls-configs.fs) ;; linter
       luacheck (require :efmls-configs.linters.luacheck)
       eslint (require :efmls-configs.linters.eslint)
       yamllint (require :efmls-configs.linters.yamllint)
@@ -152,7 +152,23 @@
       shfmt (require :efmls-configs.formatters.shfmt)
       taplo (require :efmls-configs.formatters.taplo)
       nixfmt (require :efmls-configs.formatters.nixfmt)
-      google_java_format (require :efmls-configs.formatters.google_java_format)
+      ;; AOSPが提供されているので時前で定義する
+      ;; google_java_format (require :efmls-configs.formatters.google_java_format)
+      google_java_format (let [command (.. (fs.executable :google-java-format)
+                                           " $(echo -n ${--useless:rowStart} ${--useless:rowEnd}"
+                                           " | xargs -n4 -r sh -c 'echo"
+                                           " --skip-sorting-imports"
+                                           " --skip-removing-unused-imports"
+                                           " --skip-reflowing-long-strings"
+                                           " --skip-javadoc-formatting"
+                                           " --lines $(($1+1)):$(($3+1))'" ") -")]
+                           {:formatCanRange true
+                            :formatCommand command
+                            :formatStdin true
+                            :rootMarkers [:.project
+                                          :classpath
+                                          :pom.xml
+                                          :build.gradle]})
       yapf (require :efmls-configs.formatters.yapf)
       goimports (require :efmls-configs.formatters.goimports)
       gofumpt (require :efmls-configs.formatters.gofumpt)

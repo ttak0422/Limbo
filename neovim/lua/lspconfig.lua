@@ -46,6 +46,7 @@ end
 lspconfig.denols.setup({on_attach = on_attach, capabilities = capabilities, root_dir = _2_, init_options = {lint = true, suggest = {completeFunctionCalls = true, names = true, paths = true, autoImports = true, imports = {autoDiscover = true, hosts = vim.empty_dict()}}, unstable = false}, settings = {deno = {enable = true}}, single_file_support = false})
 lspconfig.marksman.setup({on_attach = on_attach, capabilities = capabilities})
 do
+  local fs = require("efmls-configs.fs")
   local luacheck = require("efmls-configs.linters.luacheck")
   local eslint = require("efmls-configs.linters.eslint")
   local yamllint = require("efmls-configs.linters.yamllint")
@@ -64,7 +65,11 @@ do
   local shfmt = require("efmls-configs.formatters.shfmt")
   local taplo = require("efmls-configs.formatters.taplo")
   local nixfmt = require("efmls-configs.formatters.nixfmt")
-  local google_java_format = require("efmls-configs.formatters.google_java_format")
+  local google_java_format
+  do
+    local command = (fs.executable("google-java-format") .. " $(echo -n ${--useless:rowStart} ${--useless:rowEnd}" .. " | xargs -n4 -r sh -c 'echo" .. " --skip-sorting-imports" .. " --skip-removing-unused-imports" .. " --skip-reflowing-long-strings" .. " --skip-javadoc-formatting" .. " --lines $(($1+1)):$(($3+1))'" .. ") -")
+    google_java_format = {formatCanRange = true, formatCommand = command, formatStdin = true, rootMarkers = {".project", "classpath", "pom.xml", "build.gradle"}}
+  end
   local yapf = require("efmls-configs.formatters.yapf")
   local goimports = require("efmls-configs.formatters.goimports")
   local gofumpt = require("efmls-configs.formatters.gofumpt")
