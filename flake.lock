@@ -17505,6 +17505,38 @@
         "type": "github"
       }
     },
+    "nvim-nio": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1710785379,
+        "narHash": "sha256-2JHkfK4Q6aW2ONtDZzZd4K5o3rnNaEZMp7hIq5JCpwc=",
+        "owner": "nvim-neotest",
+        "repo": "nvim-nio",
+        "rev": "ed70af8ad9d4dafdb55539ed2b4454aac2a2a0c3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-neotest",
+        "repo": "nvim-nio",
+        "type": "github"
+      }
+    },
+    "nvim-nio_2": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1710785379,
+        "narHash": "sha256-2JHkfK4Q6aW2ONtDZzZd4K5o3rnNaEZMp7hIq5JCpwc=",
+        "owner": "nvim-neotest",
+        "repo": "nvim-nio",
+        "rev": "ed70af8ad9d4dafdb55539ed2b4454aac2a2a0c3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-neotest",
+        "repo": "nvim-nio",
+        "type": "github"
+      }
+    },
     "nvim-nonicons": {
       "flake": false,
       "locked": {
@@ -25523,6 +25555,7 @@
         "nvim-lint": "nvim-lint",
         "nvim-lspconfig": "nvim-lspconfig",
         "nvim-navbuddy": "nvim-navbuddy",
+        "nvim-nio": "nvim-nio",
         "nvim-nonicons": "nvim-nonicons",
         "nvim-notify": "nvim-notify",
         "nvim-paredit": "nvim-paredit",
@@ -25719,11 +25752,11 @@
         "zoomwintab-vim": "zoomwintab-vim"
       },
       "locked": {
-        "lastModified": 1710807451,
-        "narHash": "sha256-PfEqU2rSj81pIFS2SBO/MOy1ila4EfJiWJN3TkI2tUU=",
+        "lastModified": 1710859958,
+        "narHash": "sha256-6r3KcCYvNFjwA1JZYqNeDcQYhqGHhqnPqxynkQER12E=",
         "owner": "ttak0422",
         "repo": "vim-plugins-overlay",
-        "rev": "9fbb4703cd150ae71269c01c6d57dff64a7e0b1d",
+        "rev": "f22f45e5f7bab2b262599eb0608a20423315864d",
         "type": "github"
       },
       "original": {
@@ -26647,6 +26680,7 @@
         "nvim-lint": "nvim-lint_3",
         "nvim-lspconfig": "nvim-lspconfig_3",
         "nvim-navbuddy": "nvim-navbuddy_3",
+        "nvim-nio": "nvim-nio_2",
         "nvim-nonicons": "nvim-nonicons_3",
         "nvim-notify": "nvim-notify_3",
         "nvim-paredit": "nvim-paredit_3",
@@ -26843,11 +26877,11 @@
         "zoomwintab-vim": "zoomwintab-vim_3"
       },
       "locked": {
-        "lastModified": 1710807451,
-        "narHash": "sha256-PfEqU2rSj81pIFS2SBO/MOy1ila4EfJiWJN3TkI2tUU=",
+        "lastModified": 1710859958,
+        "narHash": "sha256-6r3KcCYvNFjwA1JZYqNeDcQYhqGHhqnPqxynkQER12E=",
         "owner": "ttak0422",
         "repo": "vim-plugins-overlay",
-        "rev": "9fbb4703cd150ae71269c01c6d57dff64a7e0b1d",
+        "rev": "f22f45e5f7bab2b262599eb0608a20423315864d",
         "type": "github"
       },
       "original": {

@@ -441,7 +441,7 @@ with pkgs.vimPlugins; {
     plugins = [
       {
         plugin = neotest;
-        dependPlugins = [ plenary-nvim ];
+        dependPlugins = [ plenary-nvim nvim-nio ];
         dependGroups = [ "treesitter" "lsp" "dap" ];
       }
       neotest-java
@@ -763,7 +763,10 @@ with pkgs.vimPlugins; {
     name = "dap";
     plugins = [
       nvim-dap
-      nvim-dap-ui
+      {
+        plugin = nvim-dap-ui;
+        dependPlugins = [ nvim-nio ];
+      }
       nvim-dap-virtual-text
       nvim-dap-repl-highlights
       nvim-dap-go
