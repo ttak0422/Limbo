@@ -2,9 +2,7 @@ import { BaseConfig } from "https://deno.land/x/ddc_vim@v4.3.1/types.ts";
 import { ConfigArguments } from "https://deno.land/x/ddc_vim@v4.3.1/base/config.ts";
 
 export class Config extends BaseConfig {
-  override config(
-    { contextBuilder, denops }: ConfigArguments,
-  ): Promise<void> {
+  override config({ contextBuilder, denops }: ConfigArguments): Promise<void> {
     contextBuilder.patchGlobal({
       ui: "pum",
       uiParams: {
@@ -23,22 +21,17 @@ export class Config extends BaseConfig {
       ],
       backspaceCompletion: false,
       sources: [
+        "vsnip",
         "lsp",
         // "tsnip",
-        "vsnip",
         "around",
       ],
       sourceOptions: {
         _: {
           isVolatile: true,
           ignoreCase: true,
-          matchers: [
-            "matcher_fuzzy",
-          ],
-          sorters: [
-            "sorter_rank",
-            "sorter_fuzzy",
-          ],
+          matchers: ["matcher_fuzzy"],
+          sorters: ["sorter_rank", "sorter_fuzzy"],
           converters: [
             "converter_remove_overlap",
             "converter_truncate",
@@ -78,7 +71,7 @@ export class Config extends BaseConfig {
         lsp: {
           mark: "[LSP]",
           dup: "keep",
-          keywordPattern: "\k+",
+          keywordPattern: "k+",
           forceCompletionPattern: "\\.\\w*|::\\w*|->\\w*",
           maxItems: 800,
           minKeywordLength: 0,
@@ -101,6 +94,8 @@ export class Config extends BaseConfig {
       },
       sourceParams: {
         lsp: {
+          lspEngine: "nvim-lsp",
+          confirmBehavior: "replace",
           snippetEngine: async (body: string) => {
             await denops.call("vsnip#anonymous", body);
             return Promise.resolve();
@@ -144,7 +139,7 @@ export class Config extends BaseConfig {
           maxKindWidth: 10,
           maxMenuWidth: 40,
         },
-        "sorter_itemsize": {
+        sorter_itemsize: {
           sameWordOnly: true,
         },
         "sorter_lsp-detail-size": {
