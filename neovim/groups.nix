@@ -376,8 +376,7 @@ with pkgs.vimPlugins; {
             capabilities_path = ./lua/capabilities.lua;
           };
         };
-        dependPlugins =
-          [ climbdir-nvim efmls-configs-nvim ];
+        dependPlugins = [ climbdir-nvim efmls-configs-nvim ];
         useTimer = true;
       }
       {
@@ -571,7 +570,7 @@ with pkgs.vimPlugins; {
         plugin = ddc-source-vsnip;
         dependPlugins = [{
           plugin = vim-vsnip;
-          dependPlugins = [ tabout-nvim ];
+          dependPlugins = [ tabout-nvim friendly-snippets ];
           postConfig = {
             language = "vim";
             code = readFile ./vim/vsnip.vim;
@@ -613,16 +612,16 @@ with pkgs.vimPlugins; {
       #   dependPlugins = [ obsidian-nvim ];
       #   useDenops = true;
       # }
-      {
-        plugin = tsnip-nvim;
-        postConfig = {
-          language = "lua";
-          code = readFile ./lua/tsnip.lua;
-          args = { tsnip_root = ./snip/tsnip; };
-        };
-        dependPlugins = [ nui-nvim ];
-        useDenops = true;
-      }
+      # {
+      #   plugin = tsnip-nvim;
+      #   postConfig = {
+      #     language = "lua";
+      #     code = readFile ./lua/tsnip.lua;
+      #     args = { tsnip_root = ./snip/tsnip; };
+      #   };
+      #   dependPlugins = [ nui-nvim ];
+      #   useDenops = true;
+      # }
     ];
     dependPlugins = [
       denops-vim

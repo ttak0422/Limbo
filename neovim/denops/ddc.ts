@@ -24,7 +24,7 @@ export class Config extends BaseConfig {
       backspaceCompletion: false,
       sources: [
         "lsp",
-        "tsnip",
+        // "tsnip",
         "vsnip",
         "around",
       ],
@@ -50,10 +50,10 @@ export class Config extends BaseConfig {
         around: {
           mark: "[AROUND]",
         },
-        tsnip: {
-          mark: "[TSNIP]",
-          sorters: ["sorter_rank"],
-        },
+        // tsnip: {
+        //   mark: "[TSNIP]",
+        //   sorters: ["sorter_rank"],
+        // },
         vsnip: {
           mark: "[VSNIP]",
         },
