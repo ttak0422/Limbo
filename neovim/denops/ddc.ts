@@ -71,7 +71,7 @@ export class Config extends BaseConfig {
         lsp: {
           mark: "[LSP]",
           dup: "keep",
-          keywordPattern: "k+",
+          // keywordPattern: "k+",
           forceCompletionPattern: "\\.\\w*|::\\w*|->\\w*",
           maxItems: 800,
           minKeywordLength: 0,
