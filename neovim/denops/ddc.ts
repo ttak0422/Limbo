@@ -95,7 +95,7 @@ export class Config extends BaseConfig {
       sourceParams: {
         lsp: {
           lspEngine: "nvim-lsp",
-          confirmBehavior: "replace",
+          // confirmBehavior: "replace",
           snippetEngine: async (body: string) => {
             await denops.call("vsnip#anonymous", body);
             return Promise.resolve();
