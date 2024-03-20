@@ -21,8 +21,8 @@ export class Config extends BaseConfig {
       ],
       backspaceCompletion: false,
       sources: [
-        "vsnip",
         "lsp",
+        "vsnip",
         // "tsnip",
         "around",
       ],
