@@ -2,8 +2,7 @@
 let
   inherit (builtins) readFile;
   inherit (lib.strings) concatStringsSep;
-in
-with pkgs.vimPlugins; {
+in with pkgs.vimPlugins; {
   lir = {
     name = "lir";
     plugins = [
@@ -192,26 +191,24 @@ with pkgs.vimPlugins; {
       #   };
       # }
     ];
-    postConfig =
-      let
-        parser = pkgs.stdenv.mkDerivation {
-          name = "treesitter-all-grammars";
-          buildCommand = ''
-            mkdir -p $out/parser
-            echo "${
-              concatStringsSep "," nvim-treesitter.withAllGrammars.dependencies
-            }" \
-              | tr ',' '\n' \
-              | xargs -I {} find {} -not -type d \
-              | xargs -I {} ln -s {} $out/parser
-          '';
-        };
-      in
-      {
-        language = "lua";
-        code = readFile ./lua/treesitter.lua;
-        args = { inherit parser; };
+    postConfig = let
+      parser = pkgs.stdenv.mkDerivation {
+        name = "treesitter-all-grammars";
+        buildCommand = ''
+          mkdir -p $out/parser
+          echo "${
+            concatStringsSep "," nvim-treesitter.withAllGrammars.dependencies
+          }" \
+            | tr ',' '\n' \
+            | xargs -I {} find {} -not -type d \
+            | xargs -I {} ln -s {} $out/parser
+        '';
       };
+    in {
+      language = "lua";
+      code = readFile ./lua/treesitter.lua;
+      args = { inherit parser; };
+    };
     # extraPackages = with pkgs; [ tree-sitter ];
     useTimer = true;
   };
@@ -406,10 +403,13 @@ with pkgs.vimPlugins; {
       #   plugin = pretty_hover;
       #  postConfig = readFile ./../../../nvim/pretty-hover.lua;
       # }
-      # {
-      #   plugin = diagflow-nvim;
-      #  postConfig = readFile ./../../../nvim/diagflow.lua;
-      # }
+      {
+        plugin = diagflow-nvim;
+        postConfig = {
+          language = "lua";
+          code = readFile ./lua/diagflow.lua;
+        };
+      }
       # noice-nvim
       # {
       #   plugin = suit-nvim;
