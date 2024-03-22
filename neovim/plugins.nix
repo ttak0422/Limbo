@@ -40,7 +40,7 @@ let
       extraPackages = with pkgs; [
         ghc
         haskellPackages.fourmolu
-        haskell-language-server
+        haskellPackages.haskell-language-server
       ];
       postConfig = {
         language = "lua";
