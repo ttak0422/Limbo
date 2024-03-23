@@ -1,5 +1,5 @@
 call skkeleton#config(#{
-      \   sources: ['skk_dictionary'],
+      \   sources: ['skk_server'],
       \   immediatelyDictionaryRW: v:false,
       \   userDictionary: '~/.skkeleton',
       \   globalDictionaries: [ s:args['jisyo'] ],
