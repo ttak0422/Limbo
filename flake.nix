@@ -6,6 +6,10 @@
       url = "github:ttak0422/tshjkl.nvim/feature/supress";
       flake = false;
     };
+    statuscol-nvim = {
+      url = "github:luukvbaal/statuscol.nvim/0.10";
+      flake = false;
+    };
     systems.url = "github:nix-systems/default";
     flake-parts.url = "github:hercules-ci/flake-parts";
     flake-utils.url = "github:numtide/flake-utils";

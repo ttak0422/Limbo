@@ -21033,6 +21033,7 @@
         "nixpkgs": "nixpkgs_4",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nvim-jdtls": "nvim-jdtls",
+        "statuscol-nvim": "statuscol-nvim",
         "systems": "systems_4",
         "tshjkl-nvim": "tshjkl-nvim",
         "tsnip-nvim-src": "tsnip-nvim-src",
@@ -22165,15 +22166,16 @@
     "statuscol-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1708694945,
-        "narHash": "sha256-yKXRX8dPOt/VyRAYdHkL8MeRqeHZ3hta8zZqlhfcFsU=",
+        "lastModified": 1708023805,
+        "narHash": "sha256-I6Wefl83mcMURtJEq1yaR2thxVMfpJmjSplapeVyKYE=",
         "owner": "luukvbaal",
         "repo": "statuscol.nvim",
-        "rev": "d954893262a57a92e46edd87de67e2b3fe72305e",
+        "rev": "e9e4c30b68abe456d80a0b144149ebf3f4527ed8",
         "type": "github"
       },
       "original": {
         "owner": "luukvbaal",
+        "ref": "0.10",
         "repo": "statuscol.nvim",
         "type": "github"
       }
@@ -22195,6 +22197,22 @@
       }
     },
     "statuscol-nvim_3": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1708694945,
+        "narHash": "sha256-yKXRX8dPOt/VyRAYdHkL8MeRqeHZ3hta8zZqlhfcFsU=",
+        "owner": "luukvbaal",
+        "repo": "statuscol.nvim",
+        "rev": "d954893262a57a92e46edd87de67e2b3fe72305e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "luukvbaal",
+        "repo": "statuscol.nvim",
+        "type": "github"
+      }
+    },
+    "statuscol-nvim_4": {
       "flake": false,
       "locked": {
         "lastModified": 1708694945,
@@ -25729,7 +25747,7 @@
         "ssr-nvim": "ssr-nvim",
         "stabilize-nvim": "stabilize-nvim",
         "startuptime-vim": "startuptime-vim",
-        "statuscol-nvim": "statuscol-nvim",
+        "statuscol-nvim": "statuscol-nvim_2",
         "stickybuf-nvim": "stickybuf-nvim",
         "styler-nvim": "styler-nvim",
         "suit-nvim": "suit-nvim",
@@ -26294,7 +26312,7 @@
         "ssr-nvim": "ssr-nvim_2",
         "stabilize-nvim": "stabilize-nvim_2",
         "startuptime-vim": "startuptime-vim_2",
-        "statuscol-nvim": "statuscol-nvim_2",
+        "statuscol-nvim": "statuscol-nvim_3",
         "stickybuf-nvim": "stickybuf-nvim_2",
         "styler-nvim": "styler-nvim_2",
         "suit-nvim": "suit-nvim_2",
@@ -26859,7 +26877,7 @@
         "ssr-nvim": "ssr-nvim_3",
         "stabilize-nvim": "stabilize-nvim_3",
         "startuptime-vim": "startuptime-vim_3",
-        "statuscol-nvim": "statuscol-nvim_3",
+        "statuscol-nvim": "statuscol-nvim_4",
         "stickybuf-nvim": "stickybuf-nvim_3",
         "styler-nvim": "styler-nvim_3",
         "suit-nvim": "suit-nvim_3",

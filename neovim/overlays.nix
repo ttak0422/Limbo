@@ -29,6 +29,11 @@ with inputs; [
           version = "unstable";
           src = inputs.tshjkl-nvim;
         };
+        statuscol-nvim = prev.vimUtils.buildVimPlugin {
+          pname = "statuscol-nvim";
+          version = "unstable";
+          src = inputs.statuscol-nvim;
+        };
         telescope-fzf-native-nvim =
           prev.vimPlugins.telescope-fzf-native-nvim.overrideAttrs {
             dependencies = [ ];
