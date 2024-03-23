@@ -5,9 +5,9 @@ vim.diagnostic.config({severity_sort = true})
 vim.lsp.set_log_level("WARN")
 do end (vim.lsp.handlers)["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {border = "single"})
 do
-  local signs = {{name = "DiagnosticSignError", text = "\239\129\151"}, {name = "DiagnosticSignWarn", text = "\239\129\177"}, {name = "DiagnosticSignInfo", text = "\239\129\154"}, {name = "DiagnosticSignHint", text = "\239\129\153"}}
+  local signs = {{name = "DiagnosticSignError", text = "\239\145\132"}, {name = "DiagnosticSignWarn", text = "\239\145\132"}, {name = "DiagnosticSignInfo", text = "\239\145\132"}, {name = "DiagnosticSignHint", text = "\239\145\132"}}
   for _, sign in ipairs(signs) do
-    vim.fn.sign_define(sign.name, {texthl = sign.name, text = "", numhl = ""})
+    vim.fn.sign_define(sign.name, {texthl = sign.name, text = sign.text, numhl = ""})
   end
 end
 local lspconfig = require("lspconfig")

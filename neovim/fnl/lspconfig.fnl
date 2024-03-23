@@ -7,12 +7,12 @@
 (tset vim.lsp.handlers :textDocument/hover
       (vim.lsp.with vim.lsp.handlers.hover {:border :single}))
 
-(let [signs [{:name :DiagnosticSignError :text ""}
-             {:name :DiagnosticSignWarn :text ""}
-             {:name :DiagnosticSignInfo :text ""}
-             {:name :DiagnosticSignHint :text ""}]]
+(let [signs [{:name :DiagnosticSignError :text ""}
+             {:name :DiagnosticSignWarn :text ""}
+             {:name :DiagnosticSignInfo :text ""}
+             {:name :DiagnosticSignHint :text ""}]]
   (each [_ sign (ipairs signs)]
-    (vim.fn.sign_define sign.name {:texthl sign.name :text "" :numhl ""})))
+    (vim.fn.sign_define sign.name {:texthl sign.name :text sign.text :numhl ""})))
 
 (local lspconfig (require :lspconfig))
 (local util (require :lspconfig.util))
