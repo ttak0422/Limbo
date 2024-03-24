@@ -3,7 +3,7 @@
 
   inputs = {
     vim-sonictemplate = {
-      url = "github:ttak0422/vim-sonictemplate";
+      url = "github:ttak0422/vim-sonictemplate/feature/support-java-test-directory";
       flake = false;
     };
     tshjkl-nvim = {
