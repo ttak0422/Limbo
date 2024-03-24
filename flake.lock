@@ -21039,7 +21039,8 @@
         "tsnip-nvim-src": "tsnip-nvim-src",
         "vim-plugins-overlay": "vim-plugins-overlay",
         "vim-plugins-overlay-latest": "vim-plugins-overlay-latest",
-        "vim-plugins-overlay-unstable": "vim-plugins-overlay-unstable"
+        "vim-plugins-overlay-unstable": "vim-plugins-overlay-unstable",
+        "vim-sonictemplate": "vim-sonictemplate_4"
       }
     },
     "rust-analyzer-src": {
@@ -27421,6 +27422,22 @@
       },
       "original": {
         "owner": "mattn",
+        "repo": "vim-sonictemplate",
+        "type": "github"
+      }
+    },
+    "vim-sonictemplate_4": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1694081961,
+        "narHash": "sha256-9P4tKJ6y9DCtnwqjWxOkQsdS3yYa74zQwa/xS/OLRN0=",
+        "owner": "ttak0422",
+        "repo": "vim-sonictemplate",
+        "rev": "b85d7b5802c7efdf2b3fbf3dea2119c25322bab3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ttak0422",
         "repo": "vim-sonictemplate",
         "type": "github"
       }

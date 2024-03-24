@@ -24,6 +24,11 @@ with inputs; [
           # };
         };
       vimPlugins = prev.vimPlugins // {
+        vim-sonictemplate = prev.vimUtils.buildVimPlugin {
+          pname = "vim-sonictemplate";
+          version = "unstable";
+          src = inputs.vim-sonictemplate;
+        };
         tshjkl-nvim = prev.vimUtils.buildVimPlugin {
           pname = "tshjkl-nvim";
           version = "unstable";

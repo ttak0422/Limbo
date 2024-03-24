@@ -2,6 +2,10 @@
   description = "dotfiles v4";
 
   inputs = {
+    vim-sonictemplate = {
+      url = "github:ttak0422/vim-sonictemplate";
+      flake = false;
+    };
     tshjkl-nvim = {
       url = "github:ttak0422/tshjkl.nvim/feature/supress";
       flake = false;
