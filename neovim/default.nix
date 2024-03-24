@@ -86,7 +86,7 @@
             haskell-tools
             heirline
             history-ignore
-            # hlchunk
+            hlchunk
             hlslens
             indent-o-matic
             # ionide
@@ -149,7 +149,7 @@
             rustaceanvim
             dotfyle
             lastplace
-            indent-blankline
+            # indent-blankline
             global-note
             denops
             qfreplace
