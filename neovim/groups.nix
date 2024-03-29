@@ -225,14 +225,14 @@ in with pkgs.vimPlugins; {
       #   dependPlugins = [ skkeleton ];
       #   extraPackages = with pkgs; [ python3Packages.pykakasi ];
       # }
-      {
-        plugin = skkeleton_indicator-nvim;
-        postConfig = {
-          language = "lua";
-          code = readFile ./lua/skkeleton_indicator.lua;
-          args = { exclude_ft_path = ./lua/exclude_ft.lua; };
-        };
-      }
+      # {
+      #   plugin = skkeleton_indicator-nvim;
+      #   postConfig = {
+      #     language = "lua";
+      #     code = readFile ./lua/skkeleton_indicator.lua;
+      #     args = { exclude_ft_path = ./lua/exclude_ft.lua; };
+      #   };
+      # }
     ];
     dependPlugins = [ denops-vim ];
     dependGroups = [ "ddc" ];
