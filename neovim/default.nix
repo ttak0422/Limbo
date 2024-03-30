@@ -46,7 +46,7 @@
 
       bundler-nvim = {
         inherit (callPackage ./neovim-ci.nix { }) ci-nightly-latest;
-        inherit (callPackage ./neovim-test.nix { }) test-v9;
+        inherit (callPackage ./neovim-test.nix { }) test-v9 skkeleton skkeleton-lazy skkeleton-with-ddc;
         default = {
           inherit extraConfig extraLuaConfig;
           # logLevel = "debug";
@@ -158,6 +158,7 @@
             neogit
             scope
             octo
+            skk
           ];
           lazyGroups = with groups; [
             bufferHook
@@ -171,7 +172,6 @@
             lsp
             neotest
             oil
-            skk
             telescope
             treesitter
           ];

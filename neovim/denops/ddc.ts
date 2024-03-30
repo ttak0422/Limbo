@@ -62,12 +62,12 @@ export class Config extends BaseConfig {
         buffer: {
           mark: "[BUFFER]",
         },
-        // skkeleton: {
-        //   mark: "[SKK]",
-        //   matchers: ["skkeleton"],
-        //   isVolatile: true,
-        //   sorters: [],
-        // },
+        skkeleton: {
+          mark: "[SKK]",
+          matchers: ["skkeleton"],
+          isVolatile: true,
+          sorters: [],
+        },
         lsp: {
           mark: "[LSP]",
           dup: "keep",

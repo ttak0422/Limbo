@@ -212,37 +212,6 @@ in with pkgs.vimPlugins; {
     # extraPackages = with pkgs; [ tree-sitter ];
     useTimer = true;
   };
-  skk = {
-    name = "skk";
-    plugins = [
-      {
-        plugin = skkeleton;
-        useDenops = true;
-      }
-      # wip
-      # {
-      #   plugin = skk-vconv-vim;
-      #   dependPlugins = [ skkeleton ];
-      #   extraPackages = with pkgs; [ python3Packages.pykakasi ];
-      # }
-      # {
-      #   plugin = skkeleton_indicator-nvim;
-      #   postConfig = {
-      #     language = "lua";
-      #     code = readFile ./lua/skkeleton_indicator.lua;
-      #     args = { exclude_ft_path = ./lua/exclude_ft.lua; };
-      #   };
-      # }
-    ];
-    dependPlugins = [ denops-vim ];
-    dependGroups = [ "ddc" ];
-    postConfig = {
-      language = "vim";
-      code = readFile ./vim/skk.vim;
-      args = { jisyo = "${pkgs.skk-dicts}/share/SKK-JISYO.L"; };
-    };
-    onEvents = [ "InsertEnter" "CmdlineEnter" ];
-  };
   telescope = {
     name = "telescope";
     plugins = [
@@ -276,8 +245,7 @@ in with pkgs.vimPlugins; {
         }];
       }
     ];
-    dependPlugins = [ plenary-nvim ];
-    dependGroups = [ "skk" ];
+    dependPlugins = [ plenary-nvim skkeleton ];
     postConfig = {
       language = "lua";
       code = readFile ./lua/telescope.lua;
@@ -487,7 +455,6 @@ in with pkgs.vimPlugins; {
         dependPlugins = [{
           plugin = pum-vim;
           dependPlugins = [
-            # noice-nvim
             {
               plugin = nvim-autopairs;
               dependGroups = [ "treesitter" ];
@@ -592,16 +559,16 @@ in with pkgs.vimPlugins; {
         useDenops = true;
       }
       # ddc-ui-native
-      # denops-popup-preview-vim
+      denops-popup-preview-vim
       # {
       #   plugin = ddc-previewer-floating;
       #   postConfig = readFile ./../../../nvim/ddc-previewer-floating.lua;
       #   dependPlugins = [ pum-vim ];
       # }
-      {
-        plugin = denops-signature_help;
-        useDenops = true;
-      }
+      # {
+      #   plugin = denops-signature_help;
+      #   useDenops = true;
+      # }
       {
         plugin = neco-vim;
         useDenops = true;
@@ -645,119 +612,119 @@ in with pkgs.vimPlugins; {
   };
   ddu = {
     name = "ddu";
-    plugins = [
-      {
-        plugin = ddu-vim;
-        useDenops = true;
-      }
-      # ui
-      {
-        plugin = ddu-ui-ff;
-        useDenops = true;
-      }
-      {
-        plugin = ddu-ui-filer;
-        useDenops = true;
-      }
-      # source
-      {
-        plugin = ddu-source-file;
-        useDenops = true;
-      }
-      {
-        plugin = ddu-source-file_rec;
-        useDenops = true;
-      }
-      {
-        plugin = ddu-source-rg;
-        preConfig = {
-          language = "vim";
-          code = ''
-            let g:loaded_ddu_rg = 1
-          '';
-        };
-        useDenops = true;
-        extraPackages = with pkgs; [ ripgrep ];
-      }
-      {
-        plugin = ddu-source-ghq;
-        useDenops = true;
-        extraPackages = with pkgs; [ ghq ];
-      }
-      {
-        plugin = ddu-source-file_external;
-        useDenops = true;
-        extraPackages = with pkgs; [ fd ];
-      }
-      {
-        plugin = ddu-source-mr;
-        useDenops = true;
-        dependPlugins = [ mr-vim ];
-      }
-      # filter
-      {
-        plugin = ddu-filter-fzf;
-        useDenops = true;
-        extraPackages = with pkgs; [ fzf ];
-      }
-      {
-        plugin = ddu-filter-matcher_files;
-        useDenops = true;
-      }
-      # filter (matcher)
-      {
-        plugin = ddu-filter-matcher_substring;
-        useDenops = true;
-      }
-      {
-        plugin = ddu-filter-matcher_hidden;
-        useDenops = true;
-      }
-      # filter (sorter)
-      {
-        plugin = ddu-filter-sorter_alpha;
-        useDenops = true;
-      }
-      # filter (converter)
-      {
-        plugin = ddu-filter-converter_hl_dir;
-        useDenops = true;
-      }
-      {
-        plugin = ddu-filter-converter_devicon;
-        useDenops = true;
-      }
-      {
-        plugin = ddu-filter-converter_display_word;
-        useDenops = true;
-      }
-      # kind
-      {
-        plugin = ddu-kind-file;
-        useDenops = true;
-      }
-      # other
-      {
-        plugin = ddu-commands-vim;
-        useDenops = true;
-      }
-      {
-        plugin = kensaku-vim;
-        useDenops = true;
-      }
-      # {
-      #   plugin = ddu-vim-ui-select;
-      #   useDenops = true;
-      # }
-    ];
-    dependPlugins = [ denops-vim qf-nvim nvim-bqf ];
-    postConfig = {
-      language = "vim";
-      code = readFile ./vim/ddu.vim;
-      args = { ts_config = ./denops/ddu.ts; };
-    };
-    onCommands = [ "Ddu" "DduRg" "DduRgLive" ];
-    useTimer = true;
+    # plugins = [
+    #   {
+    #     plugin = ddu-vim;
+    #     useDenops = true;
+    #   }
+    #   # ui
+    #   {
+    #     plugin = ddu-ui-ff;
+    #     useDenops = true;
+    #   }
+    #   {
+    #     plugin = ddu-ui-filer;
+    #     useDenops = true;
+    #   }
+    #   # source
+    #   {
+    #     plugin = ddu-source-file;
+    #     useDenops = true;
+    #   }
+    #   {
+    #     plugin = ddu-source-file_rec;
+    #     useDenops = true;
+    #   }
+    #   {
+    #     plugin = ddu-source-rg;
+    #     preConfig = {
+    #       language = "vim";
+    #       code = ''
+    #         let g:loaded_ddu_rg = 1
+    #       '';
+    #     };
+    #     useDenops = true;
+    #     extraPackages = with pkgs; [ ripgrep ];
+    #   }
+    #   {
+    #     plugin = ddu-source-ghq;
+    #     useDenops = true;
+    #     extraPackages = with pkgs; [ ghq ];
+    #   }
+    #   {
+    #     plugin = ddu-source-file_external;
+    #     useDenops = true;
+    #     extraPackages = with pkgs; [ fd ];
+    #   }
+    #   {
+    #     plugin = ddu-source-mr;
+    #     useDenops = true;
+    #     dependPlugins = [ mr-vim ];
+    #   }
+    #   # filter
+    #   {
+    #     plugin = ddu-filter-fzf;
+    #     useDenops = true;
+    #     extraPackages = with pkgs; [ fzf ];
+    #   }
+    #   {
+    #     plugin = ddu-filter-matcher_files;
+    #     useDenops = true;
+    #   }
+    #   # filter (matcher)
+    #   {
+    #     plugin = ddu-filter-matcher_substring;
+    #     useDenops = true;
+    #   }
+    #   {
+    #     plugin = ddu-filter-matcher_hidden;
+    #     useDenops = true;
+    #   }
+    #   # filter (sorter)
+    #   {
+    #     plugin = ddu-filter-sorter_alpha;
+    #     useDenops = true;
+    #   }
+    #   # filter (converter)
+    #   {
+    #     plugin = ddu-filter-converter_hl_dir;
+    #     useDenops = true;
+    #   }
+    #   {
+    #     plugin = ddu-filter-converter_devicon;
+    #     useDenops = true;
+    #   }
+    #   {
+    #     plugin = ddu-filter-converter_display_word;
+    #     useDenops = true;
+    #   }
+    #   # kind
+    #   {
+    #     plugin = ddu-kind-file;
+    #     useDenops = true;
+    #   }
+    #   # other
+    #   {
+    #     plugin = ddu-commands-vim;
+    #     useDenops = true;
+    #   }
+    #   {
+    #     plugin = kensaku-vim;
+    #     useDenops = true;
+    #   }
+    #   # {
+    #   #   plugin = ddu-vim-ui-select;
+    #   #   useDenops = true;
+    #   # }
+    # ];
+    # dependPlugins = [ denops-vim qf-nvim nvim-bqf ];
+    # postConfig = {
+    #   language = "vim";
+    #   code = readFile ./vim/ddu.vim;
+    #   args = { ts_config = ./denops/ddu.ts; };
+    # };
+    # onCommands = [ "Ddu" "DduRg" "DduRgLive" ];
+    # useTimer = true;
   };
   dap = {
     name = "dap";

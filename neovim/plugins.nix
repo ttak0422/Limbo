@@ -1079,8 +1079,7 @@ let
     };
   };
 
-in
-with pkgs.vimPlugins;
+in with pkgs.vimPlugins;
 {
   tshjkl = {
     # Tree-sitter hjkl movement for neovim
@@ -1134,7 +1133,24 @@ with pkgs.vimPlugins;
   };
   denops = {
     plugin = denops-vim;
-    extraPackages = with pkgs.pkgs-unstable; [ deno ];
+    # extraPackages = with pkgs.pkgs-unstable; [ deno ];
+    extraPackages = with pkgs; [ deno ];
+  };
+  skk = {
+    plugin = skkeleton;
+    dependPlugins = [ denops-vim ];
+    dependGroups = [ "ddc" "ddu" ];
+    useDenops = true;
+    postConfig = {
+      language = "vim";
+      # code = readFile ./vim/skk.vim;
+      code = ''
+        call skkeleton#config({ 'globalDictionaries': [ '~/SKK-JISYO.L' ] })
+        imap <C-j> <Plug>(skkeleton-toggle)
+      '';
+      args = { jisyo = "${pkgs.skk-dicts}/share/SKK-JISYO.L"; };
+    };
+    onEvents = [ "InsertEnter" "CmdlineEnter" ];
   };
 } // startup // lsp // dap // filetype // git // style // override // helper
 // tool // search // motion
