@@ -1133,8 +1133,9 @@ in with pkgs.vimPlugins;
   };
   denops = {
     plugin = denops-vim;
-    # extraPackages = with pkgs.pkgs-unstable; [ deno ];
-    extraPackages = with pkgs; [ deno ];
+    preConfig = ''
+      let g:denops#deno = '${pkgs.deno}/bin/deno'
+    '';
   };
   skk = {
     plugin = skkeleton;
