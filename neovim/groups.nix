@@ -559,7 +559,7 @@ in with pkgs.vimPlugins; {
         useDenops = true;
       }
       # ddc-ui-native
-      denops-popup-preview-vim
+      # denops-popup-preview-vim
       # {
       #   plugin = ddc-previewer-floating;
       #   postConfig = readFile ./../../../nvim/ddc-previewer-floating.lua;
@@ -717,7 +717,7 @@ in with pkgs.vimPlugins; {
       #   useDenops = true;
       # }
     ];
-    dependPlugins = [ denops-vim qf-nvim nvim-bqf ];
+    dependPlugins = [ denops-vim ];
     postConfig = {
       language = "vim";
       code = readFile ./vim/ddu.vim;

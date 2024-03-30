@@ -18,7 +18,7 @@ endfunction
 
 " doc
 " call signature_help#enable()
-call popup_preview#enable()
+" call popup_preview#enable()
 
 " keymaps
 inoremap <C-x>      <Cmd>call ddc#map#manual_complete()<CR>
