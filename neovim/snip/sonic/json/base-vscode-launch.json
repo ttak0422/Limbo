@@ -1,0 +1,13 @@
+{
+   "version": "0.2.0",
+   "configurations": [
+       {
+         "type": "java",
+         "name": "Launch - Spring Boot Application (local)",
+         "request": "launch",
+         "mainClass": "org.springframework.samples.petclinic.PetClinicApplication",
+         "args": "--spring.profiles.active=local"
+       }
+   ]
+}
+
