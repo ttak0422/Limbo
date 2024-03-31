@@ -690,10 +690,10 @@ in with pkgs.vimPlugins; {
         plugin = ddu-filter-converter_hl_dir;
         useDenops = true;
       }
-      {
-        plugin = ddu-filter-converter_devicon;
-        useDenops = true;
-      }
+      # {
+      #   plugin = ddu-filter-converter_devicon;
+      #   useDenops = true;
+      # }
       {
         plugin = ddu-filter-converter_display_word;
         useDenops = true;
@@ -708,10 +708,10 @@ in with pkgs.vimPlugins; {
         plugin = ddu-commands-vim;
         useDenops = true;
       }
-      {
-        plugin = kensaku-vim;
-        useDenops = true;
-      }
+      # {
+      #   plugin = kensaku-vim;
+      #   useDenops = true;
+      # }
       # {
       #   plugin = ddu-vim-ui-select;
       #   useDenops = true;

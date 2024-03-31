@@ -7,9 +7,11 @@ import {
 } from "https://deno.land/x/ddu_ui_ff@v1.1.0/ff.ts";
 
 export class Config extends BaseConfig {
-  override config(
-    { contextBuilder, setAlias }: ConfigArguments,
-  ): Promise<void> {
+  override config({
+    contextBuilder,
+    setAlias,
+  }: ConfigArguments): Promise<void> {
+  }: ConfigArguments): Promise<void> {
     setAlias("source", "file_fd", "file_external");
     setAlias("source", "mru", "mr");
     setAlias("source", "mrw", "mr");
@@ -42,13 +44,7 @@ export class Config extends BaseConfig {
         floating: "Normal",
         floatingBorder: "none",
         selected: "CursorLine",
-      },
-      onPreview: async (args: {
-        denops: Denops;
-        previewWinId: number;
-      }) => {
-        await fn.win_execute(args.denops, args.previewWinId, "normal! zt");
-      },
+      onPreview: async (args: { denops: Denops; previewWinId: number }) => {
       previewFloating: true,
       previewFloatingBorder: "none",
       previewSplit: "vertical",
@@ -64,36 +60,21 @@ export class Config extends BaseConfig {
     contextBuilder.patchGlobal({
       ui: "ff",
       profile: false,
-      sources: [
-        "file",
-        "file_rec",
-        "file_external",
-        "mr",
-        "ghq",
-      ],
+      sources: ["file", "file_rec", "file_external", "mr", "ghq"],
       uiOptions: {},
-      uiParams: {
-        ff: ffUiParams,
-      },
-      sourceOptions: {
-        _: {
-          matchers: ["matcher_fzf"],
-          sorters: ["sorter_fzf"],
+      sources: ["file", "file_rec", "file_external", "mr", "ghq"],
           smartCase: true,
         },
         file: {
-          matchers: [
-            "matcher_substring",
-            "matcher_hidden",
-          ],
+          matchers: ["matcher_substring", "matcher_hidden"],
           sorters: ["sorter_alpha"],
-          converters: ["converter_hl_dir", "converter_devicon"],
+          converters: [
+            "converter_hl_dir",
+            // "converter_devicon"
+          ],
           smartCase: true,
         },
-        rg: {
-          matchers: [
-            "converter_display_word",
-            "matcher_substring",
+          matchers: ["matcher_substring", "matcher_hidden"],
             "matcher_files",
           ],
           sorters: ["sorter_alpha"],
