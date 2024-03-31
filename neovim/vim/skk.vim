@@ -1,4 +1,5 @@
 call skkeleton#config({
+      \   'sources': [ 'deno_kv' ],
       \   'globalDictionaries': [ s:args['jisyo'] ],
       \   'markerHenkan': '',
       \   'markerHenkanSelect': '',

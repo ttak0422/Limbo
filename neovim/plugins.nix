@@ -1135,6 +1135,7 @@ in with pkgs.vimPlugins;
     plugin = denops-vim;
     preConfig = ''
       let g:denops#deno = '${pkgs.deno}/bin/deno'
+      let g:denops#server#deno_args = ['-q', '--no-lock', '-A', '--unstable-kv']
     '';
   };
   skk = {
@@ -1144,11 +1145,7 @@ in with pkgs.vimPlugins;
     useDenops = true;
     postConfig = {
       language = "vim";
-      # code = readFile ./vim/skk.vim;
-      code = ''
-        call skkeleton#config({ 'globalDictionaries': [ '~/SKK-JISYO.L' ] })
-        imap <C-j> <Plug>(skkeleton-toggle)
-      '';
+      code = readFile ./vim/skk.vim;
       args = { jisyo = "${pkgs.skk-dicts}/share/SKK-JISYO.L"; };
     };
     onEvents = [ "InsertEnter" "CmdlineEnter" ];
