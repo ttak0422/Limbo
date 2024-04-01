@@ -71,7 +71,7 @@
       completion {:enabled true
                   :postfix enabled
                   :chain enabled
-                  :lazyResolveTextEdit enabled
+                  :lazyResolveTextEdit disabled
                   : favoriteStaticMembers
                   : filteredTypes
                   ;; "auto" | "off" | "insertParameterNames" | "insertBestGuessedArguments", default is "auto"

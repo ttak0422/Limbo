@@ -32,7 +32,7 @@ local enabled = {enabled = true}
 local disabled = {enabled = false}
 local favoriteStaticMembers = {"org.junit.Assert.*", "org.junit.Assume.*", "org.junit.jupiter.api.Assertions.*", "org.junit.jupiter.api.Assumptions.*", "org.junit.jupiter.api.DynamicContainer.*", "org.junit.jupiter.api.DynamicTest.*", "org.assertj.core.api.Assertions.*", "org.mockito.Mockito.*", "org.mockito.ArgumentMatchers.*", "org.mockito.Answers.*", "org.mockito.Mockito.*"}
 local filteredTypes = {"java.awt.*", "com.sun.*", "sun.*", "jdk.*", "org.graalvm.*", "io.micrometer.shaded.*"}
-local completion = {enabled = true, postfix = enabled, chain = enabled, lazyResolveTextEdit = enabled, favoriteStaticMembers = favoriteStaticMembers, filteredTypes = filteredTypes, guessMethodArguments = "auto", importOrder = {"#", "java", "javax", "jakarta", "org", "com", ""}, matchCase = "firstletter", maxResults = 50}
+local completion = {enabled = true, postfix = enabled, chain = enabled, lazyResolveTextEdit = disabled, favoriteStaticMembers = favoriteStaticMembers, filteredTypes = filteredTypes, guessMethodArguments = "auto", importOrder = {"#", "java", "javax", "jakarta", "org", "com", ""}, matchCase = "firstletter", maxResults = 50}
 local configuration = {runtimes = args.runtimes, updateBuildConfiguration = "interactive"}
 local eclipse = {downloadSources = false}
 local errors = {incompleteClasspath = {severity = "ignore"}}
