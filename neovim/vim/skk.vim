@@ -1,13 +1,11 @@
 call skkeleton#config({
-      \   'sources': [ 'deno_kv' ],
+      \   'sources': [ 'skk_server' ],
       \   'globalDictionaries': [ s:args['jisyo'] ],
+      \   'skkServerHost': '127.0.0.1',
+      \   'skkServerPort': 1178,
       \   'markerHenkan': '',
       \   'markerHenkanSelect': '',
       \ })
-      " \   skkServerReqEnc: 'euc-jp',
-      " \   skkServerResEnc: 'euc-jp',
-      " \   skkServerHost: '127.0.0.1',
-      " \   skkServerPort: 1178,
 
 imap <C-j> <Plug>(skkeleton-toggle)
 cmap <C-j> <Plug>(skkeleton-toggle)
