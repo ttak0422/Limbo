@@ -18,6 +18,7 @@ in {
           self.nixosModules.shared-prelude
           self.nixosModules.darwin-prelude
           self.nixosModules.darwin-homebrew
+          self.nixosModules.darwin-desktop
           {
             nixpkgs = {
               overlays = attrValues self.overlays;
