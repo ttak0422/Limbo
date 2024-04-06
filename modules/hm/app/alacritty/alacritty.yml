@@ -1,0 +1,44 @@
+---
+env:
+  TERM: alacritty
+shell:
+  program: /bin/zsh
+  args:
+    - -l
+    - -c
+    - zellij attach --index 0 --create
+window:
+  decorations: none
+  # for MacOS
+  option_as_alt: Both
+  padding:
+    x: 5
+    y: 5
+
+font:
+  normal:
+    family: PlemolJP Console NF
+    style: Regular
+  bold:
+    family: PlemolJP Console NF
+    style: Bold
+  size: 14.0
+
+key_bindings:
+  # Ctrl + 0~9
+  - { key: Key0, mods: Control, chars: "\x1b[48;5u" }
+  - { key: Key1, mods: Control, chars: "\x1b[49;5u" }
+  - { key: Key2, mods: Control, chars: "\x1b[50;5u" }
+  - { key: Key3, mods: Control, chars: "\x1b[51;5u" }
+  - { key: Key4, mods: Control, chars: "\x1b[52;5u" }
+  - { key: Key5, mods: Control, chars: "\x1b[53;5u" }
+  - { key: Key6, mods: Control, chars: "\x1b[54;5u" }
+  - { key: Key7, mods: Control, chars: "\x1b[55;5u" }
+  - { key: Key8, mods: Control, chars: "\x1b[56;5u" }
+  - { key: Key9, mods: Control, chars: "\x1b[57;5u" }
+  - { key: W, mods: Command, action: None }
+  - { key: Q, mods: Command, action: None }
+  # for JIS keyboard
+  - { key: Semicolon, mods: Command|Shift, action: IncreaseFontSize }
+  - { key: Yen, chars: \ }
+  - { key: Yen, mods: Alt, chars: ¥ }

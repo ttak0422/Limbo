@@ -107,6 +107,7 @@ in with pkgs.vimPlugins; {
           language = "lua";
           code = readFile ./lua/copilot.lua;
         };
+        extraPackages = with pkgs; [ nodejs ];
       }
       {
         plugin = reactive-nvim;

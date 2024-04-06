@@ -3,7 +3,8 @@
 
   inputs = {
     vim-sonictemplate = {
-      url = "github:ttak0422/vim-sonictemplate/feature/support-java-test-directory";
+      url =
+        "github:ttak0422/vim-sonictemplate/feature/support-java-test-directory";
       flake = false;
     };
     tshjkl-nvim = {
@@ -27,6 +28,39 @@
     darwin = {
       url = "github:LnL7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-homebrew = {
+      url = "github:zhaofengli-wip/nix-homebrew";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        nix-darwin.follows = "darwin";
+        flake-utils.follows = "flake-utils";
+      };
+    };
+    homebrew-core = {
+      url = "github:homebrew/homebrew-core";
+      flake = false;
+    };
+    homebrew-cask-fonts = {
+      url = "github:Homebrew/homebrew-cask-fonts";
+      flake = false;
+    };
+    homebrew-cask = {
+      url = "github:homebrew/homebrew-cask";
+      flake = false;
+    };
+    homebrew-bundle = {
+      url = "github:homebrew/homebrew-bundle";
+      flake = false;
+    };
+    home-manager = {
+      url = "github:nix-community/home-manager/release-23.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    zjstatus  = {
+      url = "github:dj95/zjstatus";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
     };
     # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     neovim-nightly-overlay.url = "github:ttak0422/neovim-treesitter-overlay";
@@ -86,23 +120,25 @@
   outputs = inputs@{ flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = import inputs.systems;
-      imports = [ ./neovim ];
+      imports = [ ./lib.nix ./overlay.nix ./neovim ./modules ./hosts ];
       perSystem = { inputs, pkgs, ... }: {
         apps = {
-          show-latest-inputs = let
-            drv = pkgs.writeShellApplication {
-              name = "app";
-              runtimeInputs = with pkgs; [ jq coreutils ];
-              text = ''
-                nix flake show --json \
-                      | jq -r '.packages.["x86_64-linux"] | keys[]' \
-                      | tr '\n' ' '
-              '';
+          show-latest-inputs =
+            let
+              drv = pkgs.writeShellApplication {
+                name = "app";
+                runtimeInputs = with pkgs; [ jq coreutils ];
+                text = ''
+                  nix flake show --json \
+                        | jq -r '.packages.["x86_64-linux"] | keys[]' \
+                        | tr '\n' ' '
+                '';
+              };
+            in
+            {
+              type = "app";
+              program = "${drv}/bin/app";
             };
-          in {
-            type = "app";
-            program = "${drv}/bin/app";
-          };
         };
       };
     };
