@@ -1,1 +1,1 @@
-{ imports = [ ./desktop ./prelude.nix ./homebrew.nix ]; }
+{ imports = [ ./desktop ./prelude ./homebrew.nix ]; }
