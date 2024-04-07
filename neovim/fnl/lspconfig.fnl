@@ -202,6 +202,3 @@
                        : settings
                        : init_options})]
   (lspconfig.efm.setup (make_settings)))
-
-;; create user commands
-(vim.api.nvim_create_user_command :Format "lua vim.lsp.buf.format()" {})
