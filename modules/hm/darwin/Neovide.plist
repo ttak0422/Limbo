@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>Neovide.SetEnv</string>
+    <key>ProgramArguments</key>
+    <array>
+      <string>/bin/launchctl</string>
+      <string>setenv</string>
+      <string>NEOVIDE_FRAMELESS</string>
+      <string>true</string>
+      <string>NEOVIDE_FRAME</string>
+      <string>none</string>
+      <string>NEOVIDE_MULTIGRID</string>
+      <string>true</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+  </dict>
+</plist>
