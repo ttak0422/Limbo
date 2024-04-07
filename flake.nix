@@ -123,7 +123,7 @@
       imports = [ ./lib.nix ./overlay.nix ./neovim ./modules ./hosts ];
       perSystem = { inputs, pkgs, ... }: {
         apps = {
-          show-latest-inputs =
+          show-inputs =
             let
               drv = pkgs.writeShellApplication {
                 name = "app";
