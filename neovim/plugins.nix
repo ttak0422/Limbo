@@ -102,6 +102,36 @@ let
       dependGroups = [ "lsp" "dap" ];
       onModules = [ "jdtls" ];
     };
+    go = {
+      plugin = go-nvim;
+      extraPackages = with pkgs; [
+        gofumpt
+        golines
+        golangci-lint
+        gotools # goimports gorename callgraph guru
+        gomodifytags
+        gopls
+        gotests
+        iferr
+        impl
+        reftools # fillstruct fillswitch
+        delve # dlv
+        ginkgo
+        richgo
+        gotestsum
+        mockgen
+        govulncheck
+      ];
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/go.lua;
+        args = {
+          on_attach_path = ./lua/on_attach.lua;
+        };
+      };
+      dependGroups = [ "lsp" "treesitter" ];
+      onFiletypes = [ "go" "gomod" ];
+    };
     vtsls = {
       # Plugin to help utilize capabilities of vtsls.
       plugin = nvim-vtsls;

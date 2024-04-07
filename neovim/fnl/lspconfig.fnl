@@ -63,11 +63,11 @@
 ;; toml
 (lspconfig.taplo.setup {: on_attach : capabilities})
 
-;; go
-(lspconfig.gopls.setup {: on_attach
-                        : capabilities
-                        :settings {:gopls {:analyses {:unusedparams true}}}
-                        :staticcheck true})
+;; go → use gopls
+; (lspconfig.gopls.setup {: on_attach
+;                         : capabilities
+;                         :settings {:gopls {:analyses {:unusedparams true}}}
+;                         :staticcheck true})
 
 ;; dart
 (lspconfig.dartls.setup {: on_attach : capabilities})

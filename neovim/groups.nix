@@ -286,7 +286,6 @@ in with pkgs.vimPlugins; {
           fennel-ls
           flutter
           google-java-format
-          gopls
           lua-language-server
           nil
           nodePackages.bash-language-server

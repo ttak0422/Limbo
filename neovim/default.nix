@@ -159,6 +159,7 @@
             scope
             octo
             skk
+            go
           ];
           lazyGroups = with groups; [
             bufferHook
