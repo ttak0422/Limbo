@@ -2,7 +2,7 @@ _: {
   flake.nixosModules.hm-tools = { pkgs, ... }:
     let inherit (pkgs.stdenv) isDarwin;
     in {
-      imports = [ ./direnv.nix ./fzf.nix ./pet.nix ];
+      imports = [ ./direnv.nix ./fzf.nix ./pet.nix ./virtualization.nix ];
       home.packages = with pkgs;
         [
           bat # ------------ cat clone
