@@ -200,5 +200,10 @@
                       {:single_file_support true
                        :filetypes (vim.tbl_keys languages)
                        : settings
-                       : init_options})]
+                       : init_options
+                       : on_attach
+                       : capabilities})]
   (lspconfig.efm.setup (make_settings)))
+
+;; create user commands
+(vim.api.nvim_create_user_command :Format "lua vim.lsp.buf.format()" {})

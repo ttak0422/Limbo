@@ -45,40 +45,43 @@ local function _2_(path)
 end
 lspconfig.denols.setup({on_attach = on_attach, capabilities = capabilities, root_dir = _2_, init_options = {lint = true, suggest = {completeFunctionCalls = true, names = true, paths = true, autoImports = true, imports = {autoDiscover = true, hosts = vim.empty_dict()}}, unstable = false}, settings = {deno = {enable = true}}, single_file_support = false})
 lspconfig.marksman.setup({on_attach = on_attach, capabilities = capabilities})
-local fs = require("efmls-configs.fs")
-local luacheck = require("efmls-configs.linters.luacheck")
-local eslint = require("efmls-configs.linters.eslint")
-local yamllint = require("efmls-configs.linters.yamllint")
-local statix = require("efmls-configs.linters.statix")
-local stylelint = require("efmls-configs.linters.stylelint")
-local vint = require("efmls-configs.linters.vint")
-local staticcheck = require("efmls-configs.linters.staticcheck")
-local shellcheck = require("efmls-configs.linters.shellcheck")
-local pylint = require("efmls-configs.linters.pylint")
-local gitlint = require("efmls-configs.linters.gitlint")
-local hadolint = require("efmls-configs.linters.hadolint")
-local stylua = require("efmls-configs.formatters.stylua")
-local fnlfmt = require("efmls-configs.formatters.fnlfmt")
-local prettier = require("efmls-configs.formatters.prettier")
-local fixjson = require("efmls-configs.formatters.fixjson")
-local shfmt = require("efmls-configs.formatters.shfmt")
-local taplo = require("efmls-configs.formatters.taplo")
-local nixfmt = require("efmls-configs.formatters.nixfmt")
-local google_java_format
 do
-  local command = (fs.executable("google-java-format") .. " $(echo -n ${--useless:rowStart} ${--useless:rowEnd}" .. " | xargs -n4 -r sh -c 'echo" .. " --skip-sorting-imports" .. " --skip-removing-unused-imports" .. " --skip-reflowing-long-strings" .. " --skip-javadoc-formatting" .. " --lines $(($1+1)):$(($3+1))'" .. ") -")
-  google_java_format = {formatCanRange = true, formatCommand = command, formatStdin = true, rootMarkers = {".project", "classpath", "pom.xml", "build.gradle"}}
+  local fs = require("efmls-configs.fs")
+  local luacheck = require("efmls-configs.linters.luacheck")
+  local eslint = require("efmls-configs.linters.eslint")
+  local yamllint = require("efmls-configs.linters.yamllint")
+  local statix = require("efmls-configs.linters.statix")
+  local stylelint = require("efmls-configs.linters.stylelint")
+  local vint = require("efmls-configs.linters.vint")
+  local staticcheck = require("efmls-configs.linters.staticcheck")
+  local shellcheck = require("efmls-configs.linters.shellcheck")
+  local pylint = require("efmls-configs.linters.pylint")
+  local gitlint = require("efmls-configs.linters.gitlint")
+  local hadolint = require("efmls-configs.linters.hadolint")
+  local stylua = require("efmls-configs.formatters.stylua")
+  local fnlfmt = require("efmls-configs.formatters.fnlfmt")
+  local prettier = require("efmls-configs.formatters.prettier")
+  local fixjson = require("efmls-configs.formatters.fixjson")
+  local shfmt = require("efmls-configs.formatters.shfmt")
+  local taplo = require("efmls-configs.formatters.taplo")
+  local nixfmt = require("efmls-configs.formatters.nixfmt")
+  local google_java_format
+  do
+    local command = (fs.executable("google-java-format") .. " $(echo -n ${--useless:rowStart} ${--useless:rowEnd}" .. " | xargs -n4 -r sh -c 'echo" .. " --skip-sorting-imports" .. " --skip-removing-unused-imports" .. " --skip-reflowing-long-strings" .. " --skip-javadoc-formatting" .. " --lines $(($1+1)):$(($3+1))'" .. ") -")
+    google_java_format = {formatCanRange = true, formatCommand = command, formatStdin = true, rootMarkers = {".project", "classpath", "pom.xml", "build.gradle"}}
+  end
+  local yapf = require("efmls-configs.formatters.yapf")
+  local goimports = require("efmls-configs.formatters.goimports")
+  local gofumpt = require("efmls-configs.formatters.gofumpt")
+  local rustfmt = require("efmls-configs.formatters.rustfmt")
+  local languages = {lua = {luacheck, stylua}, fennel = {fnlfmt}, typescript = {eslint, prettier}, javascript = {eslint, prettier}, json = {fixjson}, sh = {shellcheck, shfmt}, toml = {taplo}, yaml = {yamllint, prettier}, nix = {statix, nixfmt}, java = {google_java_format}, css = {stylelint, prettier}, scss = {stylelint, prettier}, less = {stylelint, prettier}, saas = {stylelint, prettier}, html = {prettier}, vim = {vint}, python = {pylint, yapf}, go = {staticcheck, goimports, gofumpt}, rust = {rustfmt}, gitcommit = {gitlint}, docker = {hadolint}}
+  local settings = {rootMarkers = {".git/"}, languages = languages}
+  local init_options = {documentFormatting = true, documentRangeFormatting = true}
+  local make_settings
+  local function _4_()
+    return {single_file_support = true, filetypes = vim.tbl_keys(languages), settings = settings, init_options = init_options, on_attach = on_attach, capabilities = capabilities}
+  end
+  make_settings = _4_
+  lspconfig.efm.setup(make_settings())
 end
-local yapf = require("efmls-configs.formatters.yapf")
-local goimports = require("efmls-configs.formatters.goimports")
-local gofumpt = require("efmls-configs.formatters.gofumpt")
-local rustfmt = require("efmls-configs.formatters.rustfmt")
-local languages = {lua = {luacheck, stylua}, fennel = {fnlfmt}, typescript = {eslint, prettier}, javascript = {eslint, prettier}, json = {fixjson}, sh = {shellcheck, shfmt}, toml = {taplo}, yaml = {yamllint, prettier}, nix = {statix, nixfmt}, java = {google_java_format}, css = {stylelint, prettier}, scss = {stylelint, prettier}, less = {stylelint, prettier}, saas = {stylelint, prettier}, html = {prettier}, vim = {vint}, python = {pylint, yapf}, go = {staticcheck, goimports, gofumpt}, rust = {rustfmt}, gitcommit = {gitlint}, docker = {hadolint}}
-local settings = {rootMarkers = {".git/"}, languages = languages}
-local init_options = {documentFormatting = true, documentRangeFormatting = true}
-local make_settings
-local function _4_()
-  return {single_file_support = true, filetypes = vim.tbl_keys(languages), settings = settings, init_options = init_options}
-end
-make_settings = _4_
-return lspconfig.efm.setup(make_settings())
+return vim.api.nvim_create_user_command("Format", "lua vim.lsp.buf.format()", {})
