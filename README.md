@@ -30,5 +30,10 @@ wip...
 
 wip...
 
-## Other
-wip...
+## Hosts
+
+### darwin 
+
+```shell
+darwin-rebuild switch --flake .#darwin
+```
