@@ -1,5 +1,5 @@
 _: {
   flake.nixosModules.hm-app = { ... }: {
-    imports = [ ./alacritty ];
+    imports = [ ./alacritty ./wezterm ];
   };
 }

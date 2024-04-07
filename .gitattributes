@@ -1,1 +1,2 @@
 neovim/lua/*.lua linguist-generated
+modules/hm/app/wezterm/wezterm.lua linguist-generated

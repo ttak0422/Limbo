@@ -1,1 +1,2 @@
 neovim/lua/**/*.lua
+modules/hm/app/wezterm/wezterm.lua
