@@ -129,7 +129,7 @@ let
           on_attach_path = ./lua/on_attach.lua;
         };
       };
-      dependGroups = [ "lsp" "treesitter" ];
+      dependGroups = [ "lsp" "dap" "treesitter" ];
       onFiletypes = [ "go" "gomod" ];
     };
     vtsls = {

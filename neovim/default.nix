@@ -65,7 +65,6 @@
             colorizer
             comment
             context-vt
-            # dap-go
             dd
             detour
             devicons
