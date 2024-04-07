@@ -41,6 +41,7 @@ in {
             extraSpecialArgs = { inherit inputs system username userEmail; };
             modules = [
               self.nixosModules.hm-app
+              self.nixosModules.hm-development
               self.nixosModules.hm-git
               self.nixosModules.hm-shell
               self.nixosModules.hm-tools

@@ -1,1 +1,1 @@
-{ imports = [ ./app ./shell ./git ./tools ]; }
+{ imports = [ ./app ./development ./shell ./git ./tools ]; }
