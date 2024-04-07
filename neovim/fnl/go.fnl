@@ -69,6 +69,5 @@
   (vim.api.nvim_create_autocmd [:BufWritePre]
                                {:pattern :*.go
                                 :callback (fn []
-                                            (format.gofmt)
                                             (format.goimports))})
   (vim.cmd :LspStart))
