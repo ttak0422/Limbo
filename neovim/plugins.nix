@@ -476,14 +476,14 @@ let
             code = readFile ./lua/lsp-progress.lua;
           };
         }
-        {
-          plugin = piccolo-pomodoro-nvim;
-          postConfig = {
-            language = "lua";
-            code = readFile ./lua/piccolo-pomodoro.lua;
-          };
-          onModules = [ "piccolo-pomodoro" ];
-        }
+        # {
+        #   plugin = piccolo-pomodoro-nvim;
+        #   postConfig = {
+        #     language = "lua";
+        #     code = readFile ./lua/piccolo-pomodoro.lua;
+        #   };
+        #   onModules = [ "piccolo-pomodoro" ];
+        # }
         hydra-nvim
         scope-nvim
       ];

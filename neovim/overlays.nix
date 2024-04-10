@@ -34,7 +34,7 @@ with inputs; [
           version = "unstable";
           src = inputs.tshjkl-nvim;
         };
-        statuscol-nvim = prev.vimUtils.buildVimPlugin {
+        statuscol-nvim-10 = prev.vimUtils.buildVimPlugin {
           pname = "statuscol-nvim";
           version = "unstable";
           src = inputs.statuscol-nvim;

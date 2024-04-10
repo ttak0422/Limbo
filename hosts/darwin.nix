@@ -31,7 +31,7 @@ in {
             environment.systemPackages = [
               (pkgs.runCommand "nvim" { } ''
                 mkdir -p $out/bin
-                ln -s ${self'.packages.bundler-nvim}/bin/nvim $out/bin/nvim
+                ln -s ${self'.packages.bundler-nvim-stable}/bin/nvim $out/bin/nvim
               '')
             ];
           }

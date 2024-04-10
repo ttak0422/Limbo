@@ -276,11 +276,11 @@
                         inactive {:provider (.. icons.error " - " icons.warn
                                                 " -")}]
                     {:fallthrough false 1 active 2 inactive})
-      pomodoro {:provider (fn []
-                            ((. (require :piccolo-pomodoro) :status)))
-                :on_click {:callback (fn []
-                                       ((. (require :piccolo-pomodoro) :toggle)))
-                           :name :toggle_pomodoro}}
+      ; pomodoro {:provider (fn []
+      ;                       ((. (require :piccolo-pomodoro) :status)))
+      ;           :on_click {:callback (fn []
+      ;                                  ((. (require :piccolo-pomodoro) :toggle)))
+      ;                      :name :toggle_pomodoro}}
       lsp_progress {:provider (. (require :lsp-progress) :progress)
                     :update {1 :User
                              :pattern :LspProgressStatusUpdated
@@ -523,7 +523,7 @@
                            round_right
                            diagnostics
                            round_right
-                           pomodoro
+                           ; pomodoro
                            space
                            lsp_progress
                            align

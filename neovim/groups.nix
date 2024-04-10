@@ -556,6 +556,7 @@ in with pkgs.vimPlugins; {
           language = "lua";
           code = readFile ./lua/ddc-source-lsp-setup.lua;
         };
+        dependPlugins = [ nvim-lspconfig ];
         useDenops = true;
       }
       # ddc-ui-native

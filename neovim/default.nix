@@ -46,7 +46,11 @@
 
       bundler-nvim = {
         inherit (callPackage ./neovim-ci.nix { }) ci-nightly-latest;
-        inherit (callPackage ./neovim-test.nix { }) test-v9 skkeleton skkeleton-lazy skkeleton-with-ddc;
+        inherit (callPackage ./neovim-test.nix { })
+          test-v9 skkeleton skkeleton-lazy skkeleton-with-ddc;
+        inherit (callPackage ./neovim-full.nix { }) stable;
+
+        # deprecated
         default = {
           inherit extraConfig extraLuaConfig;
           # logLevel = "debug";
