@@ -9,12 +9,13 @@
       defaultKeymap = "emacs";
       shellAliases = let
         ghq = "${pkgs.ghq}/bin/ghq";
+        fzf = "${pkgs.fzf}/bin/fzf";
         peco = "${pkgs.peco}/bin/peco";
         bat = "${pkgs.bat}/bin/bat";
         eza = "${pkgs.eza}/bin/eza";
       in {
         ".." = "cd ..";
-        g = "cd $(${ghq} root)/$(${ghq} list | ${peco})";
+        g = "cd $(${ghq} root)/$(${ghq} list | ${fzf})";
         gg = "${ghq} get";
         cat = "${bat}";
         ls = "${eza}";
