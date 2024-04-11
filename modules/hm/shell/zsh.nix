@@ -34,6 +34,7 @@
         export NODE_PATH=~/.npm-packages/lib/node_modules
         export PATH=$GOPATH/bin:$PATH
         export PATH=~/.npm-packages/bin:$PATH
+        export PATH=$PATH:/opt/homebrew/bin
 
         # pure
         fpath+=("$HOME/.zsh/plugins/pure/share/zsh/site-functions")

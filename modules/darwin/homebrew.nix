@@ -4,6 +4,9 @@
       inherit (inputs)
         homebrew-core homebrew-cask homebrew-cask-fonts homebrew-bundle;
     in rec {
+      imports = [
+        inputs.nix-homebrew.darwinModules.nix-homebrew
+      ];
       nix-homebrew = {
         enable = true;
         enableRosetta = true;

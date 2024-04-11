@@ -14,7 +14,6 @@ in {
         specialArgs = { inherit inputs username; };
         modules = [
           inputs.home-manager.darwinModules.home-manager
-          inputs.nix-homebrew.darwinModules.nix-homebrew
           self.nixosModules.shared-prelude
           self.nixosModules.darwin-prelude
           self.nixosModules.darwin-homebrew
