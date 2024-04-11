@@ -57,7 +57,7 @@
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    zjstatus  = {
+    zjstatus = {
       url = "github:dj95/zjstatus";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
@@ -108,6 +108,13 @@
         "https://repo.maven.apache.org/maven2/org/openjdk/jol/jol-cli/0.16/jol-cli-0.16-full.jar";
       flake = false;
     };
+    yaskkserv2-service = {
+      url = "github:ttak0422/yaskkserv2-service";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+      };
+    };
     # update automatic
     vim-plugins-overlay-latest = {
       url = "github:ttak0422/vim-plugins-overlay";
@@ -123,22 +130,20 @@
       imports = [ ./lib.nix ./overlay.nix ./neovim ./modules ./hosts ];
       perSystem = { inputs, pkgs, ... }: {
         apps = {
-          show-inputs =
-            let
-              drv = pkgs.writeShellApplication {
-                name = "app";
-                runtimeInputs = with pkgs; [ jq coreutils ];
-                text = ''
-                  nix flake show --json \
-                        | jq -r '.packages.["x86_64-linux"] | keys[]' \
-                        | tr '\n' ' '
-                '';
-              };
-            in
-            {
-              type = "app";
-              program = "${drv}/bin/app";
+          show-inputs = let
+            drv = pkgs.writeShellApplication {
+              name = "app";
+              runtimeInputs = with pkgs; [ jq coreutils ];
+              text = ''
+                nix flake show --json \
+                      | jq -r '.packages.["x86_64-linux"] | keys[]' \
+                      | tr '\n' ' '
+              '';
             };
+          in {
+            type = "app";
+            program = "${drv}/bin/app";
+          };
         };
       };
     };
