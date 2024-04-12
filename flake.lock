@@ -21232,6 +21232,7 @@
         "nixpkgs": "nixpkgs_4",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nvim-jdtls": "nvim-jdtls",
+        "skk-dev-dict": "skk-dev-dict",
         "statuscol-nvim": "statuscol-nvim",
         "systems": "systems_4",
         "tshjkl-nvim": "tshjkl-nvim",
@@ -21828,6 +21829,22 @@
       "original": {
         "owner": "sidebar-nvim",
         "repo": "sidebar.nvim",
+        "type": "github"
+      }
+    },
+    "skk-dev-dict": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1706703564,
+        "narHash": "sha256-IvQFi/VA+klwolJGRyxAgT/ZOI5EYRNvXfAqWGhTTKM=",
+        "owner": "skk-dev",
+        "repo": "dict",
+        "rev": "b798a46b886f71c0c25ad2a9e78b1c3e8933970c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "skk-dev",
+        "repo": "dict",
         "type": "github"
       }
     },
@@ -28899,11 +28916,11 @@
         "yaskkserv2-src": "yaskkserv2-src"
       },
       "locked": {
-        "lastModified": 1712846940,
-        "narHash": "sha256-xshrQGvEMYX6FU3pdXwd+n+4rvIiexj8jxAo+bkcTGs=",
+        "lastModified": 1712935649,
+        "narHash": "sha256-tNCXmiw+xfiFs00EkdfQrBr1DYCTgwhHNhzXm9eG46U=",
         "owner": "ttak0422",
         "repo": "yaskkserv2-service",
-        "rev": "251b04293d4d5833b368c767716c4d50069bd8a4",
+        "rev": "1febef835ec4f2dabf7dcb69c3c2614ac084e11b",
         "type": "github"
       },
       "original": {

@@ -6,6 +6,7 @@
           system = "x86_64-darwin";
           config.allowUnfree = true;
         };
+        zjstatus = inputs.zjstatus.packages.${prev.system}.default;
       })
     ];
   };

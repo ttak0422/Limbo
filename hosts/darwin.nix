@@ -18,6 +18,7 @@ in {
           self.nixosModules.darwin-prelude
           self.nixosModules.darwin-homebrew
           self.nixosModules.darwin-desktop
+          self.nixosModules.darwin-service
           {
             nixpkgs = {
               overlays = attrValues self.overlays;
