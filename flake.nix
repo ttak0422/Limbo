@@ -7,10 +7,6 @@
         "github:ttak0422/vim-sonictemplate/feature/support-java-test-directory";
       flake = false;
     };
-    tshjkl-nvim = {
-      url = "github:ttak0422/tshjkl.nvim/feature/supress";
-      flake = false;
-    };
     statuscol-nvim = {
       url = "github:luukvbaal/statuscol.nvim/0.10";
       flake = false;

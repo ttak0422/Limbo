@@ -2,6 +2,13 @@
 let
   inherit (builtins) readFile;
   startup = with pkgs.vimPlugins; {
+    btw = {
+      plugin = btw-nvim;
+      startupConfig = {
+        language = "lua";
+        code = readFile ./lua/btw.lua;
+      };
+    };
     kanagawa = {
       plugin = kanagawa-nvim;
       startupConfig = {

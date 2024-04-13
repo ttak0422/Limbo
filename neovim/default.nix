@@ -2,22 +2,7 @@
   imports =
     [ inputs.bundler.flakeModules.neovim inputs.loaded-nvim.flakeModule ];
   perSystem = { inputs', system, config, pkgs, lib, ... }:
-    let
-      inherit (builtins) readFile;
-      inherit (pkgs) callPackage;
-      plugins = callPackage ./plugins.nix { };
-      groups = callPackage ./groups.nix { };
-      ftplugins = callPackage ./ftplugins.nix { };
-      extraConfig = "${readFile ./vim/prelude.vim}";
-      extraLuaConfig = ''
-        dofile("${./lua/prelude.lua}")
-        dofile("${./lua/keymap.lua}")
-        vim.cmd([[source ${./vim/keymap.vim}]])
-        if vim.g.neovide then
-          dofile("${./lua/neovide.lua}")
-        end
-      '';
-
+    let inherit (pkgs) callPackage;
     in {
       _module.args.pkgs = import inputs.nixpkgs {
         inherit system;

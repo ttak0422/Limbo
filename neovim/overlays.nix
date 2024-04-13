@@ -29,11 +29,6 @@ with inputs; [
           version = "unstable";
           src = inputs.vim-sonictemplate;
         };
-        tshjkl-nvim = prev.vimUtils.buildVimPlugin {
-          pname = "tshjkl-nvim";
-          version = "unstable";
-          src = inputs.tshjkl-nvim;
-        };
         statuscol-nvim-10 = prev.vimUtils.buildVimPlugin {
           pname = "statuscol-nvim";
           version = "unstable";

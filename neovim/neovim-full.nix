@@ -18,7 +18,7 @@ let
   stable = {
     inherit extraConfig extraLuaConfig;
     package = loaded-nvim;
-    eagerPlugins = with plugins; [ config-local kanagawa ];
+    eagerPlugins = with plugins; [ config-local kanagawa btw ];
     lazyPlugins = with plugins; [
       direnv
       ambiwidth
@@ -146,7 +146,5 @@ let
         cabal cabalproject;
     };
   };
-  nightly = stable // {
-    package = pkgs.neovim-nightly;
-  };
+  nightly = stable // { package = pkgs.neovim-nightly; };
 in { inherit stable nightly; }
