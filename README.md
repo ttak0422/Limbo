@@ -37,3 +37,9 @@ wip...
 ```shell
 darwin-rebuild switch --flake .#darwin
 ```
+
+### nixos (wsl)
+
+```shell
+sudo nixos-rebuild switch --flake .#wsl
+```

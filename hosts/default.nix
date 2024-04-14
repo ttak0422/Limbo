@@ -1,1 +1,1 @@
-{ imports = [ ./darwin.nix ]; }
+{ imports = [ ./wsl.nix ./darwin.nix ]; }

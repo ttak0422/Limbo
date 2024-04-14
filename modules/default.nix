@@ -1,1 +1,1 @@
-{ imports = [ ./prelude.nix ./darwin ./hm ]; }
+{ imports = [ ./prelude.nix ./darwin ./hm ./nixos ]; }
