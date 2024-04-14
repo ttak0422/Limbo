@@ -20,6 +20,7 @@ in {
           inputs.home-manager.nixosModules.home-manager
           self.nixosModules.shared-prelude
           self.nixosModules.nixos-prelude
+          self.nixosModules.nixos-service
           {
             nixpkgs = {
               overlays = attrValues self.overlays;

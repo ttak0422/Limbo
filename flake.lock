@@ -29342,11 +29342,11 @@
         "yaskkserv2-src": "yaskkserv2-src"
       },
       "locked": {
-        "lastModified": 1712935649,
-        "narHash": "sha256-tNCXmiw+xfiFs00EkdfQrBr1DYCTgwhHNhzXm9eG46U=",
+        "lastModified": 1713104621,
+        "narHash": "sha256-QXAgCLWEOEHLCMcteFIC1kP6hrDVgrJy7UU8Yh6U1EM=",
         "owner": "ttak0422",
         "repo": "yaskkserv2-service",
-        "rev": "1febef835ec4f2dabf7dcb69c3c2614ac084e11b",
+        "rev": "297d15c2f1c669c3dd430b4c4e1238b355636d2f",
         "type": "github"
       },
       "original": {

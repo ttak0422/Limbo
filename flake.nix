@@ -112,6 +112,7 @@
     yaskkserv2-service = {
       url = "github:ttak0422/yaskkserv2-service";
       # url = "path:/Users/ttak0422/ghq/github.com/ttak0422/yaskkserv2-service";
+      # url = "path:/home/ttak0422/ghq/github.com/ttak0422/yaskkserv2-service";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";

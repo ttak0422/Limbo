@@ -1,5 +1,5 @@
 { inputs, ... }: {
-  flake.nixosModules.darwin-service = { pkgs, ... }:
+  flake.nixosModules.nixos-service = { pkgs, ... }:
     let
       inherit (inputs.yaskkserv2-service.packages.${pkgs.stdenv.hostPlatform.system})
         yaskkserv2;
@@ -12,9 +12,10 @@
           mkdir $out
           ${yaskkserv2}/bin/yaskkserv2_make_dictionary --dictionary-filename=$out/dictionary.yaskkserv2 SKK-JISYO.L
         '';
+        buildInputs = [ ];
       };
     in {
-      imports = [ inputs.yaskkserv2-service.darwinModules.default ];
+      imports = [ inputs.yaskkserv2-service.nixosModules.default ];
       services.yaskkserv2 = {
         enable = true;
         dictionary = "${dictionary}/dictionary.yaskkserv2";

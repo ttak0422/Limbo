@@ -1,1 +1,1 @@
-{ imports = [ ./prelude ]; }
+{ imports = [ ./prelude ./service ]; }
