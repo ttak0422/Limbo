@@ -77,7 +77,7 @@
                   ;; "auto" | "off" | "insertParameterNames" | "insertBestGuessedArguments", default is "auto"
                   :guessMethodArguments :auto
                   ; static imports are prefixed with a '#'
-                  :importOrder ["#" :java :javax :jakarta :org :com ""]
+                  :importOrder ["#" :java :jakarta :javax :org :com ""]
                   ;; "off" | "firstletter"
                   :matchCase :firstletter
                   ;; default is 50
