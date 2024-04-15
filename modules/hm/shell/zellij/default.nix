@@ -28,6 +28,7 @@
                       hide_frame_for_single_pane "true"
 
                       mode_normal  "#[fg=#090618,bg=#7E9CD8,bold] {name} "
+                      mode_locked  "#[fg=#090618,bg=#C34043,bold] {name} "
                       mode_tmux    "#[fg=#090618,bg=#ffc387,bold] {name} "
 
                       tab_normal   "#[fg=#6C7086,bg=#1a1a22] {name} "
