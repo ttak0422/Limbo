@@ -30,13 +30,6 @@
         setopt hist_reduce_blanks
         '';
       initExtra = ''
-        export NLS_LANG=Japanese_Japan.AL32UTF8
-        export GOPATH=$HOME/go
-        export NODE_PATH=~/.npm-packages/lib/node_modules
-        export PATH=$GOPATH/bin:$PATH
-        export PATH=~/.npm-packages/bin:$PATH
-        export PATH=$PATH:/opt/homebrew/bin
-
         # pure
         fpath+=("$HOME/.zsh/plugins/pure/share/zsh/site-functions")
         autoload -U promptinit; promptinit
@@ -46,7 +39,14 @@
 
         prompt pure
       '';
-      profileExtra = "";
+      profileExtra = ''
+        export NLS_LANG=Japanese_Japan.AL32UTF8
+        export GOPATH=$HOME/go
+        export NODE_PATH=~/.npm-packages/lib/node_modules
+        export PATH=$GOPATH/bin:$PATH
+        export PATH=~/.npm-packages/bin:$PATH
+        export PATH=$PATH:/opt/homebrew/bin
+      '';
       plugins = [{
         name = "pure";
         src = pkgs.pure-prompt;
