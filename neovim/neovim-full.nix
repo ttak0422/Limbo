@@ -18,7 +18,11 @@ let
   stable = {
     inherit extraConfig extraLuaConfig;
     package = loaded-nvim;
-    eagerPlugins = with plugins; [ config-local kanagawa btw ];
+    eagerPlugins = with plugins; [
+      config-local
+      kanagawa
+      # btw
+    ];
     lazyPlugins = with plugins; [
       direnv
       ambiwidth
