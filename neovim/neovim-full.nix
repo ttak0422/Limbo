@@ -73,7 +73,7 @@ let
       # neotree
       neozoom
       nfnl
-      # noice
+      noice
       # none-ls
       notify
       numb
