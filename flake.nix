@@ -64,7 +64,10 @@
       inputs.flake-utils.follows = "flake-utils";
     };
     # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-    neovim-nightly-overlay.url = "github:ttak0422/neovim-treesitter-overlay";
+    neovim-nightly-overlay = {
+      url = "github:ttak0422/neovim-treesitter-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # neovim-nightly-overlay.url = "path:/Users/ttak0422/ghq/github.com/ttak0422/neovim-treesitter-overlay";
     nvim-jdtls = {
       url =
