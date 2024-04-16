@@ -38,7 +38,7 @@
                 :view_warn :notify
                 :view_history :messages
                 :view_search :virtualtext}
-      popupmenu {:enabled true :backend :nui :kind_icons {}}
+      popupmenu {:enabled true :backend :nui}
       redirect {:view :popup :filter {:event :msg_show}}
       commands (let [history {:view :split
                               :opts {:enter true :format :details}
@@ -61,19 +61,15 @@
                              :filter_opts {:reverse true}}]
                  {: history : last : errors})
       notify {:enabled true :view :notify}
-      lsp (let [progress {;; use fidget-nvim
-                          :enabled false}
-                override [:vim.lsp.util.convert_input_to_markdown_lines
-                          true
-                          :vim.lsp.util.stylize_markdown
-                          true]
-                hover {:enabled true :silent true :view :hover :opts {}}
-                signature {;; use ddc-vim
-                           :enabled false}
-                message {:enabled true :view :notify :opts {}}
+      lsp (let [progress {:enabled false}
+                override {:vim.lsp.util.convert_input_to_markdown_lines false
+                          :vim.lsp.util.stylize_markdown false}
+                hover {:enabled false}
+                signature {:enabled false}
+                message {:enabled false}
                 documentation {:view :hover
                                :opts {:lang :markdown
-                                      :replace true
+                                      :replace false
                                       :render :plain
                                       :format ["{message}"]
                                       :win_options {:concealcursor :n
@@ -138,8 +134,4 @@
             : presets
             : throttle
             : views
-            : routes})
-  (vim.keymap.set [:n :i :s] :<C-f> (fn [] (if (L.scroll 4) :<C-f>))
-                  {:silent true :expr true})
-  (vim.keymap.set [:n :i :s] :<C-b> (fn [] (if (L.scroll 4) :<C-b>))
-                  {:silent true :expr true}))
+            : routes}))

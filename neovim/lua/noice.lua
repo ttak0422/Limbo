@@ -9,7 +9,7 @@ do
   cmdline = {enabled = true, view = "cmdline", opts = opts, format = format}
 end
 local messages = {enabled = true, view = "notify", view_error = "notify", view_warn = "notify", view_history = "messages", view_search = "virtualtext"}
-local popupmenu = {enabled = true, backend = "nui", kind_icons = {}}
+local popupmenu = {enabled = true, backend = "nui"}
 local redirect = {view = "popup", filter = {event = "msg_show"}}
 local commands
 do
@@ -22,11 +22,11 @@ local notify = {enabled = true, view = "notify"}
 local lsp
 do
   local progress = {enabled = false}
-  local override = {"vim.lsp.util.convert_input_to_markdown_lines", true, "vim.lsp.util.stylize_markdown", true}
-  local hover = {enabled = true, silent = true, view = "hover", opts = {}}
+  local override = {["vim.lsp.util.stylize_markdown"] = false, ["vim.lsp.util.convert_input_to_markdown_lines"] = false}
+  local hover = {enabled = false}
   local signature = {enabled = false}
-  local message = {enabled = true, view = "notify", opts = {}}
-  local documentation = {view = "hover", opts = {lang = "markdown", replace = true, render = "plain", format = {"{message}"}, win_options = {concealcursor = "n", conceallevel = 3}}}
+  local message = {enabled = false}
+  local documentation = {view = "hover", opts = {lang = "markdown", render = "plain", format = {"{message}"}, win_options = {concealcursor = "n", conceallevel = 3}, replace = false}}
   lsp = {progress = progress, override = override, hover = hover, signature = signature, message = message, documentation = documentation}
 end
 local markdown = {hover = {"|(%S-)|", vim.cmd.help, "%[.-%]%((%S-)%)", U.open}, highlights = {"|%S-|", "@text.reference", "@%S+", "@parameter", "^%s*(Parameters:)", "@text.title", "^%s*(Return:)", "@text.title", "^%s*(See also:)", "@text.title", "{%S-}", "@parameter"}}
@@ -42,20 +42,4 @@ do
   views = {cmdline_popup = cmdline_popup, hover = hover}
 end
 local routes = {{filter = {event = "msg_show", any = {{find = "%d+L %d+B"}, {find = "; after #%d+"}, {find = "; before #%d+"}, {find = "; \229\137\141\230\150\185 #%d+"}, {find = "; \229\190\140\230\150\185 #%d+"}, {find = "\231\149\170\231\155\174\227\129\174\232\169\178\229\189\147"}, {find = "\229\148\175\228\184\128\227\129\174\232\169\178\229\189\147"}, {find = "\229\167\139\227\130\129\227\129\171\230\136\187\227\130\139"}, {find = "%d fewer lines"}, {find = "%d more lines"}, {find = "\230\155\184\232\190\188\227\129\191$"}}}, opts = {skip = true}}}
-M.setup({cmdline = cmdline, messages = messages, popupmenu = popupmenu, redirect = redirect, commands = commands, notify = notify, lsp = lsp, markdown = markdown, health = health, smart_move = smart_move, presets = presets, throttle = throttle, views = views, routes = routes})
-local function _1_()
-  if L.scroll(4) then
-    return "<C-f>"
-  else
-    return nil
-  end
-end
-vim.keymap.set({"n", "i", "s"}, "<C-f>", _1_, {silent = true, expr = true})
-local function _3_()
-  if L.scroll(4) then
-    return "<C-b>"
-  else
-    return nil
-  end
-end
-return vim.keymap.set({"n", "i", "s"}, "<C-b>", _3_, {silent = true, expr = true})
+return M.setup({cmdline = cmdline, messages = messages, popupmenu = popupmenu, redirect = redirect, commands = commands, notify = notify, lsp = lsp, markdown = markdown, health = health, smart_move = smart_move, presets = presets, throttle = throttle, views = views, routes = routes})
