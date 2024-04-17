@@ -134,6 +134,7 @@ let
         code = readFile ./lua/go.lua;
         args = {
           on_attach_path = ./lua/on_attach.lua;
+          capabilities_path = ./lua/capabilities.lua;
         };
       };
       dependGroups = [ "lsp" "dap" "treesitter" ];
