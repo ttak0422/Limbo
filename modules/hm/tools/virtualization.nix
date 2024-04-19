@@ -1,3 +1,10 @@
 { pkgs, ... }: {
-  home.packages = with pkgs; [ docker lazydocker k9s minikube kubectl ];
+  home.packages = with pkgs; [
+    docker
+    docker-credential-helpers
+    lazydocker
+    k9s
+    minikube
+    kubectl
+  ];
 }
