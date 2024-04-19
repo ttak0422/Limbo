@@ -10,7 +10,7 @@
                   plugin location="file:${pkgs.zjstatus}/bin/zjstatus.wasm" {
                       format_left   "{mode}"
                       format_center "{tabs}"
-                      format_right  ""
+                      format_right  "[fg=#76946A,bg=#1a1a22]"
                       format_space  "[fg=#1a1a22,bg=#1a1a22]"
                       first_start "true"
 
@@ -21,9 +21,11 @@
 
                       hide_frame_for_single_pane "true"
 
-                      mode_normal  "#[fg=#090618,bg=#7E9CD8,bold] {name} "
-                      mode_locked  "#[fg=#090618,bg=#C34043,bold] {name} "
-                      mode_tmux    "#[fg=#090618,bg=#ffc387,bold] {name} "
+                      mode_tmux          "#[fg=#ffc387,bg=#1a1a22,bold] Zellij "
+                      mode_normal        "#[fg=#7E9CD8,bg=#1a1a22,bold] Zellij "
+                      mode_scroll        "#[fg=#7E9CD8,bg=#1a1a22,bold]-- {name} --"
+                      mode_enter_search  "#[fg=#7E9CD8,bg=#1a1a22,bold]-- {name} --"
+                      mode_search        "#[fg=#7E9CD8,bg=#1a1a22,bold]-- {name} --"
 
                       tab_normal   "#[fg=#6C7086,bg=#1a1a22] {name} "
                       tab_active   "#[fg=#9399B2,bg=#1a1a22,bold,italic] {name} "
