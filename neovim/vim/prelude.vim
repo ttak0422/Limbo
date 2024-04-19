@@ -1,5 +1,6 @@
 set langmenu=none
-set shortmess+=I
+" https://github.com/folke/noice.nvim/wiki/A-Guide-to-Messages
+set shortmess+=sWIcCS
 set iskeyword+=-
 au WinEnter * checktime
 au FileType * setlocal formatoptions-=ro
