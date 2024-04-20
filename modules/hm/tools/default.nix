@@ -14,6 +14,7 @@ _: {
           fd # ------------- find clone
           figlet # --------- ascii
           gnugrep
+          gnumake
           gnused
           graphviz # ------- dot
           grex # ----------- derive regex from examples
