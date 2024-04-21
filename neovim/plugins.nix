@@ -695,6 +695,14 @@ let
     };
   };
   helper = with pkgs.vimPlugins; {
+    img-clip-nvim = {
+      plugin = img-clip-nvim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/img-clip.lua;
+      };
+      onFiletypes = [ "markdown" ];
+    };
     lastplace = {
       plugin = nvim-lastplace;
       preConfig = {

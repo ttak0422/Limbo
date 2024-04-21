@@ -129,6 +129,7 @@ let
       octo
       skk
       go
+      img-clip-nvim
     ];
     lazyGroups = with groups; [
       bufferHook
