@@ -859,6 +859,7 @@ let
         language = "lua";
         code = readFile ./lua/toggleterm.lua;
       };
+      dependPlugins = [ term-gf-nvim ];
       onCommands = [ "ToggleTerm" "TermToggle" ];
     };
     vimdoc-ja = {
