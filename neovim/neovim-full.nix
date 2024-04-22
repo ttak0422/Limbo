@@ -24,7 +24,10 @@ let
       # btw
     ];
     lazyPlugins = with plugins; [
-      direnv
+      # dropbar
+      # flutter-tools
+      # ionide
+      # none-ls
       ambiwidth
       asterisk
       auto-indent
@@ -36,20 +39,23 @@ let
       comment
       context-vt
       dd
+      denops
       detour
       devicons
       diffview
-      # dropbar
+      direnv
+      dotfyle
       femaco
       flit
       flow
-      # flutter-tools
       fundo
       gin
       gina
       git-conflict
       git-signs
       glance
+      global-note
+      go
       goto-preview
       harpoon
       haskell-tools
@@ -57,11 +63,12 @@ let
       history-ignore
       hlchunk
       hlslens
+      hydra
+      img-clip-nvim
       indent-o-matic
-      # ionide
       jabs
       jdtls
-      # jukit
+      lastplace
       leap
       legendary
       markdown-preview
@@ -70,28 +77,31 @@ let
       mkdnflow
       nap
       neogen
-      # neotree
+      neogit
       neozoom
       nfnl
       noice
-      # none-ls
       notify
       numb
-      # nvim-tree
       nvim-window
+      octo
       open
       overseer
       project
       qf
       qfheight
+      qfreplace
       reacher
       registers
-      # rust-tools
-      sqlite
+      rustaceanvim
+      scope
+      skk
       smart-splits
       spectre
+      sqlite
       startuptime
       statuscol
+      stickybuf
       tabout
       tint
       todo-comments
@@ -104,6 +114,8 @@ let
       ts-autotag
       tshjkl
       ufo
+      undotree
+      venn
       vim-markdown
       vim-nix
       vimdoc-ja
@@ -113,23 +125,6 @@ let
       window-picker
       winsep
       winshift
-      hydra
-      stickybuf
-      rustaceanvim
-      dotfyle
-      lastplace
-      # indent-blankline
-      global-note
-      denops
-      qfreplace
-      undotree
-      venn
-      neogit
-      scope
-      octo
-      skk
-      go
-      img-clip-nvim
     ];
     lazyGroups = with groups; [
       bufferHook
