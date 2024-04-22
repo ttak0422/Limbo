@@ -36,7 +36,7 @@
           ;  (lcmd "require('treesj').toggle({ split = { recursive = true } })")
           ;  (d "toggle split/join rec")]
           ;; toggle
-          [:gb (cmd :NvimTreeFocus)]
+          ; [:gb (cmd :NvimTreeFocus)]
           ;; [:<leader>tb (cmd :NvimTreeToggle)]
           [:<leader>tb (lua_cmd "require('lir.float').toggle()")]
           [:<leader>tB (lua_cmd "require('oil').open_float()")]
