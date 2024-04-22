@@ -77,7 +77,7 @@ let
       # none-ls
       notify
       numb
-      nvim-tree
+      # nvim-tree
       nvim-window
       open
       overseer

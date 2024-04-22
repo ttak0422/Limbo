@@ -898,15 +898,15 @@ let
       };
       extraPackages = with pkgs; [ nnn ];
     };
-    # nvim-tree = {
-    #   plugin = nvim-tree-lua;
-    #   postConfig = {
-    #     language = "lua";
-    #     code = readFile ./lua/nvim-tree.lua;
-    #   };
-    #   dependPlugins = [ nvim-web-devicons dressing-nvim stickybuf-nvim ];
-    #   onCommands = [ "NvimTreeFocus" "NvimTreeToggle" ];
-    # };
+    nvim-tree = {
+      plugin = nvim-tree-lua;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/nvim-tree.lua;
+      };
+      dependPlugins = [ nvim-web-devicons dressing-nvim stickybuf-nvim ];
+      onCommands = [ "NvimTreeFocus" "NvimTreeToggle" ];
+    };
     neotree = {
       plugin = neotree-nvim-3;
       dependPlugins = [ plenary-nvim nvim-web-devicons nui-nvim ];
