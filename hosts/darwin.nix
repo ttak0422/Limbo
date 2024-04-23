@@ -33,6 +33,10 @@ in {
                 mkdir -p $out/bin
                 ln -s ${self'.packages.bundler-nvim-stable}/bin/nvim $out/bin/nvim
               '')
+              (pkgs.runCommand "gsed" { } ''
+                mkdir -p $out/bin
+                ln -s ${pkgs.gnused}/bin/sed $out/bin/gsed
+              '')
             ];
           }
           (mkHmModule {
