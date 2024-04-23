@@ -76,7 +76,7 @@ keybinds clear-defaults=true {
         bind "Right" { MovePane "Right"; SwitchToMode "Normal"; }
         bind "Space" { NextSwapLayout; }
         bind "x" { CloseFocus; SwitchToMode "Normal"; }
-        bind "n" { NewTab; SwitchToMode "Normal"; }
+        bind "Ctrl n" { NewTab; SwitchToMode "Normal"; }
     }
     shared_except "normal" {
         bind "Enter" "Esc" { SwitchToMode "Normal"; }
