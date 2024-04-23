@@ -131,6 +131,9 @@
 ;; markdown
 (lspconfig.marksman.setup {: on_attach : capabilities})
 
+;; ast_grep
+(lspconfig.ast_grep.setup {: on_attach : capabilities})
+
 ;; efm
 (let [fs (require :efmls-configs.fs) ;; linter
       luacheck (require :efmls-configs.linters.luacheck)

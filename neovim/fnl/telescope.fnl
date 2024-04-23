@@ -8,7 +8,11 @@
                                                       :type :command}}}})
       extensions {:live_grep_args {:auto_quoting true
                                    :mappings {:i {:<C-t> (lga_actions.quote_prompt {:postfix " -t "})
-                                                  :<C-i> (lga_actions.quote_prompt {:postfix " --iglob "})}}}}]
+                                                  :<C-i> (lga_actions.quote_prompt {:postfix " --iglob "})}}}
+                  :ast_grep {:command [:sg :--json=stream]
+                             :grep_open_files false
+                             :lang nil}}]
   (M.setup {: defaults : extensions})
   (M.load_extension :live_grep_args)
+  (M.load_extension :ast_grep)
   (M.load_extension :sonictemplate))

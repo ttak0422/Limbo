@@ -5,6 +5,7 @@ _: {
       imports = [ ./direnv.nix ./fzf.nix ./pet.nix ./virtualization.nix ];
       home.packages = with pkgs;
         [
+          ast-grep # structual grep
           bat # ------------ cat clone
           bottom # --------- system monitor
           commitizen # ----- git commit helper

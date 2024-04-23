@@ -44,6 +44,7 @@ local function _2_(path)
 end
 lspconfig.denols.setup({on_attach = on_attach, capabilities = capabilities, root_dir = _2_, init_options = {lint = true, suggest = {completeFunctionCalls = true, names = true, paths = true, autoImports = true, imports = {autoDiscover = true, hosts = vim.empty_dict()}}, unstable = false}, settings = {deno = {enable = true}}, single_file_support = false})
 lspconfig.marksman.setup({on_attach = on_attach, capabilities = capabilities})
+lspconfig.ast_grep.setup({on_attach = on_attach, capabilities = capabilities})
 do
   local fs = require("efmls-configs.fs")
   local luacheck = require("efmls-configs.linters.luacheck")

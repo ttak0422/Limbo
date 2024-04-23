@@ -245,6 +245,10 @@ in with pkgs.vimPlugins; {
           };
         }];
       }
+      {
+        plugin = telescope-sg;
+        extraPackages = with pkgs; [ ast-grep ];
+      }
     ];
     dependPlugins = [ plenary-nvim skkeleton ];
     postConfig = {
@@ -320,6 +324,7 @@ in with pkgs.vimPlugins; {
           rustfmt
           gitlint
           hadolint
+          ast-grep
         ]) ++ (with pkgs.pkgs-unstable; [ nixd marksman ]);
         preConfig = {
           language = "lua";
@@ -454,18 +459,16 @@ in with pkgs.vimPlugins; {
         plugin = ddc-ui-pum;
         dependPlugins = [{
           plugin = pum-vim;
-          dependPlugins = [
-            {
-              plugin = nvim-autopairs;
-              dependGroups = [ "treesitter" ];
-              postConfig = {
-                language = "lua";
-                code = readFile ./lua/autopairs.lua;
-              };
-              onEvents = [ "InsertEnter" ];
-              onModules = [ "nvim-autopairs" ];
-            }
-          ];
+          dependPlugins = [{
+            plugin = nvim-autopairs;
+            dependGroups = [ "treesitter" ];
+            postConfig = {
+              language = "lua";
+              code = readFile ./lua/autopairs.lua;
+            };
+            onEvents = [ "InsertEnter" ];
+            onModules = [ "nvim-autopairs" ];
+          }];
           postConfig = {
             language = "vim";
             code = readFile ./vim/pum.vim;
