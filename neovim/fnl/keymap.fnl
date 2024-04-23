@@ -72,6 +72,9 @@
           [:<leader>ff
            (cmd "Telescope live_grep_args")
            (mk_desc "search by content")]
+          [:<leader>fF
+           (cmd "Telescope ast_grep")
+           (mk_desc "search by structure")]
           [:<leader>fp
            (cmd "Ddu -name=fd file_fd")
            (mk_desc "search by file name")]
@@ -90,7 +93,7 @@
           [:<leader>frr
            (cmd "Ddu -name=mrr mrr")
            (mk_desc "MRR (Most Recent git Repositories)")]
-          [:<leader>fF
+          [:<leader>F
            (lua_cmd "require('spectre').open()")
            (mk_desc "find and replace with dark power")]]]
   (each [_ keymap (ipairs ns)]
