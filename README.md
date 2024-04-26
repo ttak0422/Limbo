@@ -12,6 +12,9 @@
 
 ![image](https://github.com/ttak0422/Limbo/assets/15827817/8bd61f0d-6be0-4616-9a44-ad76a1a1a6bf)
 
+> [!NOTE]
+> require skk server running on port 1178.
+
 ```shell
 # just run
 nix run 'github:ttak0422/Limbo#bundler-nvim'
