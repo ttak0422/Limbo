@@ -420,7 +420,8 @@ in with pkgs.vimPlugins; {
       neotest-java
       neotest-python
       neotest-plenary
-      neotest-go
+      # neotest-go
+      neotest-golang
       neotest-jest
       neotest-vitest
       neotest-playwright

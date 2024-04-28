@@ -8,7 +8,14 @@
                                           :force_runner nil
                                           :fallback_runner :gradle})
                 (require :neotest-plenary)
-                (require :neotest-go)
+                ; (require :neotest-go)
+                ((require :neotest-golang) {:args [:-v
+                                                   :-race
+                                                   :-count=1
+                                                   :-timeout=60s
+                                                   (.. :-coverprofile=
+                                                       (vim.fn.getcwd)
+                                                       :/coverage.out)]})
                 (require :neotest-vitest)
                 (require :neotest-rspec)
                 (require :neotest-minitest)

@@ -1,6 +1,6 @@
 call skkeleton#config({
       \   'sources': [ 'skk_server' ],
-      \   'globalDictionaries': [ s:args['jisyo'] ],
+      \   'globalDictionaries': [s:args['jisyo']],
       \   'skkServerHost': '127.0.0.1',
       \   'skkServerPort': 1178,
       \   'markerHenkan': '',
