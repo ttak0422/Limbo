@@ -70,6 +70,20 @@ let
       onModules = [ "trouble" ];
       onCommands = [ "TroubleToggle" ];
     };
+    null-ls = {
+      plugin = none-ls-nvim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/null-ls.lua;
+      };
+      dependPlugins = [ plenary-nvim ];
+      extraPackages = with pkgs;
+        [
+
+        ];
+      useTimer = true;
+    };
+    # DEPRICATED:
     # todo add cspell
     none-ls = {
       plugin = none-ls-nvim;

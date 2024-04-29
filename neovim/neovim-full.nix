@@ -27,7 +27,6 @@ let
       # dropbar
       # flutter-tools
       # ionide
-      # none-ls
       ambiwidth
       asterisk
       auto-indent
@@ -82,6 +81,7 @@ let
       nfnl
       noice
       notify
+      null-ls
       numb
       nvim-window
       octo
