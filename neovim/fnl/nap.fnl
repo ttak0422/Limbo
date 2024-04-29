@@ -18,7 +18,13 @@
                          (if (< idx last_idx)
                              (vim.cmd "silent cnewer")
                              (vim.notify "reached end of quickfix list"))))
-      operators {:m {:prev {:rhs "<Plug>(Marks-prev)"
+      operators {:h {:prev {:rhs (fn []
+                                   (: (: (require :harpoon) :list) :prev))
+                            :opts {:desc "prev registered file"}}
+                     :next {:rhs (fn []
+                                   (: (: (require :harpoon) :list) :next))
+                            :opts {:desc "next registered file"}}}
+                 :m {:prev {:rhs "<Plug>(Marks-prev)"
                             :opts {:desc "prev mark"}}
                      :next {:rhs "<Plug>(Marks-next)"
                             :opts {:desc "next mark"}}}

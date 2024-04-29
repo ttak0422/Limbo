@@ -1000,13 +1000,13 @@ let
       onCommands = [ "StartupTime" ];
     };
     harpoon = {
-      plugin = harpoon-1;
+      plugin = harpoon-2;
       postConfig = {
         language = "lua";
         code = readFile ./lua/harpoon.lua;
       };
       dependPlugins = [ plenary-nvim ];
-      onModules = [ "harpoon.ui" ];
+      onModules = [ "harpoon" ];
     };
     nvim-window = {
       # Easily jump between NeoVim windows.

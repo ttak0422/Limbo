@@ -45,10 +45,14 @@
           [:<leader>tm
            (lua_cmd "require('codewindow').toggle_minimap()")
            (mk_desc "toggle minimap")]
-          [:<leader>tr
-           (lua_cmd "require('harpoon.ui').toggle_quick_menu()")
-           (mk_desc "toggle registered buffer menu")]
           ; [:<leader>tg (cmd :TigTermToggle) (mk_desc "toggle tig terminal")]
+          ;; harpoon
+          [:<leader>H
+           (lua_cmd "require('harpoon').ui:toggle_quick_menu(require('harpoon'):list())")
+           (mk_desc "registered file menu")]
+          [:<leader>ha
+           (lua_cmd "require('harpoon'):list():add()")
+           (mk_desc "register file")]
           ;; note
           [:<leader>nn (cmd :GlobalNote) (mk_desc "open global note")]
           [:<leader>np (cmd :ProjectNote) (mk_desc "open project local note")]
