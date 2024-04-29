@@ -211,7 +211,6 @@ in with pkgs.vimPlugins; {
       args = { inherit parser; };
     };
     # extraPackages = with pkgs; [ tree-sitter ];
-    useTimer = true;
   };
   telescope = {
     name = "telescope";
@@ -729,7 +728,6 @@ in with pkgs.vimPlugins; {
       args = { ts_config = ./denops/ddu.ts; };
     };
     onCommands = [ "Ddu" "DduRg" "DduRgLive" ];
-    useTimer = true;
   };
   dap = {
     name = "dap";
@@ -750,6 +748,5 @@ in with pkgs.vimPlugins; {
       language = "lua";
       code = readFile ./lua/dap.lua;
     };
-    useTimer = true;
   };
 }
