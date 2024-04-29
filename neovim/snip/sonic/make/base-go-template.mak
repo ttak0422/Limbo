@@ -1,18 +1,18 @@
 .DEFAULT_GOAL := build
 
+.PHONY: fmt
 fmt:
 	go fmt
-.PHONY: fmt
 
+.PHONY: lint
 lint:
 	staticcheck
-.PHONY: lint
 
+.PHONY: vet
 vet: fmt
 	go vet
-.PHONY: vet
 
+.PHONY: build
 build: vet
 	go mod tidy
 	go build
-.PHONY: build
