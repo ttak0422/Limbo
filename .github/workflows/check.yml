@@ -8,7 +8,9 @@ jobs:
   check-flake:
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest]
+        os: [ubuntu-latest]
+        # WIP: https://github.com/NixOS/nix/issues/8881
+        # os: [ubuntu-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
