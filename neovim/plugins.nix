@@ -125,13 +125,24 @@ let
       dependGroups = [ "lsp" "dap" ];
       onModules = [ "jdtls" ];
     };
+    gopher = {
+      plugin = gopher-nvim;
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/gopher.lua;
+      };
+      extraPackages = with pkgs; [ gomodifytags impl gotests iferr delve ];
+      dependPlugins = [ plenary-nvim ];
+      dependGroups = [ "lsp" "dap" "treesitter" ];
+      onFiletypes = [ "go" "gomod" ];
+    };
     go = {
       plugin = go-nvim;
       extraPackages = with pkgs; [
         gofumpt
         golines
         golangci-lint
-        gotools # goimports gorename callgraph guru
+        gotools # goimports gorename callgraph guru staticcheck
         gomodifytags
         gopls
         gotests

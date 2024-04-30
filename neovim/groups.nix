@@ -322,6 +322,8 @@ in with pkgs.vimPlugins; {
           gitlint
           hadolint
           ast-grep
+          gopls
+          go-tools
         ]) ++ (with pkgs.pkgs-unstable; [ nixd marksman ]);
         preConfig = {
           language = "lua";

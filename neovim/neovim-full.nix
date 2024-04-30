@@ -54,7 +54,7 @@ let
       git-signs
       glance
       global-note
-      go
+      gopher
       goto-preview
       harpoon
       haskell-tools
