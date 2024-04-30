@@ -106,7 +106,7 @@
     (map [:n :t :i] (.. :<C- i ">") (cmd (.. "TermToggle " i))
          (mk_desc (.. "toggle terminal " i))))
   ;; toggle
-  (map :n :<leader>tq (mk_toggle 1 :quickfix nil (mk_desc "toggle quickfix")))
+  (map :n :<leader>tq (mk_toggle 1 :quickfix nil) (mk_desc "toggle quickfix"))
   (map :n :<leader>td (mk_toggle 2 :trouble {:mode :document_diagnostics})
        (mk_desc "toggle diagnostics (document)"))
   (map :n :<leader>tD (mk_toggle 3 :trouble {:mode :workspace_diagnostics})

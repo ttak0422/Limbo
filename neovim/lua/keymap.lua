@@ -58,6 +58,6 @@ end
 for i = 0, 9 do
   map({"n", "t", "i"}, ("<C-" .. i .. ">"), cmd(("TermToggle " .. i)), mk_desc(("toggle terminal " .. i)))
 end
-map("n", "<leader>tq", mk_toggle(1, "quickfix", nil, mk_desc("toggle quickfix")))
+map("n", "<leader>tq", mk_toggle(1, "quickfix", nil), mk_desc("toggle quickfix"))
 map("n", "<leader>td", mk_toggle(2, "trouble", {mode = "document_diagnostics"}), mk_desc("toggle diagnostics (document)"))
 return map("n", "<leader>tD", mk_toggle(3, "trouble", {mode = "workspace_diagnostics"}), mk_desc("toggle diagnostics (workspace)"))
