@@ -53,7 +53,6 @@ do
   local statix = require("efmls-configs.linters.statix")
   local stylelint = require("efmls-configs.linters.stylelint")
   local vint = require("efmls-configs.linters.vint")
-  local staticcheck = require("efmls-configs.linters.staticcheck")
   local shellcheck = require("efmls-configs.linters.shellcheck")
   local pylint = require("efmls-configs.linters.pylint")
   local gitlint = require("efmls-configs.linters.gitlint")
@@ -71,10 +70,8 @@ do
     google_java_format = {formatCanRange = true, formatCommand = command, formatStdin = true, rootMarkers = {".project", "classpath", "pom.xml", "build.gradle"}}
   end
   local yapf = require("efmls-configs.formatters.yapf")
-  local goimports = require("efmls-configs.formatters.goimports")
-  local gofumpt = require("efmls-configs.formatters.gofumpt")
   local rustfmt = require("efmls-configs.formatters.rustfmt")
-  local languages = {lua = {luacheck, stylua}, fennel = {fnlfmt}, typescript = {eslint, prettier}, javascript = {eslint, prettier}, json = {fixjson}, sh = {shellcheck, shfmt}, toml = {taplo}, yaml = {yamllint, prettier}, nix = {statix, nixfmt}, java = {google_java_format}, css = {stylelint, prettier}, scss = {stylelint, prettier}, less = {stylelint, prettier}, saas = {stylelint, prettier}, html = {prettier}, vim = {vint}, python = {pylint, yapf}, go = {staticcheck, goimports, gofumpt}, rust = {rustfmt}, gitcommit = {gitlint}, docker = {hadolint}}
+  local languages = {lua = {luacheck, stylua}, fennel = {fnlfmt}, typescript = {eslint, prettier}, javascript = {eslint, prettier}, json = {fixjson}, sh = {shellcheck, shfmt}, toml = {taplo}, yaml = {yamllint, prettier}, nix = {statix, nixfmt}, java = {google_java_format}, css = {stylelint, prettier}, scss = {stylelint, prettier}, less = {stylelint, prettier}, saas = {stylelint, prettier}, html = {prettier}, vim = {vint}, python = {pylint, yapf}, rust = {rustfmt}, gitcommit = {gitlint}, docker = {hadolint}}
   local settings = {rootMarkers = {".git/"}, languages = languages}
   local init_options = {documentFormatting = true, documentRangeFormatting = true}
   local make_settings

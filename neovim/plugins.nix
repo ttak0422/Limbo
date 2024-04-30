@@ -77,10 +77,12 @@ let
         code = readFile ./lua/null-ls.lua;
       };
       dependPlugins = [ plenary-nvim ];
-      extraPackages = with pkgs;
-        [
-
-        ];
+      extraPackages = with pkgs; [
+        # for go #
+        gofumpt
+        go-tools
+        # ------ #
+      ];
       useTimer = true;
     };
     # DEPRICATED:
@@ -151,6 +153,7 @@ let
           capabilities_path = ./lua/capabilities.lua;
         };
       };
+      dependPlugins = [ none-ls-nvim ];
       dependGroups = [ "lsp" "dap" "treesitter" ];
       onFiletypes = [ "go" "gomod" ];
     };

@@ -142,7 +142,6 @@
       statix (require :efmls-configs.linters.statix)
       stylelint (require :efmls-configs.linters.stylelint)
       vint (require :efmls-configs.linters.vint)
-      staticcheck (require :efmls-configs.linters.staticcheck)
       shellcheck (require :efmls-configs.linters.shellcheck)
       pylint (require :efmls-configs.linters.pylint)
       gitlint (require :efmls-configs.linters.gitlint)
@@ -173,8 +172,6 @@
                                           :pom.xml
                                           :build.gradle]})
       yapf (require :efmls-configs.formatters.yapf)
-      goimports (require :efmls-configs.formatters.goimports)
-      gofumpt (require :efmls-configs.formatters.gofumpt)
       rustfmt (require :efmls-configs.formatters.rustfmt)
       languages {:lua [luacheck stylua]
                  :fennel [fnlfmt]
@@ -193,7 +190,6 @@
                  :html [prettier]
                  :vim [vint]
                  :python [pylint yapf]
-                 :go [staticcheck goimports gofumpt]
                  :rust [rustfmt]
                  :gitcommit [gitlint]
                  :docker [hadolint]}

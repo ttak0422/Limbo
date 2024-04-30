@@ -317,8 +317,6 @@ in with pkgs.vimPlugins; {
           vim-vint
           yapf
           pylint
-          gofumpt
-          gotools
           shellcheck
           rustfmt
           gitlint

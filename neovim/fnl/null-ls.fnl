@@ -1,6 +1,13 @@
 (let [null_ls (require :null-ls)
+      diagnostics null_ls.builtins.diagnostics
+      formatting null_ls.builtins.formatting
       utils (require :null-ls.utils)
-      sources []]
+      sources [
+               ;; for go ;;
+               diagnostics.staticcheck
+               formatting.gofumpt
+               ;; ------ ;;
+               ]]
   (null_ls.setup {:border ["┏" "━" "┓" "┃" "┛" "━" "┗" "┃"]
                   :cmd [:nvim]
                   :debounce 250
