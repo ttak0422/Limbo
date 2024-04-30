@@ -51,8 +51,44 @@
       benchmark {:enabled true}
       consumers {:overseer (require :neotest.consumers.overseer)
                  :playwright (. (require :neotest-playwright.consumers)
-                                :consumers)}
-      default_strategy :integrated
+                                :consumers)} ;;
+      ;; supress
+      default_strategy (fn [spec]
+                         (var result_code nil)
+                         (let [nio (require :nio)
+                               env spec.env
+                               cwd spec.cwd
+                               finish_future (nio.control.future)
+                               command spec.command
+                               (success job) (pcall nio.fn.jobstart command
+                                                    {: cwd
+                                                     : env
+                                                     :pty true
+                                                     :height spec.strategy.height
+                                                     :width spec.strategy.width
+                                                     :on_stdout (fn [_ _data])
+                                                     :on_exit (fn [_ code]
+                                                                (if (not (finish_future.is_set))
+                                                                    (do
+                                                                      (set result_code
+                                                                           code)
+                                                                      (finish_future.set))))})]
+                           (if (not success)
+                               (do
+                                 (set result_code 1)
+                                 (pcall finish_future.set)))
+                           {:is_complete (fn [] (not= result_code nil))
+                            :output (fn [] (vim.fn.tempname))
+                            :output_stream (fn []
+                                             (fn []
+                                               (nio.first [finish_future.wait])))
+                            :attach (fn [])
+                            :stop (fn []
+                                    (nio.fn.jobstop job))
+                            :result (fn []
+                                      (if (= result_code nil)
+                                          (finish_future:wait))
+                                      result_code)}))
       diagnostic {:enabled true :severity 1}
       discovery {:concurrent 0 :enabled true}
       floating {:border ["┏" "━" "┓" "┃" "┛" "━" "┗" "┃"]
@@ -135,7 +171,9 @@
                  (lua_cmd "require('neotest').run.run(vim.fn.expand('%'))")
                  {}]
                 [:NeotestStop (lua_cmd "require('neotest').run.stop()") {}]
-                [:NeotestNearest (lua_cmd "require('neotest').run.run({strategy='dap'})") {}]
+                [:NeotestNearest
+                 (lua_cmd "require('neotest').run.run({strategy='dap'})")
+                 {}]
                 [:NeotestCurrentFile
                  (lua_cmd "require('neotest').run.run(vim.fn.expand('%'))")
                  {}]
