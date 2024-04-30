@@ -69,7 +69,13 @@
           ;; toggle
           [:<leader>tc (cmd :ColorizerToggle) (mk_desc "toggle colorize")]
           ;; runner
-          [:<leader>rr (cmd :FlowRunFile)]]
+          [:<leader>rr (cmd :FlowRunFile)]
+          ;; common tests
+          [:<LocalLeader>tT (cmd :Neotest) (mk_desc "test nearest")]
+          [:<LocalLeader>tt (cmd :NeotestNearest) (mk_desc "test nearest")]
+          [:<LocalLeader>to
+           (cmd :NeotestToggleSummary)
+           (mk_desc "show test summary")]]
       vs [;; runner
           [:<leader>r (cmd :FlowRunSelected)]]]
   ;; options ;;

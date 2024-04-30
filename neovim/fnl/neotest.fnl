@@ -135,7 +135,7 @@
                  (lua_cmd "require('neotest').run.run(vim.fn.expand('%'))")
                  {}]
                 [:NeotestStop (lua_cmd "require('neotest').run.stop()") {}]
-                [:NeotestNearest (lua_cmd "require('neotest').run.run()") {}]
+                [:NeotestNearest (lua_cmd "require('neotest').run.run({strategy='dap'})") {}]
                 [:NeotestCurrentFile
                  (lua_cmd "require('neotest').run.run(vim.fn.expand('%'))")
                  {}]

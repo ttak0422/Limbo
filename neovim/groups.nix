@@ -446,7 +446,8 @@ in with pkgs.vimPlugins; {
       language = "lua";
       code = readFile ./lua/neotest.lua;
     };
-    onCommands = [ "Neotest" ];
+    onCommands = [ "Neotest" "NeotestNearest" "NeotestToggleSummary"];
+    onModules = [ "neotest" ];
   };
   ddc = {
     name = "ddc";
@@ -735,7 +736,7 @@ in with pkgs.vimPlugins; {
       nvim-dap
       {
         plugin = nvim-dap-ui;
-        dependPlugins = [ nvim-nio ];
+        dependPlugins = [ nvim-dap nvim-nio ];
       }
       nvim-dap-virtual-text
       nvim-dap-repl-highlights

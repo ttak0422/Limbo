@@ -40,7 +40,7 @@ local function _5_(c)
   return ("lua " .. c)
 end
 lua_cmd = _5_
-local commands = {{"Neotest", lua_cmd("require('neotest').run.run(vim.fn.expand('%'))"), {}}, {"NeotestStop", lua_cmd("require('neotest').run.stop()"), {}}, {"NeotestNearest", lua_cmd("require('neotest').run.run()"), {}}, {"NeotestCurrentFile", lua_cmd("require('neotest').run.run(vim.fn.expand('%'))"), {}}, {"NeotestAllFile", lua_cmd("require('neotest').run.run(vim.loop.cwd())"), {}}, {"NeotestToggleSummary", lua_cmd("require('neotest').summary.toggle()"), {}}, {"NeotestTogglePanel", lua_cmd("require('neotest').output_panel.toggle()"), {}}}
+local commands = {{"Neotest", lua_cmd("require('neotest').run.run(vim.fn.expand('%'))"), {}}, {"NeotestStop", lua_cmd("require('neotest').run.stop()"), {}}, {"NeotestNearest", lua_cmd("require('neotest').run.run({strategy='dap'})"), {}}, {"NeotestCurrentFile", lua_cmd("require('neotest').run.run(vim.fn.expand('%'))"), {}}, {"NeotestAllFile", lua_cmd("require('neotest').run.run(vim.loop.cwd())"), {}}, {"NeotestToggleSummary", lua_cmd("require('neotest').summary.toggle()"), {}}, {"NeotestTogglePanel", lua_cmd("require('neotest').output_panel.toggle()"), {}}}
 neotest.setup({adapters = adapters, benchmark = benchmark, consumers = consumers, default_strategy = default_strategy, diagnostic = diagnostic, discovery = discovery, floating = floating, highlights = highlights, icons = icons, jump = jump, log_level = log_level, output = output, output_panel = output_panel, projects = projects, quickfix = quickfix, run = run, running = running, state = state, status = status, strategies = strategies, summary = summary, watch = watch})
 for _, c in ipairs(commands) do
   vim.api.nvim_create_user_command(c[1], c[2], c[3])

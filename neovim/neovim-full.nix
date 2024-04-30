@@ -123,7 +123,7 @@ let
       waitevent
       which-key
       window-picker
-      winsep
+      # winsep
       winshift
     ];
     lazyGroups = with groups; [
