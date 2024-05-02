@@ -1,4 +1,4 @@
-{ pkgs, lib }:
+{ inputs, system, pkgs, lib }:
 let
   inherit (builtins) readFile;
   inherit (lib.strings) concatStringsSep;
@@ -193,12 +193,36 @@ in with pkgs.vimPlugins; {
       # }
     ];
     postConfig = let
+      # minimal
+      buildGrammar = { language, src }:
+        pkgs.stdenv.mkDerivation {
+          inherit src;
+          pname = "custom-grammar-${language}";
+          version = "custom";
+          CFLAGS = [ "-Isrc" "-O2" ];
+          CXXFLAGS = [ "-Isrc" "-O2" ];
+          buildPhase = ''
+            $CC -fPIC -c src/parser.c -o parser.o $CFLAGS
+            rm -rf parser
+            $CXX -shared -o parser *.o
+          '';
+          installPhase = ''
+            mkdir -p $out/parser
+            mv parser $out/parser/${language}.so
+          '';
+        };
+      dap-repl-grammar = buildGrammar {
+        language = "dap_repl";
+        src =
+          inputs.vim-plugins-overlay.packages.${system}.nvim-dap-repl-highlights;
+      };
       parser = pkgs.stdenv.mkDerivation {
-        name = "treesitter-all-grammars";
+        name = "treesitter-custom-grammars";
         buildCommand = ''
           mkdir -p $out/parser
           echo "${
-            concatStringsSep "," nvim-treesitter.withAllGrammars.dependencies
+            concatStringsSep "," (nvim-treesitter.withAllGrammars.dependencies
+              ++ [ dap-repl-grammar ])
           }" \
             | tr ',' '\n' \
             | xargs -I {} find {} -not -type d \
@@ -446,7 +470,7 @@ in with pkgs.vimPlugins; {
       language = "lua";
       code = readFile ./lua/neotest.lua;
     };
-    onCommands = [ "Neotest" "NeotestNearest" "NeotestToggleSummary"];
+    onCommands = [ "Neotest" "NeotestNearest" "NeotestToggleSummary" ];
     onModules = [ "neotest" ];
   };
   ddc = {

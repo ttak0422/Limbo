@@ -1,9 +1,9 @@
-{ pkgs, loaded-nvim }:
+{ inputs, pkgs, loaded-nvim }:
 let
   inherit (builtins) readFile;
   inherit (pkgs) callPackage;
   plugins = callPackage ./plugins.nix { };
-  groups = callPackage ./groups.nix { };
+  groups = callPackage ./groups.nix { inherit inputs; };
   ftplugins = callPackage ./ftplugins.nix { };
   extraConfig = "${readFile ./vim/prelude.vim}";
   extraLuaConfig = ''
