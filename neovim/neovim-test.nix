@@ -1,9 +1,9 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 let
   inherit (builtins) readFile;
   inherit (pkgs) callPackage;
   plugins = callPackage ./plugins.nix { };
-  groups = callPackage ./groups.nix { };
+  groups = callPackage ./groups.nix { inherit inputs; };
   ftplugins = callPackage ./ftplugins.nix { };
 in
 {

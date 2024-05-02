@@ -31,7 +31,7 @@
 
       bundler-nvim = {
         inherit (callPackage ./neovim-ci.nix { }) ci-nightly-latest;
-        inherit (callPackage ./neovim-test.nix { })
+        inherit (callPackage ./neovim-test.nix { inherit inputs; })
           test-v9 skkeleton skkeleton-lazy skkeleton-with-ddc;
         inherit (callPackage ./neovim-full.nix {
           inherit inputs;
