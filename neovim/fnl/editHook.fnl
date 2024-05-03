@@ -7,7 +7,7 @@
             ;; 入力時に対応する括弧を強調
             :showmatch true
             ;; 補完オプション
-            :completeopt ""
+            :completeopt "menu,menuone,noselect"
             ;; 短径選択を寛容に
             :virtualedit :block}
       default_ops {:noremap true :silent true}

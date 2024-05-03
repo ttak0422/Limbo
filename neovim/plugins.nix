@@ -1216,7 +1216,10 @@ in with pkgs.vimPlugins;
   skk = {
     plugin = skkeleton;
     dependPlugins = [ denops-vim ];
-    dependGroups = [ "ddc" "ddu" ];
+    dependGroups = [
+      # "ddc"
+      # "ddu"
+    ];
     useDenops = true;
     postConfig = {
       language = "vim";

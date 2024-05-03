@@ -6,8 +6,9 @@
                  :description "reload file"}
                 {1 ":so $VIMRUNTIME/syntax/hitest.vim"
                  :description "enumerate highlight"}
-                {1 ":call denops#plugin#reload('ddc')"
-                 :description "[WIP] reload ddc"}]
+                ; {1 ":call denops#plugin#reload('ddc')"
+                ;  :description "[WIP] reload ddc"}
+                ]
       functions []
       autocmds []]
   (M.setup {:include_builtin false

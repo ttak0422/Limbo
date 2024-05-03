@@ -127,10 +127,11 @@ let
       winshift
     ];
     lazyGroups = with groups; [
+      # ddc
       bufferHook
       cmdlineHook
+      cmp
       dap
-      ddc
       ddu
       editHook
       fzf

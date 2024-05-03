@@ -429,7 +429,11 @@ in with pkgs.vimPlugins; {
       #   };
       # }
     ];
-    dependGroups = [ "ddc" "telescope" ];
+    dependGroups = [
+      # "ddc"
+      "cmp"
+      "telescope"
+    ];
     useTimer = true;
   };
   neotest = {
@@ -472,6 +476,71 @@ in with pkgs.vimPlugins; {
     };
     onCommands = [ "Neotest" "NeotestNearest" "NeotestToggleSummary" ];
     onModules = [ "neotest" ];
+  };
+  cmp = {
+    name = "cmp";
+    plugins = [
+      {
+        plugin = cmp-buffer;
+        postConfig = {
+          language = "lua";
+          code = ''
+            dofile("${cmp-buffer}/after/plugin/cmp_buffer.lua")
+          '';
+        };
+      }
+      {
+        plugin = cmp-cmdline;
+        postConfig = {
+          language = "lua";
+          code = ''
+            dofile("${cmp-cmdline}/after/plugin/cmp_cmdline.lua")
+          '';
+        };
+      }
+      {
+        plugin = cmp-cmdline-history;
+        postConfig = {
+          language = "lua";
+          code = ''
+            dofile("${cmp-cmdline-history}/after/plugin/cmp_cmdline_history.lua")
+          '';
+        };
+      }
+      {
+        plugin = cmp-nvim-lsp;
+        postConfig = {
+          language = "lua";
+          code = ''
+            dofile("${cmp-nvim-lsp}/after/plugin/cmp_nvim_lsp.lua")
+          '';
+        };
+      }
+      {
+        plugin = cmp-path;
+        postConfig = {
+          language = "lua";
+          code = ''
+            dofile("${cmp-path}/after/plugin/cmp_path.lua")
+          '';
+        };
+      }
+      {
+        plugin = cmp_luasnip;
+        postConfig = {
+          language = "lua";
+          code = ''
+            dofile("${cmp_luasnip}/after/plugin/cmp_luasnip.lua")
+          '';
+        };
+      }
+    ];
+    dependPlugins = [ nvim-cmp LuaSnip ];
+    postConfig = {
+      language = "lua";
+      code = readFile ./lua/cmp.lua;
+    };
+    onEvents = [ "InsertEnter" ];
   };
   ddc = {
     name = "ddc";
