@@ -535,7 +535,7 @@ in with pkgs.vimPlugins; {
         };
       }
     ];
-    dependPlugins = [ nvim-cmp LuaSnip ];
+    dependPlugins = [ nvim-cmp LuaSnip tabout-nvim ];
     postConfig = {
       language = "lua";
       code = readFile ./lua/cmp.lua;
@@ -553,16 +553,19 @@ in with pkgs.vimPlugins; {
         plugin = ddc-ui-pum;
         dependPlugins = [{
           plugin = pum-vim;
-          dependPlugins = [{
-            plugin = nvim-autopairs;
-            dependGroups = [ "treesitter" ];
-            postConfig = {
-              language = "lua";
-              code = readFile ./lua/autopairs.lua;
-            };
-            onEvents = [ "InsertEnter" ];
-            onModules = [ "nvim-autopairs" ];
-          }];
+          dependPlugins = [
+            # TODO: replace
+            {
+              plugin = nvim-autopairs;
+              dependGroups = [ "treesitter" ];
+              postConfig = {
+                language = "lua";
+                code = readFile ./lua/autopairs.lua;
+              };
+              onEvents = [ "InsertEnter" ];
+              onModules = [ "nvim-autopairs" ];
+            }
+          ];
           postConfig = {
             language = "vim";
             code = readFile ./vim/pum.vim;

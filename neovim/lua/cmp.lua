@@ -13,22 +13,37 @@ local preselect = types.cmp.PreselectMode.Item
 local mapping
 do
   local m = cmp.mapping
-  mapping = {["<C-d>"] = m.scroll_docs(-4), ["<C-f>"] = m.scroll_docs(4), ["<C-n>"] = m.select_next_item(), ["<C-p>"] = m.select_prev_item(), ["<C-y>"] = m.confirm({select = true}), ["<C-e>"] = m.abort(), ["<C-x>"] = m.complete(), ["<C-x><C-x>"] = m.complete(), ["<C-x><C-f>"] = m.complete({config = {sources = {{name = "path"}}}}), ["<C-x><C-b>"] = m.complete({config = {sources = {{name = "buffer"}}}}), ["<C-x><C-l>"] = m.complete({config = {sources = {{name = "nvim_lsp"}}}})}
+  local behavior = cmp.SelectBehavior.Select
+  local function _2_(fallback)
+    if luasnip.expand_or_jumpable() then
+      return luasnip.expand_or_jump()
+    else
+      return fallback()
+    end
+  end
+  local function _4_(fallback)
+    if luasnip.expand_or_jumpable() then
+      return luasnip.expand_or_jump()
+    else
+      return fallback()
+    end
+  end
+  mapping = {["<C-d>"] = m.scroll_docs(-4), ["<C-f>"] = m.scroll_docs(4), ["<C-n>"] = m.select_next_item({behavior = behavior}), ["<C-p>"] = m.select_prev_item({behavior = behavior}), ["<C-y>"] = m.confirm({select = true}), ["<C-e>"] = m.abort(), ["<C-k>"] = m(_2_, {"i", "s"}), ["<C-l>"] = m(_4_, {"i", "s"}), ["<C-x>"] = m.complete(), ["<C-x><C-x>"] = m.complete(), ["<C-x><C-f>"] = m.complete({config = {sources = {{name = "path"}}}}), ["<C-x><C-b>"] = m.complete({config = {sources = {{name = "buffer"}}}}), ["<C-x><C-l>"] = m.complete({config = {sources = {{name = "nvim_lsp"}}}})}
 end
 local completion = {autocomplete = {types.cmp.TriggerEvent.TextChanged}, completeopt = "menu,menuone,noselect", keyword_length = 2}
 local formatting
-local function _2_(_, item)
+local function _6_(_, item)
   return item
 end
-formatting = {expandable_indicator = true, fields = {"abbr", "kind", "menu"}, format = _2_}
-local matching = {disallow_partial_fuzzy_matching = true, disallow_symbol_nonprefix_matching = true, disallow_partial_matching = false, disallow_fuzzy_matching = false, disallow_fullfuzzy_matching = false, disallow_prefix_unmatching = false}
+formatting = {expandable_indicator = true, fields = {"abbr", "kind", "menu"}, format = _6_}
+local matching = {disallow_partial_fuzzy_matching = true, disallow_symbol_nonprefix_matching = true, disallow_fullfuzzy_matching = false, disallow_prefix_unmatching = false, disallow_partial_matching = false, disallow_fuzzy_matching = false}
 local sorting = {priority_weight = 2, comparators = {compare.offset, compare.exact, compare.score, compare.recently_used, compare.locality, compare.kind, compare.length, compare.order}}
 local sources = {{name = "nvim_lsp"}, {name = "luasnip"}, {name = "buffer"}}
 local confirmation
-local function _3_(commit_cs)
+local function _7_(commit_cs)
   return commit_cs
 end
-confirmation = {default_behavior = types.cmp.ConfirmBehavior.Insert, get_commit_characters = _3_}
+confirmation = {default_behavior = types.cmp.ConfirmBehavior.Insert, get_commit_characters = _7_}
 local event = {}
 local experimental = {ghost_text = false}
 local view
@@ -44,4 +59,8 @@ do
   local documentation = cmp.config.window.bordered({border = border})
   window = {completion = completion0, documentation = documentation}
 end
-return cmp.setup({snippet = snippet, performance = performance, preselect = preselect, mapping = mapping, completion = completion, formatting = formatting, matching = matching, sorting = sorting, sources = sources, confirmation = confirmation, event = event, experimental = experimental, view = view, window = window})
+cmp.setup({snippet = snippet, performance = performance, preselect = preselect, mapping = mapping, completion = completion, formatting = formatting, matching = matching, sorting = sorting, sources = sources, confirmation = confirmation, event = event, experimental = experimental, view = view, window = window})
+vim.cmd("inoremap <expr> <C-Space> '<C-n>'")
+cmp.setup.cmdline("/", {mapping = cmp.mapping.preset.cmdline(), sources = {{name = "buffer"}}})
+cmp.setup.cmdline("?", {mapping = cmp.mapping.preset.cmdline(), sources = {{name = "buffer"}}})
+return cmp.setup.cmdline(":", {mapping = cmp.mapping.preset.cmdline(), sources = {{name = "cmdline"}, {name = "cmdline_history"}, {name = "buffer"}}})

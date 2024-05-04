@@ -1,5 +1,5 @@
 -- [nfnl] Compiled from neovim/fnl/editHook.fnl by https://github.com/Olical/nfnl, do not edit.
-local opts = {expandtab = true, tabstop = 2, shiftwidth = 2, showmatch = true, completeopt = "menu,menuone,noselect", virtualedit = "block"}
+local opts = {expandtab = true, tabstop = 2, shiftwidth = 2, showmatch = true, completeopt = "", virtualedit = "block"}
 local default_ops = {noremap = true, silent = true}
 local mk_desc
 local function _1_(d)

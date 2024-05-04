@@ -27,6 +27,7 @@ let
       # dropbar
       # flutter-tools
       # ionide
+      autopairs
       ambiwidth
       asterisk
       auto-indent

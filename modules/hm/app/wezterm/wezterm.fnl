@@ -1,6 +1,10 @@
 (let [wezterm (require :wezterm)
       act wezterm.action
-      keys [{:key "=" :mods :CTRL :action act.IncreaseFontSize}
+      keys [;; unbind `QuickSelect`
+            {:key :Space
+             :mods :CTRL|SHIFT
+             :action act.DisableDefaultAssignment}
+            {:key "=" :mods :CTRL :action act.IncreaseFontSize}
             {:key :Enter :mods :ALT :action act.ToggleFullScreen}
             {:key :f :mods :SHIFT|SUPER :action act.ToggleFullScreen}
             {:key :0 :mods :CTRL :action (act.SendString "\027[48;5u")}

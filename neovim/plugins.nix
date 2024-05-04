@@ -723,6 +723,15 @@ let
     };
   };
   helper = with pkgs.vimPlugins; {
+    autopairs = {
+      plugin = nvim-autopairs;
+      dependGroups = [ "treesitter" ];
+      postConfig = {
+        language = "lua";
+        code = readFile ./lua/autopairs.lua;
+      };
+      onEvents = [ "InsertEnter" ];
+    };
     img-clip-nvim = {
       plugin = img-clip-nvim;
       postConfig = {

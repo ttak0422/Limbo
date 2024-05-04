@@ -11,13 +11,25 @@
                    :async_budget 1
                    :max_view_entries 100}
       preselect types.cmp.PreselectMode.Item
-      mapping (let [m cmp.mapping]
+      mapping (let [m cmp.mapping
+                    behavior cmp.SelectBehavior.Select]
                 {:<C-d> (m.scroll_docs -4)
                  :<C-f> (m.scroll_docs 4)
-                 :<C-n> (m.select_next_item)
-                 :<C-p> (m.select_prev_item)
+                 :<C-n> (m.select_next_item {: behavior})
+                 :<C-p> (m.select_prev_item {: behavior})
                  :<C-y> (m.confirm {:select true})
                  :<C-e> (m.abort)
+                 ;; insert・select only
+                 :<C-k> (m (fn [fallback]
+                             (if (luasnip.expand_or_jumpable)
+                                 (luasnip.expand_or_jump)
+                                 (fallback)))
+                           [:i :s])
+                 :<C-l> (m (fn [fallback]
+                             (if (luasnip.expand_or_jumpable)
+                                 (luasnip.expand_or_jump)
+                                 (fallback)))
+                           [:i :s])
                  ;; source mapping
                  :<C-x> (m.complete)
                  :<C-x><C-x> (m.complete)
@@ -74,4 +86,13 @@
               : event
               : experimental
               : view
-              : window}))
+              : window})
+  (vim.cmd "inoremap <expr> <C-Space> '<C-n>'")
+  (cmp.setup.cmdline "/" {:mapping (cmp.mapping.preset.cmdline)
+                          :sources [{:name :buffer}]})
+  (cmp.setup.cmdline "?" {:mapping (cmp.mapping.preset.cmdline)
+                          :sources [{:name :buffer}]})
+  (cmp.setup.cmdline ":" {:mapping (cmp.mapping.preset.cmdline)
+                          :sources [{:name :cmdline}
+                                    {:name :cmdline_history}
+                                    {:name :buffer}]}))
