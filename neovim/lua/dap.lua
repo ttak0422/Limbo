@@ -31,7 +31,7 @@ local function _3_()
 end
 virt_text_pos = _3_()
 local highlights = {{"dapblue", kanagawa_palette.crystalBlue}, {"dapgreen", kanagawa_palette.springGreen}, {"dapyellow", kanagawa_palette.carpYellow}, {"daporange", kanagawa_palette.surimiOrange}, {"dapred", kanagawa_palette.peachRed}}
-local signs = {{"DapBreakpoint", "\239\132\145", "dapblue"}, {"DapBreakpointCondition", "\239\134\146", "dapblue"}, {"DapBreakpointRejected", "\239\129\170", "dapred"}, {"DapStopped", "\226\150\182", "dapgreen"}, {"DapLogPoint", "\239\129\154", "dapyellow"}}
+local signs = {{"DapBreakpoint", "\239\128\164", "dapblue"}, {"DapBreakpointCondition", "\239\128\164", "dapblue"}, {"DapBreakpointRejected", "\239\134\146", "dapred"}, {"DapStopped", "\226\150\182", "dapgreen"}, {"DapLogPoint", "\239\134\146", "dapyellow"}}
 local desc
 local function _5_(d)
   return {noremap = true, silent = true, desc = ("[dap] " .. d)}
@@ -54,10 +54,10 @@ end
 dap.listeners.before.event_exited["dapui_config"] = _9_
 dap_vscode.load_launchjs()
 dap_ui.setup({element_mappings = {}, expand_lines = true, force_buffers = true, icons = icons, controls = controls, floating = floating, layouts = layouts, mappings = mappings, render = render})
-dap_virt.setup({enabled_commands = true, highlight_changed_variables = true, show_stop_reason = true, commented = true, only_first_definition = true, display_callback = display_callback, virt_text_pos = virt_text_pos, virt_text_win_col = nil, clear_on_continue = false, all_frames = false, highlight_new_as_changed = false, all_references = false, enabled = false, virt_lines = false})
+dap_virt.setup({enabled_commands = true, highlight_changed_variables = true, show_stop_reason = true, commented = true, only_first_definition = true, display_callback = display_callback, virt_text_pos = virt_text_pos, virt_text_win_col = nil, highlight_new_as_changed = false, all_references = false, clear_on_continue = false, all_frames = false, virt_lines = false, enabled = false})
 dap_hl.setup({})
 for _, h in ipairs(highlights) do
-  vim.api.nvim_set_hl(0, h[1], {fg = h[2]})
+  vim.api.nvim_set_hl(0, h[1], {fg = h[2], bg = "#2a2a37"})
 end
 for _, s in ipairs(signs) do
   vim.fn.sign_define(s[1], {text = s[2], texthl = s[3], linehl = "", numhl = ""})

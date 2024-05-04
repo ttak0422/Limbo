@@ -9,6 +9,6 @@
   ;; signcolumnのがたつきを無くす
   (set vim.o.signcolumn :yes)
   (M.setup {:setopt true :relculright false : segments})
-  ;; signの背景色を手動設定
+  ;; WIP: signの背景色を手動設定
   (each [_ s (ipairs statuses)]
     (vim.api.nvim_set_hl 0 s {:bg "#2a2a37"})))

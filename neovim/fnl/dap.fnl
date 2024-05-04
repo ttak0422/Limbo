@@ -49,11 +49,11 @@
                   [:dapyellow kanagawa_palette.carpYellow]
                   [:daporange kanagawa_palette.surimiOrange]
                   [:dapred kanagawa_palette.peachRed]]
-      signs [[:DapBreakpoint "" :dapblue]
-             [:DapBreakpointCondition "" :dapblue]
-             [:DapBreakpointRejected "" :dapred]
+      signs [[:DapBreakpoint "" :dapblue]
+             [:DapBreakpointCondition "" :dapblue]
+             [:DapBreakpointRejected "" :dapred]
              [:DapStopped "▶" :dapgreen]
-             [:DapLogPoint "" :dapyellow]]
+             [:DapLogPoint "" :dapyellow]]
       desc (fn [d] {:noremap true :silent true :desc (.. "[dap] " d)})
       nmaps [[:<F5> dap.continue :continue]
              [:<F10> dap.step_over "step over"]
@@ -100,8 +100,9 @@
   ;; highlights
   (dap-hl.setup {})
   ;; other
+  ;; WIP: signの背景色を手動設定
   (each [_ h (ipairs highlights)]
-    (vim.api.nvim_set_hl 0 (. h 1) {:fg (. h 2)}))
+    (vim.api.nvim_set_hl 0 (. h 1) {:fg (. h 2) :bg "#2a2a37"}))
   (each [_ s (ipairs signs)]
     (vim.fn.sign_define (. s 1) {:text (. s 2)
                                  :texthl (. s 3)
