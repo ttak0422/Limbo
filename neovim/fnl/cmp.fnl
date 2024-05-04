@@ -47,7 +47,7 @@
                  :<C-x><C-l> (m.complete {:config {:sources [{:name :nvim_lsp}]}})})
       completion {:autocomplete [types.cmp.TriggerEvent.TextChanged]
                   :completeopt "menu,menuone,noselect"
-                  :keyword_length 2}
+                  :keyword_length 1}
       formatting {:expandable_indicator true
                   :fields [:abbr :kind :menu]
                   :format (fn [_ item] item)}
@@ -70,7 +70,10 @@
                              compare.order]}
       sources [{:name :nvim_lsp :priority 100 :group_index 1}
                {:name :luasnip :priority 95 :group_index 1}
-               {:name :buffer :priority 90 :group_index 1}]
+               {:name :buffer
+                :option {:keyword_length 2}
+                :priority 90
+                :group_index 1}]
       confirmation {:default_behavior types.cmp.ConfirmBehavior.Insert
                     :get_commit_characters (fn [commit_cs] commit_cs)}
       event []

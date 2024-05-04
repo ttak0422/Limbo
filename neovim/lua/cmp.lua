@@ -37,15 +37,15 @@ do
   end
   mapping = {["<C-d>"] = m.scroll_docs(-4), ["<C-f>"] = m.scroll_docs(4), ["<C-n>"] = m.select_next_item({behavior = behavior}), ["<C-p>"] = m.select_prev_item({behavior = behavior}), ["<C-y>"] = m.confirm({select = true}), ["<C-e>"] = m.abort(), ["<C-k>"] = m(_3_, {"i", "s"}), ["<C-l>"] = m(_5_, {"i", "s"}), ["<C-x>"] = m.complete(), ["<C-x><C-x>"] = m.complete(), ["<C-x><C-f>"] = m.complete({config = {sources = {{name = "path"}}}}), ["<C-x><C-b>"] = m.complete({config = {sources = {{name = "buffer"}}}}), ["<C-x><C-l>"] = m.complete({config = {sources = {{name = "nvim_lsp"}}}})}
 end
-local completion = {autocomplete = {types.cmp.TriggerEvent.TextChanged}, completeopt = "menu,menuone,noselect", keyword_length = 2}
+local completion = {autocomplete = {types.cmp.TriggerEvent.TextChanged}, completeopt = "menu,menuone,noselect", keyword_length = 1}
 local formatting
 local function _7_(_, item)
   return item
 end
 formatting = {expandable_indicator = true, fields = {"abbr", "kind", "menu"}, format = _7_}
-local matching = {disallow_partial_fuzzy_matching = true, disallow_symbol_nonprefix_matching = true, disallow_fuzzy_matching = false, disallow_partial_matching = false, disallow_prefix_unmatching = false, disallow_fullfuzzy_matching = false}
+local matching = {disallow_partial_fuzzy_matching = true, disallow_symbol_nonprefix_matching = true, disallow_fullfuzzy_matching = false, disallow_fuzzy_matching = false, disallow_partial_matching = false, disallow_prefix_unmatching = false}
 local sorting = {priority_weight = 2, comparators = {compare.offset, compare.exact, compare.scopes, compare.score, compare.recently_used, compare.locality, compare.kind, compare.sort_text, compare.length, compare.order}}
-local sources = {{name = "nvim_lsp", priority = 100, group_index = 1}, {name = "luasnip", priority = 95, group_index = 1}, {name = "buffer", priority = 90, group_index = 1}}
+local sources = {{name = "nvim_lsp", priority = 100, group_index = 1}, {name = "luasnip", priority = 95, group_index = 1}, {name = "buffer", option = {keyword_length = 2}, priority = 90, group_index = 1}}
 local confirmation
 local function _8_(commit_cs)
   return commit_cs
