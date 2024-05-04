@@ -51,15 +51,17 @@
       sorting {:priority_weight 2
                :comparators [compare.offset
                              compare.exact
-                             ;; compare.scopes
+                             compare.scopes
                              compare.score
                              compare.recently_used
                              compare.locality
                              compare.kind
-                             ;; compare.sort_text
+                             compare.sort_text
                              compare.length
                              compare.order]}
-      sources [{:name :nvim_lsp} {:name :luasnip} {:name :buffer}]
+      sources [{:name :nvim_lsp :priority 100 :group_index 1}
+               {:name :luasnip :priority 95 :group_index 1}
+               {:name :buffer :priority 90 :group_index 1}]
       confirmation {:default_behavior types.cmp.ConfirmBehavior.Insert
                     :get_commit_characters (fn [commit_cs] commit_cs)}
       event []
@@ -92,7 +94,10 @@
                           :sources [{:name :buffer}]})
   (cmp.setup.cmdline "?" {:mapping (cmp.mapping.preset.cmdline)
                           :sources [{:name :buffer}]})
-  (cmp.setup.cmdline ":" {:mapping (cmp.mapping.preset.cmdline)
-                          :sources [{:name :cmdline}
-                                    {:name :cmdline_history}
-                                    {:name :buffer}]}))
+  (cmp.setup.cmdline ":"
+                     {:mapping (cmp.mapping.preset.cmdline)
+                      :sources [{:name :cmdline :priority 100 :group_index 1}
+                                {:name :cmdline_history
+                                 :priority 95
+                                 :group_index 1}
+                                {:name :buffer :group_index 2}]}))

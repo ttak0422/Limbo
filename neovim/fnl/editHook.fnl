@@ -6,6 +6,8 @@
             :shiftwidth 2
             ;; 入力時に対応する括弧を強調
             :showmatch true
+            ;; 補完の表示列
+            :ph 20
             ; ;; 補完オプション
             ; :completeopt "menu,menuone,noselect"
             ;; 補完オプション
