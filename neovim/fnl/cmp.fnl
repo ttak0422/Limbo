@@ -2,6 +2,15 @@
       types (require :cmp.types)
       compare (require :cmp.config.compare)
       luasnip (require :luasnip)
+      ignore_ft {:ddu-ff-filter true}
+      enabled (fn []
+                (let [disabled (or false
+                                   (= (vim.api.nvim_buf_get_option 0 :buftype)
+                                      :prompt)
+                                   (. ignore_ft vim.bo.filetype)
+                                   (not= (vim.fn.reg_recording) "")
+                                   (not= (vim.fn.reg_executing) ""))]
+                  (not disabled)))
       snippet {:expand (fn [args]
                          (luasnip.lsp_expand args.body))}
       performance {:debounce 100
@@ -75,7 +84,8 @@
                    completion (cmp.config.window.bordered {: border})
                    documentation (cmp.config.window.bordered {: border})]
                {: completion : documentation})]
-  (cmp.setup {: snippet
+  (cmp.setup {: enabled
+              : snippet
               : performance
               : preselect
               : mapping
