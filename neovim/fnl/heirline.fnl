@@ -204,7 +204,7 @@
       left_cap {:provider "▌"}
       space {:provider " "}
       bar {:provider seps.bar}
-      round_right {:provider seps.bar}
+      sep_bar {:provider seps.bar}
       mode (let [;; symbol
                  readonly_symbol {:condition (fn []
                                                (or (not vim.bo.modifiable)
@@ -276,6 +276,9 @@
                         inactive {:provider (.. icons.error " - " icons.warn
                                                 " -")}]
                     {:fallthrough false 1 active 2 inactive})
+      harpoon (let [harpoonline (require :harpoonline)]
+                {:provider (fn []
+                             (harpoonline.format))})
       ; pomodoro {:provider (fn []
       ;                       ((. (require :piccolo-pomodoro) :status)))
       ;           :on_click {:callback (fn []
@@ -520,9 +523,10 @@
                            mode
                            space
                            git
-                           round_right
+                           sep_bar
                            diagnostics
-                           round_right
+                           sep_bar
+                           harpoon
                            ; pomodoro
                            space
                            lsp_progress

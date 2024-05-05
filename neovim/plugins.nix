@@ -512,6 +512,14 @@ let
             code = readFile ./lua/lsp-progress.lua;
           };
         }
+        {
+          plugin = harpoonline;
+          postConfig = {
+            language = "lua";
+            code = readFile ./lua/harpoonline.lua;
+          };
+          dependPlugins = [ harpoon-2 ];
+        }
         # {
         #   plugin = piccolo-pomodoro-nvim;
         #   postConfig = {
