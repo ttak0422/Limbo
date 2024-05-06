@@ -75,9 +75,35 @@
           [:<LocalLeader>tt (cmd :NeotestNearest) (mk_desc "test nearest")]
           [:<LocalLeader>to
            (cmd :NeotestToggleSummary)
-           (mk_desc "show test summary")]]
+           (mk_desc "show test summary")]
+          ;; common debug
+          [:<F5> (lua_cmd "require('dap').continue()") (mk_desc :continue)]
+          [:<F10> (lua_cmd "require('dap').step_over()") (mk_desc "step over")]
+          [:<F11> (lua_cmd "require('dap').step_into()") (mk_desc "step into")]
+          [:<F12> (lua_cmd "require('dap').step_out()") (mk_desc "step out")]
+          [:<LocalLeader>db
+           (lua_cmd "require('dap').toggle_breakpoint()")
+           (mk_desc "dap toggle breakpoint")]
+          [:<LocalLeader>dB
+           (fn []
+             (let [dap (require :dap)]
+               (dap.set_breakpoint (vim.fn.input "Breakpoint condition: "))))
+           (mk_desc "dap set breakpoint with condition")]
+          [:<LocalLeader>dr
+           (lua_cmd "require('dap').repl.toggle()")
+           (mk_desc "dap toggle repl")]
+          [:<LocalLeader>dl
+           (lua_cmd "require('dap').run_last()")
+           (mk_desc "dap run last")]
+          [:<LocalLeader>dd
+           (fn []
+             (let [dapui (require :dapui)] (dapui.toggle {:reset true})))
+           (mk_desc "dap toggle ui")]]
       vs [;; runner
-          [:<leader>r (cmd :FlowRunSelected)]]]
+          [:<leader>r (cmd :FlowRunSelected)]
+          [:<LocalLeader>K
+           (lua_cmd "require('dapui').eval()")
+           (mk_desc "dap evaluate expression")]]]
   ;; options ;;
   (each [k v (pairs opts)]
     (tset vim.o k v))

@@ -53,20 +53,7 @@
              [:DapBreakpointCondition "" :dapblue]
              [:DapBreakpointRejected "" :dapred]
              [:DapStopped "▶" :dapgreen]
-             [:DapLogPoint "" :dapyellow]]
-      desc (fn [d] {:noremap true :silent true :desc (.. "[dap] " d)})
-      nmaps [[:<F5> dap.continue :continue]
-             [:<F10> dap.step_over "step over"]
-             [:<F11> dap.step_into "step into"]
-             [:<F12> dap.step_out "step out"]
-             [:<leader>db dap.toggle_breakpoint "toggle breakpoint"]
-             [:<leader>dr dap.repl.toggle "toggle repl"]
-             [:<leader>dl dap.run_last "run last"]
-             [:<leader>dB
-              (fn [] (dap.set_breakpoint vim.fn.input "Breakpoint condition: "))
-              "set breakpoint with condition"]
-             [:<leader>dd (fn [] (dap-ui.toggle {:reset true})) "toggle ui"]]
-      vmaps [[:K dap-ui.eval "evaluate expression"]]]
+             [:DapLogPoint "" :dapyellow]]]
   ;; dap
   (tset dap.listeners.before.event_terminated :dapui_config (fn []))
   (tset dap.listeners.before.event_exited :dapui_config (fn []))
@@ -107,8 +94,4 @@
     (vim.fn.sign_define (. s 1) {:text (. s 2)
                                  :texthl (. s 3)
                                  :linehl ""
-                                 :numhl ""}))
-  (each [_ m (ipairs nmaps)]
-    (vim.keymap.set :n (. m 1) (. m 2) (desc (. m 3))))
-  (each [_ m (ipairs vmaps)]
-    (vim.keymap.set :v (. m 1) (. m 2) (desc (. m 3)))))
+                                 :numhl ""})))

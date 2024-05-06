@@ -846,5 +846,6 @@ in with pkgs.vimPlugins; {
       language = "lua";
       code = readFile ./lua/dap.lua;
     };
+    onModules = [ "dap" "dapui" ];
   };
 }
