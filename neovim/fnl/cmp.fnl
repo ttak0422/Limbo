@@ -112,5 +112,5 @@
                       :sources [{:name :cmdline :priority 100 :group_index 1}
                                 {:name :cmdline_history
                                  :priority 95
-                                 :group_index 1}
+                                 :group_index 2}
                                 {:name :buffer :group_index 2}]}))
