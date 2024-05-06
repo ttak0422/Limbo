@@ -100,6 +100,7 @@
              (let [dapui (require :dapui)] (dapui.toggle {:reset true})))
            (mk_desc "dap toggle ui")]]
       vs [;; runner
+          [:<Leader>T (cmd :Translate)]
           [:<leader>r (cmd :FlowRunSelected)]
           [:<LocalLeader>K
            (lua_cmd "require('dapui').eval()")
