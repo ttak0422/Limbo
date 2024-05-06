@@ -43,7 +43,7 @@ local function _7_(_, item)
   return item
 end
 formatting = {expandable_indicator = true, fields = {"abbr", "kind", "menu"}, format = _7_}
-local matching = {disallow_partial_fuzzy_matching = true, disallow_symbol_nonprefix_matching = true, disallow_fullfuzzy_matching = false, disallow_fuzzy_matching = false, disallow_partial_matching = false, disallow_prefix_unmatching = false}
+local matching = {disallow_partial_fuzzy_matching = true, disallow_symbol_nonprefix_matching = true, disallow_partial_matching = false, disallow_prefix_unmatching = false, disallow_fuzzy_matching = false, disallow_fullfuzzy_matching = false}
 local sorting = {priority_weight = 2, comparators = {compare.offset, compare.exact, compare.scopes, compare.score, compare.recently_used, compare.locality, compare.kind, compare.sort_text, compare.length, compare.order}}
 local sources = {{name = "nvim_lsp", priority = 100, group_index = 1}, {name = "luasnip", priority = 95, group_index = 1}, {name = "buffer", option = {keyword_length = 2}, priority = 90, group_index = 1}}
 local confirmation
@@ -70,4 +70,4 @@ cmp.setup({enabled = enabled, snippet = snippet, performance = performance, pres
 vim.cmd("inoremap <expr> <C-Space> '<C-n>'")
 cmp.setup.cmdline("/", {mapping = cmp.mapping.preset.cmdline(), sources = {{name = "buffer"}}})
 cmp.setup.cmdline("?", {mapping = cmp.mapping.preset.cmdline(), sources = {{name = "buffer"}}})
-return cmp.setup.cmdline(":", {mapping = cmp.mapping.preset.cmdline(), sources = {{name = "cmdline", priority = 100, group_index = 1}, {name = "cmdline_history", priority = 95, group_index = 1}, {name = "buffer", group_index = 2}}})
+return cmp.setup.cmdline(":", {mapping = cmp.mapping.preset.cmdline(), sources = {{name = "cmdline", priority = 100, group_index = 1}, {name = "cmdline_history", priority = 95, group_index = 2}, {name = "buffer", group_index = 2}}})
