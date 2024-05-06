@@ -348,7 +348,8 @@ in with pkgs.vimPlugins; {
           ast-grep
           gopls
           go-tools
-        ]) ++ (with pkgs.pkgs-unstable; [ nixd marksman ]);
+          marksman
+        ]) ++ (with pkgs.pkgs-unstable; [ nixd ]);
         preConfig = {
           language = "lua";
           code = ''

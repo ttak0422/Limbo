@@ -16,7 +16,7 @@ in
     eagerPlugins = with pkgs.vimPlugins; [
       {
         plugin = denops-vim;
-        extraPackages = [ pkgs.deno ];
+        extraPackages = [ pkgs.pkgs-unstable.deno ];
       }
       {
         plugin = skkeleton;
@@ -37,7 +37,7 @@ in
       '';
       dependPlugins = [{
         plugin = denops-vim;
-        extraPackages = [ pkgs.deno ];
+        extraPackages = [ pkgs.pkgs-unstable.deno ];
       }];
       useDenops = true;
       onEvents = [ "InsertEnter" "CmdlineEnter" ];
@@ -48,7 +48,7 @@ in
     eagerPlugins = with pkgs.vimPlugins; [
       {
         plugin = denops-vim;
-        extraPackages = [ pkgs.deno ];
+        extraPackages = [ pkgs.pkgs-unstable.deno ];
       }
       {
         plugin = skkeleton;

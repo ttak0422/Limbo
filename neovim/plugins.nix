@@ -1226,7 +1226,8 @@ in with pkgs.vimPlugins;
   denops = {
     plugin = denops-vim;
     preConfig = ''
-      let g:denops#deno = '${pkgs.deno}/bin/deno'
+      " use latest
+      let g:denops#deno = '${pkgs.pkgs-unstable.deno}/bin/deno'
       let g:denops#server#deno_args = ['-q', '--no-lock', '-A', '--unstable-kv']
     '';
   };
