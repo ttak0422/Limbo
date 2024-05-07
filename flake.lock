@@ -25072,6 +25072,38 @@
         "type": "github"
       }
     },
+    "tree-sitter-fsharp": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1715020617,
+        "narHash": "sha256-j9G8Y7O2Lx3m/r4FWHpgIfTETiIQWRNM5j9Yey7XWII=",
+        "owner": "ionide",
+        "repo": "tree-sitter-fsharp",
+        "rev": "5c85c505b550353310a47668c7b6d5f954840ddd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ionide",
+        "repo": "tree-sitter-fsharp",
+        "type": "github"
+      }
+    },
+    "tree-sitter-fsharp_2": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1715020617,
+        "narHash": "sha256-j9G8Y7O2Lx3m/r4FWHpgIfTETiIQWRNM5j9Yey7XWII=",
+        "owner": "ionide",
+        "repo": "tree-sitter-fsharp",
+        "rev": "5c85c505b550353310a47668c7b6d5f954840ddd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ionide",
+        "repo": "tree-sitter-fsharp",
+        "type": "github"
+      }
+    },
     "tree-sitter-norg": {
       "flake": false,
       "locked": {
@@ -27159,6 +27191,7 @@
         "toggleterm-nvim": "toggleterm-nvim",
         "tokyonight-nvim": "tokyonight-nvim",
         "toolwindow-nvim": "toolwindow-nvim",
+        "tree-sitter-fsharp": "tree-sitter-fsharp",
         "tree-sitter-norg": "tree-sitter-norg",
         "treemonkey-nvim": "treemonkey-nvim",
         "treesj": "treesj",
@@ -27232,11 +27265,11 @@
         "zoomwintab-vim": "zoomwintab-vim"
       },
       "locked": {
-        "lastModified": 1715056625,
-        "narHash": "sha256-6FO4StHC3qDIJkX3vd84dVJpsXbg+Q76cbk6wyHpRQw=",
+        "lastModified": 1715056752,
+        "narHash": "sha256-IwTbSRbMuyDjYdD5oHnQh2xnib2BzHNYTSnFY37gRCI=",
         "owner": "ttak0422",
         "repo": "vim-plugins-overlay",
-        "rev": "22dbf9aa80cc2814220f6530f855c93b50389ad9",
+        "rev": "2393302cef0a9ce7f191f9ae9d0283088a81fb5c",
         "type": "github"
       },
       "original": {
@@ -28331,6 +28364,7 @@
         "toggleterm-nvim": "toggleterm-nvim_3",
         "tokyonight-nvim": "tokyonight-nvim_3",
         "toolwindow-nvim": "toolwindow-nvim_3",
+        "tree-sitter-fsharp": "tree-sitter-fsharp_2",
         "tree-sitter-norg": "tree-sitter-norg_2",
         "treemonkey-nvim": "treemonkey-nvim_3",
         "treesj": "treesj_3",
@@ -28404,11 +28438,11 @@
         "zoomwintab-vim": "zoomwintab-vim_3"
       },
       "locked": {
-        "lastModified": 1715056625,
-        "narHash": "sha256-6FO4StHC3qDIJkX3vd84dVJpsXbg+Q76cbk6wyHpRQw=",
+        "lastModified": 1715056752,
+        "narHash": "sha256-IwTbSRbMuyDjYdD5oHnQh2xnib2BzHNYTSnFY37gRCI=",
         "owner": "ttak0422",
         "repo": "vim-plugins-overlay",
-        "rev": "22dbf9aa80cc2814220f6530f855c93b50389ad9",
+        "rev": "2393302cef0a9ce7f191f9ae9d0283088a81fb5c",
         "type": "github"
       },
       "original": {
