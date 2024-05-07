@@ -202,6 +202,11 @@ in with pkgs.vimPlugins; {
           CFLAGS = [ "-Isrc" "-O2" ];
           CXXFLAGS = [ "-Isrc" "-O2" ];
           buildPhase = ''
+            if [[ -e src/scanner.cc ]]; then
+              $CXX -fPIC -c src/scanner.cc -o scanner.o $CXXFLAGS
+            elif [[ -e src/scanner.c ]]; then
+              $CC -fPIC -c src/scanner.c -o scanner.o $CFLAGS
+            fi
             $CC -fPIC -c src/parser.c -o parser.o $CFLAGS
             rm -rf parser
             $CXX -shared -o parser *.o
@@ -216,13 +221,17 @@ in with pkgs.vimPlugins; {
         src =
           inputs.vim-plugins-overlay.packages.${system}.nvim-dap-repl-highlights;
       };
+      tree-sitter-fsharp = buildGrammar {
+        language = "fsharp";
+        src = inputs.vim-plugins-overlay.packages.${system}.tree-sitter-fsharp;
+      };
       parser = pkgs.stdenv.mkDerivation {
         name = "treesitter-custom-grammars";
         buildCommand = ''
           mkdir -p $out/parser
           echo "${
             concatStringsSep "," (nvim-treesitter.withAllGrammars.dependencies
-              ++ [ dap-repl-grammar ])
+              ++ [ dap-repl-grammar tree-sitter-fsharp ])
           }" \
             | tr ',' '\n' \
             | xargs -I {} find {} -not -type d \
