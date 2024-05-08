@@ -37,6 +37,10 @@ in {
                 mkdir -p $out/bin
                 ln -s ${pkgs.gnused}/bin/sed $out/bin/gsed
               '')
+              (pkgs.runCommand "ggrep" { } ''
+                mkdir -p $out/bin
+                ln -s ${pkgs.gnugrep}/bin/grep $out/bin/ggrep
+              '')
             ];
           }
           (mkHmModule {
