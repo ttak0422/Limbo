@@ -37,6 +37,7 @@
         ignorecase = false;
         untrackedcache = true;
       };
+      status.showUntrackedFiles = "all";
       color = { ui = "auto"; };
       init.defaultBranch = "main";
       commit.template = "${pkgs.writeText "committemplate" ''
