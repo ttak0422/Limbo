@@ -57,53 +57,47 @@
                          (var result_code nil)
                          (let [nio (require :nio)
                                types (require :neotest.types)
-                               FanoutAccum types.FanoutAccum
                                handle_err (fn [e]
                                             (assert (not e) e))
-                               env spec.env
-                               cwd spec.cwd
-                               command spec.command
-                               finish_future (nio.control.future)
-                               output_acc (FanoutAccum (fn [prev new]
-                                                         (if (not prev) new
-                                                             (.. prev new))))
-                               output_path (nio.fn.tempname)
-                               (open_err output_fd) (nio.uv.fs_open output_path
-                                                                    :w 438)]
+                               path (nio.fn.tempname)
+                               future (nio.control.future)
+                               out (types.FanoutAccum (fn [prev new]
+                                                        (if (not prev)
+                                                            new
+                                                            (.. prev new))))
+                               cmd spec.command
+                               ctx {:cwd spec.cwd
+                                    :env spec.env
+                                    :pty true
+                                    :height spec.strategy.height
+                                    :width spec.strategy.width
+                                    :on_stdout (fn [_ d]
+                                                 (out:push (table.concat d "\n")))
+                                    :on_exit (fn [_ code]
+                                               (set result_code code)
+                                               (future.set))}
+                               (open_err output_fd) (nio.uv.fs_open path :w 438)]
                            (handle_err open_err)
-                           (output_acc:subscribe (fn [data]
-                                                   (vim.loop.fs_write output_fd
-                                                                      data nil
-                                                                      handle_err)))
-                           (let [(success job) (pcall nio.fn.jobstart command
-                                                      {: cwd
-                                                       : env
-                                                       :pty true
-                                                       :height spec.strategy.height
-                                                       :width spec.strategy.width
-                                                       :on_stdout (fn [_ data]
-                                                                    (output_acc:push (table.concat data
-                                                                                                   "\n")))
-                                                       :on_exit (fn [_ code]
-                                                                  (set result_code
-                                                                       code)
-                                                                  (finish_future.set))})]
+                           (out:subscribe (fn [data]
+                                            (vim.loop.fs_write output_fd data
+                                                               nil handle_err)))
+                           (let [(success job) (pcall nio.fn.jobstart cmd ctx)]
                              (if (not success)
                                  (let [(write_err _) (nio.uv.fs_write output_fd
                                                                       job)]
                                    (handle_err write_err)
                                    (set result_code 1)
-                                   (finish_future.set)))
+                                   (future.set)))
                              {:is_complete (fn [] (not= result_code nil))
-                              :output (fn [] output_path)
+                              :output (fn [] path)
                               :stop (fn [] (nio.fn.jobstop job))
                               :output_stream (fn []
                                                (let [queue (nio.control.queue)]
-                                                 (output_acc:subscribe (fn [d]
-                                                                         (queue.put_nowait d)))
+                                                 (out:subscribe (fn [d]
+                                                                  (queue.put_nowait d)))
                                                  (fn []
                                                    (let [data (nio.first [queue.get
-                                                                          finish_future.wait])]
+                                                                          future.wait])]
                                                      (if data data
                                                          (while (not= (queue.size)
                                                                       0)
@@ -111,7 +105,7 @@
                               :attach (fn [])
                               :result (fn []
                                         (if (= result_code nil)
-                                            (finish_future:wait))
+                                            (future:wait))
                                         (handle_err (nio.uv.fs_close output_fd))
                                         result_code)})))
       diagnostic {:enabled true :severity 1}

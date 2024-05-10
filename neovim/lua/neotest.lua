@@ -21,17 +21,14 @@ local function _5_(spec)
   local result_code = nil
   local nio = require("nio")
   local types = require("neotest.types")
-  local FanoutAccum = types.FanoutAccum
   local handle_err
   local function _6_(e)
     return assert(not e, e)
   end
   handle_err = _6_
-  local env = spec.env
-  local cwd = spec.cwd
-  local command = spec.command
-  local finish_future = nio.control.future()
-  local output_acc
+  local path = nio.fn.tempname()
+  local future = nio.control.future()
+  local out
   local function _7_(prev, new)
     if not prev then
       return new
@@ -39,35 +36,36 @@ local function _5_(spec)
       return (prev .. new)
     end
   end
-  output_acc = FanoutAccum(_7_)
-  local output_path = nio.fn.tempname()
-  local open_err, output_fd = nio.uv.fs_open(output_path, "w", 438)
+  out = types.FanoutAccum(_7_)
+  local cmd = spec.command
+  local ctx
+  local function _9_(_, d)
+    return out:push(table.concat(d, "\n"))
+  end
+  local function _10_(_, code)
+    result_code = code
+    return future.set()
+  end
+  ctx = {cwd = spec.cwd, env = spec.env, pty = true, height = spec.strategy.height, width = spec.strategy.width, on_stdout = _9_, on_exit = _10_}
+  local open_err, output_fd = nio.uv.fs_open(path, "w", 438)
   handle_err(open_err)
-  local function _9_(data)
+  local function _11_(data)
     return vim.loop.fs_write(output_fd, data, nil, handle_err)
   end
-  output_acc:subscribe(_9_)
-  local success, job = nil, nil
-  local function _10_(_, data)
-    return output_acc:push(table.concat(data, "\n"))
-  end
-  local function _11_(_, code)
-    result_code = code
-    return finish_future.set()
-  end
-  success, job = pcall(nio.fn.jobstart, command, {cwd = cwd, env = env, pty = true, height = spec.strategy.height, width = spec.strategy.width, on_stdout = _10_, on_exit = _11_})
+  out:subscribe(_11_)
+  local success, job = pcall(nio.fn.jobstart, cmd, ctx)
   if not success then
     local write_err, _ = nio.uv.fs_write(output_fd, job)
     handle_err(write_err)
     result_code = 1
-    finish_future.set()
+    future.set()
   else
   end
   local function _13_()
     return (result_code ~= nil)
   end
   local function _14_()
-    return output_path
+    return path
   end
   local function _15_()
     return nio.fn.jobstop(job)
@@ -77,9 +75,9 @@ local function _5_(spec)
     local function _17_(d)
       return queue.put_nowait(d)
     end
-    output_acc:subscribe(_17_)
+    out:subscribe(_17_)
     local function _18_()
-      local data = nio.first({queue.get, finish_future.wait})
+      local data = nio.first({queue.get, future.wait})
       if data then
         return data
       else
@@ -95,7 +93,7 @@ local function _5_(spec)
   end
   local function _21_()
     if (result_code == nil) then
-      finish_future:wait()
+      future:wait()
     else
     end
     handle_err(nio.uv.fs_close(output_fd))
