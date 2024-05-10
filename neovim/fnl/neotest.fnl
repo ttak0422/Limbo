@@ -58,6 +58,8 @@
                          (let [nio (require :nio)
                                types (require :neotest.types)
                                FanoutAccum types.FanoutAccum
+                               handle_err (fn [e]
+                                            (assert (not e) e))
                                env spec.env
                                cwd spec.cwd
                                command spec.command
@@ -68,13 +70,11 @@
                                output_path (nio.fn.tempname)
                                (open_err output_fd) (nio.uv.fs_open output_path
                                                                     :w 438)]
-                           (assert (not open_err) open_err)
+                           (handle_err open_err)
                            (output_acc:subscribe (fn [data]
                                                    (vim.loop.fs_write output_fd
                                                                       data nil
-                                                                      (fn [write_err]
-                                                                        (assert (not write_err)
-                                                                                write_err)))))
+                                                                      handle_err)))
                            (let [(success job) (pcall nio.fn.jobstart command
                                                       {: cwd
                                                        : env
@@ -91,7 +91,7 @@
                              (if (not success)
                                  (let [(write_err _) (nio.uv.fs_write output_fd
                                                                       job)]
-                                   (assert (not write_err) write_err)
+                                   (handle_err write_err)
                                    (set result_code 1)
                                    (finish_future.set)))
                              {:is_complete (fn [] (not= result_code nil))
@@ -112,8 +112,7 @@
                               :result (fn []
                                         (if (= result_code nil)
                                             (finish_future:wait))
-                                        (let [close_err (nio.uv.fs_close output_fd)]
-                                          (assert (not close_err) close_err))
+                                        (handle_err (nio.uv.fs_close output_fd))
                                         result_code)})))
       diagnostic {:enabled true :severity 1}
       discovery {:concurrent 0 :enabled true}

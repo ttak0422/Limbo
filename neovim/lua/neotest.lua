@@ -22,29 +22,31 @@ local function _5_(spec)
   local nio = require("nio")
   local types = require("neotest.types")
   local FanoutAccum = types.FanoutAccum
+  local handle_err
+  local function _6_(e)
+    return assert(not e, e)
+  end
+  handle_err = _6_
   local env = spec.env
   local cwd = spec.cwd
   local command = spec.command
   local finish_future = nio.control.future()
   local output_acc
-  local function _6_(prev, new)
+  local function _7_(prev, new)
     if not prev then
       return new
     else
       return (prev .. new)
     end
   end
-  output_acc = FanoutAccum(_6_)
+  output_acc = FanoutAccum(_7_)
   local output_path = nio.fn.tempname()
   local open_err, output_fd = nio.uv.fs_open(output_path, "w", 438)
-  assert(not open_err, open_err)
-  local function _8_(data)
-    local function _9_(write_err)
-      return assert(not write_err, write_err)
-    end
-    return vim.loop.fs_write(output_fd, data, nil, _9_)
+  handle_err(open_err)
+  local function _9_(data)
+    return vim.loop.fs_write(output_fd, data, nil, handle_err)
   end
-  output_acc:subscribe(_8_)
+  output_acc:subscribe(_9_)
   local success, job = nil, nil
   local function _10_(_, data)
     return output_acc:push(table.concat(data, "\n"))
@@ -56,7 +58,7 @@ local function _5_(spec)
   success, job = pcall(nio.fn.jobstart, command, {cwd = cwd, env = env, pty = true, height = spec.strategy.height, width = spec.strategy.width, on_stdout = _10_, on_exit = _11_})
   if not success then
     local write_err, _ = nio.uv.fs_write(output_fd, job)
-    assert(not write_err, write_err)
+    handle_err(write_err)
     result_code = 1
     finish_future.set()
   else
@@ -96,10 +98,7 @@ local function _5_(spec)
       finish_future:wait()
     else
     end
-    do
-      local close_err = nio.uv.fs_close(output_fd)
-      assert(not close_err, close_err)
-    end
+    handle_err(nio.uv.fs_close(output_fd))
     return result_code
   end
   return {is_complete = _13_, output = _14_, stop = _15_, output_stream = _16_, attach = _20_, result = _21_}
