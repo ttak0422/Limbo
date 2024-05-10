@@ -20,52 +20,89 @@ local default_strategy
 local function _5_(spec)
   local result_code = nil
   local nio = require("nio")
+  local types = require("neotest.types")
+  local FanoutAccum = types.FanoutAccum
   local env = spec.env
   local cwd = spec.cwd
-  local finish_future = nio.control.future()
   local command = spec.command
-  local success, job = nil, nil
-  local function _6_(_, _data)
-  end
-  local function _7_(_, code)
-    if not finish_future.is_set() then
-      result_code = code
-      return finish_future.set()
+  local finish_future = nio.control.future()
+  local output_acc
+  local function _6_(prev, new)
+    if not prev then
+      return new
     else
-      return nil
+      return (prev .. new)
     end
   end
-  success, job = pcall(nio.fn.jobstart, command, {cwd = cwd, env = env, pty = true, height = spec.strategy.height, width = spec.strategy.width, on_stdout = _6_, on_exit = _7_})
+  output_acc = FanoutAccum(_6_)
+  local output_path = nio.fn.tempname()
+  local open_err, output_fd = nio.uv.fs_open(output_path, "w", 438)
+  assert(not open_err, open_err)
+  local function _8_(data)
+    local function _9_(write_err)
+      return assert(not write_err, write_err)
+    end
+    return vim.loop.fs_write(output_fd, data, nil, _9_)
+  end
+  output_acc:subscribe(_8_)
+  local success, job = nil, nil
+  local function _10_(_, data)
+    return output_acc:push(table.concat(data, "\n"))
+  end
+  local function _11_(_, code)
+    result_code = code
+    return finish_future.set()
+  end
+  success, job = pcall(nio.fn.jobstart, command, {cwd = cwd, env = env, pty = true, height = spec.strategy.height, width = spec.strategy.width, on_stdout = _10_, on_exit = _11_})
   if not success then
+    local write_err, _ = nio.uv.fs_write(output_fd, job)
+    assert(not write_err, write_err)
     result_code = 1
-    pcall(finish_future.set)
+    finish_future.set()
   else
   end
-  local function _10_()
+  local function _13_()
     return (result_code ~= nil)
   end
-  local function _11_()
-    return vim.fn.tempname()
-  end
-  local function _12_()
-    local function _13_()
-      return nio.first({finish_future.wait})
-    end
-    return _13_
-  end
   local function _14_()
+    return output_path
   end
   local function _15_()
     return nio.fn.jobstop(job)
   end
   local function _16_()
+    local queue = nio.control.queue()
+    local function _17_(d)
+      return queue.put_nowait(d)
+    end
+    output_acc:subscribe(_17_)
+    local function _18_()
+      local data = nio.first({queue.get, finish_future.wait})
+      if data then
+        return data
+      else
+        while (queue.size() ~= 0) do
+          queue.get()
+        end
+        return nil
+      end
+    end
+    return _18_
+  end
+  local function _20_()
+  end
+  local function _21_()
     if (result_code == nil) then
       finish_future:wait()
     else
     end
+    do
+      local close_err = nio.uv.fs_close(output_fd)
+      assert(not close_err, close_err)
+    end
     return result_code
   end
-  return {is_complete = _10_, output = _11_, output_stream = _12_, attach = _14_, stop = _15_, result = _16_}
+  return {is_complete = _13_, output = _14_, stop = _15_, output_stream = _16_, attach = _20_, result = _21_}
 end
 default_strategy = _5_
 local diagnostic = {enabled = true, severity = 1}
@@ -87,10 +124,10 @@ local strategies = {integrated = {height = 40, width = 120}}
 local summary = {animated = true, enabled = true, expand_errors = true, follow = true, mappings = {attach = "a", clear_marked = "M", clear_target = "T", debug = "d", debug_marked = "D", expand = {["<CR>"] = "<2-LeftMouse>"}, expand_all = "e", jumpto = "i", mark = "m", next_failed = "J", output = "o", prev_failed = "K", run = "r", run_marked = "R", short = "O", stop = "u", target = "t", watch = "w"}, open = "botright vsplit | vertical resize 50"}
 local watch = {enabled = true, symbol_queries = {}}
 local lua_cmd
-local function _18_(c)
+local function _23_(c)
   return ("lua " .. c)
 end
-lua_cmd = _18_
+lua_cmd = _23_
 local commands = {{"Neotest", lua_cmd("require('neotest').run.run(vim.fn.expand('%'))"), {}}, {"NeotestStop", lua_cmd("require('neotest').run.stop()"), {}}, {"NeotestNearest", lua_cmd("require('neotest').run.run({strategy='dap'})"), {}}, {"NeotestCurrentFile", lua_cmd("require('neotest').run.run(vim.fn.expand('%'))"), {}}, {"NeotestAllFile", lua_cmd("require('neotest').run.run(vim.loop.cwd())"), {}}, {"NeotestToggleSummary", lua_cmd("require('neotest').summary.toggle()"), {}}, {"NeotestTogglePanel", lua_cmd("require('neotest').output_panel.toggle()"), {}}}
 neotest.setup({adapters = adapters, benchmark = benchmark, consumers = consumers, default_strategy = default_strategy, diagnostic = diagnostic, discovery = discovery, floating = floating, highlights = highlights, icons = icons, jump = jump, log_level = log_level, output = output, output_panel = output_panel, projects = projects, quickfix = quickfix, run = run, running = running, state = state, status = status, strategies = strategies, summary = summary, watch = watch})
 for _, c in ipairs(commands) do
