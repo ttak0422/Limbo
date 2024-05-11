@@ -112,6 +112,11 @@
         "https://repo.maven.apache.org/maven2/org/openjdk/jol/jol-cli/0.16/jol-cli-0.16-full.jar";
       flake = false;
     };
+    junit-console = {
+      url =
+        "https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-console-standalone/1.10.2/junit-platform-console-standalone-1.10.2.jar";
+      flake = false;
+    };
     yaskkserv2-service = {
       url = "github:ttak0422/yaskkserv2-service";
       # url = "path:/Users/ttak0422/ghq/github.com/ttak0422/yaskkserv2-service";

@@ -12325,6 +12325,18 @@
         "type": "github"
       }
     },
+    "junit-console": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-oDZUcKdZv4e1f9GwbzOKdIcV47oc8ZzXzcXhwXNWYNU=",
+        "type": "file",
+        "url": "https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-console-standalone/1.10.2/junit-platform-console-standalone-1.10.2.jar"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-console-standalone/1.10.2/junit-platform-console-standalone-1.10.2.jar"
+      }
+    },
     "k8s-vim": {
       "flake": false,
       "locked": {
@@ -22147,6 +22159,7 @@
         "homebrew-cask-fonts": "homebrew-cask-fonts",
         "homebrew-core": "homebrew-core",
         "jol": "jol",
+        "junit-console": "junit-console",
         "loaded-nvim": "loaded-nvim",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "neovim-nightly-overlay-latest": "neovim-nightly-overlay-latest",
