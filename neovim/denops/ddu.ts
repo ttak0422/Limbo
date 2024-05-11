@@ -1,6 +1,6 @@
-import { BaseConfig } from "https://deno.land/x/ddu_vim@v3.10.2/types.ts";
-import { ConfigArguments } from "https://deno.land/x/ddu_vim@v3.10.2/base/config.ts";
-import { Denops, fn } from "https://deno.land/x/ddu_vim@v3.10.2/deps.ts";
+import { BaseConfig } from "https://deno.land/x/ddu_vim@v4.0.0/types.ts";
+import { ConfigArguments } from "https://deno.land/x/ddu_vim@v4.0.0/base/config.ts";
+import { Denops, fn } from "https://deno.land/x/ddu_vim@v4.0.0/deps.ts";
 import {
   Params as FfParams,
   Ui as FfUi,
