@@ -483,6 +483,7 @@ in with pkgs.vimPlugins; {
     postConfig = {
       language = "lua";
       code = readFile ./lua/neotest.lua;
+      args = { junit_jar_path = pkgs.javaPackages.junit-console; };
     };
     onCommands = [ "Neotest" "NeotestNearest" "NeotestToggleSummary" ];
     onModules = [ "neotest" ];

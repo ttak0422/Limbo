@@ -4,9 +4,8 @@
                                           :cwd (fn [] (vim.fn.getcwd))})
                 ((require :neotest-vim-test) {:allow_file_types []})
                 ((require :neotest-python) {:dap {:justMyCode false}})
-                ((require :neotest-java) {:determine_runner (fn [_root] :gradle)
-                                          :force_runner nil
-                                          :fallback_runner :gradle})
+                ((require :neotest-java) {:ignore_wrapper false
+                                          :junit_jar args.junit_jar_path})
                 (require :neotest-plenary)
                 ; (require :neotest-go)
                 ((require :neotest-golang) {:go_test_args [:-v
