@@ -64,7 +64,9 @@ with inputs; [
           '';
         };
       };
-      javaPackages = prev.javaPackages // { inherit (inputs) jol; };
+      javaPackages = prev.javaPackages // {
+        inherit (inputs) jol junit-console;
+      };
       python3Packages = prev.python3Packages
         // (with prev.python3Packages; rec {
           wrapt = buildPythonPackage rec {
