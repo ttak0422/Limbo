@@ -3,6 +3,17 @@ let
   inherit (builtins) readFile;
   inherit (lib.strings) concatStringsSep;
 in with pkgs.vimPlugins; {
+  neorg = {
+    name = "neorg-bundle";
+    plugins =
+      [ neorg lua-utils-nvim nvim-nio nui-nvim plenary-nvim pathlib-nvim ];
+    postConfig = {
+      language = "lua";
+      code = readFile ./lua/neorg.lua;
+    };
+    dependGroups = [ "treesitter" "cmp" ];
+    useTimer = true; # WIP
+  };
   lir = {
     name = "lir";
     plugins = [
@@ -225,13 +236,18 @@ in with pkgs.vimPlugins; {
         language = "fsharp";
         src = inputs.vim-plugins-overlay.packages.${system}.tree-sitter-fsharp;
       };
+      tree-sitter-norg-meta = buildGrammar {
+        language = "norg_meta";
+        src =
+          inputs.vim-plugins-overlay.packages.${system}.tree-sitter-norg-meta;
+      };
       parser = pkgs.stdenv.mkDerivation {
         name = "treesitter-custom-grammars";
         buildCommand = ''
           mkdir -p $out/parser
           echo "${
             concatStringsSep "," (nvim-treesitter.withAllGrammars.dependencies
-              ++ [ dap-repl-grammar tree-sitter-fsharp ])
+              ++ [ dap-repl-grammar tree-sitter-fsharp tree-sitter-norg-meta ])
           }" \
             | tr ',' '\n' \
             | xargs -I {} find {} -not -type d \

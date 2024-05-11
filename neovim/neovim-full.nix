@@ -138,6 +138,7 @@ let
       fzf
       lir
       lsp
+      neorg
       neotest
       oil
       telescope
