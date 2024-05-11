@@ -167,12 +167,12 @@
                         n_keys [[:<LocalLeader>o
                                  jdtls.organize_imports
                                  (mk_opts "[JDTLS] organize imports")]
-                                [:<LocalLeader>tc
-                                 (with_compile jdtls.test_class)
-                                 (mk_opts "[JDTLS] test class")]
                                 [:<LocalLeader>tt
                                  (with_compile jdtls.test_nearest_method)
-                                 (mk_opts "[JDTLS] test nearest method")]
+                                 (mk_opts "[JDTLS] test nearest")]
+                                [:<LocalLeader>tT
+                                 (with_compile jdtls.test_class)
+                                 (mk_opts "[JDTLS] test")]
                                 [:<LocalLeader>tl
                                  (with_compile dap.run_last)
                                  (mk_opts "[DAP] run last")]]]

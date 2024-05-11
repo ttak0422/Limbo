@@ -71,7 +71,7 @@
           ;; runner
           [:<leader>rr (cmd :FlowRunFile)]
           ;; common tests
-          [:<LocalLeader>tT (cmd :Neotest) (mk_desc "test nearest")]
+          [:<LocalLeader>tT (cmd :Neotest) (mk_desc :test)]
           [:<LocalLeader>tt (cmd :NeotestNearest) (mk_desc "test nearest")]
           [:<LocalLeader>to
            (cmd :NeotestToggleSummary)
