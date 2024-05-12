@@ -890,7 +890,7 @@ let
       # Translate languages
       plugin = denops-translate-vim;
       preConfig = {
-        language = "vim";
+        language = "lua";
         code = readFile ./lua/denops-translate-pre.lua;
       };
       dependPlugins = [ denops-vim ];
