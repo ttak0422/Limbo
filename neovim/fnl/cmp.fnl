@@ -19,7 +19,7 @@
                    :confirm_resolve_timeout 80
                    :async_budget 1
                    :max_view_entries 100}
-      preselect types.cmp.PreselectMode.Item
+      preselect types.cmp.PreselectMode.None
       mapping (let [m cmp.mapping
                     behavior cmp.SelectBehavior.Select]
                 {:<C-d> (m.scroll_docs -4)
