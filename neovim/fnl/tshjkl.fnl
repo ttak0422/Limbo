@@ -1,5 +1,5 @@
 (let [tshjkl (require :tshjkl)
-      keymaps {:toggle :<CR>
+      keymaps {:toggle :<Leader><CR>
                :parent :h
                :next :j
                :prev :k
