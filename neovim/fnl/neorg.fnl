@@ -1,7 +1,7 @@
 (let [neorg (require :neorg)
       completion {:engine :nvim-cmp}
       defaults {:disable []}
-      dirman {:workspaces {:notes "~/notes"} :default_workspace :notes}
+      dirman {:workspaces {:notes "~/neorg"} :default_workspace :notes}
       keybinds {:default_keybinds false
                 :neorg_leader :<LocalLeader>
                 :hook (fn [keybinds]

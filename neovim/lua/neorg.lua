@@ -2,7 +2,7 @@
 local neorg = require("neorg")
 local completion = {engine = "nvim-cmp"}
 local defaults = {disable = {}}
-local dirman = {workspaces = {notes = "~/notes"}, default_workspace = "notes"}
+local dirman = {workspaces = {notes = "~/neorg"}, default_workspace = "notes"}
 local keybinds
 local function _1_(keybinds0)
   local leader = keybinds0.leader
