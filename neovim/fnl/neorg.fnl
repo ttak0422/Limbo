@@ -8,7 +8,9 @@
                         (let [leader keybinds.leader
                               norg_keymap_n []
                               norg_keymap_i []
-                              norg_event_n [[(.. leader :tu)
+                              norg_event_n [[(.. leader :e)
+                                             :core.looking-glass.magnify-code-block]
+                                            [(.. leader :tu)
                                              :core.qol.todo_items.todo.task_undone]
                                             [(.. leader :tp)
                                              :core.qol.todo_items.todo.task_pending]
