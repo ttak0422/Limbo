@@ -39,13 +39,14 @@
                                             ["<<" :core.promo.demote]
                                             [:lt :core.pivot.toggle-list-type]
                                             [:li :core.pivot.invert-list-type]
-                                            ;; telescope
-                                            [(.. leader :f)
-                                             :core.integrations.telescope.find_linkable]]
+                                            ;; telescope (defined in global)
+                                            ; [(.. leader :f)
+                                            ;  :core.integrations.telescope.find_linkable]
+                                            ]
                               norg_event_i [[:<C-t> :core.promo.promote]
                                             [:<C-d> :core.promo.demote]
                                             ;; telescope
-                                            [:<C-l>
+                                            [:<C-i>
                                              :core.integrations.telescope.insert_link]]]
                           (each [_ [key cmd] (ipairs norg_keymap_n)]
                             (keybinds.map :norg :n key cmd))

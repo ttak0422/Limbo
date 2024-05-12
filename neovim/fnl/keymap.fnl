@@ -100,7 +100,10 @@
            (mk_desc "MRR (Most Recent git Repositories)")]
           [:<leader>F
            (lua_cmd "require('spectre').open()")
-           (mk_desc "find and replace with dark power")]]]
+           (mk_desc "find and replace with dark power")]
+          [:<leader>fn
+           (cmd "Neorg keybind norg core.integrations.telescope.find_linkable")
+           (mk_desc "find Neorg linkable")]]]
   (each [_ keymap (ipairs ns)]
     (map :n (. keymap 1) (. keymap 2) (or (. keymap 3) os)))
   (for [i 0 9]
