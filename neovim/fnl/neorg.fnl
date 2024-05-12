@@ -50,6 +50,8 @@
                           (each [_ [key ev] (ipairs norg_event_i)]
                             (keybinds.remap_event :norg :i key ev))))}
       journal {:journal_folder :journal :strategy :nested}
+      metagen {:type :auto}
+      templates {:templates_dir [] :default_subcommand :fload}
       load {:core.autocommands {}
             :core.completion {:config completion}
             :core.defaults {:config defaults}
@@ -61,10 +63,13 @@
             :core.summary {}
             :core.ui {}
             :core.journal {:config journal}
+            :core.esupports.metagen {:config metagen}
             ; :core.concealer {} ;; WIP: https://github.com/nvim-neorg/neorg/issues/1393
             ; :core.tempus {} ;; MEMO: require nvim 0.10+
             ; :core.ui.calendar {} ;; MEMO: require core.tempus
-            }
+            ;; WIP
+            :external.jupyter {}
+            :external.templates {:config templates}}
       cmp (require :cmp)
       sources (cmp.config.sources [{:name :neorg}] [{:name :buffer}])]
   (neorg.setup {: load})

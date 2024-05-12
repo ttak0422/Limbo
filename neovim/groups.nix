@@ -5,14 +5,22 @@ let
 in with pkgs.vimPlugins; {
   neorg = {
     name = "neorg-bundle";
-    plugins =
-      [ neorg lua-utils-nvim nvim-nio nui-nvim plenary-nvim pathlib-nvim ];
+    plugins = [
+      neorg
+      neorg-jupyter
+      neorg-templates # require LuaSnip
+      lua-utils-nvim
+      nvim-nio
+      nui-nvim
+      plenary-nvim
+      pathlib-nvim
+    ];
     postConfig = {
       language = "lua";
       code = readFile ./lua/neorg.lua;
     };
     dependGroups = [ "treesitter" "cmp" ];
-    useTimer = true; # WIP
+    onCommands = [ "Neorg" ];
   };
   lir = {
     name = "lir";

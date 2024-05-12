@@ -55,6 +55,7 @@
            (mk_desc "register file")]
           ;; note
           [:<leader>nn (cmd :GlobalNote) (mk_desc "open global note")]
+          [:<leader>N (cmd :Neorg) (mk_desc "Enter Neorg")]
           [:<leader>np (cmd :ProjectNote) (mk_desc "open project local note")]
           ;; git
           [:<leader>G (cmd :Neogit)]

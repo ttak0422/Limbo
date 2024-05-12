@@ -38,7 +38,9 @@ local function _1_(keybinds0)
 end
 keybinds = {neorg_leader = "<LocalLeader>", hook = _1_, default_keybinds = false}
 local journal = {journal_folder = "journal", strategy = "nested"}
-local load = {["core.autocommands"] = {}, ["core.completion"] = {config = completion}, ["core.defaults"] = {config = defaults}, ["core.dirman"] = {config = dirman}, ["core.integrations.nvim-cmp"] = {}, ["core.integrations.treesitter"] = {}, ["core.keybinds"] = {config = keybinds}, ["core.storage"] = {}, ["core.summary"] = {}, ["core.ui"] = {}, ["core.journal"] = {config = journal}}
+local metagen = {type = "auto"}
+local templates = {templates_dir = {}, default_subcommand = "fload"}
+local load = {["core.autocommands"] = {}, ["core.completion"] = {config = completion}, ["core.defaults"] = {config = defaults}, ["core.dirman"] = {config = dirman}, ["core.integrations.nvim-cmp"] = {}, ["core.integrations.treesitter"] = {}, ["core.keybinds"] = {config = keybinds}, ["core.storage"] = {}, ["core.summary"] = {}, ["core.ui"] = {}, ["core.journal"] = {config = journal}, ["core.esupports.metagen"] = {config = metagen}, ["external.jupyter"] = {}, ["external.templates"] = {config = templates}}
 local cmp = require("cmp")
 local sources = cmp.config.sources({{name = "neorg"}}, {{name = "buffer"}})
 neorg.setup({load = load})
