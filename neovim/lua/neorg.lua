@@ -8,8 +8,8 @@ local function _1_(keybinds0)
   local leader = keybinds0.leader
   local norg_keymap_n = {}
   local norg_keymap_i = {}
-  local norg_event_n = {{(leader .. "e"), "core.looking-glass.magnify-code-block"}, {(leader .. "tu"), "core.qol.todo_items.todo.task_undone"}, {(leader .. "tp"), "core.qol.todo_items.todo.task_pending"}, {(leader .. "td"), "core.qol.todo_items.todo.task_done"}, {(leader .. "th"), "core.qol.todo_items.todo.task_on_hold"}, {(leader .. "tc"), "core.qol.todo_items.todo.task_cancelled"}, {(leader .. "tr"), "core.qol.todo_items.todo.task_recurring"}, {(leader .. "ti"), "core.qol.todo_items.todo.task_important"}, {(leader .. "ta"), "core.qol.todo_items.todo.task_ambiguous"}, {"<C-Space>", "core.qol.todo_items.todo.task_cycle"}, {(leader .. "nn"), "core.dirman.new.note"}, {"<CR>", "core.esupports.hop.hop-link"}, {"gd", "core.esupports.hop.hop-link"}, {"gf", "core.esupports.hop.hop-link"}, {"gF", "core.esupports.hop.hop-link"}, {">>", "core.promo.promote"}, {"<<", "core.promo.demote"}, {"lt", "core.pivot.toggle-list-type"}, {"li", "core.pivot.invert-list-type"}}
-  local norg_event_i = {{"<C-t>", "core.promo.promote"}, {"<C-d>", "core.promo.demote"}}
+  local norg_event_n = {{(leader .. "e"), "core.looking-glass.magnify-code-block"}, {(leader .. "tu"), "core.qol.todo_items.todo.task_undone"}, {(leader .. "tp"), "core.qol.todo_items.todo.task_pending"}, {(leader .. "td"), "core.qol.todo_items.todo.task_done"}, {(leader .. "th"), "core.qol.todo_items.todo.task_on_hold"}, {(leader .. "tc"), "core.qol.todo_items.todo.task_cancelled"}, {(leader .. "tr"), "core.qol.todo_items.todo.task_recurring"}, {(leader .. "ti"), "core.qol.todo_items.todo.task_important"}, {(leader .. "ta"), "core.qol.todo_items.todo.task_ambiguous"}, {"<C-Space>", "core.qol.todo_items.todo.task_cycle"}, {(leader .. "nn"), "core.dirman.new.note"}, {"<CR>", "core.esupports.hop.hop-link"}, {"gd", "core.esupports.hop.hop-link"}, {"gf", "core.esupports.hop.hop-link"}, {"gF", "core.esupports.hop.hop-link"}, {">>", "core.promo.promote"}, {"<<", "core.promo.demote"}, {"lt", "core.pivot.toggle-list-type"}, {"li", "core.pivot.invert-list-type"}, {(leader .. "f"), "core.integrations.telescope.find_linkable"}}
+  local norg_event_i = {{"<C-t>", "core.promo.promote"}, {"<C-d>", "core.promo.demote"}, {"<C-l>", "core.integrations.telescope.insert_link"}}
   for _, _2_ in ipairs(norg_keymap_n) do
     local _each_3_ = _2_
     local key = _each_3_[1]
@@ -40,7 +40,7 @@ keybinds = {neorg_leader = "<LocalLeader>", hook = _1_, default_keybinds = false
 local journal = {journal_folder = "journal", strategy = "nested"}
 local metagen = {type = "auto"}
 local templates = {templates_dir = {}, default_subcommand = "fload"}
-local load = {["core.autocommands"] = {}, ["core.completion"] = {config = completion}, ["core.defaults"] = {config = defaults}, ["core.dirman"] = {config = dirman}, ["core.integrations.nvim-cmp"] = {}, ["core.integrations.treesitter"] = {}, ["core.keybinds"] = {config = keybinds}, ["core.storage"] = {}, ["core.summary"] = {}, ["core.ui"] = {}, ["core.journal"] = {config = journal}, ["core.esupports.metagen"] = {config = metagen}, ["external.jupyter"] = {}, ["external.templates"] = {config = templates}}
+local load = {["core.autocommands"] = {}, ["core.completion"] = {config = completion}, ["core.defaults"] = {config = defaults}, ["core.dirman"] = {config = dirman}, ["core.integrations.nvim-cmp"] = {}, ["core.integrations.treesitter"] = {}, ["core.keybinds"] = {config = keybinds}, ["core.storage"] = {}, ["core.summary"] = {}, ["core.ui"] = {}, ["core.journal"] = {config = journal}, ["core.esupports.metagen"] = {config = metagen}, ["core.integrations.telescope"] = {}, ["external.jupyter"] = {}, ["external.templates"] = {config = templates}}
 local cmp = require("cmp")
 local sources = cmp.config.sources({{name = "neorg"}}, {{name = "buffer"}})
 neorg.setup({load = load})

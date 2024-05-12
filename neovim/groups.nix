@@ -9,6 +9,7 @@ in with pkgs.vimPlugins; {
       neorg
       neorg-jupyter
       neorg-templates # require LuaSnip
+      neorg-telescope
       lua-utils-nvim
       nvim-nio
       nui-nvim
@@ -19,7 +20,7 @@ in with pkgs.vimPlugins; {
       language = "lua";
       code = readFile ./lua/neorg.lua;
     };
-    dependGroups = [ "treesitter" "cmp" ];
+    dependGroups = [ "treesitter" "cmp" "telescope" ];
     onCommands = [ "Neorg" ];
   };
   lir = {

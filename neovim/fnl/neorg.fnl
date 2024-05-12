@@ -38,9 +38,15 @@
                                             [">>" :core.promo.promote]
                                             ["<<" :core.promo.demote]
                                             [:lt :core.pivot.toggle-list-type]
-                                            [:li :core.pivot.invert-list-type]]
+                                            [:li :core.pivot.invert-list-type]
+                                            ;; telescope
+                                            [(.. leader :f)
+                                             :core.integrations.telescope.find_linkable]]
                               norg_event_i [[:<C-t> :core.promo.promote]
-                                            [:<C-d> :core.promo.demote]]]
+                                            [:<C-d> :core.promo.demote]
+                                            ;; telescope
+                                            [:<C-l>
+                                             :core.integrations.telescope.insert_link]]]
                           (each [_ [key cmd] (ipairs norg_keymap_n)]
                             (keybinds.map :norg :n key cmd))
                           (each [_ [key cmd] (ipairs norg_keymap_i)]
@@ -67,6 +73,7 @@
             ; :core.concealer {} ;; WIP: https://github.com/nvim-neorg/neorg/issues/1393
             ; :core.tempus {} ;; MEMO: require nvim 0.10+
             ; :core.ui.calendar {} ;; MEMO: require core.tempus
+            :core.integrations.telescope {}
             ;; WIP
             :external.jupyter {}
             :external.templates {:config templates}}
