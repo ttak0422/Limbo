@@ -21,11 +21,11 @@
 
                       hide_frame_for_single_pane "true"
 
-                      mode_tmux          "#[bg=#ffc387,fg=#1a1a22,bold] Zellij "
-                      mode_normal        "#[bg=#7E9CD8,fg=#1a1a22,bold] Zellij "
-                      mode_scroll        "#[bg=#7E9CD8,fg=#1a1a22,bold]-- {name} --"
-                      mode_enter_search  "#[bg=#7E9CD8,fg=#1a1a22,bold]-- {name} --"
-                      mode_search        "#[bg=#7E9CD8,fg=#1a1a22,bold]-- {name} --"
+                      mode_tmux          "#[fg=#ffc387,bg=#1a1a22,bold,italic]-- Zellij --"
+                      mode_normal        "#[fg=#7E9CD8,bg=#1a1a22,bold]-- Zellij --"
+                      mode_scroll        "#[fg=#7E9CD8,bg=#1a1a22,bold]-- {name} --"
+                      mode_enter_search  "#[fg=#7E9CD8,bg=#1a1a22,bold]-- {name} --"
+                      mode_search        "#[fg=#7E9CD8,bg=#1a1a22,bold]-- {name} --"
 
                       tab_normal   "#[fg=#6C7086,bg=#1a1a22] {name} "
                       tab_active   "#[fg=#9399B2,bg=#1a1a22,bold,italic] {name} "
