@@ -1,4 +1,4 @@
-{ inputs, pkgs, loaded-nvim }:
+{ inputs, pkgs, loaded-nvim-stable, loaded-nvim-nightly }:
 let
   inherit (builtins) readFile;
   inherit (pkgs) callPackage;
@@ -17,7 +17,7 @@ let
 
   stable = {
     inherit extraConfig extraLuaConfig;
-    package = loaded-nvim;
+    package = loaded-nvim-stable;
     eagerPlugins = with plugins; [
       config-local
       kanagawa
@@ -149,5 +149,5 @@ let
         cabal cabalproject;
     };
   };
-  nightly = stable // { package = pkgs.neovim-nightly; };
+  nightly = stable // { package = loaded-nvim-nightly; };
 in { inherit stable nightly; }

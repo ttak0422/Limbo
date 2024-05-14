@@ -13262,17 +13262,14 @@
         ]
       },
       "locked": {
-        "lastModified": 1709445148,
-        "narHash": "sha256-fAZkSzku67vd4FGSml44ZVCsDtfU+RHSKKozv/ciC3Q=",
-        "owner": "ttak0422",
-        "repo": "loaded-nvim",
-        "rev": "91cdefe5d3b119d2c0b8e81158d5d2110d01d91f",
-        "type": "github"
+        "lastModified": 1715702757,
+        "narHash": "sha256-zESUypwyPjjEOFzQOq1MKpOBm2N1xscvOONABBi1vYc=",
+        "path": "/Users/ttak0422/ghq/github.com/ttak0422/loaded-nvim",
+        "type": "path"
       },
       "original": {
-        "owner": "ttak0422",
-        "repo": "loaded-nvim",
-        "type": "github"
+        "path": "/Users/ttak0422/ghq/github.com/ttak0422/loaded-nvim",
+        "type": "path"
       }
     },
     "lsp-colors-nvim": {

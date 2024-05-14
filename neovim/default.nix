@@ -9,24 +9,28 @@
         overlays = import ./overlays.nix inputs;
       };
 
-      loaded-nvim = {
-        package = pkgs.neovim-v9;
-        # did_load_ftplugin = true;
-        # did_indent_on = true;
-        did_install_default_menus = true;
-        skip_loading_mswin = true;
-        loaded_gzip = true;
-        loaded_man = true;
-        loaded_matchit = true;
-        loaded_matchparen = true;
-        loaded_netrwPlugin = true;
-        loaded_remote_plugins = true;
-        loaded_shada_plugin = true;
-        loaded_spellfile_plugin = true;
-        loaded_tarPlugin = true;
-        loaded_2html_plugin = true;
-        loaded_tutor_mode_plugin = true;
-        loaded_zipPlugin = true;
+      loaded-nvim' = let
+        common = {
+          # did_load_ftplugin = true;
+          # did_indent_on = true;
+          did_install_default_menus = true;
+          skip_loading_mswin = true;
+          loaded_gzip = true;
+          loaded_man = true;
+          loaded_matchit = true;
+          loaded_matchparen = true;
+          loaded_netrwPlugin = true;
+          loaded_remote_plugins = true;
+          loaded_shada_plugin = true;
+          loaded_spellfile_plugin = true;
+          loaded_tarPlugin = true;
+          loaded_2html_plugin = true;
+          loaded_tutor_mode_plugin = true;
+          loaded_zipPlugin = true;
+        };
+      in {
+        stable = common // { package = pkgs.neovim-v9; };
+        nightly = common // { package = pkgs.neovim-nightly; };
       };
 
       bundler-nvim = {
@@ -35,7 +39,7 @@
           test-v9 skkeleton skkeleton-lazy skkeleton-with-ddc;
         inherit (callPackage ./neovim-full.nix {
           inherit inputs;
-          inherit (self.packages.${system}) loaded-nvim;
+          inherit (self.packages.${system}) loaded-nvim-stable loaded-nvim-nightly;
         })
           stable nightly;
       };

@@ -75,7 +75,8 @@
       flake = false;
     };
     loaded-nvim = {
-      url = "github:ttak0422/loaded-nvim";
+      url = "path:/Users/ttak0422/ghq/github.com/ttak0422/loaded-nvim";
+      # url = "github:ttak0422/loaded-nvim";
       inputs = {
         systems.follows = "systems";
         nixpkgs.follows = "nixpkgs";
