@@ -29,10 +29,6 @@ nix run 'github:ttak0422/Limbo/2024-02-28#bundler-nvim'
 
 wip...
 
-## Emacs
-
-wip...
-
 ## Hosts
 
 ### darwin 
