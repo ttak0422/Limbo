@@ -54,9 +54,13 @@
            (lua_cmd "require('harpoon'):list():add()")
            (mk_desc "register file")]
           ;; note
-          [:<leader>nn (cmd :GlobalNote) (mk_desc "open global note")]
+          ; [:<leader>nn (cmd :GlobalNote) (mk_desc "open global note")]
+          ; [:<leader>np (cmd :ProjectNote) (mk_desc "open project local note")]
+          [:<leader>nn
+           (cmd "Neorg journal today")
+           (mk_desc "Enter Neorg (today journal)")]
+          [:<leader>no (cmd "Neorg toc") (mk_desc "Show Neorg toc")]
           [:<leader>N (cmd :Neorg) (mk_desc "Enter Neorg")]
-          [:<leader>np (cmd :ProjectNote) (mk_desc "open project local note")]
           ;; git
           [:<leader>G (cmd :Neogit)]
           [:<leader>gg

@@ -54,7 +54,7 @@ let
       git-conflict
       git-signs
       glance
-      global-note
+      # global-note
       gopher
       goto-preview
       harpoon
