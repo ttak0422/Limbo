@@ -13,12 +13,12 @@
                   (not disabled)))
       snippet {:expand (fn [args]
                          (luasnip.lsp_expand args.body))}
-      performance {:debounce 100
+      performance {:debounce 200
                    :throttle 100
-                   :fetching_timeout 500
-                   :confirm_resolve_timeout 80
+                   :fetching_timeout 1000
+                   :confirm_resolve_timeout 100
                    :async_budget 1
-                   :max_view_entries 100}
+                   :max_view_entries 800}
       preselect types.cmp.PreselectMode.None
       mapping (let [m cmp.mapping
                     behavior cmp.SelectBehavior.Select]
