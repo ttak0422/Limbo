@@ -1,6 +1,9 @@
 { pkgs, ... }:
 let inherit (builtins) readFile toJSON;
 in {
+  norg = ''
+    setlocal noswapfile
+  '';
   qf = with pkgs.vimPlugins; ''
     silent source ${nvim-bqf}/after/ftplugin/qf/bqf.vim
   '';
