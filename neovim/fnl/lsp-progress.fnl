@@ -5,6 +5,6 @@
                    ""))]
   (M.setup {:spin_update_time 200
             :event_update_time_limit 50
-            :regular_internal_update_time 750
+            :regular_internal_update_time 2000
             :max_size 200
             : format}))

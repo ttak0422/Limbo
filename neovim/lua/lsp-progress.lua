@@ -9,4 +9,4 @@ local function _1_(messages)
   end
 end
 format = _1_
-return M.setup({spin_update_time = 200, event_update_time_limit = 50, regular_internal_update_time = 750, max_size = 200, format = format})
+return M.setup({spin_update_time = 200, event_update_time_limit = 50, regular_internal_update_time = 2000, max_size = 200, format = format})
