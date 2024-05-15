@@ -193,12 +193,12 @@
                    :r? :red
                    :! :red
                    :t :red}
-      skk_mode_labels {"" "英数"
-                       :hira "ひら"
-                       :kata "カナ"
-                       :hankata "半カ"
-                       :zenkaku "全英"
-                       :abbrev :abbr} ;;
+      ; skk_mode_labels {"" "英数"
+      ;                  :hira "ひら"
+      ;                  :kata "カナ"
+      ;                  :hankata "半カ"
+      ;                  :zenkaku "全英"
+      ;                  :abbrev :abbr} ;;
       ;; components
       align {:provider "%="}
       left_cap {:provider "▌"}
