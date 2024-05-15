@@ -13,7 +13,7 @@ do
     return (require("nvim-window")).pick()
   end
   heads = {{"h", "<C-w>h", {exit = true}}, {"j", "<C-w>j", {exit = true}}, {"k", "<C-w>k", {exit = true}}, {"l", "<C-w>l", {exit = true}}, {"w", "<C-w>w", {exit = true}}, {"<C-w>", "<C-w>w", {exit = true, desc = false}}, {"p", "<C-w>p", {exit = true, desc = false}}, {"<C-h>", "<C-w>h"}, {"<C-j>", "<C-w>j"}, {"<C-k>", "<C-w>k"}, {"<C-l>", "<C-w>l"}, {"H", Cmd("WinShift left")}, {"J", Cmd("WinShift down")}, {"K", Cmd("WinShift up")}, {"L", Cmd("WinShift right")}, {"e", _1_, {desc = "resize mode", exit = true}}, {"p", _2_, {desc = "pick window", exit = true}}, {"=", "<C-w>=", {desc = "equalize", exit = true}}, {"<CR>", Cmd("DetourCurrentWindow"), {desc = "open popup window", exit = true}}, {"s", "<C-w>s", {exit = true, desc = false}}, {"v", "<C-w>v", {exit = true, desc = false}}, {"z", Cmd("NeoZoomToggle"), {desc = "zoom", exit = true}}, {"c", "<C-w>c", {desc = "close", exit = true}}, {"o", "<C-w>o", {desc = "close other", exit = true}}, {"<C-o>", "<C-w>o", {exit = true, desc = false}}, {"<Esc>", nil, {exit = true, desc = false}}, {";", nil, {exit = true, desc = false}}}
-  local config = {invoke_on_body = true, hint = {type = "statuslinemanual"}}
+  local config = {invoke_on_body = true, hint = false}
   Hydra({name = "Windows", mode = "n", body = "<C-w>", heads = heads, config = config})
 end
 local heads = {{"H", "<C-v>h:VBox<CR>"}, {"J", "<C-v>j:VBox<CR>"}, {"K", "<C-v>k:VBox<CR>"}, {"L", "<C-v>l:VBox<CR>"}, {"f", ":VBox<CR>", {mode = "v"}}, {"<Esc>", nil, {desc = "close", exit = true}}}

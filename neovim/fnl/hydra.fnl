@@ -73,7 +73,7 @@
                 ;            (vim.schedule (fn []
                 ;                            (vim.cmd :redrawstatus))))
                 ; :hint {:type :window :position :middle : float_opts}
-                :hint {:type :statuslinemanual}}
+                :hint false}
         ;         hint ":Move                 :Swap     :Utils
         ; --------------------  -------   ------------------------
         ;    _k_       _<C-k>_         _K_       _e_: start resize mode
