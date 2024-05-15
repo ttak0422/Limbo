@@ -72,14 +72,16 @@
                 ; :on_exit (fn []
                 ;            (vim.schedule (fn []
                 ;                            (vim.cmd :redrawstatus))))
-                :hint {:type :window :position :middle : float_opts}}
-        hint ":Move                 :Swap     :Utils
---------------------  -------   ------------------------
-   _k_       _<C-k>_         _K_       _e_: start resize mode
- _h_   _l_  _<C-h>_ _<C-l>_    _H_   _L_     _<CR>_ open popup window
-   _j_       _<C-j>_         _J_
-"]
-    (Hydra {:name :Windows :mode :n :body :<C-w> : heads : config : hint}))
+                ; :hint {:type :window :position :middle : float_opts}
+                :hint {:type :statuslinemanual}}
+        ;         hint ":Move                 :Swap     :Utils
+        ; --------------------  -------   ------------------------
+        ;    _k_       _<C-k>_         _K_       _e_: start resize mode
+        ;  _h_   _l_  _<C-h>_ _<C-l>_    _H_   _L_     _<CR>_ open popup window
+        ;    _j_       _<C-j>_         _J_
+        ; "
+        ]
+    (Hydra {:name :Windows :mode :n :body :<C-w> : heads : config}))
   ;; venn
   (let [heads [[:H "<C-v>h:VBox<CR>"]
                [:J "<C-v>j:VBox<CR>"]
