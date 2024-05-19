@@ -27,6 +27,7 @@ let
       # dropbar
       # flutter-tools
       # ionide
+      # E
       autopairs
       ambiwidth
       asterisk

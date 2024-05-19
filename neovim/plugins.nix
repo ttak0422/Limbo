@@ -380,6 +380,9 @@ let
     };
   };
   style = with pkgs.vimPlugins; {
+    # E = {
+    #   plugin = E;
+    # };
     bufferline = {
       plugin = bufferline-nvim;
       dependPlugins = [ scope-nvim ];
