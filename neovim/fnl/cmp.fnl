@@ -15,10 +15,10 @@
                          (luasnip.lsp_expand args.body))}
       performance {:debounce 200
                    :throttle 100
-                   :fetching_timeout 1000
+                   :fetching_timeout 800
                    :confirm_resolve_timeout 100
                    :async_budget 1
-                   :max_view_entries 800}
+                   :max_view_entries 600}
       preselect types.cmp.PreselectMode.None
       mapping (let [m cmp.mapping
                     behavior cmp.SelectBehavior.Select]
@@ -60,10 +60,10 @@
       sorting {:priority_weight 2
                :comparators [compare.offset
                              compare.exact
-                             compare.scopes
+                             ; compare.scopes
                              compare.score
                              compare.recently_used
-                             compare.locality
+                             ; compare.locality
                              compare.kind
                              compare.sort_text
                              compare.length

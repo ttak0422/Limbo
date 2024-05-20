@@ -15,7 +15,7 @@ local function _2_(args)
   return luasnip.lsp_expand(args.body)
 end
 snippet = {expand = _2_}
-local performance = {debounce = 200, throttle = 100, fetching_timeout = 1000, confirm_resolve_timeout = 100, async_budget = 1, max_view_entries = 800}
+local performance = {debounce = 200, throttle = 100, fetching_timeout = 800, confirm_resolve_timeout = 100, async_budget = 1, max_view_entries = 600}
 local preselect = types.cmp.PreselectMode.None
 local mapping
 do
@@ -43,8 +43,8 @@ local function _7_(_, item)
   return item
 end
 formatting = {expandable_indicator = true, fields = {"abbr", "kind", "menu"}, format = _7_}
-local matching = {disallow_partial_fuzzy_matching = true, disallow_symbol_nonprefix_matching = true, disallow_fullfuzzy_matching = false, disallow_partial_matching = false, disallow_prefix_unmatching = false, disallow_fuzzy_matching = false}
-local sorting = {priority_weight = 2, comparators = {compare.offset, compare.exact, compare.scopes, compare.score, compare.recently_used, compare.locality, compare.kind, compare.sort_text, compare.length, compare.order}}
+local matching = {disallow_partial_fuzzy_matching = true, disallow_symbol_nonprefix_matching = true, disallow_prefix_unmatching = false, disallow_fuzzy_matching = false, disallow_partial_matching = false, disallow_fullfuzzy_matching = false}
+local sorting = {priority_weight = 2, comparators = {compare.offset, compare.exact, compare.score, compare.recently_used, compare.kind, compare.sort_text, compare.length, compare.order}}
 local sources = {{name = "nvim_lsp", priority = 100, group_index = 1}, {name = "luasnip", priority = 95, group_index = 1}}
 local confirmation
 local function _8_(commit_cs)
