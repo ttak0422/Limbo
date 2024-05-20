@@ -4,36 +4,32 @@
       defaults {:disable []}
       dirman {:workspaces {:notes "~/neorg"} :default_workspace :notes}
       leader :<LocalLeader>
-      ; norg_event_n [[(.. leader :e) :core.looking-glass.magnify-code-block]
-      ;               [(.. leader :tu) :core.qol.todo_items.todo.task_undone]
-      ;               [(.. leader :tp) :core.qol.todo_items.todo.task_pending]
-      ;               [(.. leader :td) :core.qol.todo_items.todo.task_done]
-      ;               [(.. leader :th) :core.qol.todo_items.todo.task_on_hold]
-      ;               [(.. leader :tc) :core.qol.todo_items.todo.task_cancelled]
-      ;               [(.. leader :tr) :core.qol.todo_items.todo.task_recurring]
-      ;               [(.. leader :ti) :core.qol.todo_items.todo.task_important]
-      ;               [(.. leader :ta) :core.qol.todo_items.todo.task_ambiguous]
-      ;               [:<C-Space> :core.qol.todo_items.todo.task_cycle]
-      ;               [(.. leader :nn) :core.dirman.new.note]
-      ;               [:<CR> :core.esupports.hop.hop-link]
-      ;               [:gd :core.esupports.hop.hop-link]
-      ;               [:gf :core.esupports.hop.hop-link]
-      ;               [:gF :core.esupports.hop.hop-link]
-      ;               [">>" :core.promo.promote]
-      ;               ["<<" :core.promo.demote]
-      ;               [:lt :core.pivot.toggle-list-type]
-      ;               [:li :core.pivot.invert-list-type]
-      ;               ;; telescope (defined in global)
-      ;               ; [(.. leader :f)
-      ;               ;  :core.integrations.telescope.find_linkable]
-      ;               ]
-      ; norg_event_i [[:<C-t> :core.promo.promote]
-      ;               [:<C-d> :core.promo.demote]
-      ;               ;; telescope
-      ;               [:<C-i> :core.integrations.telescope.insert_link]]
+      cmd (fn [c]
+            (.. :<Cmd> c :<CR>))
+      normal_keys {:<LocalLeader>to (cmd "Neorg journal toc open")
+                   :<LocalLeader>tO (cmd "Neorg toc")}
+      normal_events [[:<C-Space> :core.qol.todo_items.todo.task_cycle]
+                     [:<CR> :core.esupports.hop.hop-link]
+                     {1 :<M-CR>
+                      2 :core.esupports.hop.hop-link
+                      3 :vsplit
+                      :opts {:desc " Jump to Link (Vertical Split)"}}
+                     {1 (.. leader :e)
+                      2 :core.looking-glass.magnify-code-block
+                      :opts {:desc " Edit Code Block"}}
+                     {1 (.. leader :lt)
+                      2 :core.pivot.toggle-list-type
+                      :opts {:desc " Toggle List Type"}}
+                     {1 (.. leader :li)
+                      2 :core.pivot.invert-list-type
+                      :opts {:desc " Invert List Type"}}]
+      insert_events [[:<C-i> :core.integrations.telescope.insert_link]]
+      key_opts {:silent true}
       keybinds {:default_keybinds false
                 :neorg_leader :<LocalLeader>
-                :hook (fn [_kb])}
+                :hook (fn [kb]
+                        (each [key cmd (pairs normal_keys)]
+                          (kb.map :norg :n key cmd)))}
       journal {:journal_folder :journal :strategy :nested}
       metagen {:type :auto}
       templates {:templates_dir [] :default_subcommand :fload}
@@ -62,13 +58,7 @@
   (callbacks.on_event :core.keybinds.events.enable_keybinds
                       (fn [_ kb]
                         (kb.map_event_to_mode :norg
-                                              {:n [[:<C-Space>
-                                                    :core.qol.todo_items.todo.task_cycle]
-                                                   [:<CR>
-                                                    :core.esupports.hop.hop-link]
-                                                   [:<C-s>
-                                                    :core.integrations.telescope.find_linkable]]
-                                               :i [[:<C-i>
-                                                    :core.integrations.telescope.insert_link]]}
-                                              {:silent true})))
+                                              {:n normal_events
+                                               :i insert_events}
+                                              key_opts)))
   (cmp.setup.filetype :norg {: sources}))
