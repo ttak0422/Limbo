@@ -15,6 +15,13 @@ in with pkgs.vimPlugins; {
       nui-nvim
       plenary-nvim
       pathlib-nvim
+      {
+        plugin = headlines-nvim;
+        postConfig = {
+          language = "lua";
+          code = readFile ./lua/headlines.lua;
+        };
+      }
     ];
     postConfig = {
       language = "lua";
