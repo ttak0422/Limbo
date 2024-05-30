@@ -2,11 +2,9 @@
 local heirline = require("heirline")
 local conditions = require("heirline.conditions")
 local utils = require("heirline.utils")
-local kanagawa = require("kanagawa.colors")
 local hydra = require("hydra.statusline")
-local kanagawa_palette = kanagawa.setup().palette
-local kanagawa_colors = {bg = kanagawa_palette.sumiInk2, fg = kanagawa_palette.sumiInk6, red = kanagawa_palette.autumnRed, green = kanagawa_palette.autumnGreen, blue = kanagawa_palette.crystalBlue, grey = kanagawa_palette.fujiGray, orange = kanagawa_palette.surimiOrange, purple = kanagawa_palette.oniViolet, cyan = kanagawa_palette.lotusCyan, diag_warn = kanagawa_palette.roninYellow, diag_error = kanagawa_palette.samuraiRed, diag_hint = kanagawa_palette.dragonBlue, diag_info = kanagawa_palette.waveAqua1, git_del = kanagawa_palette.autumnRed, git_add = kanagawa_palette.autumnGreen, git_change = kanagawa_palette.autumnYellow}
-local colors = kanagawa_colors
+local morimo_colors = require("morimo.colors")
+local colors = {fg = morimo_colors.fg, bg = morimo_colors.bg0, red = morimo_colors.red, green = morimo_colors.green, blue = morimo_colors.blue, grey = morimo_colors.grey0, orange = morimo_colors.orange, purple = morimo_colors.purple, cyan = morimo_colors.cyan, git_add = morimo_colors.lightGreen, git_change = morimo_colors.lightBlue, git_del = morimo_colors.lightRed}
 local opts = {colors = colors}
 local icons = {terminal = "\239\146\137", keyboard = "\239\132\156 ", vim = "\238\152\171", circle = "\239\132\145", circle_o = "\226\173\152", circle_d = "\239\134\146", lock = "\239\128\163", left_rounded = "\238\130\182", left_rounded_thin = "\238\130\183", right_rounded = "\238\130\180", right_rounded_thin = "\238\130\181", bar = "|", warn = "\239\129\177", error = "\239\129\151", document = "\239\133\155", fill = "\226\150\136"}
 local seps = {bar = (" " .. icons.bar .. " "), left_rounded_thin = (" " .. icons.left_rounded_thin .. " "), right_rounded_thin = (" " .. icons.right_rounded_thin .. " ")}

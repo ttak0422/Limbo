@@ -2,13 +2,13 @@
       diagnostics null_ls.builtins.diagnostics
       formatting null_ls.builtins.formatting
       utils (require :null-ls.utils)
-      sources [
-               ;; for go ;;
+      sources [;; for go ;;
                diagnostics.staticcheck
                formatting.gofumpt
                ;; ------ ;;
                ]]
-  (null_ls.setup {:border ["┏" "━" "┓" "┃" "┛" "━" "┗" "┃"]
+  (null_ls.setup {; :border ["┏" "━" "┓" "┃" "┛" "━" "┗" "┃"]
+                  :border :none
                   :cmd [:nvim]
                   :debounce 250
                   :debug false

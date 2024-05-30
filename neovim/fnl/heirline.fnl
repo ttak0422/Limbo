@@ -44,26 +44,39 @@
       heirline (require :heirline) ;;
       conditions (require :heirline.conditions)
       utils (require :heirline.utils)
-      kanagawa (require :kanagawa.colors)
       hydra (require :hydra.statusline) ;; options
-      kanagawa_palette (. ((. kanagawa :setup)) :palette)
-      kanagawa_colors {:bg kanagawa_palette.sumiInk2
-                       :fg kanagawa_palette.sumiInk6
-                       :red kanagawa_palette.autumnRed
-                       :green kanagawa_palette.autumnGreen
-                       :blue kanagawa_palette.crystalBlue
-                       :grey kanagawa_palette.fujiGray
-                       :orange kanagawa_palette.surimiOrange
-                       :purple kanagawa_palette.oniViolet
-                       :cyan kanagawa_palette.lotusCyan
-                       :diag_warn kanagawa_palette.roninYellow
-                       :diag_error kanagawa_palette.samuraiRed
-                       :diag_hint kanagawa_palette.dragonBlue
-                       :diag_info kanagawa_palette.waveAqua1
-                       :git_del kanagawa_palette.autumnRed
-                       :git_add kanagawa_palette.autumnGreen
-                       :git_change kanagawa_palette.autumnYellow}
-      colors kanagawa_colors ;; options
+      ; kanagawa (require :kanagawa.colors)
+      ; kanagawa_palette (. ((. kanagawa :setup)) :palette)
+      ; kanagawa_colors {:bg kanagawa_palette.sumiInk2
+      ;                  :fg kanagawa_palette.sumiInk6
+      ;                  :red kanagawa_palette.autumnRed
+      ;                  :green kanagawa_palette.autumnGreen
+      ;                  :blue kanagawa_palette.crystalBlue
+      ;                  :grey kanagawa_palette.fujiGray
+      ;                  :orange kanagawa_palette.surimiOrange
+      ;                  :purple kanagawa_palette.oniViolet
+      ;                  :cyan kanagawa_palette.lotusCyan
+      ;                  :diag_warn kanagawa_palette.roninYellow
+      ;                  :diag_error kanagawa_palette.samuraiRed
+      ;                  :diag_hint kanagawa_palette.dragonBlue
+      ;                  :diag_info kanagawa_palette.waveAqua1
+      ;                  :git_del kanagawa_palette.autumnRed
+      ;                  :git_add kanagawa_palette.autumnGreen
+      ;                  :git_change kanagawa_palette.autumnYellow}
+      ; colors kanagawa_colors ;; options
+      morimo_colors (require :morimo.colors)
+      colors {:fg morimo_colors.fg
+              :bg morimo_colors.bg0
+              :red morimo_colors.red
+              :green morimo_colors.green
+              :blue morimo_colors.blue
+              :grey morimo_colors.grey0
+              :orange morimo_colors.orange
+              :purple morimo_colors.purple
+              :cyan morimo_colors.cyan
+              :git_add morimo_colors.lightGreen
+              :git_change morimo_colors.lightBlue
+              :git_del morimo_colors.lightRed}
       opts {: colors} ;;
       ;; params
       icons {:terminal ""
@@ -192,8 +205,7 @@
                    :rm :red
                    :r? :red
                    :! :red
-                   :t :red}
-      ; skk_mode_labels {"" "英数"
+                   :t :red} ; skk_mode_labels {"" "英数"
       ;                  :hira "ひら"
       ;                  :kata "カナ"
       ;                  :hankata "半カ"

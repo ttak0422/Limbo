@@ -3,7 +3,8 @@
                                :virt_text_pos :eol
                                :delay 1000
                                :ignore_whitespace false}
-      preview_config {:border ["┏" "━" "┓" "┃" "┛" "━" "┗" "┃"]
+      preview_config {; :border ["┏" "━" "┓" "┃" "┛" "━" "┗" "┃"]
+                      :border :none
                       :style :minimal
                       :relative :cursor
                       :row 0

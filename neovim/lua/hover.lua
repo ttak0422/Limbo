@@ -5,6 +5,6 @@ local function _1_()
   return require("hover.providers.lsp")
 end
 init = _1_
-local preview_opts = {border = "single"}
+local preview_opts = {border = "none"}
 local mouse_providers = {"LSP"}
 return hover.setup({init = init, preview_opts = preview_opts, mouse_providers = mouse_providers, mouse_dely = 1000, preview_window = false})

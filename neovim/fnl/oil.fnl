@@ -1,6 +1,7 @@
 (let [M (require :oil)
       columns [:icon]
-      border ["┏" "━" "┓" "┃" "┛" "━" "┗" "┃"]
+      ; border ["┏" "━" "┓" "┃" "┛" "━" "┗" "┃"]
+      border :none
       buf_options {:buflisted false :bufhidden :hide}
       win_options {:wrap false
                    :signcolumn :number
@@ -60,7 +61,7 @@
                 : border
                 :minimized_border :none
                 :win_options {:winblend 0}}
-      ssh {:border :single}
+      ssh {:border :none}
       lsp_file_methods {:timeout_ms 1000 :autosave_changes false}]
   (M.setup {:default_file_explorer false
             :delete_to_trash true

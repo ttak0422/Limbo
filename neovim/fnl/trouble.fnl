@@ -40,7 +40,7 @@
             :cycle_results false
             :multiline true
             :indent_lines true
-            :win_config {:border :single}
+            :win_config {:border :none}
             :auto_open false
             :auto_close false
             :auto_preview true

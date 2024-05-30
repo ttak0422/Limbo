@@ -4,9 +4,9 @@
       dap-ui (require :dapui)
       dap-virt (require :nvim-dap-virtual-text)
       dap-hl (require :nvim-dap-repl-highlights)
-      kanagawa (require :kanagawa.colors)
-      kanagawa_palette (. ((. kanagawa :setup)) :palette) ;;
-      ;; ui
+      ; kanagawa (require :kanagawa.colors)
+      ; kanagawa_palette (. ((. kanagawa :setup)) :palette) ;;
+      morimo_colors (require :morimo.colors) ;; ui
       icons {:expanded "▾" :collapsed "▸" :current_frame "▸"}
       controls {:element :repl
                 :enabled true
@@ -19,7 +19,7 @@
                         :step_out ""
                         :step_over ""
                         :terminate ""}}
-      floating {:border :single :mappings {:close [:q :<Esc>]}}
+      floating {:border :none :mappings {:close [:q :<Esc>]}}
       layouts [{:elements [{:id :scopes :size 0.25}
                            {:id :breakpoints :size 0.25}
                            {:id :stacks :size 0.25}
@@ -44,11 +44,16 @@
       virt_text_pos ((fn []
                        (if (= (vim.fn.has :nvim-0.10) 1) :inline :eol)))
       ;; other
-      highlights [[:dapblue kanagawa_palette.crystalBlue]
-                  [:dapgreen kanagawa_palette.springGreen]
-                  [:dapyellow kanagawa_palette.carpYellow]
-                  [:daporange kanagawa_palette.surimiOrange]
-                  [:dapred kanagawa_palette.peachRed]]
+      highlights [; [:dapblue kanagawa_palette.crystalBlue]
+                  ; [:dapgreen kanagawa_palette.springGreen]
+                  ; [:dapyellow kanagawa_palette.carpYellow]
+                  ; [:daporange kanagawa_palette.surimiOrange]
+                  ; [:dapred kanagawa_palette.peachRed]
+                  [:dapblue morimo_colors.lightBlue]
+                  [:dapgreen morimo_colors.lightGreen]
+                  [:dapyellow morimo_colors.lightYellow]
+                  [:daporange morimo_colors.orange]
+                  [:dapred morimo_colors.lightRed]]
       signs [[:DapBreakpoint "" :dapblue]
              [:DapBreakpointCondition "" :dapblue]
              [:DapBreakpointRejected "" :dapred]
@@ -89,7 +94,7 @@
   ;; other
   ;; WIP: signの背景色を手動設定
   (each [_ h (ipairs highlights)]
-    (vim.api.nvim_set_hl 0 (. h 1) {:fg (. h 2) :bg "#2a2a37"}))
+    (vim.api.nvim_set_hl 0 (. h 1) {:fg (. h 2) :bg "#2a2a2e"}))
   (each [_ s (ipairs signs)]
     (vim.fn.sign_define (. s 1) {:text (. s 2)
                                  :texthl (. s 3)

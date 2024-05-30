@@ -5,8 +5,7 @@ let
   plugins = callPackage ./plugins.nix { };
   groups = callPackage ./groups.nix { inherit inputs; };
   ftplugins = callPackage ./ftplugins.nix { };
-in
-{
+in {
   test-v9 = {
     package = pkgs.neovim-v9;
     lazyGroups = with groups; [ treesitter ];

@@ -1,7 +1,8 @@
 (let [Hydra (require :hydra)
       KeymapUtil (require :hydra.keymap-util)
       Cmd KeymapUtil.cmd
-      float_opts {:border ["┏" "━" "┓" "┃" "┛" "━" "┗" "┃"]}]
+      float_opts {; :border ["┏" "━" "┓" "┃" "┛" "━" "┗" "┃"]
+                  :border :none}]
   ;; default configuration
   (Hydra.setup {:debug false
                 :exit false

@@ -1,7 +1,8 @@
 (let [M (require:neo-zoom)
       exclude_buftypes []
       winopts {:offset {:height 0.9}
-               :border ["┏" "━" "┓" "┃" "┛" "━" "┗" "┃"]}
+               ; :border ["┏" "━" "┓" "┃" "┛" "━" "┗" "┃"]
+               :border :none}
       presets [{:filetypes [:dapui_.* :dap-repl]
                 :config {:top_ratio 0.25
                          :left_ratio 0.4

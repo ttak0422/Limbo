@@ -6,4 +6,4 @@
                                  :FloatBorder {:bg :none}
                                  :FloatTitle {:bg :none}})}))
 
-(vim.cmd "colorscheme kanagawa")
+;; (vim.cmd "colorscheme kanagawa")

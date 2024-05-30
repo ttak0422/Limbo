@@ -39,7 +39,8 @@
           test-v9 skkeleton skkeleton-lazy skkeleton-with-ddc;
         inherit (callPackage ./neovim-full.nix {
           inherit inputs;
-          inherit (self.packages.${system}) loaded-nvim-stable loaded-nvim-nightly;
+          inherit (self.packages.${system})
+            loaded-nvim-stable loaded-nvim-nightly;
         })
           stable nightly;
       };

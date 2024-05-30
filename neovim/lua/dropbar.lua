@@ -60,7 +60,7 @@ do
     end
   end
   keymaps = {["<CR>"] = select, o = select, zf = _7_}
-  local win_configs = {border = "single", style = "minimal"}
+  local win_configs = {border = "none", style = "minimal"}
   menu = {preview = true, quick_navigation = true, entry = {padding = {left = 1, right = 1}}, scrollbar = {enable = true, background = true}, keymaps = keymaps, win_configs = win_configs}
 end
 local fzf

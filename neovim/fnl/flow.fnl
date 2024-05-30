@@ -3,7 +3,7 @@
               :size 80
               :focused true
               :modifiable false
-              :window_override {:border :single
+              :window_override {:border :none
                                 :title :Output
                                 :title_pos :center
                                 :style :minimal}} ;; WIP

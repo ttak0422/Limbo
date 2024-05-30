@@ -4,7 +4,7 @@
              :title_pos :center
              :insert_inly true
              :start_in_insert true
-             :border :single
+             :border :none
              :relative :cursor
              :prefer_width 0.4
              :buf_options {}

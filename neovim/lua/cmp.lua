@@ -43,7 +43,7 @@ local function _7_(_, item)
   return item
 end
 formatting = {expandable_indicator = true, fields = {"abbr", "kind", "menu"}, format = _7_}
-local matching = {disallow_partial_fuzzy_matching = true, disallow_symbol_nonprefix_matching = true, disallow_prefix_unmatching = false, disallow_fuzzy_matching = false, disallow_partial_matching = false, disallow_fullfuzzy_matching = false}
+local matching = {disallow_partial_fuzzy_matching = true, disallow_symbol_nonprefix_matching = true, disallow_fuzzy_matching = false, disallow_partial_matching = false, disallow_fullfuzzy_matching = false, disallow_prefix_unmatching = false}
 local sorting = {priority_weight = 2, comparators = {compare.offset, compare.exact, compare.score, compare.recently_used, compare.kind, compare.sort_text, compare.length, compare.order}}
 local sources = {{name = "nvim_lsp", priority = 100, group_index = 1}, {name = "luasnip", priority = 95, group_index = 1}}
 local confirmation
@@ -59,14 +59,7 @@ do
   local docs = {auto_open = true}
   view = {entries = entries, docs = docs}
 end
-local window
-do
-  local border = {"\226\148\143", "\226\148\129", "\226\148\147", "\226\148\131", "\226\148\155", "\226\148\129", "\226\148\151", "\226\148\131"}
-  local completion0 = cmp.config.window.bordered({border = border})
-  local documentation = cmp.config.window.bordered({border = border})
-  window = {completion = completion0, documentation = documentation}
-end
-cmp.setup({enabled = enabled, snippet = snippet, performance = performance, preselect = preselect, mapping = mapping, completion = completion, formatting = formatting, matching = matching, sorting = sorting, sources = sources, confirmation = confirmation, event = event, experimental = experimental, view = view, window = window})
+cmp.setup({enabled = enabled, snippet = snippet, performance = performance, preselect = preselect, mapping = mapping, completion = completion, formatting = formatting, matching = matching, sorting = sorting, sources = sources, confirmation = confirmation, event = event, experimental = experimental, view = view})
 vim.cmd("inoremap <expr> <C-Space> '<C-n>'")
 cmp.setup.cmdline("/", {mapping = cmp.mapping.preset.cmdline(), sources = {{name = "buffer"}}})
 cmp.setup.cmdline("?", {mapping = cmp.mapping.preset.cmdline(), sources = {{name = "buffer"}}})

@@ -48,7 +48,7 @@
           ; [:<leader>tg (cmd :TigTermToggle) (mk_desc "toggle tig terminal")]
           ;; harpoon
           [:<leader>H
-           (lua_cmd "require('harpoon').ui:toggle_quick_menu(require('harpoon'):list())")
+           (lua_cmd "require('harpoon').ui:toggle_quick_menu(require('harpoon'):list(),{border='none'})")
            (mk_desc "registered file menu")]
           [:<leader>ha
            (lua_cmd "require('harpoon'):list():add()")

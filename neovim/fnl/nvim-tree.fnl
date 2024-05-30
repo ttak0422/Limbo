@@ -141,7 +141,7 @@
                     file_popup {:open_win_config {:col 1
                                                   :row 1
                                                   :relative :cursor
-                                                  :border :single
+                                                  :border :none
                                                   :style :minimal}}
                     open_file {:quit_on_open false
                                :eject true

@@ -84,10 +84,11 @@
                           :follow_cursor false}
                  docs {:auto_open true}]
              {: entries : docs})
-      window (let [border ["┏" "━" "┓" "┃" "┛" "━" "┗" "┃"]
-                   completion (cmp.config.window.bordered {: border})
-                   documentation (cmp.config.window.bordered {: border})]
-               {: completion : documentation})]
+      ; window (let [border ["┏" "━" "┓" "┃" "┛" "━" "┗" "┃"]
+      ;              completion (cmp.config.window.bordered {: border})
+      ;              documentation (cmp.config.window.bordered {: border})]
+      ;          {: completion : documentation})
+      ]
   (cmp.setup {: enabled
               : snippet
               : performance
@@ -102,7 +103,8 @@
               : event
               : experimental
               : view
-              : window})
+              ; : window
+              })
   (vim.cmd "inoremap <expr> <C-Space> '<C-n>'")
   (cmp.setup.cmdline "/" {:mapping (cmp.mapping.preset.cmdline)
                           :sources [{:name :buffer}]})

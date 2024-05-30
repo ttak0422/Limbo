@@ -1,5 +1,6 @@
 (let [M (require :goto-preview)
-      border ["┏" "━" "┓" "┃" "┛" "━" "┗" "┃"]
+      ; border ["┏" "━" "┓" "┃" "┛" "━" "┗" "┃"]
+      border :none
       post_open_hook (fn [_ win]
                        (vim.api.nvim_win_set_option win :winhighlight "Normal:"))
       post_close_hook nil]
@@ -12,5 +13,5 @@
             :debug false
             :opacity nil
             : border
-            : post_open_hook
+            ; : post_open_hook
             : post_close_hook}))

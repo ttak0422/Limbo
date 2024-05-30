@@ -5,7 +5,7 @@
 (vim.diagnostic.config {:severity_sort true})
 (vim.lsp.set_log_level :WARN)
 (tset vim.lsp.handlers :textDocument/hover
-      (vim.lsp.with vim.lsp.handlers.hover {:border :single}))
+      (vim.lsp.with vim.lsp.handlers.hover {:border :none}))
 
 (let [signs [{:name :DiagnosticSignError :text ""}
              {:name :DiagnosticSignWarn :text ""}
@@ -20,14 +20,15 @@
 (local climb (require :climbdir))
 (local marker (require :climbdir.marker))
 
-(set windows.default_options.border ["┏"
-                                     "━"
-                                     "┓"
-                                     "┃"
-                                     "┛"
-                                     "━"
-                                     "┗"
-                                     "┃"])
+; (set windows.default_options.border ["┏"
+;                                      "━"
+;                                      "┓"
+;                                      "┃"
+;                                      "┛"
+;                                      "━"
+;                                      "┗"
+;                                      "┃"])
+(set windows.default_options.border :none)
 
 ;; lua
 (lspconfig.lua_ls.setup {: on_attach

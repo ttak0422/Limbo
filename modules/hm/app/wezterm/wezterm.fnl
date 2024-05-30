@@ -29,6 +29,8 @@
    :enable_tab_bar false
    :adjust_window_size_when_changing_font_size false
    :audible_bell :Disabled
+   :default_cursor_style :SteadyBlock
+   :force_reverse_video_cursor true
    : keys
    : window_padding
    : default_prog})

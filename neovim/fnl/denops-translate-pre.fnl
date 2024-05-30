@@ -1,4 +1,5 @@
-(let [translate_border_chars ["┏" "━" "┓" "┃" "┛" "━" "┗" "┃"]
+(let [; translate_border_chars ["┏" "━" "┓" "┃" "┛" "━" "┗" "┃"]
+      translate_border_chars :none
       translate_sentence_break {:en "." :ja "."}
       configs {:translate_source :en
                :translate_target :ja

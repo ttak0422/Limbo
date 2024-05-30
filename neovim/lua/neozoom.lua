@@ -1,7 +1,7 @@
 -- [nfnl] Compiled from neovim/fnl/neozoom.fnl by https://github.com/Olical/nfnl, do not edit.
 local M = require["neo-zoom"](require)
 local exclude_buftypes = {}
-local winopts = {offset = {height = 0.9}, border = {"\226\148\143", "\226\148\129", "\226\148\147", "\226\148\131", "\226\148\155", "\226\148\129", "\226\148\151", "\226\148\131"}}
+local winopts = {offset = {height = 0.9}, border = "none"}
 local presets
 local function _1_()
   vim.wo.wrap = true

@@ -109,7 +109,8 @@
                                         result_code)})))
       diagnostic {:enabled true :severity 1}
       discovery {:concurrent 0 :enabled true}
-      floating {:border ["┏" "━" "┓" "┃" "┛" "━" "┗" "┃"]
+      floating {; :border ["┏" "━" "┓" "┃" "┛" "━" "┗" "┃"]
+                :border :none
                 :max_height 0.6
                 :max_width 0.6
                 :options {}}

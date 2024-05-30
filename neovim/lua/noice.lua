@@ -36,7 +36,7 @@ local presets = {bottom_search = true, long_message_to_split = true, lsp_doc_bor
 local throttle = (1000 / 30)
 local views
 do
-  local border = {"\226\148\143", "\226\148\129", "\226\148\147", "\226\148\131", "\226\148\155", "\226\148\129", "\226\148\151", "\226\148\131"}
+  local border = "none"
   local cmdline_popup = {border = {style = border}, filter_options = {}, win_options = {winhighlight = {Normal = "NormalFloat", FloatBorder = "FloatBorder"}}}
   local hover = {border = {style = border}}
   views = {cmdline_popup = cmdline_popup, hover = hover}

@@ -3,7 +3,7 @@ local on_attach = dofile(args.on_attach_path)
 local capabilities = dofile(args.capabilities_path)
 vim.diagnostic.config({severity_sort = true})
 vim.lsp.set_log_level("WARN")
-do end (vim.lsp.handlers)["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {border = "single"})
+do end (vim.lsp.handlers)["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {border = "none"})
 do
   local signs = {{name = "DiagnosticSignError", text = "\239\145\132"}, {name = "DiagnosticSignWarn", text = "\239\145\132"}, {name = "DiagnosticSignInfo", text = "\239\145\132"}, {name = "DiagnosticSignHint", text = "\239\145\132"}}
   for _, sign in ipairs(signs) do
@@ -15,7 +15,7 @@ local util = require("lspconfig.util")
 local windows = require("lspconfig.ui.windows")
 local climb = require("climbdir")
 local marker = require("climbdir.marker")
-windows.default_options.border = {"\226\148\143", "\226\148\129", "\226\148\147", "\226\148\131", "\226\148\155", "\226\148\129", "\226\148\151", "\226\148\131"}
+windows.default_options.border = "none"
 lspconfig.lua_ls.setup({on_attach = on_attach, capabilities = capabilities, settings = {Lua = {runtime = {version = "LuaJIT"}, diagnostics = {globals = {"vim"}}}, workspace = {}, telemetry = {enable = false}}})
 lspconfig.fennel_ls.setup({on_attach = on_attach, capabilities = capabilities, settings = {["fennel-ls"] = {["extra-globals"] = "vim"}}})
 lspconfig.nil_ls.setup({on_attach = on_attach, capabilities = capabilities, autostart = true, settings = {["nil"] = {formatting = {command = {"nixpkgs-fmt"}}}}})

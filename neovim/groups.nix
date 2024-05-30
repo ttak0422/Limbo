@@ -45,7 +45,9 @@ in with pkgs.vimPlugins; {
         plugin = lir-git-status-nvim;
         postConfig = {
           language = "lua";
-          code = readFile ./lua/lir-git-status.lua;
+          code = ''
+            require("morimo").load("lir")
+          '' + readFile ./lua/lir-git-status.lua;
         };
         dependPlugins = [ plenary-nvim lir-nvim ];
       }
@@ -136,20 +138,20 @@ in with pkgs.vimPlugins; {
         };
         extraPackages = with pkgs; [ nodejs ];
       }
-      {
-        plugin = reactive-nvim;
-        # plugin = pkgs.vimPluginsUnstable.reactive-nvim.overrideAttrs (drv: {
-        #   version = "patched";
-        #   postInstall = ''
-        #     mkdir -p $out/lua/reactive/presets
-        #     ln -s ${./lua/reactive_kanagawa.lua} $out/lua/reactive/presets/kanagawa.lua
-        #   '';
-        # });
-        postConfig = {
-          language = "lua";
-          code = readFile ./lua/reactive.lua;
-        };
-      }
+      # {
+      #   plugin = reactive-nvim;
+      #   # plugin = pkgs.vimPluginsUnstable.reactive-nvim.overrideAttrs (drv: {
+      #   #   version = "patched";
+      #   #   postInstall = ''
+      #   #     mkdir -p $out/lua/reactive/presets
+      #   #     ln -s ${./lua/reactive_kanagawa.lua} $out/lua/reactive/presets/kanagawa.lua
+      #   #   '';
+      #   # });
+      #   postConfig = {
+      #     language = "lua";
+      #     code = readFile ./lua/reactive.lua;
+      #   };
+      # }
       {
         # Add/change/delete surrounding delimiter pairs with ease.
         plugin = nvim-surround;
@@ -272,7 +274,9 @@ in with pkgs.vimPlugins; {
       };
     in {
       language = "lua";
-      code = readFile ./lua/treesitter.lua;
+      code = ''
+        require('morimo').load('treesitter')
+      '' + readFile ./lua/treesitter.lua;
       args = { inherit parser; };
     };
     # extraPackages = with pkgs; [ tree-sitter ];
@@ -581,7 +585,9 @@ in with pkgs.vimPlugins; {
     dependPlugins = [ nvim-cmp LuaSnip tabout-nvim ];
     postConfig = {
       language = "lua";
-      code = readFile ./lua/cmp.lua;
+      code = ''
+        require("morimo").load("cmp")
+      '' + readFile ./lua/cmp.lua;
     };
     onEvents = [ "InsertEnter" ];
   };

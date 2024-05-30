@@ -101,7 +101,8 @@
                :inc_rename false
                :lsp_doc_border true}
       throttle (/ 1000 30)
-      views (let [border ["┏" "━" "┓" "┃" "┛" "━" "┗" "┃"]
+      views (let [; border ["┏" "━" "┓" "┃" "┛" "━" "┗" "┃"]
+                  border :none
                   cmdline_popup {:border {:style border}
                                  :filter_options {}
                                  :win_options {:winhighlight {:Normal :NormalFloat

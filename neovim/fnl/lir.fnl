@@ -22,13 +22,14 @@
                             : width
                             : height
                             :style :minimal
-                            :border ["┏"
-                                     "━"
-                                     "┓"
-                                     "┃"
-                                     "┛"
-                                     "━"
-                                     "┗"
-                                     "┃"]}))
+                            ; :border ["┏"
+                            ;          "━"
+                            ;          "┓"
+                            ;          "┃"
+                            ;          "┛"
+                            ;          "━"
+                            ;          "┗"
+                            ;          "┃"]
+                            :border :none}))
              :hide_cursor true}]
   (lir.setup {:show_hidden_files true : ignore : devicons : mappings : float}))

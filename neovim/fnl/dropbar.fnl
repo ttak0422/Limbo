@@ -119,7 +119,7 @@
                           :zf (fn []
                                 (let [menu (utils.menu.get_current)]
                                   (if menu (: menu :fuzzy_find_open))))}
-                 win_configs {:border :single :style :minimal}]
+                 win_configs {:border :none :style :minimal}]
              {:preview true
               :quick_navigation true
               :entry {:padding {:left 1 :right 1}}

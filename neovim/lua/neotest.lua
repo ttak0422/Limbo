@@ -101,7 +101,7 @@ end
 default_strategy = _4_
 local diagnostic = {enabled = true, severity = 1}
 local discovery = {concurrent = 0, enabled = true}
-local floating = {border = {"\226\148\143", "\226\148\129", "\226\148\147", "\226\148\131", "\226\148\155", "\226\148\129", "\226\148\151", "\226\148\131"}, max_height = 0.6, max_width = 0.6, options = {}}
+local floating = {border = "none", max_height = 0.6, max_width = 0.6, options = {}}
 local highlights = {adapter_name = "NeotestAdapterName", border = "NeotestBorder", dir = "NeotestDir", expand_marker = "NeotestExpandMarker", failed = "NeotestFailed", file = "NeotestFile", focused = "NeotestFocused", indent = "NeotestIndent", marked = "NeotestMarked", namespace = "NeotestNamespace", passed = "NeotestPassed", running = "NeotestRunning", select_win = "NeotestWinSelect", skipped = "NeotestSkipped", target = "NeotestTarget", test = "NeotestTest", unknown = "NeotestUnknown", watching = "NeotestWatching"}
 local icons = {child_indent = "\226\148\130", child_prefix = "\226\148\156", collapsed = "\226\148\128", expanded = "\226\149\174", failed = "\238\170\184", final_child_indent = " ", final_child_prefix = "\226\149\176", non_collapsible = "\226\148\128", passed = "\238\170\178", running = "\238\169\183", running_animated = {["\226\160\139"] = "\226\160\153", ["\226\160\185"] = "\226\160\184", ["\226\160\188"] = "\226\160\180", ["\226\160\166"] = "\226\160\167", ["\226\160\135"] = "\226\160\143"}, skipped = "\238\174\159", unknown = "\238\172\178", watching = "\238\169\176"}
 local jump = {enabled = true}

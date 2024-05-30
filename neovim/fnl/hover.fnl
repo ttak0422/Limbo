@@ -1,6 +1,6 @@
 (let [hover (require :hover)
       init (fn [] (require :hover.providers.lsp))
-      preview_opts {:border :single}
+      preview_opts {:border :none}
       mouse_providers [:LSP]]
   (hover.setup {: init
                 : preview_opts

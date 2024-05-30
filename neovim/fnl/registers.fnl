@@ -20,7 +20,8 @@
                :register_type_blockwise "ᵇ"}
       window {:max_width 100
               :highlight_cursorline true
-              :border ["┏" "━" "┓" "┃" "┛" "━" "┗" "┃"]
+              ; :border ["┏" "━" "┓" "┃" "┛" "━" "┗" "┃"]
+              :border :none
               :transparency 0}
       sign_highlights {:cursorlinesign :CursorLine
                        :signcolumn :SignColumn

@@ -2,10 +2,11 @@
   description = "dotfiles v4";
 
   inputs = {
-    # E = {
-    #   url = "path:/Users/ttak0422/ghq/github.com/ttak0422/E";
-    #   flake = false;
-    # };
+    morimo = {
+      # url = "path:/Users/ttak0422/ghq/github.com/ttak0422/morimo";
+      url = "github:ttak0422/morimo";
+      flake = false;
+    };
     vim-sonictemplate = {
       url =
         "github:ttak0422/vim-sonictemplate/feature/support-java-test-directory";

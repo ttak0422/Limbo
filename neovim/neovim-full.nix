@@ -18,16 +18,17 @@ let
   stable = {
     inherit extraConfig extraLuaConfig;
     package = loaded-nvim-stable;
+    timer = 50;
     eagerPlugins = with plugins; [
       config-local
       kanagawa
+      morimo
       # btw
     ];
     lazyPlugins = with plugins; [
       # dropbar
       # flutter-tools
       # ionide
-      # E
       autopairs
       ambiwidth
       asterisk

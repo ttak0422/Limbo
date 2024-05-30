@@ -54,9 +54,10 @@
           [:gP
            (lua_cmd "require('goto-preview').close_all_win()")
            (mk_desc "close all preview")]
-          [:gh
-           (lua_cmd "require('dropbar.api').pick()")
-           (mk_desc "pick hierarchy")]
+          ; WIP nvim v0.10+
+          ; [:gh
+          ;  (lua_cmd "require('dropbar.api').pick()")
+          ;  (mk_desc "pick hierarchy")]
           ;; tools
           [:<leader>q (cmd :BufDel)]
           [:<leader>Q (cmd :BufDel!)]
@@ -97,7 +98,10 @@
            (mk_desc "dap run last")]
           [:<LocalLeader>dd
            (fn []
-             (let [dapui (require :dapui)] (dapui.toggle {:reset true})))
+             (let [;; HACK: improve stability
+                   _dap (require :dap)
+                   dapui (require :dapui)]
+               (dapui.toggle {:reset true})))
            (mk_desc "dap toggle ui")]]
       vs [;; runner
           [:<Leader>T (cmd :Translate)]

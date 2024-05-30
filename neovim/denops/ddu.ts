@@ -7,9 +7,10 @@ import {
 } from "https://deno.land/x/ddu_ui_ff@v1.1.0/ff.ts";
 
 export class Config extends BaseConfig {
-  override config(
-    { contextBuilder, setAlias }: ConfigArguments,
-  ): Promise<void> {
+  override config({
+    contextBuilder,
+    setAlias,
+  }: ConfigArguments): Promise<void> {
     setAlias("source", "file_fd", "file_external");
     setAlias("source", "mru", "mr");
     setAlias("source", "mrw", "mr");
@@ -26,7 +27,8 @@ export class Config extends BaseConfig {
       },
       autoResize: false,
       displaySourceName: "no",
-      floatingBorder: ["┏", "━", "┓", "┃", "┛", "━", "┗", "┃"],
+      // floatingBorder: ["┏", "━", "┓", "┃", "┛", "━", "┗", "┃"],
+      floatingBorder: "none",
       split: "floating",
       winCol: "&columns / 4",
       winWidth: "&columns / 2",
@@ -43,10 +45,7 @@ export class Config extends BaseConfig {
         floatingBorder: "none",
         selected: "CursorLine",
       },
-      onPreview: async (args: {
-        denops: Denops;
-        previewWinId: number;
-      }) => {
+      onPreview: async (args: { denops: Denops; previewWinId: number }) => {
         await fn.win_execute(args.denops, args.previewWinId, "normal! zt");
       },
       previewFloating: true,
@@ -64,13 +63,7 @@ export class Config extends BaseConfig {
     contextBuilder.patchGlobal({
       ui: "ff",
       profile: false,
-      sources: [
-        "file",
-        "file_rec",
-        "file_external",
-        "mr",
-        "ghq",
-      ],
+      sources: ["file", "file_rec", "file_external", "mr", "ghq"],
       uiOptions: {},
       uiParams: {
         ff: ffUiParams,
@@ -82,10 +75,7 @@ export class Config extends BaseConfig {
           smartCase: true,
         },
         file: {
-          matchers: [
-            "matcher_substring",
-            "matcher_hidden",
-          ],
+          matchers: ["matcher_substring", "matcher_hidden"],
           sorters: ["sorter_alpha"],
           converters: [
             "converter_hl_dir",

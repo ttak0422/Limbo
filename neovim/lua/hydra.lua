@@ -2,8 +2,8 @@
 local Hydra = require("hydra")
 local KeymapUtil = require("hydra.keymap-util")
 local Cmd = KeymapUtil.cmd
-local float_opts = {border = {"\226\148\143", "\226\148\129", "\226\148\147", "\226\148\131", "\226\148\155", "\226\148\129", "\226\148\151", "\226\148\131"}}
-Hydra.setup({foreign_keys = nil, color = "red", timeout = 10000, hint = {show_name = true, position = {"bottom"}, offset = 0, float_opts = {}}, on_enter = nil, on_exit = nil, on_key = nil, debug = false, invoke_on_body = false, exit = false})
+local float_opts = {border = "none"}
+Hydra.setup({foreign_keys = nil, color = "red", timeout = 10000, hint = {show_name = true, position = {"bottom"}, offset = 0, float_opts = {}}, on_enter = nil, on_exit = nil, on_key = nil, exit = false, invoke_on_body = false, debug = false})
 do
   local heads
   local function _1_()

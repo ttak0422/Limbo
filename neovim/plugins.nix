@@ -330,7 +330,9 @@ let
       dependPlugins = [ plenary-nvim ];
       postConfig = {
         language = "lua";
-        code = readFile ./lua/gitsigns.lua;
+        code = ''
+          require("morimo").load("gitsigns")
+        '' + readFile ./lua/gitsigns.lua;
       };
       onEvents = [ "CursorMoved" ];
     };
@@ -380,9 +382,12 @@ let
     };
   };
   style = with pkgs.vimPlugins; {
-    # E = {
-    #   plugin = E;
-    # };
+    morimo = {
+      plugin = morimo;
+      startupConfig = ''
+        colorscheme morimo
+      '';
+    };
     bufferline = {
       plugin = bufferline-nvim;
       dependPlugins = [ scope-nvim ];

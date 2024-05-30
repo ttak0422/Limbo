@@ -14673,6 +14673,22 @@
         "type": "github"
       }
     },
+    "morimo": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1717085515,
+        "narHash": "sha256-TFlpM+ZZqOrLer/N4tNHYN4NzaDT2/ENNOX4ZDc/2QA=",
+        "owner": "ttak0422",
+        "repo": "morimo",
+        "rev": "ae4a7dbd2d48a07506573a3966ba2aaff4eaafd8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ttak0422",
+        "repo": "morimo",
+        "type": "github"
+      }
+    },
     "mr-vim": {
       "flake": false,
       "locked": {
@@ -22449,6 +22465,7 @@
         "jol": "jol",
         "junit-console": "junit-console",
         "loaded-nvim": "loaded-nvim",
+        "morimo": "morimo",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "neovim-nightly-overlay-latest": "neovim-nightly-overlay-latest",
         "nix-filter": "nix-filter_2",
@@ -23700,11 +23717,11 @@
     "statuscol-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1708023805,
-        "narHash": "sha256-I6Wefl83mcMURtJEq1yaR2thxVMfpJmjSplapeVyKYE=",
+        "lastModified": 1714347907,
+        "narHash": "sha256-Rl0VlsExASyx0+Le7VsY4aVQ+LqFWknZSFh40qGWEHI=",
         "owner": "luukvbaal",
         "repo": "statuscol.nvim",
-        "rev": "e9e4c30b68abe456d80a0b144149ebf3f4527ed8",
+        "rev": "ef3617d0c8cfaa29f7bcdaa8b7cc35df2a409bae",
         "type": "github"
       },
       "original": {

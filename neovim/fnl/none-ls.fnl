@@ -120,7 +120,8 @@
                                                                              (is_active_lsp :denols))})
                dhall-format
                fnlfmt]]
-  (null.setup {:border ["┏" "━" "┓" "┃" "┛" "━" "┗" "┃"]
+  (null.setup {; :border ["┏" "━" "┓" "┃" "┛" "━" "┗" "┃"]
+               :border :none
                :cmd [:nvim]
                :debounce 250
                :debug false
@@ -140,4 +141,3 @@
                : sources})
   (vim.api.nvim_create_user_command :Format "lua vim.lsp.buf.format()" {})
   nil)
-
