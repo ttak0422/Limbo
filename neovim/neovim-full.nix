@@ -21,7 +21,7 @@ let
     timer = 50;
     eagerPlugins = with plugins; [
       config-local
-      kanagawa
+      # kanagawa
       morimo
       # btw
     ];
