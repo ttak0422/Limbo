@@ -6,6 +6,21 @@ let
   groups = callPackage ./groups.nix { inherit inputs; };
   ftplugins = callPackage ./ftplugins.nix { };
 in {
+  test-morimo = {
+    package = pkgs.neovim-v9;
+    eagerPlugins = with pkgs.vimPlugins; [{
+      plugin = morimo;
+      startupConfig = {
+        language = "lua";
+        code = ''
+          vim.g.morimo = {
+            plugins = {"treesitter"}
+          }
+          vim.cmd([[colorscheme morimo]])
+        '';
+      };
+    }];
+  };
   test-v9 = {
     package = pkgs.neovim-v9;
     lazyGroups = with groups; [ treesitter ];
