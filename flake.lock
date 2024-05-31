@@ -14676,11 +14676,11 @@
     "morimo": {
       "flake": false,
       "locked": {
-        "lastModified": 1717085515,
-        "narHash": "sha256-TFlpM+ZZqOrLer/N4tNHYN4NzaDT2/ENNOX4ZDc/2QA=",
+        "lastModified": 1717171765,
+        "narHash": "sha256-6JRsGNDhb3LapGvSxctvG2mUga7vz8bZJCYFpywseIQ=",
         "owner": "ttak0422",
         "repo": "morimo",
-        "rev": "ae4a7dbd2d48a07506573a3966ba2aaff4eaafd8",
+        "rev": "92556a1571672d90c64d3c1b7b4f9e0dc19c1fe6",
         "type": "github"
       },
       "original": {
