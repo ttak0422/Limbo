@@ -2,7 +2,10 @@
       callbacks (require :neorg.core.callbacks)
       completion {:engine :nvim-cmp}
       defaults {:disable []}
-      dirman {:workspaces {:notes "~/neorg"} :default_workspace :notes}
+      dirman {:workspaces {:notes "~/neorg"
+                           ;; WIP
+                           :dotfiles "~/ghq/github.com/ttak0422/Limbo/notes"}
+              :default_workspace :notes}
       leader :<LocalLeader>
       cmd (fn [c]
             (.. :<Cmd> c :<CR>))
@@ -62,3 +65,5 @@
                                                :i insert_events}
                                               key_opts)))
   (cmp.setup.filetype :norg {: sources}))
+
+

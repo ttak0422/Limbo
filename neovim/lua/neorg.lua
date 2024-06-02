@@ -3,7 +3,7 @@ local neorg = require("neorg")
 local callbacks = require("neorg.core.callbacks")
 local completion = {engine = "nvim-cmp"}
 local defaults = {disable = {}}
-local dirman = {workspaces = {notes = "~/neorg"}, default_workspace = "notes"}
+local dirman = {workspaces = {notes = "~/neorg", dotfiles = "~/ghq/github.com/ttak0422/Limbo/notes"}, default_workspace = "notes"}
 local leader = "<LocalLeader>"
 local cmd
 local function _1_(c)
