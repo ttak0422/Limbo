@@ -41,6 +41,10 @@ in {
                 mkdir -p $out/bin
                 ln -s ${pkgs.gnugrep}/bin/grep $out/bin/ggrep
               '')
+              (pkgs.runCommand "gxargs" { } ''
+                mkdir -p $out/bin
+                ln -s ${pkgs.findutils}/bin/xargs $out/bin/gxargs
+              '')
             ];
           }
           (mkHmModule {

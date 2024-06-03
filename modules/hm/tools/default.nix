@@ -16,6 +16,7 @@ _: {
           figlet # --------- ascii
           gnugrep
           gnumake
+          findutils # ------ GNU find, xargs, locate, updatedb
           gnused
           graphviz # ------- dot
           grex # ----------- derive regex from examples
