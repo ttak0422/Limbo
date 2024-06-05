@@ -10,8 +10,8 @@
                   plugin location="file:${pkgs.zjstatus}/bin/zjstatus.wasm" {
                       format_left   "{mode}"
                       format_center "{tabs}"
-                      format_right  "[fg=#76946A,bg=#1a1a22]"
-                      format_space  "[fg=#1a1a22,bg=#1a1a22]"
+                      format_right  "[fg=#76946A,bg=#2a2a2e]"
+                      format_space  "[fg=#b5d2a9,bg=#2a2a2e]"
                       first_start "true"
 
                       border_enabled  "false"
@@ -21,14 +21,14 @@
 
                       hide_frame_for_single_pane "true"
 
-                      mode_tmux          "#[fg=#ffc387,bg=#1a1a22,bold,italic]-- Zellij --"
-                      mode_normal        "#[fg=#7E9CD8,bg=#1a1a22,bold]-- Zellij --"
-                      mode_scroll        "#[fg=#7E9CD8,bg=#1a1a22,bold]-- {name} --"
-                      mode_enter_search  "#[fg=#7E9CD8,bg=#1a1a22,bold]-- {name} --"
-                      mode_search        "#[fg=#7E9CD8,bg=#1a1a22,bold]-- {name} --"
+                      mode_tmux          "#[fg=#d3c785,bg=#2a2a2e,bold,italic]-- Zellij --"
+                      mode_normal        "#[fg=#767b82,bg=#2a2a2e,bold]-- Zellij --"
+                      mode_scroll        "#[fg=#767b82,bg=#2a2a2e,bold]-- {name} --"
+                      mode_enter_search  "#[fg=#767b82,bg=#2a2a2e,bold]-- {name} --"
+                      mode_search        "#[fg=#767b82,bg=#2a2a2e,bold]-- {name} --"
 
-                      tab_normal   "#[fg=#6C7086,bg=#1a1a22] {name} "
-                      tab_active   "#[fg=#9399B2,bg=#1a1a22,bold,italic] {name} "
+                      tab_normal   "#[fg=#767b82,bg=#2a2a2e] {name} "
+                      tab_active   "#[fg=#d99872,bg=#2a2a2e,bold,italic] {name} "
 
                       command_git_branch_command     "git rev-parse --abbrev-ref HEAD"
                       command_git_branch_format      "#[fg=blue] {stdout} "
