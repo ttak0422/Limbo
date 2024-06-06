@@ -41,7 +41,7 @@ export class Config extends BaseConfig {
       filterSplitDirection: "topleft",
       highlights: {
         filterText: "Statement",
-        floating: "Normal",
+        floating: "NormalFloat",
         floatingBorder: "none",
         selected: "CursorLine",
       },
