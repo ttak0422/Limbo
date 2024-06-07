@@ -1,7 +1,16 @@
 { pkgs, ... }: {
-  home = {
-    packages = (with pkgs; [ nodejs ])
-      ++ (with pkgs.nodePackages; [ npm yarn pnpm ]);
+  home = let
+    corepack' = with pkgs;
+      corepack.overrideAttrs {
+        buildInputs = [ nodejs ];
+        phases = [ "installPhase" ];
+        installPhase = ''
+          mkdir -p $out/bin
+          corepack enable --install-directory=$out/bin
+        '';
+      };
+  in {
+    packages = with pkgs; [ nodejs corepack' ];
     file.".npmrc".text = builtins.readFile ./.npmrc;
   };
 }
