@@ -39,10 +39,10 @@ end
 dap.listeners.before.event_exited["dapui_config"] = _6_
 dap_vscode.load_launchjs()
 dap_ui.setup({element_mappings = {}, expand_lines = true, force_buffers = true, icons = icons, controls = controls, floating = floating, layouts = layouts, mappings = mappings, render = render})
-dap_virt.setup({enabled_commands = true, highlight_changed_variables = true, show_stop_reason = true, commented = true, only_first_definition = true, display_callback = display_callback, virt_text_pos = virt_text_pos, virt_text_win_col = nil, highlight_new_as_changed = false, all_references = false, enabled = false, all_frames = false, virt_lines = false, clear_on_continue = false})
+dap_virt.setup({enabled_commands = true, highlight_changed_variables = true, show_stop_reason = true, commented = true, only_first_definition = true, display_callback = display_callback, virt_text_pos = virt_text_pos, virt_text_win_col = nil, enabled = false, highlight_new_as_changed = false, all_references = false, clear_on_continue = false, all_frames = false, virt_lines = false})
 dap_hl.setup({})
 for _, h in ipairs(highlights) do
-  vim.api.nvim_set_hl(0, h[1], {fg = h[2], bg = "#2a2a2e"})
+  vim.api.nvim_set_hl(0, h[1], {fg = h[2], bg = "none"})
 end
 for _, s in ipairs(signs) do
   vim.fn.sign_define(s[1], {text = s[2], texthl = s[3], linehl = "", numhl = ""})

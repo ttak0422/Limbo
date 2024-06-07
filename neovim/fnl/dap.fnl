@@ -92,9 +92,9 @@
   ;; highlights
   (dap-hl.setup {})
   ;; other
-  ;; WIP: signの背景色を手動設定
+  ;; signの背景色を削除
   (each [_ h (ipairs highlights)]
-    (vim.api.nvim_set_hl 0 (. h 1) {:fg (. h 2) :bg "#2a2a2e"}))
+    (vim.api.nvim_set_hl 0 (. h 1) {:fg (. h 2) :bg :none}))
   (each [_ s (ipairs signs)]
     (vim.fn.sign_define (. s 1) {:text (. s 2)
                                  :texthl (. s 3)
