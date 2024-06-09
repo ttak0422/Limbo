@@ -1,1 +1,7 @@
-{ pkgs, ... }: { home.packages = with pkgs.elmPackages; [ elm elm-test ]; }
+{ pkgs, ... }: {
+  home.packages = with pkgs.elmPackages;
+    [
+      # WIP: for darwin
+      # elm elm-test
+    ];
+}

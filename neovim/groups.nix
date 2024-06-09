@@ -380,7 +380,7 @@ in with pkgs.vimPlugins; {
           taplo
           yamllint
           statix
-          nixfmt
+          nixfmt-rfc-style
           google-java-format
           stylelint
           vim-vint

@@ -4,7 +4,7 @@
       enable = true;
       autocd = true;
       enableCompletion = true;
-      enableAutosuggestions = true;
+      autosuggestion = { enable = true; };
       syntaxHighlighting.enable = true;
       defaultKeymap = "emacs";
       shellAliases = let
@@ -28,7 +28,7 @@
         setopt HIST_IGNORE_ALL_DUPS
         setopt share_history
         setopt hist_reduce_blanks
-        '';
+      '';
       initExtra = ''
         # pure
         fpath+=("$HOME/.zsh/plugins/pure/share/zsh/site-functions")

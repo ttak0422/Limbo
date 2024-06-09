@@ -102,7 +102,7 @@ let
         # formatter
         google-java-format
         html-tidy
-        nixfmt
+        nixfmt-rfc-style
         nodePackages.fixjson
         nodePackages.prettier
         rustfmt

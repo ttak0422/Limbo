@@ -2,7 +2,7 @@
 let
   inherit (builtins) attrValues;
   inherit (self.lib) mkConfiguration mkHmModule;
-  hmStateVersion = "23.11";
+  hmStateVersion = "24.05";
   username = "ttak0422";
   userEmail = "ttak0422@gmail.com";
   flags = { foo = "bar"; };
