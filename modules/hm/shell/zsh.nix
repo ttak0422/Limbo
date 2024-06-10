@@ -41,10 +41,16 @@
       '';
       profileExtra = ''
         export NLS_LANG=Japanese_Japan.AL32UTF8
+
         export GOPATH=$HOME/go
-        export NODE_PATH=~/.npm-packages/lib/node_modules
         export PATH=$GOPATH/bin:$PATH
+
+        export NODE_PATH=~/.npm-packages/lib/node_modules
         export PATH=~/.npm-packages/bin:$PATH
+
+        export VOLTA_HOME=$HOME/.volta
+        export PATH=$VOLTA_HOME/bin:$PATH
+
         export PATH=$PATH:/opt/homebrew/bin
       '';
       plugins = [{
