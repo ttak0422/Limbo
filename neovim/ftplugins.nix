@@ -5,6 +5,7 @@ in
 {
   norg = ''
     setlocal noswapfile
+    setlocal nowrap
   '';
   qf = with pkgs.vimPlugins; ''
     silent source ${nvim-bqf}/after/ftplugin/qf/bqf.vim
