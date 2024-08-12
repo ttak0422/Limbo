@@ -1,4 +1,4 @@
-> **Warning**
+> [!WARNING]
 > → Limbo will be archived. (refined new dotfiles → [dotfiles-nvim](https://github.com/ttak0422/dotfiles-nvim), [dotfiles](https://github.com/ttak0422/dotfiles))
 
 <h1 align="center">
