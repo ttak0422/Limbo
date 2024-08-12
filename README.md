@@ -1,3 +1,6 @@
+> **Warning**
+> → Limbo will be archived. (refined new dotfiles → [dotfiles-nvim](https://github.com/ttak0422/dotfiles-nvim), [dotfiles](https://github.com/ttak0422/dotfiles))
+
 <h1 align="center">
     Limbo
 </h1>
@@ -14,7 +17,6 @@
 
 > [!NOTE]
 > require skk server running on port 1178.
-
 ```shell
 # just run
 nix run 'github:ttak0422/Limbo#bundler-nvim'
